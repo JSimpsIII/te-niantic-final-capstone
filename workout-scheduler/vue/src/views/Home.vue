@@ -3,16 +3,18 @@
     <p>You must be logged-in to see this</p>
     <img src="" />
     <h1>Welcome, User</h1>
-    <img src="" id="edit-profile">
+    <router-link :to="{name: 'profile'}">
+      <div id="edit-profile">edit</div>
+    </router-link>
 
     <div class="container">
-      <div id="gym" class="home-option-btn">
+      <div id="gym" class="home-options-btn">
         <h2>Gym</h2>
       </div>
-      <div id="metrics" class="home-option-btn">
+      <div id="metrics" class="home-options-btn">
         <h2>Metrics</h2>
       </div>
-      <div id="goals">
+      <div id="goals" class="home-options-btn">
         <h2>Goals</h2>
       </div>
     </div>
