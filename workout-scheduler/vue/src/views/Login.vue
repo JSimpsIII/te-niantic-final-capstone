@@ -2,20 +2,23 @@
   <div id="login" class="text-center">
     <div id="login-header">     
     <img id="login-img" src="https://www.creativefabrica.com/wp-content/uploads/2020/12/07/Gym-Logo-Graphics-7049759-1-580x386.jpg" />
-    <h1 id="welcome" class="h3 mb-3 font-weight-normal">[Gym App Name]!</h1>
+    <h1 id="welcome" class="h3 mb-3 font-weight-normal">[Gym App Name]</h1>
     </div>
     <form class="form-signin" @submit.prevent="login">
-      <h3 id="login-request">Please Log In</h3>
+      <h3 class="login-request" v-if="!this.$route.query.registration">Please Log In</h3>
+      <h3  class="alert alert-success login-request"
+        role="alert"
+        v-if="this.$route.query.registration">Thank you for registering, please sign in.</h3>
       <div
         class="alert alert-danger"
         role="alert"
         v-if="invalidCredentials"
       >Invalid username and password!</div>
-      <div
-        class="alert alert-success"
+      <!-- <div
+        class="alert alert-success login-request"
         role="alert"
         v-if="this.$route.query.registration"
-      >Thank you for registering, please sign in.</div>
+      >Thank you for registering, please sign in.</div> -->
       <div id="username">
       <label for="username" class="sr-only">Username </label>
       <input
@@ -118,7 +121,7 @@ export default {
   margin-left: 10px;
 }
 
-#login-request {
+.login-request {
   font-size: 25px;
   text-align: center;
   width: 90%;
