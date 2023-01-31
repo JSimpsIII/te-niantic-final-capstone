@@ -53,11 +53,6 @@ a {
   text-decoration: none;
 }
 
-.home {
-  width: 600px;
-  margin: 0 auto;
-}
-
 #profile-header {
   display: flex;
   align-items: center;
@@ -91,16 +86,16 @@ a {
 }
 
 #gym div {
-  background-color: #295882;
+  background-color: var(--blue);
 }
 
 #metrics div {
   
-  background-color: #822958; 
+  background-color: var(--red); 
 }
 
 #goals div {
-  background-color: #298253;
+  background-color: var(--green);
 }
 
 #goals div,

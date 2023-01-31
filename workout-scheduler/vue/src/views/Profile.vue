@@ -1,27 +1,59 @@
 <template>
   <div>
-    <div class="banner"></div>
-    <img class="profile-img" :src="user.img" alt="profile-img">
+    <div class="banner">
+      <div class="profile-img-container">
+        <img class="profile-img" :src="user.img" alt="profile-img">
+      </div>
+    </div>
+    
 
-    <div class="profile-container">
-      Username: {{ user.username }}
+    <div class="profile-container form-group">
+      <div id="username">
+        Username: {{ user.username }}
+      </div>
+
       <form id="form-container">
         <label for="email">
           Email:
-          <input type="text" v-model="user.email" id="email" name="email" disabled>
+          <input 
+            type="email" 
+            v-model="user.email" 
+            id="email" 
+            name="email" 
+            :disabled="!isEditting">
         </label>
 
         <label for="height">
           Height:
-          <input type="text" v-model="user.height" id="height" name="height" disabled>
+          <input 
+            type="text" 
+            v-model="user.height" 
+            id="height" 
+            name="height" 
+            :disabled="!isEditting">
         </label>
 
         <label for="weight">
           Weight:
-          <input type="text" v-model="user.weight" id="weight" name="weight" disabled>
+          <input 
+            type="text" 
+            v-model="user.weight" 
+            id="weight" 
+            name="weight" 
+            :disabled="!isEditting">
         </label>
+        
+        <button id="submit-btn" class="profile-btns">Save Changes</button>
 
       </form>
+
+      <button 
+        id="edit-btn" 
+        class="profile-btns" 
+        @click="toggleEditProfile"
+      >
+        {{ isEditting ? "Cancel" : "Edit Profile" }}
+      </button>
       
     </div>
     
@@ -40,13 +72,32 @@ export default {
           email: "pull email",
           height: "height here",
           weight: "weight here"
-        }
+        },
+        isEditting: false,
+      }
+    },
+    methods: {
+      toggleEditProfile() {
+        this.isEditting = !this.isEditting;
       }
     }
 }
 </script>
 
-<style>
+<style scoped>
+
+.banner {
+  width: 100%;
+  background-color: #295882;
+  height: 150px;
+  position: relative;
+}
+
+.profile-img-container {
+  position: absolute;
+  top: 50%;
+  margin-left: 50px;
+}
 
 .profile-img {
   width: 150px;
@@ -56,12 +107,35 @@ export default {
   object-position: top;
 }
 
+.profile-container {
+  margin-top: 100px;
+  margin-left: 50px;
+}
+
+#username {
+  margin-bottom: 20px;
+}
+
 #form-container {
   display: flex;
   flex-direction: column;
+  gap: 20px;
 }
 
 #form-container > label > input {
-  
+  color: inherit;
+  background-color: #2D2D2D;
+  padding: 5px;
+  border: var(--blue) 1px solid;
+  border-radius: 5px;
 }
+
+#form-container > label > input:disabled {
+  all: unset;
+}
+
+.profile-btns {
+  width: 150px;
+}
+
 </style>

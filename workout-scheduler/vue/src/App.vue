@@ -10,9 +10,28 @@
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap');
-body {
-  font-family: 'Roboto', sans-serif;
-  background-color: #0f0606;
-  color: #FDFFFC;
+
+/*Reset*/
+* {
+  margin: 0;
+  box-sizing: border-box;
 }
+
+/*Styles to inherit*/
+:root {
+  --blue: #295882;
+  --red: #822958;
+  --green: #298253;
+  --dark-bg: #0f0606;
+  --text: #FDFFFC;
+}
+
+body {
+  width: 600px;
+  margin: 0 auto;
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--dark-bg);
+  color: var(--text);
+}
+
 </style>
