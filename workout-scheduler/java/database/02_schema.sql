@@ -32,15 +32,15 @@ CREATE TABLE employee (
 	CONSTRAINT PK_employee PRIMARY KEY (employee_id)
 );
 
-CREATE TABLE metics (
+CREATE TABLE metrics (
 	metrics_id SERIAL NOT NULL PRIMARY KEY,
 	customer_id int NOT NULL,
 	metrics_date date NOT NULL,
 	weight_lbs numeric,
 	current_reps int,
-	current_weight int[],
-	current_time_min int,
-	current_days int[],
+	current_weight int,
+	current_time_min numeric,
+	current_days int,
 	current_misc varchar(50)
 );
 
@@ -49,17 +49,17 @@ CREATE TABLE goal (
 	goal_name varchar(50) NOT NULL,
 	goal_reps int,
 	goal_weight_lbs int,
-	goal_time_min int,
-	goal_days int[],
+	goal_time_min numeric,
+	goal_days int,
 	goal_misc varchar(50)
 );
 
-CREATE TABLE customer_goal {
+CREATE TABLE customer_goal (
 	customer_id int NOT NULL,
 	goal_id int NOT NULL,
 	goal_date date,
 	is_completed boolean
-}
+);
 
 -- Add seed data in the 03_data.sql script file
 

@@ -9,7 +9,9 @@
 </template>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap');
 body {
+  font-family: 'Roboto', sans-serif;
   background-color: #0f0606;
   color: #FDFFFC;
 }
