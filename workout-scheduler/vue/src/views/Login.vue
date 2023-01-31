@@ -1,7 +1,8 @@
 <template>
   <div id="login" class="text-center">
     <form class="form-signin" @submit.prevent="login">
-      <h1 class="h3 mb-3 font-weight-normal">Please Sign In</h1>
+      <h1 class="h3 mb-3 font-weight-normal">Welcome to the [Gym Name] official app!</h1>
+      <h3>Please Sign In</h3>
       <div
         class="alert alert-danger"
         role="alert"
@@ -32,8 +33,9 @@
         required
       />
       <router-link :to="{ name: 'register' }">Need an account?</router-link>
-      <button type="submit">Sign in</button>
+      <button type="submit" v-on:click="login">Sign in</button>
     </form>
+    <p>[Gym name] has been around since [here]</p>
   </div>
 </template>
 
