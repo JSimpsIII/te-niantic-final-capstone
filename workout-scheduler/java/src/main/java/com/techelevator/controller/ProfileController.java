@@ -16,22 +16,22 @@ public class ProfileController {
         this.profileDao = profileDao;
     }
 
-    @RequestMapping(path = "", method = RequestMethod.GET)
+    @RequestMapping(path = "/users", method = RequestMethod.GET)
     public List<Profile> getAllProfiles() {
         return profileDao.getAllProfiles();
     }
 
-    @RequestMapping(path = "/{name}", method = RequestMethod.GET)
+    @RequestMapping(path = "/users/{name}", method = RequestMethod.GET)
     public Profile getProfileByName(@RequestParam String name){
         return profileDao.getProfileByName(name);
     }
 
-    @RequestMapping(path = "/{id}", method = RequestMethod.GET)
+    @RequestMapping(path = "/users/{id}", method = RequestMethod.GET)
     public Profile getProfileById(@RequestParam Long id){
         return profileDao.getProfileById(id);
     }
 
-    @RequestMapping(path = "", method = RequestMethod.POST)
+    @RequestMapping(path = "/users", method = RequestMethod.POST)
     public boolean createNewProfile(@RequestBody ProfileDTO profileDTO) {
         Customer customer = profileDTO.getCustomer();
         Goal goal = profileDTO.getGoal();
@@ -40,7 +40,7 @@ public class ProfileController {
         return profileDao.createNewProfile(profile);
     }
 
-    @RequestMapping(path = "/{id}", method = RequestMethod.PUT)
+    @RequestMapping(path = "/users/{id}", method = RequestMethod.PUT)
     public void updateProfileById(@PathVariable Long id, @RequestBody Profile profile){
         profileDao.updateProfileById(id, profile);
     }
