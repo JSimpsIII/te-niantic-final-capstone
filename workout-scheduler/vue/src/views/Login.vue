@@ -1,8 +1,11 @@
 <template>
   <div id="login" class="text-center">
+    <div id="login-header">     
+    <img id="login-img" src="https://www.creativefabrica.com/wp-content/uploads/2020/12/07/Gym-Logo-Graphics-7049759-1-580x386.jpg" />
+    <h1 id="welcome" class="h3 mb-3 font-weight-normal">Welcome to  [Gym App Name]!</h1>
+    </div>
     <form class="form-signin" @submit.prevent="login">
-      <h1 class="h3 mb-3 font-weight-normal">Welcome to the [Gym Name] official app!</h1>
-      <h3>Please Sign In</h3>
+      <h3 id="login-request">Please Log In</h3>
       <div
         class="alert alert-danger"
         role="alert"
@@ -13,29 +16,37 @@
         role="alert"
         v-if="this.$route.query.registration"
       >Thank you for registering, please sign in.</div>
-      <label for="username" class="sr-only">Username</label>
+      <div id="username">
+      <label for="username" class="sr-only">Username </label>
       <input
         type="text"
         id="username"
         class="form-control"
-        placeholder="Username"
+        placeholder="Your account username"
         v-model="user.username"
         required
         autofocus
       />
-      <label for="password" class="sr-only">Password</label>
+      </div>
+      <div id="password">
+      <label for="password" class="sr-only">Password </label>
       <input
         type="password"
         id="password"
         class="form-control"
-        placeholder="Password"
+        placeholder="Enter your secure password"
         v-model="user.password"
         required
       />
+      </div>
+      <div id="to-register">
       <router-link :to="{ name: 'register' }">Need an account?</router-link>
-      <button type="submit" v-on:click="login">Sign in</button>
+      </div>
+      <div id="log-in">
+      <button type="submit" v-on:click="login">Log In</button>
+      </div>
     </form>
-    <p>[Gym name] has been around since [here]</p>
+    <p id="gym-info">[Gym Information Here]</p>
   </div>
 </template>
 
@@ -76,3 +87,55 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.text-center {
+  width: 600px;
+  margin: 0 auto;
+}
+
+#login-header {
+  display: flex;
+  align-items: center;
+  width: 90%;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+
+#login-img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 100%;
+  object-position: top;
+}
+
+#welcome {
+  margin-left: 10px;
+}
+
+#login-request {
+  font-size: 25px;
+  text-align: center;
+  width: 90%;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+
+#log-in {
+  font-size: 25px;
+  text-align: center;
+  width: 90%;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+
+#gym-info {
+  font-size: 25px;
+  text-align: center;
+  width: 90%;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+
+</style>
