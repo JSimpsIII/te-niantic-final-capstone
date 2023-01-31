@@ -6,9 +6,11 @@
     </div>
     <form class="form-signin" @submit.prevent="login">
       <h3 class="login-request" v-if="!this.$route.query.registration">Please Log In</h3>
-      <h3  class="alert alert-success login-request"
+      <h3  
+        class="alert alert-success login-request"
         role="alert"
-        v-if="this.$route.query.registration">Thank you for registering, please sign in.</h3>
+        v-if="this.$route.query.registration"
+        >Thank you for registering, please sign in.</h3>
       <div
         class="alert alert-danger"
         role="alert"
