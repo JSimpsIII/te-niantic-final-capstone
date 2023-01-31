@@ -1,14 +1,14 @@
 <template>
   <div class="home">
     <div id="profile-header">
-      <img id="profile-img" src="https://www.writeups.org/wp-content/uploads/Machop-Pokemon.jpg" />
+      <img class="profile-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRo30ulQk-69OJ5GGdowFt21Lsau4GfWzfbBSmsfE4hGrVxBbnVNOr12yOYULoq2Gb7XEU&usqp=CAU" />
       <div id="username">{{ username }}</div>
       <router-link id="settings" :to="{name: 'profile'}">
         <img src="../assets/settings.png">
       </router-link>
     </div>
 
-    <div id="motivation">Welcome back, {{ username }}! Just 5 more workouts until you level up! </div>
+    <div id="motivation">Welcome back, {{ username }}! Just 1 more workout until you hit your weekly goal! </div>
 
     <div class="btn-container">
       <router-link id="gym" class="home-options-btn" to="/">
@@ -41,17 +41,13 @@ export default {
   data() {
     return {
       // get name from login
-      username: "Machop"
+      username: "Steve Rogers"
     }
   }
 };
 </script>
 
 <style scoped>
-
-* {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
 
 a {
   text-decoration: none;
@@ -78,8 +74,7 @@ a {
   margin-left: auto;
 }
 
-
-#profile-img {
+.profile-img {
   width: 50px;
   height: 50px;
   object-fit: cover;
@@ -96,16 +91,16 @@ a {
 }
 
 #gym div {
-  background-color: #3a86ff;
+  background-color: #295882;
 }
 
 #metrics div {
   
-  background-color: #ff006e; 
+  background-color: #822958; 
 }
 
 #goals div {
-  background-color: #8338ec;
+  background-color: #298253;
 }
 
 #goals div,
