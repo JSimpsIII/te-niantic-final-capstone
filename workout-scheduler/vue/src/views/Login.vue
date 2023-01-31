@@ -2,7 +2,7 @@
   <div id="login" class="text-center">
     <div id="login-header">     
     <img id="login-img" src="https://www.creativefabrica.com/wp-content/uploads/2020/12/07/Gym-Logo-Graphics-7049759-1-580x386.jpg" />
-    <h1 id="welcome" class="h3 mb-3 font-weight-normal">Welcome to the [Gym App Name]!</h1>
+    <h1 id="welcome" class="h3 mb-3 font-weight-normal">Welcome to  [Gym App Name]!</h1>
     </div>
     <form class="form-signin" @submit.prevent="login">
       <h3 id="login-request">Please Log In</h3>
