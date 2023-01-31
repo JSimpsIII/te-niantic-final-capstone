@@ -39,7 +39,7 @@
         required
       />
       </div>
-      <div id="to-register">
+      <div id="to-register" v-if="!this.$route.query.registration">
       <router-link :to="{ name: 'register' }">Need an account?</router-link>
       </div>
       <div id="log-in">
