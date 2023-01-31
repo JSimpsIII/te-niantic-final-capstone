@@ -35,7 +35,7 @@
       <router-link :to="{ name: 'register' }">Need an account?</router-link>
       <button type="submit" v-on:click="login">Sign in</button>
     </form>
-    <p>[Gym name] has been around since [here]</p>
+    <p>[Gym name] has been around since [year]</p>
   </div>
 </template>
 
