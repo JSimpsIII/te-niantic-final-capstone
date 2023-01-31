@@ -36,9 +36,8 @@ CREATE TABLE metrics (
 	metrics_id SERIAL NOT NULL PRIMARY KEY,
 	customer_id int NOT NULL,
 	metrics_date date NOT NULL,
-	weight_lbs numeric,
 	current_reps int,
-	current_weight int,
+	current_weight_lbs numeric,
 	current_time_min numeric,
 	current_days int,
 	current_misc varchar(50)

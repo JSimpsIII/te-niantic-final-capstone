@@ -17,11 +17,17 @@
   box-sizing: border-box;
 }
 
-/*Styles to inherit*/
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/*Set color palette*/
 :root {
   --blue: #295882;
   --red: #822958;
   --green: #298253;
+  --smoke: #2D2D2D;
   --dark-bg: #0f0606;
   --text: #FDFFFC;
 }
