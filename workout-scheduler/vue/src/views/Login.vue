@@ -2,7 +2,7 @@
   <div id="login" class="text-center">
     <div id="login-header">     
     <img id="login-img" src="https://www.creativefabrica.com/wp-content/uploads/2020/12/07/Gym-Logo-Graphics-7049759-1-580x386.jpg" />
-    <h1 id="welcome" class="h3 mb-3 font-weight-normal">Welcome to  [Gym App Name]!</h1>
+    <h1 id="welcome" class="h3 mb-3 font-weight-normal">[Gym App Name]!</h1>
     </div>
     <form class="form-signin" @submit.prevent="login">
       <h3 id="login-request">Please Log In</h3>
@@ -43,7 +43,7 @@
       <router-link :to="{ name: 'register' }">Need an account?</router-link>
       </div>
       <div id="log-in">
-      <button type="submit" v-on:click="login">Log In</button>
+      <button type="submit">Log In</button>
       </div>
     </form>
     <p id="gym-info">[Gym Information Here]</p>
@@ -73,7 +73,11 @@ export default {
           if (response.status == 200) {
             this.$store.commit("SET_AUTH_TOKEN", response.data.token);
             this.$store.commit("SET_USER", response.data.user);
-            this.$router.push("/");
+            if (this.$route.query.registration) {
+              this.$router.push("redirect");
+            } else {
+              this.$router.push("/");
+            }
           }
         })
         .catch(error => {

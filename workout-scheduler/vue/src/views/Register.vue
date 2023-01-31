@@ -1,10 +1,15 @@
 <template>
   <div id="register" class="text-center">
+    <div id="register-header">     
+    <img id="register-img" src="https://www.creativefabrica.com/wp-content/uploads/2020/12/07/Gym-Logo-Graphics-7049759-1-580x386.jpg" />
+    <h1 id="welcome" class="h3 mb-3 font-weight-normal">[Gym App Name]!</h1>
+    </div>
     <form class="form-register" @submit.prevent="register">
-      <h1 class="h3 mb-3 font-weight-normal">Create Account</h1>
+      <h3 id="account-request">Create Account</h3>
       <div class="alert alert-danger" role="alert" v-if="registrationErrors">
         {{ registrationErrorMsg }}
       </div>
+      <div id="username">
       <label for="username" class="sr-only">Username</label>
       <input
         type="text"
@@ -15,6 +20,8 @@
         required
         autofocus
       />
+      </div>
+      <div id="password">
       <label for="password" class="sr-only">Password</label>
       <input
         type="password"
@@ -32,10 +39,15 @@
         v-model="user.confirmPassword"
         required
       />
+      </div>
+      <div id="to-login">
       <router-link :to="{ name: 'login' }">Have an account?</router-link>
+      </div>
+      <div id="register-button">
       <button class="btn btn-lg btn-primary btn-block" type="submit">
         Create Account
       </button>
+      </div>
     </form>
   </div>
 </template>
@@ -90,4 +102,55 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.text-center {
+  width: 600px;
+  margin: 0 auto;
+}
+
+#register-header {
+  display: flex;
+  align-items: center;
+  width: 90%;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+
+#register-img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 100%;
+  object-position: top;
+}
+
+#welcome {
+  margin-left: 10px;
+}
+
+#account-request {
+  font-size: 25px;
+  text-align: center;
+  width: 90%;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+
+#register-button {
+  font-size: 25px;
+  text-align: center;
+  width: 90%;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+
+#gym-info {
+  font-size: 25px;
+  text-align: center;
+  width: 90%;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+
+
+</style>
