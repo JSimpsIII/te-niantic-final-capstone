@@ -1,9 +1,6 @@
 package com.techelevator.dao;
 
-import com.techelevator.model.profile.Profile;
-import com.techelevator.model.profile.Customer;
-import com.techelevator.model.profile.Goal;
-import com.techelevator.model.profile.Metrics;
+import com.techelevator.model.profile.*;
 
 import java.util.List;
 
@@ -14,4 +11,8 @@ public interface ProfileDao {
     Profile getProfileById(Long userId);
 
     Profile getProfileByName(String name);
+
+    boolean createNewProfile(Profile profile);
+
+    void updateProfileById(Long userId, Profile profile);
 }

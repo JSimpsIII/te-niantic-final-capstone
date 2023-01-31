@@ -14,6 +14,13 @@ public class Profile {
     public Profile() {
     }
 
+    public Profile(Customer customer, Goal goal, Metrics metrics){
+        this.customer = customer;
+        this.goal = goal;
+        this.metrics = metrics;
+        this.userId = customer.getCustomerId();
+    }
+
     public Profile(Long userId) {
         this.userId = userId;
     }
