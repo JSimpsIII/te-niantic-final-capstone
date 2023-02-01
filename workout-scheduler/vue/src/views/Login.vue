@@ -51,7 +51,7 @@
       <button type="submit">Log In</button>
       </div>
     </form>
-    <p id="gym-info" v-if="!this.$route.query.registration">[Gym Information Here]</p>
+    <p id="gym-info" v-if="!this.$route.query.registration">{{inspirationalQuote()}}</p>
   </div>
 </template>
 
@@ -67,7 +67,8 @@ export default {
         username: "",
         password: ""
       },
-      invalidCredentials: false
+      invalidCredentials: false,
+      quotes: ["What seems impossible today will one day become your warm-up.", "If it doesn't challenge you, it doesn't change you.", "The only place where success comes before work is in the dictionary."]
     };
   },
   methods: {
@@ -92,6 +93,9 @@ export default {
             this.invalidCredentials = true;
           }
         });
+    },
+    inspirationalQuote() {
+      return this.quotes[Math.floor(Math.random() * Math.floor(3))];
     }
   }
 };
