@@ -16,6 +16,10 @@ public class Customer {
         this.email = email;
     }
 
+    public Customer(Long customerId) {
+        this.customerId = customerId;
+    }
+
     public Long getCustomerId() {
         return customerId;
     }
