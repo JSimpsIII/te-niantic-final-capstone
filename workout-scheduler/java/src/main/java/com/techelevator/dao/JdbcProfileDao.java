@@ -64,6 +64,17 @@ public class JdbcProfileDao implements ProfileDao {
         }
     }
 
+    @Override
+    public boolean createNewProfile(Profile profile) {
+        //TODO: create new profile
+        return false;
+    }
+
+    @Override
+    public void updateProfileById(Long userId, Profile profile) {
+        //TODO: update profile by id
+    }
+
     private Profile mapRowToProfile(SqlRowSet row) {
         Profile profile = new Profile();
         profile.getCustomer().setCustomerId(row.getLong("customer_id"));
