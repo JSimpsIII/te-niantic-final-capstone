@@ -14,5 +14,5 @@ public interface ProfileDao {
 
     boolean createNewProfile(Profile profile);
 
-    void updateProfileById(Long userId, Profile profile);
+    boolean updateProfileById(Long userId, Profile profile);
 }

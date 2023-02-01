@@ -79,9 +79,17 @@ public class JdbcProfileDao implements ProfileDao {
     }
 
     @Override
-    public void updateProfileById(Long userId, Profile profile) {
-        //TODO: update profile by id
+    public boolean updateProfileById(Long userId, Profile profile) {
+
+        boolean updatedCustomer = updateCustomer(profile);
+        boolean updatedMetrics = updateMetrics(profile);
+        boolean updatedGoals = updateGoals(profile);
+        boolean updatedCustomerGoals = updateCustomerGoals(profile);
+
+        return updatedCustomer && updatedMetrics && updatedGoals && updatedCustomerGoals;
     }
+
+
 
     private boolean createNewCustomer(Profile profile) {
          /*  customer table
@@ -195,6 +203,82 @@ public class JdbcProfileDao implements ProfileDao {
             return false;
         }
         return (customerGoalId != null);
+    }
+
+    private boolean updateCustomer(Profile profile) {
+        Long id = profile.getUserId();
+        String cName = profile.getCustomer().getName();
+        String cEmail = profile.getCustomer().getEmail();
+        String cPhoto = profile.getCustomer().getPhoto();
+        double cHeight = profile.getCustomer().getHeight();
+
+        Integer customerId;
+        String sqlQuery = "UPDATE customer " +
+                "SET customer_name = ?, customer_email = ?, photo_link = ?, height_inches = ? " +
+                "WHERE customer_id = ?;";
+        try {
+            jdbcTemplate.update(sqlQuery, cName, cEmail, cPhoto, cHeight, id);
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
+    }
+
+    private boolean updateMetrics(Profile profile) {
+        Long id = profile.getUserId();
+        String mDate = LocalDate.now().format(DateTimeFormatter.ISO_LOCAL_DATE);
+        int mReps = profile.getMetrics().getReps();
+        double mWeight = profile.getMetrics().getWeight();
+        double mTime = profile.getMetrics().getTime();
+        int mDays = profile.getMetrics().getDays();
+        String mMisc = profile.getMetrics().getMisc();
+
+        String sqlQuery = "UPDATE metrics " +
+                "SET metrics_date = ?, current_reps = ?, current_weight_lbs = ?, current_time_min = ?, current_days = ?, current_misc = ? " +
+                "WHERE customer_id = ?;";
+        try {
+            jdbcTemplate.update(sqlQuery, mDate, mReps, mWeight, mTime, mDays, mMisc, id);
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
+    }
+
+    private boolean updateGoals(Profile profile) {
+        int gId = profile.getGoal().getId();
+        String gName = profile.getGoal().getName();
+        int gReps = profile.getGoal().getReps();
+        int gWeight = profile.getGoal().getWeight();
+        double gTime = profile.getGoal().getTime();
+        int gDays = profile.getGoal().getDays();
+        String gMisc = profile.getGoal().getMisc();
+
+        String sqlQuery = "UPDATE goal " +
+                "SET goal_name = ?, goal_reps = ?, goal_weight_lbs = ?, goal_time_min = ?, goal_days = ?, goal_misc = ? " +
+                "WHERE goal_id = ?;";
+        try {
+            jdbcTemplate.update(sqlQuery, gName, gReps, gWeight, gTime, gDays, gMisc, gId);
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
+    }
+
+    private boolean updateCustomerGoals(Profile profile) {
+        Long id = profile.getUserId();
+        int gId = profile.getGoal().getId();
+        Date gDate = profile.getGoal().getDate();
+        boolean gCompleted = profile.getGoal().isCompleted();
+
+        String sqlQuery = "UPDATE customer_goal " +
+                "SET goal_date = ?, is_completed = ? " +
+                "WHERE customer_id = ? AND goal_id = ?;";
+        try {
+            jdbcTemplate.update(sqlQuery, gDate, gCompleted, id, gId);
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
     }
 
 
