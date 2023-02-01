@@ -51,7 +51,7 @@
       <button type="submit">Log In</button>
       </div>
     </form>
-    <p id="gym-info" v-if="!this.$route.query.registration">{{inspirationalQuote()}}</p>
+    <p id="gym-info" v-if="!this.$route.query.registration">{{inspirationalQuote}}</p>
   </div>
 </template>
 
@@ -77,6 +77,11 @@ export default {
       "\"Put all excuses aside and remember this: You are capable.\""]
     };
   },
+  computed: {
+    inspirationalQuote() {
+      return this.quotes[Math.floor(Math.random() * Math.floor(7))];
+    }
+  },
   methods: {
     login() {
       authService
@@ -99,9 +104,6 @@ export default {
             this.invalidCredentials = true;
           }
         });
-    },
-    inspirationalQuote() {
-      return this.quotes[Math.floor(Math.random() * Math.floor(7))];
     }
   }
 };
