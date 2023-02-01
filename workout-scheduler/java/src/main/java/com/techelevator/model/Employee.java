@@ -6,6 +6,9 @@ public class Employee {
     private String name;
     private boolean isAdmin = false;
 
+    public Employee() {
+    }
+
     public Employee(Long id, String name) {
         this.id = id;
         this.name = name;
