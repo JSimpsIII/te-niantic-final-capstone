@@ -1,27 +1,31 @@
 <template>
   <div id="goals-page-container">
-    <img id="goals-img" src="../assets/gym-for-everyone.png" alt="gym-for-everyone-img">
+    <main>
+      <img id="goals-img" src="../assets/gym-for-everyone.png" alt="gym-for-everyone-img">
 
-    <div class="goals-banner">
-      <div class="goals-title-add-container">
-        <div class="goals-title">Goals</div>
-        <div class="add-btn-container">
-            <button class="add-btn" @click="toggleAddGoal">
-              {{ isAddingGoal ? "Cancel" : "+ Add"}}
-            </button>
+      <div class="goals-banner">
+        <div class="goals-title-add-container">
+          <div class="goals-title">Goals</div>
+          <div class="add-btn-container">
+              <button class="add-btn" @click="toggleAddGoal">
+                {{ isAddingGoal ? "Cancel" : "+ Add"}}
+              </button>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="goals-container">
-      <add-goal v-if="isAddingGoal" />
+      <div class="goals-container">
+        <add-goal v-if="isAddingGoal" />
 
-      <div class="goal" v-for="goal in goals" :key="goal.id">
-        <div class="goal-name">{{ goal.goalName }}</div>
+        <div class="goal" v-for="goal in goals" :key="goal.id">
+          <div class="goal-name">{{ goal.goalName }}</div>
+        </div>
       </div>
-    </div>
+    </main>
 
-    <nav-bar />
+    <footer>
+      <nav-bar />
+    </footer>
 
   </div>
 </template>
@@ -137,6 +141,19 @@ div.goal:first-child {
 
 .add-btn:hover {
   cursor: pointer;
+}
+
+main {
+  height: 700px;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 600px;
+  height: 50px;
+  background: var(--smoke);
+  padding-top: 15px;
 }
 
 </style>
