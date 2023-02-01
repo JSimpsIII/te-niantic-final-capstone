@@ -5,7 +5,7 @@
     <h1 id="welcome" class="h3 mb-3 font-weight-normal">[Gym App Name]</h1>
     </div>
     <form class="form-signin" @submit.prevent="login">
-      <h3 class="login-request" v-if="!this.$route.query.registration">Please Log In</h3>
+      <h3 class="login-request" v-if="!this.$route.query.registration">Log In to Continue</h3>
       <h3  
         class="alert alert-success login-request"
         role="alert"
@@ -51,7 +51,7 @@
       <button type="submit">Log In</button>
       </div>
     </form>
-    <p id="gym-info">[Gym Information Here]</p>
+    <p id="gym-info" v-if="!this.$route.query.registration">[Gym Information Here]</p>
   </div>
 </template>
 
@@ -109,6 +109,7 @@ export default {
   width: 90%;
   margin: 0 auto;
   margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 #login-img {
@@ -121,6 +122,14 @@ export default {
 
 #welcome {
   margin-left: 10px;
+}
+
+#username {
+  margin-bottom: 2px;
+}
+
+#password {
+  margin-bottom: 2px;
 }
 
 .login-request {

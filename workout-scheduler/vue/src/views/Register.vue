@@ -5,12 +5,12 @@
     <h1 id="welcome" class="h3 mb-3 font-weight-normal">[Gym App Name]</h1>
     </div>
     <form class="form-register" @submit.prevent="register">
-      <h3 id="account-request">Create Account</h3>
+      <h3 id="account-request">Create a New Account Below</h3>
       <div class="alert alert-danger" role="alert" v-if="registrationErrors">
         {{ registrationErrorMsg }}
       </div>
       <div id="username">
-      <label for="username" class="sr-only">Username</label>
+      <label for="username" class="sr-only">Username </label>
       <input
         type="text"
         id="username"
@@ -22,7 +22,7 @@
       />
       </div>
       <div id="password">
-      <label for="password" class="sr-only">Password</label>
+      <label for="password" class="sr-only">Password </label>
       <input
         type="password"
         id="password"
@@ -89,7 +89,7 @@ export default {
             const response = error.response;
             this.registrationErrors = true;
             if (response.status === 400) {
-              this.registrationErrorMsg = 'Bad Request: Validation Errors';
+              this.registrationErrorMsg = 'An account with that username already exists. Please try another';
             }
           });
       }
@@ -114,6 +114,7 @@ export default {
   width: 90%;
   margin: 0 auto;
   margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 #register-img {
@@ -126,6 +127,14 @@ export default {
 
 #welcome {
   margin-left: 10px;
+}
+
+#username {
+  margin-bottom: 2px;
+}
+
+#password {
+  margin-bottom: 2px;
 }
 
 #account-request {
