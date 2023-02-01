@@ -69,7 +69,22 @@ public class JdbcProfileDao implements ProfileDao {
 
     @Override
     public boolean createNewProfile(Profile profile) {
-        /*  customer table
+
+        boolean hasCustomer = createNewCustomer(profile);
+        boolean hasMetrics = createNewMetrics(profile);
+        boolean hasGoals = createNewGoals(profile);
+        boolean hasCustomerGoals = createNewCustomerGoals(profile);
+
+        return (hasCustomer && hasMetrics && hasGoals && hasCustomerGoals);
+    }
+
+    @Override
+    public void updateProfileById(Long userId, Profile profile) {
+        //TODO: update profile by id
+    }
+
+    private boolean createNewCustomer(Profile profile) {
+         /*  customer table
         customer_id int NOT NULL,
         customer_name varchar(50) NOT NULL,
         customer_email varchar(50) NOT NULL,
@@ -81,10 +96,21 @@ public class JdbcProfileDao implements ProfileDao {
         String cEmail = profile.getCustomer().getEmail();
         String cPhoto = profile.getCustomer().getPhoto();
         double cHeight = profile.getCustomer().getHeight();
-        String sqlCustomerQuery = "INSERT INTO customer " +
+
+        Integer customerId;
+        String sqlQuery = "INSERT INTO customer " +
                 "(customer_id, customer_name, customer_email, photo_link, height_inches) " +
                 "VALUES (?, ?, ?, ?, ?);\n";
+        try {
+            customerId = jdbcTemplate.queryForObject(sqlQuery, Integer.class,
+                    id, cName, cEmail, cPhoto, cHeight);
+        } catch (Exception e) {
+            return false;
+        }
+        return (customerId != null);
+    }
 
+    private boolean createNewMetrics(Profile profile) {
         /*	metrics table
         metrics_id SERIAL NOT NULL PRIMARY KEY,
         customer_id int NOT NULL,
@@ -95,24 +121,36 @@ public class JdbcProfileDao implements ProfileDao {
         current_days int,
         current_misc varchar(50)
          */
+        Long id = profile.getUserId();
         String mDate = LocalDate.now().format(DateTimeFormatter.ISO_LOCAL_DATE);
         int mReps = profile.getMetrics().getReps();
         double mWeight = profile.getMetrics().getWeight();
         double mTime = profile.getMetrics().getTime();
         int mDays = profile.getMetrics().getDays();
         String mMisc = profile.getMetrics().getMisc();
-        String sqlMetricsQuery = "INSERT INTO metrics " +
+
+        Integer metricsId;
+        String sqlQuery = "INSERT INTO metrics " +
                 "(customer_id, metrics_date, current_reps, current_weight_lbs, current_time_min, current_days, current_misc) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?);\n";
+        try {
+            metricsId = jdbcTemplate.queryForObject(sqlQuery, Integer.class,
+                    id, mDate, mReps, mWeight, mTime, mDays, mMisc);
+        } catch (Exception e) {
+            return false;
+        }
+        return (metricsId != null);
+    }
 
-        /* 	goal table
-        goal_misc varchar(50)
+    private boolean createNewGoals(Profile profile) {
+         /* goal table
         goal_id SERIAL NOT NULL PRIMARY KEY,
         goal_name varchar(50) NOT NULL,
         goal_reps int,
         goal_weight_lbs int,
         goal_time_min numeric,
         goal_days int,
+        goal_misc varchar(50)
          */
         String gName = profile.getGoal().getName();
         int gReps = profile.getGoal().getReps();
@@ -120,41 +158,46 @@ public class JdbcProfileDao implements ProfileDao {
         double gTime = profile.getGoal().getTime();
         int gDays = profile.getGoal().getDays();
         String gMisc = profile.getGoal().getMisc();
-        String sqlGoalQuery = "INSERT INTO goal " +
+
+        Integer goalId;
+        String sqlQuery = "INSERT INTO goal " +
                 "(goal_name, goal_reps, goal_weight_lbs, goal_time_min, goal_days, goal_misc) " +
                 "VALUES (?, ?, ?, ?, ?, ?);\n";
+        try {
+            goalId = jdbcTemplate.queryForObject(sqlQuery, Integer.class,
+                    gName, gReps, gWeight, gTime, gDays, gMisc);
+        } catch (Exception e) {
+            return false;
+        }
+        return (goalId != null);
+    }
 
+    private boolean createNewCustomerGoals(Profile profile) {
         /*	customer_goal table
         customer_id int NOT NULL,
         goal_id int NOT NULL,
         goal_date date,
         is_completed boolean
          */
+        Long id = profile.getUserId();
         int gId = profile.getGoal().getId();
         Date gDate = profile.getGoal().getDate();
         boolean gCompleted = profile.getGoal().isCompleted();
-        String sqlCustomerGoalQuery = "INSERT INTO customer_goal " +
+        String sqlQuery = "INSERT INTO customer_goal " +
                 "(customer_id, goal_id, goal_date, is_completed) " +
                 "VALUES (?, ?, ?, ?);\n";
 
-        String sql = sqlCustomerGoalQuery + sqlMetricsQuery + sqlGoalQuery + sqlCustomerGoalQuery;
-        Integer profileId;
+        Integer customerGoalId;
         try {
-            profileId = jdbcTemplate.queryForObject(sql, Integer.class,
-                    id, cName, cEmail, cPhoto, cHeight,
-                    id, mDate, mReps, mWeight, mTime, mDays, mMisc,
-                    gName, gReps, gWeight, gTime, gDays, gMisc,
+            customerGoalId = jdbcTemplate.queryForObject(sqlQuery, Integer.class,
                     id, gId, gDate, gCompleted);
         } catch (Exception e) {
             return false;
         }
-        return (profileId != null);
+        return (customerGoalId != null);
     }
 
-    @Override
-    public void updateProfileById(Long userId, Profile profile) {
-        //TODO: update profile by id
-    }
+
 
     private Profile mapRowToProfile(SqlRowSet row) {
         Profile profile = new Profile();
