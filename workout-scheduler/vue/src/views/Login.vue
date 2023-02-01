@@ -68,7 +68,13 @@ export default {
         password: ""
       },
       invalidCredentials: false,
-      quotes: ["What seems impossible today will one day become your warm-up.", "If it doesn't challenge you, it doesn't change you.", "The only place where success comes before work is in the dictionary."]
+      quotes: ["\"What seems impossible today will one day become your warm-up.\"", 
+      "\"If it doesn't challenge you, it doesn't change you.\"", 
+      "\"The only place where success comes before work is in the dictionary.\"",
+      "\"If something stands between you and your success, move it. Never be denied.\"",
+      "\"Motivation is what gets you started. Habit is what keeps you going.\"",
+      "\"The difference between try and triumph is a little ‘umph.'\"",
+      "\"Put all excuses aside and remember this: You are capable.\""]
     };
   },
   methods: {
@@ -95,7 +101,7 @@ export default {
         });
     },
     inspirationalQuote() {
-      return this.quotes[Math.floor(Math.random() * Math.floor(3))];
+      return this.quotes[Math.floor(Math.random() * Math.floor(7))];
     }
   }
 };
