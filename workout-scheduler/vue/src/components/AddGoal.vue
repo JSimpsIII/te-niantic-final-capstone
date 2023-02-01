@@ -73,4 +73,23 @@ export default {
 .add-new-goal > div > input::placeholder {
     color: inherit;
 }
+
+.add-new-goal > input {
+    width: 75%;
+    height: 30px;
+    color: inherit;
+    background-color: transparent;
+    border: none;
+}
+
+.add-new-goal > input::placeholder {
+    color: var(--white);
+    font-style: italic;
+}
+
+input:focus {
+    outline-color: white;
+
+}
+
 </style>
