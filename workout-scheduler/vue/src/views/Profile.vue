@@ -13,6 +13,13 @@
       </div>
 
       <form id="form-container">
+        <label for="photo">Profile Picture</label>
+        <select name="languages" id="lang" v-model="user.img" :disabled="!isEditting">
+          <option value="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRo30ulQk-69OJ5GGdowFt21Lsau4GfWzfbBSmsfE4hGrVxBbnVNOr12yOYULoq2Gb7XEU&usqp=CAU">Option 1</option>
+          <option value="https://raisingwhasians.com/wp-content/uploads/2021/06/Black-widow-movie-review-safe-for-kids.jpg">Option 2</option>
+          <option value="https://qph.cf2.quoracdn.net/main-qimg-25c5c8a37ca5ffcdf55fe24149ce1011.webp">Option 3</option>
+          <option value="https://maactioncinema.com/wp-content/uploads/2021/02/blade_3.jpg">Option 4</option>
+        </select>
         <label for="email">
           Email:
           <input 
