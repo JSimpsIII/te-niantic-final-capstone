@@ -2,7 +2,7 @@ package com.techelevator.model.profile;
 
 import java.util.Date;
 
-public class Metrics {
+public class Metric {
 
     private int id;
     private int customerId;
@@ -13,10 +13,10 @@ public class Metrics {
     private int days;
     private String misc;
 
-    public Metrics() {
+    public Metric() {
     }
 
-    public Metrics(int id, int customerId, Date date) {
+    public Metric(int id, int customerId, Date date) {
         this.id = id;
         this.customerId = customerId;
         this.date = date;

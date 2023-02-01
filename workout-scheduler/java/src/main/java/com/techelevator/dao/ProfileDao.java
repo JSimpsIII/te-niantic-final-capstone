@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ProfileDao {
 
-    List<Profile> getAllProfiles();
+    List<Customer> getAllCustomers();
 
     Profile getProfileById(Long userId);
 
@@ -14,5 +14,15 @@ public interface ProfileDao {
 
     boolean createNewProfile(Profile profile);
 
-    boolean updateProfileById(Long userId, Profile profile);
+    boolean addNewCustomer(Long userId, Customer customer);
+
+    boolean updateCustomerById(Long userId, Customer customer);
+
+    List<Goal> getAllGoalsById(Long userId);
+
+    List<Metric> getAllMetricsById(Long userId);
+
+    boolean addNewGoal(Long userId, Goal goal);
+
+    boolean addNewMetric(Long userId, Metric metric);
 }
