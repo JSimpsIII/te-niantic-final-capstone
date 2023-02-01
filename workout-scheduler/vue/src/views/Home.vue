@@ -4,7 +4,11 @@
       <img class="profile-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRo30ulQk-69OJ5GGdowFt21Lsau4GfWzfbBSmsfE4hGrVxBbnVNOr12yOYULoq2Gb7XEU&usqp=CAU" />
       <div id="username">{{ username }}</div>
       <router-link id="settings" :to="{name: 'profile'}">
-        <img src="../assets/settings.png">
+        <img src="../assets/settings.png" alt="settings-icon">
+      </router-link>
+      
+      <router-link id="logout" :to="{name: 'logout'}">
+        <img src="../assets/logout.png" alt="logout-icon">
       </router-link>
     </div>
 
@@ -71,6 +75,10 @@ a {
 
 #settings {
   margin-left: auto;
+}
+
+#logout {
+  margin-left: 5px;
 }
 
 .profile-img {
