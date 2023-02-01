@@ -22,7 +22,7 @@
         </div>
       </router-link>
       
-      <router-link id="metrics" class="home-options-btn" to="/">
+      <router-link id="metrics" class="home-options-btn" :to="{name: 'metrics'}">
         <div>
           <img src="../assets/chart.png">
           Metrics

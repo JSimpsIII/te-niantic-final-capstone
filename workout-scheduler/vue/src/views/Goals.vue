@@ -143,10 +143,6 @@ div.goal:first-child {
   cursor: pointer;
 }
 
-main {
-  height: 700px;
-}
-
 footer {
   position: fixed;
   bottom: 0;

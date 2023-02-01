@@ -83,6 +83,10 @@ public class JdbcUserDao implements UserDao {
                 , keyHolder) == 1;
         int newUserId = (int) keyHolder.getKeys().get(id_column);
 
+        // create new profile
+        JdbcProfileDao jdbcProfileDao = new JdbcProfileDao(jdbcTemplate);
+        jdbcProfileDao.createNewProfile(newUserId);
+
         return userCreated;
     }
 
