@@ -7,7 +7,6 @@ import Register from '../views/Register.vue'
 import Profile from '../views/Profile.vue'
 import Goals from '../views/Goals.vue'
 import store from '../store/index'
-import Redirect from '../views/Redirect.vue'
 
 Vue.use(Router)
 
@@ -29,7 +28,7 @@ const router = new Router({
       name: 'home',
       component: Home,
       meta: {
-        requiresAuth: false
+        requiresAuth: true
       }
     },
     {
@@ -54,14 +53,6 @@ const router = new Router({
       component: Register,
       meta: {
         requiresAuth: false
-      }
-    },
-    {
-      path: '/redirect',
-      name: 'redirect',
-      component: Redirect,
-      meta: {
-        requiresAuth: true
       }
     },
     {

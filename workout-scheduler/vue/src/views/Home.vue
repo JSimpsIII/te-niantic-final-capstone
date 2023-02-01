@@ -53,6 +53,10 @@ a {
   text-decoration: none;
 }
 
+.home {
+  margin-top: 20px;
+}
+
 #profile-header {
   display: flex;
   align-items: center;

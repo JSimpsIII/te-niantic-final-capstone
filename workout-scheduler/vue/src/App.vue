@@ -28,16 +28,16 @@ img {
   --red: #822958;
   --green: #298253;
   --smoke: #2D2D2D;
-  --dark-bg: #0f0606;
-  --text: #FDFFFC;
+  --black: #0f0606;
+  --white: #FDFFFC;
 }
 
 body {
   width: 600px;
   margin: 0 auto;
   font-family: 'Roboto', sans-serif;
-  background-color: var(--dark-bg);
-  color: var(--text);
+  background-color: var(--black);
+  color: var(--white);
 }
 
 </style>
