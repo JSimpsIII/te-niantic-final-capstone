@@ -64,7 +64,9 @@
       
     </div>
 
-    <nav-bar />
+    <footer>
+      <nav-bar />
+    </footer>
     
   </div>
 </template>
@@ -150,6 +152,15 @@ export default {
 
 .profile-btns {
   width: 150px;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 600px;
+  height: 50px;
+  background: var(--smoke);
+  padding-top: 15px;
 }
 
 </style>

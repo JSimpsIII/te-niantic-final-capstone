@@ -1,22 +1,22 @@
 package com.techelevator.model.profile;
 
-import com.techelevator.model.profile.Customer;
-import com.techelevator.model.profile.Goal;
-import com.techelevator.model.profile.Metrics;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Profile {
 
     private Long userId;
     private Customer customer = new Customer();
-    private Goal goal = new Goal();
-    private Metrics metrics = new Metrics();
+    private List<Goal> goals = new ArrayList<>();
+    private List<Metric> metrics = new ArrayList<>();
 
     public Profile() {
     }
 
-    public Profile(Customer customer, Goal goal, Metrics metrics){
+    public Profile(Long userId, Customer customer, List<Goal> goals, List<Metric> metrics){
+        this.userId = userId;
         this.customer = customer;
-        this.goal = goal;
+        this.goals = goals;
         this.metrics = metrics;
         this.userId = customer.getCustomerId();
     }
@@ -41,19 +41,19 @@ public class Profile {
         this.customer = customer;
     }
 
-    public Goal getGoal() {
-        return goal;
+    public List<Goal> getGoals() {
+        return goals;
     }
 
-    public void setGoal(Goal goal) {
-        this.goal = goal;
+    public void setGoals(List<Goal> goals) {
+        this.goals = goals;
     }
 
-    public Metrics getMetrics() {
+    public List<Metric> getMetrics() {
         return metrics;
     }
 
-    public void setMetrics(Metrics metrics) {
+    public void setMetrics(List<Metric> metrics) {
         this.metrics = metrics;
     }
 }
