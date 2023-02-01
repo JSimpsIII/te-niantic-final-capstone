@@ -26,7 +26,7 @@
             type="email" 
             v-model="user.email" 
             id="email" 
-            name="email" 
+            name="email"
             :disabled="!isEditting">
         </label>
 
@@ -50,7 +50,7 @@
             :disabled="!isEditting">
         </label>
         
-        <button id="submit-btn" class="profile-btns">Save Changes</button>
+        <button id="submit-btn" class="profile-btns" @click="toggleEditProfile" v-if="isEditting">Save Changes</button>
 
       </form>
 
