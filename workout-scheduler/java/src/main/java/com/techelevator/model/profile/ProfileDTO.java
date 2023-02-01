@@ -1,15 +1,16 @@
 package com.techelevator.model.profile;
 
 import javax.validation.constraints.NotEmpty;
+import java.util.List;
 
 public class ProfileDTO {
 
     @NotEmpty
     private Customer customer;
     @NotEmpty
-    private Metrics metrics;
+    private List<Metric> metrics;
     @NotEmpty
-    private Goal goal;
+    private List<Goal> goals;
 
     public Customer getCustomer() {
         return customer;
@@ -19,19 +20,19 @@ public class ProfileDTO {
         this.customer = customer;
     }
 
-    public Metrics getMetrics() {
+    public List<Metric> getMetrics() {
         return metrics;
     }
 
-    public void setMetrics(Metrics metrics) {
+    public void setMetrics(List<Metric> metrics) {
         this.metrics = metrics;
     }
 
-    public Goal getGoal() {
-        return goal;
+    public List<Goal> getGoals() {
+        return goals;
     }
 
-    public void setGoal(Goal goal) {
-        this.goal = goal;
+    public void setGoal(List<Goal> goals) {
+        this.goals = goals;
     }
 }

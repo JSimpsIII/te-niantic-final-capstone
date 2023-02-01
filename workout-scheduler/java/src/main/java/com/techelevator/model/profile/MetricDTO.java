@@ -3,7 +3,7 @@ package com.techelevator.model.profile;
 import javax.validation.constraints.NotEmpty;
 import java.util.Date;
 
-public class MetricsDTO {
+public class MetricDTO {
 
     @NotEmpty
     private Long customerId;
