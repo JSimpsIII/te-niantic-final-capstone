@@ -6,6 +6,7 @@ import java.util.Date;
 public class GoalDTO {
 
     @NotEmpty
+    private int id;
     private String name;
     private int reps;
     private int weight;
@@ -14,6 +15,14 @@ public class GoalDTO {
     private String misc;
     private Date date;
     private boolean isCompleted;
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
 
     public String getName() {
         return name;
