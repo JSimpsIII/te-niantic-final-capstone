@@ -1,15 +1,23 @@
 <template>
   <div id="goals-page-container">
-    <img src="../assets/gym-for-everyone.png" alt="gym-for-everyone-img">
-    <div class="goals-title">Goals</div>
+    <img id="goals-img" src="../assets/gym-for-everyone.png" alt="gym-for-everyone-img">
+
+    <div class="goals-banner">
+      <div class="goals-title-add-container">
+        <div class="goals-title">Goals</div>
+        <div class="add-btn-container">
+            <button class="add-btn" @click="toggleAddGoal">
+              {{ isAddingGoal ? "Cancel" : "+ Add"}}
+            </button>
+        </div>
+      </div>
+    </div>
 
     <div class="goals-container">
+      <add-goal v-if="isAddingGoal" />
+
       <div class="goal" v-for="goal in goals" :key="goal.id">
         <div class="goal-name">{{ goal.goalName }}</div>
-      </div>
-
-      <div class="add-goals">
-        <button class="add-btn">+ Add</button>
       </div>
     </div>
 
@@ -17,8 +25,10 @@
 </template>
 
 <script>
+import AddGoal from '../components/AddGoal.vue'
 export default {
     name: "goals",
+    components: {AddGoal},
     data() {
       return {
         goals: [
@@ -49,25 +59,41 @@ export default {
             goalDays: null,
             goalMisc: null 
           }
-        ]
+        ],
+        isAddingGoal: false
+      }
+    },
+    methods: {
+      toggleAddGoal() {
+        this.isAddingGoal = !this.isAddingGoal;
       }
     }
 }
 </script>
 
-<style>
+<style scoped>
 
 #goals-container {
   width: 90%;
   margin: 0 auto;
 }
 
-.goals-title {
+#goals-img {
+  background-color: var(--green);
+}
+
+.goals-banner {
   background-color: var(--green);
   font-size: 25px;
-  text-align: center;
   margin-bottom: 20px;
-  padding: 10px;
+}
+
+.goals-title-add-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 70%;
+  margin: 0 auto;
 }
 
 .goal {
@@ -90,14 +116,16 @@ div.goal:first-child {
 .add-btn {
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 100px;
+  justify-content: flex-end;
   margin: 0 auto;
   background-color: var(--green);
-  color: inherit;
   padding: 10px;
   border-radius: 10px;
   font-size: 18px;
+  border: none;
+  padding-right: 0;
+  padding-left: 0;
+  color: inherit;
 }
 
 .add-btn:hover {
