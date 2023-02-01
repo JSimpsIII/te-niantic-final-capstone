@@ -86,11 +86,11 @@ public class Goal {
         this.date = date;
     }
 
-    public boolean isCompleted(boolean is_completed) {
+    public boolean isCompleted() {
         return isCompleted;
     }
 
-    public void setCompleted(boolean completed) {
-        isCompleted = completed;
+    public void setCompleted(boolean isCompleted) {
+        this.isCompleted = isCompleted;
     }
 }
