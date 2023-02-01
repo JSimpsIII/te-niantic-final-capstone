@@ -12,14 +12,11 @@ public interface ProfileDao {
 
     Profile getProfileByName(String name);
 
-    void createNewProfile(int id);
     boolean createNewProfile(Profile profile);
 
     boolean addNewCustomer(Long userId, Customer customer);
 
-    boolean updateCustomerById(Long userId, Customer customer);
-
-
+    boolean updateProfileById(Long userId, Profile profile);
 
     List<Goal> getAllGoalsById(Long userId);
 

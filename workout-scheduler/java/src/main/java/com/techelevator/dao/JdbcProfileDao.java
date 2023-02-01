@@ -110,12 +110,6 @@ public class JdbcProfileDao implements ProfileDao {
     }
 
     @Override
-    public void createNewProfile(int id) {
-        Customer customer = new Customer((long) id);
-        addNewCustomer((long) id, customer);
-    }
-
-    @Override
     public boolean createNewProfile(Profile profile) {
         Long userId = profile.getUserId();
         Customer customer = profile.getCustomer();
@@ -167,9 +161,19 @@ public class JdbcProfileDao implements ProfileDao {
     }
 
     @Override
-    public boolean updateCustomerById(Long userId, Customer customer) {
+    public boolean updateProfileById(Long userId, Profile profile) {
 
-        boolean updatedCustomer = updateCustomer(userId, customer);
+        boolean updatedCustomer = updateCustomer(userId, profile.getCustomer());
+        List<Goal> goals = profile.getGoals();
+        List<Metric> metrics = profile.getMetrics();
+        for (Goal goal : goals) {
+            boolean goalUpdated = updateGoal(userId, goal);
+            if (!goalUpdated) return false;
+        }
+        for (Metric metric : metrics) {
+            boolean metricUpdated = updateMetric(userId, metric);
+            if (!metricUpdated) return false;
+        }
         return updatedCustomer;
     }
 
