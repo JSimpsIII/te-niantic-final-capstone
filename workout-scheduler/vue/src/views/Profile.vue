@@ -63,11 +63,15 @@
       </button>
       
     </div>
+
+    <nav-bar />
     
   </div>
 </template>
 
 <script>
+import NavBar from '../components/NavBar.vue'
+
 export default {
     name: "profile",
     data() {
@@ -82,6 +86,9 @@ export default {
         },
         isEditting: false,
       }
+    },
+    components: {
+      NavBar
     },
     methods: {
       toggleEditProfile() {

@@ -21,14 +21,21 @@
       </div>
     </div>
 
+    <nav-bar />
+
   </div>
 </template>
 
 <script>
 import AddGoal from '../components/AddGoal.vue'
+import NavBar from '../components/NavBar.vue'
+
 export default {
     name: "goals",
-    components: {AddGoal},
+    components: {
+      AddGoal, 
+      NavBar
+    },
     data() {
       return {
         goals: [
