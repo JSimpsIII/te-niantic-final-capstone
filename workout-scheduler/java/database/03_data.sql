@@ -9,7 +9,7 @@ INSERT INTO users (user_id, username,password_hash,role) VALUES (6, 'mjolnir', '
 INSERT INTO users (user_id, username,password_hash,role) VALUES (7, 'jvandyne', '$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
 INSERT INTO users (user_id, username,password_hash,role) VALUES (8, 'nat', '$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
 INSERT INTO users (user_id, username,password_hash,role) VALUES (9, 'clint', '$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
-ALTER SEQUENCE seq_user_id RESTART WITH 9;
+ALTER SEQUENCE seq_user_id RESTART WITH 10;
 
 -- insert customer table data
 INSERT INTO customer (customer_id, customer_name, customer_email) VALUES (1, 'Steve Rogers', 'srogers@shield.gov');
