@@ -110,12 +110,17 @@ public class JdbcProfileDao implements ProfileDao {
     }
 
     @Override
+    public void createNewProfile(int id) {
+        Customer customer = new Customer((long) id);
+        addNewCustomer((long) id, customer);
+    }
+
+    @Override
     public boolean createNewProfile(Profile profile) {
         Long userId = profile.getUserId();
         Customer customer = profile.getCustomer();
         List<Goal> goals = profile.getGoals();
         List<Metric> metrics = profile.getMetrics();
-
         boolean customerCreated = addNewCustomer(userId, customer);
         for (Goal goal : goals) {
             boolean goalAdded = addNewGoal(userId, goal);
