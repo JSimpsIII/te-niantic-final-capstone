@@ -21,7 +21,7 @@ export default {
 <style>
 #header {
   display: flex;
-  align-items: center;
+  justify-content: center;
   width: 90%;
   margin: 0 auto;
   margin-bottom: 20px;

@@ -105,8 +105,8 @@ export default {
 
 #login-header {
   display: flex;
-  align-items: center;
-  width: 90%;
+  justify-content: center;
+  width: 100%;
   margin: 0 auto;
   margin-bottom: 20px;
   margin-top: 20px;
