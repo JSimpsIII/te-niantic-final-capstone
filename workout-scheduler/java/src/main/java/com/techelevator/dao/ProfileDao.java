@@ -24,8 +24,9 @@ public interface ProfileDao {
 
     boolean updateCustomerById(Long userId, Customer customer);
 
-    boolean updateProfileById(Long userId, Profile profile);
+//    boolean updateProfileById(Long userId, Profile profile);
 
+    boolean updateProfileById(Long userId, String email, String photo, double height);
 
     List<Goal> getAllGoalsById(Long userId);
 

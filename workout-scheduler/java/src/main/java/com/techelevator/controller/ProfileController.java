@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Date;
 import java.util.List;
 
+@CrossOrigin
 @RestController
 public class ProfileController {
 
@@ -43,13 +44,18 @@ public class ProfileController {
         return profileDao.createNewProfile(profile);
     }
 
+//    @RequestMapping(path = "/users/{id}", method = RequestMethod.PUT)
+//    public boolean updateProfileById(@RequestParam Long id, @RequestBody ProfileDTO profileDTO) {
+//        Customer customer = profileDTO.getCustomer();
+//        List<Goal> goals = profileDTO.getGoals();
+//        List<Metric> metrics = profileDTO.getMetrics();
+//        Profile profile = new Profile(id, customer, goals, metrics);
+//        return profileDao.updateProfileById(id, profile);
+//    }
+
     @RequestMapping(path = "/users/{id}", method = RequestMethod.PUT)
-    public boolean updateProfileById(@RequestParam Long id, @RequestBody ProfileDTO profileDTO) {
-        Customer customer = profileDTO.getCustomer();
-        List<Goal> goals = profileDTO.getGoals();
-        List<Metric> metrics = profileDTO.getMetrics();
-        Profile profile = new Profile(id, customer, goals, metrics);
-        return profileDao.updateProfileById(id, profile);
+    public boolean updateProfileById(@PathVariable Long id, @RequestBody CustomerDTO customerDTO) {
+        return profileDao.updateProfileById(id, customerDTO.getEmail(), customerDTO.getPhoto(), customerDTO.getHeight());
     }
 
     @RequestMapping(path = "/users/{id}/goals", method = RequestMethod.GET)

@@ -8,6 +8,10 @@ export default {
 
     getProfile(username) {
         return http.get(`/users/${username}`);
+    },
+
+    saveProfileChanges(id, newProfile) {
+        return http.put(`/users/${id}`, newProfile)
     }
 
 }

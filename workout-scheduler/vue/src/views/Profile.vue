@@ -13,6 +13,7 @@
       </div>
 
       <form id="form-container">
+
         <label for="photo">Profile Picture</label>
         <select name="languages" id="lang" v-model="user.img" :disabled="!isEditting">
           <option value="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRo30ulQk-69OJ5GGdowFt21Lsau4GfWzfbBSmsfE4hGrVxBbnVNOr12yOYULoq2Gb7XEU&usqp=CAU">Option 1</option>
@@ -20,6 +21,7 @@
           <option value="https://qph.cf2.quoracdn.net/main-qimg-25c5c8a37ca5ffcdf55fe24149ce1011.webp">Option 3</option>
           <option value="https://maactioncinema.com/wp-content/uploads/2021/02/blade_3.jpg">Option 4</option>
         </select>
+
         <label for="email">
           Email:
           <input 
@@ -27,7 +29,8 @@
             v-model="user.email" 
             id="email" 
             name="email"
-            :disabled="!isEditting">
+            :disabled="!isEditting"
+          >
         </label>
 
         <label for="height">
@@ -40,7 +43,7 @@
             :disabled="!isEditting">
         </label>
 
-        <label for="weight">
+        <!-- <label for="weight">
           Weight:
           <input 
             type="text" 
@@ -48,9 +51,16 @@
             id="weight" 
             name="weight" 
             :disabled="!isEditting">
-        </label>
+        </label> -->
         
-        <button id="submit-btn" class="profile-btns" @click="toggleEditProfile" v-if="isEditting">Save Changes</button>
+        <button 
+          id="submit-btn" 
+          class="profile-btns" 
+          @click="toggleEditProfile();saveChanges()" 
+          v-if="isEditting"
+        >
+          Save Changes
+        </button>
 
       </form>
 
@@ -58,8 +68,13 @@
         id="edit-btn" 
         class="profile-btns" 
         @click="toggleEditProfile"
+        v-if=!isEditting
       >
-        {{ isEditting ? "Cancel" : "Edit Profile" }}
+        Edit Profile
+      </button>
+
+      <button @click.prevent=cancelForm();toggleEditProfile()>
+        Cancel Edits
       </button>
       
     </div>
@@ -72,22 +87,36 @@
 </template>
 
 <script>
-import NavBar from '../components/NavBar.vue'
+import NavBar from '../components/NavBar.vue';
+import profileService from '../services/ProfileService';
 
 export default {
     name: "profile",
     data() {
       return {
         user: {
-          username: "pull username from store",
+          username: "",
           img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRo30ulQk-69OJ5GGdowFt21Lsau4GfWzfbBSmsfE4hGrVxBbnVNOr12yOYULoq2Gb7XEU&usqp=CAU",
-          name: "pull name from store",
-          email: "pull email",
-          height: "height here",
-          weight: "weight here"
+          email: "",
+          height: ""
         },
+        userBeforeEdit: {},
         isEditting: false,
       }
+    },
+    created() {
+      profileService.getProfile(this.$store.state.user.username)
+                    .then(res => {
+                      const { customerId, email, height, name, photo } = res.data.customer;
+                      this.user.username = name;
+                      this.user.img = photo;
+                      this.user.email = email;
+                      this.user.height = height;
+                      this.$store.commit("SET_CUSTOMER_ID", customerId);
+                      this.userBeforeEdit = Object.assign({}, this.user);
+                    });
+
+      
     },
     components: {
       NavBar
@@ -95,6 +124,15 @@ export default {
     methods: {
       toggleEditProfile() {
         this.isEditting = !this.isEditting;
+      },
+      cancelForm() {
+        Object.assign(this.user, this.userBeforeEdit);
+      },
+      saveChanges() {
+        profileService.saveProfileChanges(this.$store.state.customerId, this.user)
+                      .then(res => {
+                        console.log(res.data)
+                      })
       }
     }
 }

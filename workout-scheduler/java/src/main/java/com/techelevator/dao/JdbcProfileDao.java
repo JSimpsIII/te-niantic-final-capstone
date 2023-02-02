@@ -187,19 +187,32 @@ public class JdbcProfileDao implements ProfileDao {
     }
 
 
-    public boolean updateProfileById(Long userId, Profile profile) {
-        boolean updatedCustomer = updateCustomer(userId, profile.getCustomer());
-        List<Goal> goals = profile.getGoals();
-        List<Metric> metrics = profile.getMetrics();
-        for (Goal goal : goals) {
-            boolean goalUpdated = updateGoal(userId, goal);
-            if (!goalUpdated) return false;
+//    public boolean updateProfileById(Long userId, Profile profile) {
+//        boolean updatedCustomer = updateCustomer(userId, profile.getCustomer());
+//        List<Goal> goals = profile.getGoals();
+//        List<Metric> metrics = profile.getMetrics();
+//        for (Goal goal : goals) {
+//            boolean goalUpdated = updateGoal(userId, goal);
+//            if (!goalUpdated) return false;
+//        }
+//        for (Metric metric : metrics) {
+//            boolean metricUpdated = updateMetric(userId, metric);
+//            if (!metricUpdated) return false;
+//        }
+//        return updatedCustomer;
+//    }
+
+    public boolean updateProfileById(Long userId, String email, String photo, double height) {
+        Integer customerId;
+        String sqlQuery = "UPDATE customer " +
+                "SET customer_email = ?, photo_link = ?, height_inches = ? " +
+                "WHERE customer_id = ?;";
+        try {
+            jdbcTemplate.update(sqlQuery, email, photo, height, userId);
+        } catch (Exception e) {
+            return false;
         }
-        for (Metric metric : metrics) {
-            boolean metricUpdated = updateMetric(userId, metric);
-            if (!metricUpdated) return false;
-        }
-        return updatedCustomer;
+        return true;
     }
 
     @Override
