@@ -11,7 +11,7 @@ import java.util.List;
 public class FileWriter {
 
 
-    private static File exercises = new File("C:\\Users\\Student\\workspace\\capstone-workout-companion\\exercises.txt");
+    private static File exercises = new File("C:\\Users\\Student\\workspace\\capstone-workout-companion\\exercises-with-select.sql");
     public static void createExerciseFile() {
         try {
             try {
@@ -72,9 +72,7 @@ public class FileWriter {
             String id = exercise.getId();
             String name = exercise.getName();
             String target = exercise.getTarget();
-            writer.println("INSERT INTO exercise (body_part, equipment, gif_url, id, name, target) ");
-            writer.println("VALUES (\"" + bodyPart + "\", \"" + equipment + "\", \"" + gifUrl + "\", \"" + id + "\", \"" + name + "\", \"" + target + "\");");
-            writer.println("");
+            writer.println("INSERT INTO exercise (exercise_id, exercise_name, exercise_target, body_part, equipment, gif_url) VALUES (" + id + ", '" + name + "', (SELECT target_id FROM exercise_target WHERE target_name = '" + target + "'), (SELECT bodypart_id FROM exercise_bodypart WHERE bodypart_name = '" + bodyPart + "'), (SELECT equipment_id FROM exercise_equipment WHERE equipment_name = '" + equipment + "'), '" + gifUrl + "');");
         }
     }
 }

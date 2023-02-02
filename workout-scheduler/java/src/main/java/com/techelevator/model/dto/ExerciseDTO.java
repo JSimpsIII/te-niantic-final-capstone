@@ -1,27 +1,21 @@
-package com.techelevator.model;
+package com.techelevator.model.dto;
 
-public class Exercise {
+import javax.validation.constraints.NotEmpty;
 
+public class ExerciseDTO {
+
+    @NotEmpty
     private int id;
+    @NotEmpty
     private String name;
+    @NotEmpty
     private String target;
+    @NotEmpty
     private String bodyPart;
+    @NotEmpty
     private String equipment;
+    @NotEmpty
     private String gifUrl;
-
-
-    public Exercise() {
-    }
-
-    public Exercise(int id, String name, String target, String bodyPart, String equipment, String gifUrl) {
-        this.id = id;
-        this.name = name;
-        this.target = target;
-        this.bodyPart = bodyPart;
-        this.equipment = equipment;
-        this.gifUrl = gifUrl;
-
-    }
 
     public int getId() {
         return id;
@@ -70,6 +64,4 @@ public class Exercise {
     public void setGifUrl(String gifUrl) {
         this.gifUrl = gifUrl;
     }
-
-
 }
