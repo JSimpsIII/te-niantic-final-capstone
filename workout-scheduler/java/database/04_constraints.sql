@@ -1,10 +1,10 @@
 -- add database constraints here - such as foreign key constraints
 -- very common to add constraints AFTER bulk loading data
 
-ALTER TABLE customer
-ADD CONSTRAINT FK_customer_user
-FOREIGN KEY (customer_id)
-REFERENCES users(user_id);
+--ALTER TABLE customer
+--ADD CONSTRAINT FK_customer_user
+--FOREIGN KEY (customer_id)
+--REFERENCES users(user_id);
 
 ALTER TABLE employee
 ADD CONSTRAINT FK_employee_user

@@ -1,7 +1,14 @@
 DROP TABLE IF EXISTS customer_goal, goal, metrics, employee, customer, users CASCADE;
 DROP SEQUENCE IF EXISTS seq_user_id;
+DROP SEQUENCE IF EXISTS seq_customer_id;
 
 CREATE SEQUENCE seq_user_id
+  INCREMENT BY 1
+  NO MAXVALUE
+  NO MINVALUE
+  CACHE 1;
+
+CREATE SEQUENCE seq_customer_id
   INCREMENT BY 1
   NO MAXVALUE
   NO MINVALUE
@@ -17,9 +24,9 @@ CREATE TABLE users (
 );
 
 CREATE TABLE customer (
-	customer_id int NOT NULL,
+	customer_id int DEFAULT nextval('seq_customer_id'::regclass) NOT NULL,
 	customer_name varchar(50) NOT NULL,
-	customer_email varchar(50) NOT NULL,
+	customer_email varchar(50),
 	photo_link varchar(400),
 	height_inches numeric,
 	CONSTRAINT PK_customer PRIMARY KEY (customer_id)
