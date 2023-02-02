@@ -2,7 +2,7 @@
   <div id="register" class="text-center">
     <div id="register-header">     
     <img id="register-img" src="https://www.creativefabrica.com/wp-content/uploads/2020/12/07/Gym-Logo-Graphics-7049759-1-580x386.jpg" />
-    <h1 id="welcome" class="h3 mb-3 font-weight-normal">[Gym App Name]</h1>
+    <h1 id="welcome" class="h3 mb-3 font-weight-normal">Uplift Fitness</h1>
     </div>
     <form class="form-register" @submit.prevent="register">
       <h3 id="account-request">Create a New Account Below</h3>
@@ -41,7 +41,7 @@
       />
       </div>
       <div id="to-login">
-      <router-link :to="{ name: 'login' }">Have an account?</router-link>
+      <router-link :to="{ name: 'login' }" id="login-link">Have an account?</router-link>
       </div>
       <div id="register-button">
       <button class="btn btn-lg btn-primary btn-block" type="submit">
@@ -159,6 +159,10 @@ export default {
   width: 90%;
   margin: 0 auto;
   margin-bottom: 20px;
+}
+
+#login-link {
+  color:darkgoldenrod;
 }
 
 
