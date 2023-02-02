@@ -6,8 +6,8 @@ const http = axios.create({
 
 export default {
 
-    createNewProfile(newUser) {
-        return http.post('/users', newUser)
+    getAllGoals(id) {
+        return http.get(`/users/${id}/goals`);
     }
 
 }

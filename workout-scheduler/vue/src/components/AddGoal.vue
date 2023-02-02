@@ -2,17 +2,17 @@
   <div class="add-goals">
     <div class="add-new-goal">
         <img src="../assets/add.png" alt="">
-        <div>Go to the gym <input type="number" min=1 max=7> days a week</div>
+        <div>Days in gym every week: <input type="number" min=1 max=7></div>
     </div>
 
     <div class="add-new-goal">
         <img src="../assets/add.png" alt="">
-        <div>Workout <input type="number" min=1 max=480> minutes a day</div>
+        <div>Minutes in gym every day: <input type="number" min=1 max=480></div>
     </div>
 
     <div class="add-new-goal">
         <img src="../assets/add.png" alt="">
-        <div>Bench press <input type="number" min=1 max=480> pounds</div>
+        <div>Bench press (lbs): <input type="number" min=1 max=480></div>
     </div>
 
     <div class="add-new-goal">
