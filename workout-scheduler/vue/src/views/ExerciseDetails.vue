@@ -13,16 +13,31 @@
 </template>
 
 <script>
+import exerciseService from '../services/ExerciseService';
+
 export default {
     name: 'exercise-details',
-    props: {
-      exercise: {
-        id: 0,
-        name: '',
-        target: '',
-        bodyPart: '',
-        equipment: '',
-        gifUrl: ''
+    methods: {
+      getExercise() {
+        exerciseService
+          .getExercise(this.$$route.params.id)
+          .then(response => {
+            this.$store.commit('SET_CURRENT_EXERCISE', response.data);
+          })
+          .catch(error => {
+            if (error.response && error.response.status === 404) {
+              alert("Exercise not available.");
+              this.$router.push({ name: 'Gym' });
+            }
+          })
+      }
+    },
+    created() {
+      return this.getExercise();
+    },
+    computed: {
+      exercise() {
+        return this.$store.state.exercise;
       }
     }
 }
