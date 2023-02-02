@@ -1,9 +1,9 @@
 <template>
-    <Bar 
+    <LineChartGenerator 
         :chart-data='chartData' 
         :chart-options='chartOptions' 
         :chart-id='chartId'
-        :dataset-id-key='datasetIdKey'
+        :dataset-id-key="datasetIdKey"
         :plugins='plugins'
         :css-classes='cssClasses'
         :styles='styles'
@@ -13,33 +13,37 @@
 </template>
 
 <script>
-import { Bar } from 'vue-chartjs/legacy'
+import { Line as LineChartGenerator } from 'vue-chartjs/legacy'
 import { 
     Chart as ChartJS, 
     Title, 
     Tooltip, 
     Legend, 
-    BarElement, 
+    LineElement, 
+    LinearScale, 
     CategoryScale, 
-    LinearScale 
+    PointElement 
 } from 'chart.js'
 
 ChartJS.register(
-    Title, 
-    Tooltip, 
-    Legend, 
-    BarElement, 
-    CategoryScale, 
-    LinearScale
+    Title,
+    Tooltip,
+    Legend,
+    LineElement,
+    LinearScale,
+    CategoryScale,
+    PointElement
 )
 
 export default {
-    name: 'bar-chart',
-    components: { Bar },
+    name: 'line-chart', 
+    components: {
+        LineChartGenerator
+    },
     props: {
         chartId: {
         type: String,
-        default: 'bar-chart'
+        default: 'line-chart'
         },
         datasetIdKey: {
         type: String,
@@ -67,7 +71,7 @@ export default {
         }
     },
     data() {
-        return {
+        return{
             chartData: {
                 labels: [],
                 datasets: []

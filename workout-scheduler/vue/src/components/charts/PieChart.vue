@@ -1,7 +1,7 @@
 <template>
-    <Bar 
+    <Pie 
         :chart-data='chartData' 
-        :chart-options='chartOptions' 
+        :chart-options='chartOptions'
         :chart-id='chartId'
         :dataset-id-key='datasetIdKey'
         :plugins='plugins'
@@ -13,57 +13,57 @@
 </template>
 
 <script>
-import { Bar } from 'vue-chartjs/legacy'
-import { 
-    Chart as ChartJS, 
+import { Pie } from 'vue-chartjs/legacy'
+import {
+    Chart as ChartJs, 
     Title, 
     Tooltip, 
     Legend, 
-    BarElement, 
-    CategoryScale, 
-    LinearScale 
+    ArcElement, 
+    CategoryScale 
 } from 'chart.js'
 
-ChartJS.register(
+ChartJs.register(
     Title, 
     Tooltip, 
     Legend, 
-    BarElement, 
-    CategoryScale, 
-    LinearScale
+    ArcElement, 
+    CategoryScale
 )
 
 export default {
-    name: 'bar-chart',
-    components: { Bar },
+    name: 'pie-chart',
+    components: {
+        Pie
+    },
     props: {
         chartId: {
-        type: String,
-        default: 'bar-chart'
+            type: String,
+            default: 'pie-chart'
         },
         datasetIdKey: {
-        type: String,
-        default: 'label'
+            type: String,
+            default: 'label'
         },
         width: {
-        type: Number,
-        default: 400
+            type: Number,
+            default: 300
         },
         height: {
-        type: Number,
-        default: 400
+            type: Number,
+            default: 300
         },
         cssClasses: {
-        default: '',
-        type: String
+            type: String,
+            default: ''
         },
         styles: {
-        type: Object,
-        default: () => {}
+            type: Object,
+            default: () => {}
         },
         plugins: {
-        type: Array,
-        default: () => []
+            type: Array,
+            default: () => []
         }
     },
     data() {
@@ -74,7 +74,7 @@ export default {
             },
             chartOptions: {
                 responsive: true,
-                maintainAspectRatio: false
+                maintainAspectRation: false
             }
         }
     }
