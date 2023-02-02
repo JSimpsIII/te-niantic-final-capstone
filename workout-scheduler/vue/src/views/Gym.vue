@@ -4,9 +4,12 @@
     <div class="gym-banner">
       <div class="gym-title-add-container">
          <div class="gym-title">Gym</div>
+         <!-- <div class="excercise-search-container">
+           <input type="text" id="excerciseNameFilter" v-model="filter.excerciseName"/>
+          </div> -->
       </div>
     </div>
-    <table id="excercise-table">
+    <table id="excercise-table" v-if="!selectingExercise">
       <thead>
         <tr>
           <th>&nbsp;</th>
@@ -117,14 +120,15 @@ export default {
             gifURL: "http://d205bpvrqc9yn1.cloudfront.net/0007.gif"
           },
         ],
+        isAddingGoal: false,
         selectedWorkoutIDs: []
       }
     },
     computed: {
-          filteredList() {
-      let filteredExcercises = this.excercises;
-      if (this.filter.excerciseName != "") {
-        filteredExcercises = filteredExcercises.filter((excercise) =>
+      filteredList() {
+        let filteredExcercises = this.excercises;
+        if (this.filter.excerciseName != "") {
+          filteredExcercises = filteredExcercises.filter((excercise) =>
           excercise.excerciseName
             .toLowerCase()
             .includes(this.filter.excerciseName.toLowerCase())
@@ -175,6 +179,5 @@ footer {
   background: var(--smoke);
   padding-top: 15px;
 }
-
 
 </style>
