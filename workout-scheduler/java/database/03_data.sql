@@ -17,9 +17,6 @@ INSERT INTO customer (customer_id, customer_name, customer_email) VALUES (5, 'Th
 INSERT INTO customer (customer_id, customer_name, customer_email) VALUES (6, 'Janet van Dyne', 'j.van.dyne@gmail.com');
 ALTER SEQUENCE seq_customer_id RESTART WITH 7;
 
--- insert employee table data
-INSERT INTO employee (employee_id, employee_name, is_admin) VALUES (3, 'Nick Fury', true);
-
 
 -- insert metrics table data
 INSERT INTO metrics (customer_id, metrics_date, current_weight_lbs, current_misc) VALUES (1, DATE '2020-01-01', 610, 'squat');
