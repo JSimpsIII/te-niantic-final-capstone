@@ -78,16 +78,16 @@ public class JdbcProfileDao implements ProfileDao {
     }
 
     @Override
-    public Profile getProfileByName(String name) {
-        String sql = "SELECT * FROM customer WHERE customer_name = ?";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, name);
+    public Profile getProfileByUsername(String username) {
+        String sql = "SELECT * FROM customer WHERE customer_username = ?";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, username);
         Customer customer;
         List<Goal> goals = new ArrayList<>();
         List<Metric> metrics = new ArrayList<>();
         if(results.next()) {
             customer = mapRowToCustomer(results);
         } else {
-            throw new RuntimeException(name + " not found in system.");
+            throw new RuntimeException(username + " not found in system.");
         }
         Long userId = customer.getCustomerId();
 
@@ -442,6 +442,7 @@ public class JdbcProfileDao implements ProfileDao {
         Customer customer = new Customer();
         customer.setCustomerId(row.getLong("customer_id"));
         customer.setName(row.getString("customer_name"));
+        customer.setUsername(row.getString("customer_username"));
         customer.setEmail(row.getString("customer_email"));
         customer.setPhoto(row.getString("photo_link"));
         customer.setHeight(row.getDouble("height_inches"));
