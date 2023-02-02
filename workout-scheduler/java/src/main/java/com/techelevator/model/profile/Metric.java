@@ -5,7 +5,7 @@ import java.util.Date;
 public class Metric {
 
     private int id;
-    private int customerId;
+    private Long customerId;
     private Date date;
     private int reps;
     private double weight;
@@ -16,10 +16,7 @@ public class Metric {
     public Metric() {
     }
 
-    public Metric(int id, int customerId, Date date) {
-        this.id = id;
-        this.customerId = customerId;
-        this.date = date;
+    public Metric(Long customerId, Date date, int reps, double weight, double time, int days, String misc) {
     }
 
     public int getId() {
@@ -30,11 +27,11 @@ public class Metric {
         this.id = id;
     }
 
-    public int getCustomerId() {
+    public Long getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(int customerId) {
+    public void setCustomerId(Long customerId) {
         this.customerId = customerId;
     }
 

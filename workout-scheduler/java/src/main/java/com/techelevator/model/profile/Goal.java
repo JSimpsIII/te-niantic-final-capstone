@@ -17,9 +17,7 @@ public class Goal {
     public Goal() {
     }
 
-    public Goal(int id, String name) {
-        this.id = id;
-        this.name = name;
+    public Goal(String name, int reps, int weight, double time, int days, String misc, Date date, boolean isCompleted) {
     }
 
     public int getId() {
