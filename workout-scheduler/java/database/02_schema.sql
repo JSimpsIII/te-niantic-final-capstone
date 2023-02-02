@@ -17,7 +17,7 @@ CREATE SEQUENCE seq_customer_id
 
 CREATE TABLE users (
 	user_id int DEFAULT nextval('seq_user_id'::regclass) NOT NULL,
-	username varchar(50) NOT NULL,
+	username varchar(50) NOT NULL UNIQUE,
 	password_hash varchar(200) NOT NULL,
 	role varchar(50) NOT NULL,
 	CONSTRAINT PK_user PRIMARY KEY (user_id)
@@ -25,6 +25,7 @@ CREATE TABLE users (
 
 CREATE TABLE customer (
 	customer_id int DEFAULT nextval('seq_customer_id'::regclass) NOT NULL,
+	customer_username varchar(50) NOT NULL UNIQUE,
 	customer_name varchar(50) NOT NULL,
 	customer_email varchar(50),
 	photo_link varchar(400),
