@@ -9,6 +9,7 @@ import Goals from '../views/Goals.vue'
 import Metrics from '../views/Metrics.vue'
 import store from '../store/index'
 import Redirect from '../views/Redirect.vue'
+import Gym from '../views/Gym.vue'
 
 Vue.use(Router)
 
@@ -66,7 +67,23 @@ const router = new Router({
       }
     },
     {
-      path: "goals",
+      path: "/gym",
+      name: "gym",
+      component: Gym,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: "/metrics",
+      name: "metrics",
+      component: Metrics,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: "/goals",
       name: "goals",
       component: Goals,
       meta: {
@@ -77,14 +94,6 @@ const router = new Router({
       path: "/redirect",
       name: "redirect",
       component: Redirect,
-      meta: {
-        requiresAuth: true
-      }
-    },
-    {
-      path: "/metrics",
-      name: "metrics",
-      component: Metrics,
       meta: {
         requiresAuth: true
       }

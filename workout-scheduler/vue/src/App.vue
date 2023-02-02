@@ -2,9 +2,9 @@
   <div id="app">
     <div id="nav">
       <div v-if="$store.state.token != ''">
-      <router-link v-bind:to="{ name: 'home' }">Home</router-link>
+      <router-link v-bind:to="{ name: 'home' }" class="navigation-button">Home</router-link>
       &nbsp;|&nbsp;
-      <router-link v-bind:to="{ name: 'logout' }">Logout</router-link>
+      <router-link v-bind:to="{ name: 'logout' }" class="navigation-button">Logout</router-link>
       </div>
     </div>
     <router-view />
@@ -43,4 +43,7 @@ body {
   color: var(--white);
 }
 
+.navigation-button {
+  color:darkgoldenrod;
+}
 </style>

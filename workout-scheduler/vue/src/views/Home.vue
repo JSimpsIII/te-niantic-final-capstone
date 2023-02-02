@@ -15,7 +15,7 @@
     <div id="motivation">Welcome back, {{ username }}! Just 1 more workout until you hit your weekly goal! </div>
 
     <div class="btn-container">
-      <router-link id="gym" class="home-options-btn" to="/">
+      <router-link id="gym" class="home-options-btn" to="gym">
         <div>
           <img src="../assets/star.png">
           Gym
