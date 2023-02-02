@@ -33,34 +33,6 @@ CREATE TABLE customer (
 	CONSTRAINT PK_customer PRIMARY KEY (customer_id)
 );
 
-CREATE TABLE metrics (
-	metrics_id SERIAL NOT NULL PRIMARY KEY,
-	customer_id int NOT NULL,
-	metrics_date date NOT NULL,
-	current_reps int,
-	current_weight_lbs numeric,
-	current_time_min numeric,
-	current_days int,
-	current_misc varchar(50)
-);
-
-CREATE TABLE goal (
-	goal_id SERIAL NOT NULL PRIMARY KEY,
-	goal_name varchar(50) NOT NULL,
-	goal_reps int,
-	goal_weight_lbs int,
-	goal_time_min numeric,
-	goal_days int,
-	goal_misc varchar(50)
-);
-
-CREATE TABLE customer_goal (
-	customer_id int NOT NULL,
-	goal_id int NOT NULL,
-	goal_date date,
-	is_completed boolean
-);
-
 CREATE TABLE exercise (
     exercise_id int NOT NULL PRIMARY KEY,
     exercise_name varchar(200),
@@ -84,6 +56,40 @@ CREATE TABLE exercise_bodypart (
     bodypart_id SERIAL NOT NULL PRIMARY KEY,
     bodypart_name varchar(50) NOT NULL
 );
+
+CREATE TABLE metrics (
+	metrics_id SERIAL NOT NULL PRIMARY KEY,
+	customer_id int NOT NULL,
+	exercise_id int,
+	metrics_date date NOT NULL,
+	current_reps numeric,
+	current_weight_lbs numeric,
+	current_time_min numeric,
+	current_distance_miles numeric,
+	current_days int,
+	current_misc varchar(50)
+);
+
+CREATE TABLE goal (
+	goal_id SERIAL NOT NULL PRIMARY KEY,
+	goal_name varchar(50) NOT NULL,
+	goal_reps int,
+	goal_weight_lbs int,
+	goal_time_min numeric,
+	goal_days int,
+	goal_misc varchar(50)
+);
+
+CREATE TABLE customer_goal (
+	customer_id int NOT NULL,
+	goal_id int NOT NULL,
+	goal_date date,
+	is_completed boolean
+);
+
+
+
+
 
 
 
