@@ -8,6 +8,10 @@ export default {
 
     getAllGoals(id) {
         return http.get(`/users/${id}/goals`);
+    },
+
+    addNewGoal(customerId, newGoal) {
+        return http.post(`/users/${customerId}/goals`, newGoal);
     }
 
 }

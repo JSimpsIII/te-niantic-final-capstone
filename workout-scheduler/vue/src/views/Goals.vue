@@ -22,7 +22,14 @@
         <add-goal v-if="isAddingGoal" />
 
         <div class="goal" v-for="goal in goals" :key="goal.id">
-          <div class="goal-name">{{ goal.name }}</div>
+          <div class="goal-name">
+            {{ goal.name }}: 
+            {{ goal.reps != 0 ? goal.reps : "" }}
+            {{ goal.weight != 0 ? goal.weight : "" }}
+            {{ goal.time != 0 ? goal.time : "" }}
+            {{ goal.days != 0 ? goal.days : "" }}
+            {{ goal.misc != null ? goal.misc : "" }}
+          </div>
         </div>
       </div>
     </main>
