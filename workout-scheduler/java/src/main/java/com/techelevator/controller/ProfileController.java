@@ -21,15 +21,17 @@ public class ProfileController {
         return profileDao.getAllCustomers();
     }
 
+    // changed @RequestParam to @PathVariable
     @RequestMapping(path = "/users/{name}", method = RequestMethod.GET)
-    public Profile getProfileByName(@RequestParam String name){
+    public Profile getProfileByName(@PathVariable String name){
         return profileDao.getProfileByName(name);
     }
 
-    @RequestMapping(path = "/users/{id}", method = RequestMethod.GET)
-    public Profile getProfileById(@RequestParam Long id){
-        return profileDao.getProfileById(id);
-    }
+    // commented out because of postman error: ambiguous handler methods - conflicts with path above
+//    @RequestMapping(path = "/users/{id}", method = RequestMethod.GET)
+//    public Profile getProfileById(@RequestParam Long id){
+//        return profileDao.getProfileById(id);
+//    }
 
     @RequestMapping(path = "/users", method = RequestMethod.POST)
     public boolean createNewProfile(@RequestBody ProfileDTO profileDTO) {
