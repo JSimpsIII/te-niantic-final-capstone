@@ -59,7 +59,7 @@ public class ProfileController {
     }
 
     @RequestMapping(path = "/users/{id}/goals", method = RequestMethod.GET)
-    public List<Goal> getAllGoalsById(@RequestParam Long id) {
+    public List<Goal> getAllGoalsById(@PathVariable Long id) {
         return profileDao.getAllGoalsById(id);
     }
 
