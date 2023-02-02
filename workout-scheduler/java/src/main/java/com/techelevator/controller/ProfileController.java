@@ -23,9 +23,9 @@ public class ProfileController {
     }
 
     // changed @RequestParam to @PathVariable
-    @RequestMapping(path = "/users/{name}", method = RequestMethod.GET)
-    public Profile getProfileByName(@PathVariable String name){
-        return profileDao.getProfileByName(name);
+    @RequestMapping(path = "/users/{username}", method = RequestMethod.GET)
+    public Profile getProfileByUsername(@PathVariable String username){
+        return profileDao.getProfileByUsername(username);
     }
 
     // commented out because of postman error: ambiguous handler methods - conflicts with path above

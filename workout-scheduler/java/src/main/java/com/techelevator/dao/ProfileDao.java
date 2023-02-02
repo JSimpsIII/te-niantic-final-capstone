@@ -10,7 +10,7 @@ public interface ProfileDao {
 
     Profile getProfileById(Long userId);
 
-    Profile getProfileByName(String name);
+    Profile getProfileByUsername(String username);
 
     void createNewProfile(int id);
 

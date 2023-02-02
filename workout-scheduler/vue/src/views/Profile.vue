@@ -107,12 +107,11 @@ export default {
     created() {
       profileService.getProfile(this.$store.state.user.username)
                     .then(res => {
-                      const { customerId, email, height, name, photo } = res.data.customer;
+                      const { email, height, name, photo } = res.data.customer;
                       this.user.username = name;
                       this.user.photo = photo;
                       this.user.email = email;
                       this.user.height = height;
-                      this.$store.commit("SET_CUSTOMER_ID", customerId);
                     });
 
       

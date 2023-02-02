@@ -13,8 +13,17 @@
 </template>
 
 <script>
+import profileService from '../services/ProfileService';
+
 export default {
     name: 'redirect',
+    created() {
+      profileService.getProfile(this.$store.state.user.username)
+                    .then(res => {
+                      const { customerId } = res.data.customer;
+                      this.$store.commit("SET_CUSTOMER_ID", customerId);
+                    })
+    }
 }
 </script>
 
