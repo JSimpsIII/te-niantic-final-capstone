@@ -13,9 +13,14 @@ public interface ProfileDao {
     Profile getProfileByName(String name);
 
     void createNewProfile(int id);
+
+    void createNewProfile(String username);
+
     boolean createNewProfile(Profile profile);
 
     boolean addNewCustomer(Long userId, Customer customer);
+
+    boolean addNewCustomer(String username);
 
     boolean updateCustomerById(Long userId, Customer customer);
 

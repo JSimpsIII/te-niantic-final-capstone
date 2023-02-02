@@ -116,6 +116,13 @@ public class JdbcProfileDao implements ProfileDao {
     }
 
     @Override
+    public void createNewProfile(String username) {
+        addNewCustomer(username);
+    }
+
+
+
+    @Override
     public boolean createNewProfile(Profile profile) {
         Long userId = profile.getUserId();
         Customer customer = profile.getCustomer();
@@ -167,6 +174,12 @@ public class JdbcProfileDao implements ProfileDao {
     }
 
     @Override
+    public boolean addNewCustomer(String username) {
+        boolean hasCustomer = createNewCustomer(username);
+        return hasCustomer;
+    }
+
+    @Override
     public boolean updateCustomerById(Long userId, Customer customer) {
 
         boolean updatedCustomer = updateCustomer(userId, customer);
@@ -188,6 +201,26 @@ public class JdbcProfileDao implements ProfileDao {
         return metricCreated;
     }
 
+    private boolean createNewCustomer(String username) {
+         /*  customer table
+        customer_id int NOT NULL,
+        customer_name varchar(50) NOT NULL,
+        customer_email varchar(50),
+        photo_link varchar(400),
+        height_inches numeric,
+         */
+
+        Integer customerId;
+        String sqlQuery = "INSERT INTO customer " +
+                "(customer_name) " +
+                "VALUES (?);\n";
+        try {
+            customerId = jdbcTemplate.queryForObject(sqlQuery, Integer.class, username);
+        } catch (Exception e) {
+            return false;
+        }
+        return (customerId != null);
+    }
 
 
     private boolean createNewCustomer(Long userId, Customer customer) {
