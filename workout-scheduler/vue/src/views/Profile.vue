@@ -113,7 +113,6 @@ export default {
                       this.user.email = email;
                       this.user.height = height;
                       this.$store.commit("SET_CUSTOMER_ID", customerId);
-                      this.userBeforeEdit = Object.assign({}, this.user);
                     });
 
       
@@ -124,6 +123,7 @@ export default {
     methods: {
       toggleEditProfile() {
         this.isEditting = !this.isEditting;
+        this.userBeforeEdit = Object.assign({}, this.user);
       },
       cancelForm() {
         Object.assign(this.user, this.userBeforeEdit);
