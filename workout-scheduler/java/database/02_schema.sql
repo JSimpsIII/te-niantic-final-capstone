@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS customer_goal, goal, metrics, employee, customer, users, exercise, exercise_equipment, exercise_target, exercise_bodypart CASCADE;
+DROP TABLE IF EXISTS customer_goal, goal, metrics, customer, users, exercise, exercise_equipment, exercise_target, exercise_bodypart CASCADE;
 DROP SEQUENCE IF EXISTS seq_user_id;
 DROP SEQUENCE IF EXISTS seq_customer_id;
 
@@ -30,13 +30,6 @@ CREATE TABLE customer (
 	photo_link varchar(400),
 	height_inches numeric,
 	CONSTRAINT PK_customer PRIMARY KEY (customer_id)
-);
-
-CREATE TABLE employee (
-	employee_id int NOT NULL,
-	employee_name varchar(50) NOT NULL,
-	is_admin boolean NOT NULL,
-	CONSTRAINT PK_employee PRIMARY KEY (employee_id)
 );
 
 CREATE TABLE metrics (
