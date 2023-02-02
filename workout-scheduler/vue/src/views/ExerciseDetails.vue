@@ -7,7 +7,7 @@
       <p class='eqipment'>{{exercise.equipment}}</p>
     </div>
     <div class='gif'>
-      <img src='{{exercise.gifUrl}}'>
+      <img :src='exercise.gifUrl'>
     </div>
   </section>
 </template>
@@ -33,7 +33,7 @@ export default {
       }
     },
     created() {
-      return this.getExercise();
+      this.getExercise();
     },
     computed: {
       exercise() {
