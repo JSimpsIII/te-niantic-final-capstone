@@ -21,6 +21,7 @@ export default new Vuex.Store({
     token: currentToken || '',
     user: currentUser || {},
     customerId: '',
+    exerciseList: []
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -41,6 +42,9 @@ export default new Vuex.Store({
     },
     SET_CUSTOMER_ID(state, customerId) {
       state.customerId = customerId;
+    },
+    LOAD_EXERCISE_LIST(state, exercises) {
+      state.exerciseList = exercises;
     }
   }
 })
