@@ -2,6 +2,7 @@ package com.techelevator.model.profile;
 
 public class Customer {
     private Long customerId;
+    private String username;
     private String name;
     private String email;
     private String photo;
@@ -10,8 +11,9 @@ public class Customer {
     public Customer() {
     }
 
-    public Customer(Long customerId, String name, String email) {
+    public Customer(Long customerId, String username, String name, String email) {
         this.customerId = customerId;
+        this.username = username;
         this.name = name;
         this.email = email;
     }
@@ -26,6 +28,14 @@ public class Customer {
 
     public void setCustomerId(Long customerId) {
         this.customerId = customerId;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getName() {
