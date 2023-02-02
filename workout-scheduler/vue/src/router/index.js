@@ -10,6 +10,7 @@ import Metrics from '../views/Metrics.vue'
 import store from '../store/index'
 import Redirect from '../views/Redirect.vue'
 import Gym from '../views/Gym.vue'
+import ExerciseDetails from '../views/ExerciseDetails.vue'
 
 Vue.use(Router)
 
@@ -70,6 +71,14 @@ const router = new Router({
       path: "/gym",
       name: "gym",
       component: Gym,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: "/gym/exercise",
+      name: "exercise",
+      component: ExerciseDetails,
       meta: {
         requiresAuth: true
       }
