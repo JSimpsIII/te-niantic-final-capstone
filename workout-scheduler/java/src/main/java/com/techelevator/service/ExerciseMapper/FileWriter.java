@@ -69,7 +69,7 @@ public class FileWriter {
             String bodyPart = exercise.getBodyPart();
             String equipment = exercise.getEquipment();
             String gifUrl = exercise.getGifUrl();
-            String id = exercise.getId();
+            String id = String.valueOf(exercise.getId());
             String name = exercise.getName();
             String target = exercise.getTarget();
             writer.println("INSERT INTO exercise (exercise_id, exercise_name, exercise_target, body_part, equipment, gif_url) VALUES (" + id + ", '" + name + "', (SELECT target_id FROM exercise_target WHERE target_name = '" + target + "'), (SELECT bodypart_id FROM exercise_bodypart WHERE bodypart_name = '" + bodyPart + "'), (SELECT equipment_id FROM exercise_equipment WHERE equipment_name = '" + equipment + "'), '" + gifUrl + "');");
