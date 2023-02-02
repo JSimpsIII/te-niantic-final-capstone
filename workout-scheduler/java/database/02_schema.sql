@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS customer_goal, goal, metrics, employee, customer, users CASCADE;
+DROP TABLE IF EXISTS customer_goal, goal, metrics, employee, customer, users, exercise, exercise_equipment, exercise_target, exercise_bodypart CASCADE;
 DROP SEQUENCE IF EXISTS seq_user_id;
 
 CREATE SEQUENCE seq_user_id
@@ -59,6 +59,32 @@ CREATE TABLE customer_goal (
 	goal_date date,
 	is_completed boolean
 );
+
+CREATE TABLE exercise (
+    exercise_id int NOT NULL PRIMARY KEY,
+    exercise_name varchar(200),
+    exercise_target int,
+    body_part int,
+    equipment int,
+    gif_url varchar(200)
+);
+
+CREATE TABLE exercise_equipment (
+    equipment_id SERIAL NOT NULL PRIMARY KEY,
+    equipment_name varchar(50) NOT NULL
+);
+
+CREATE TABLE exercise_target (
+    target_id SERIAL NOT NULL PRIMARY KEY,
+    target_name varchar(50) NOT NULL
+);
+
+CREATE TABLE exercise_bodypart (
+    bodypart_id SERIAL NOT NULL PRIMARY KEY,
+    bodypart_name varchar(50) NOT NULL
+);
+
+
 
 -- Add seed data in the 03_data.sql script file
 
