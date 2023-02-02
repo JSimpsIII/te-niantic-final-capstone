@@ -85,13 +85,15 @@ public class ProfileController {
     @RequestMapping(path = "/users/{id}/metrics", method = RequestMethod.POST)
     public boolean addNewMetric(@RequestParam Long id, @RequestBody MetricDTO metricDTO) {
         Long customerId = metricDTO.getCustomerId();
+        int exerciseId = metricDTO.getExerciseId();
         Date date = metricDTO.getDate();
-        int reps = metricDTO.getReps();
-        double weight = metricDTO.getPounds();
-        double time = metricDTO.getMinutes();
+        double reps = metricDTO.getReps();
+        double weight = metricDTO.getWeight();
+        double time = metricDTO.getTime();
+        double distance = metricDTO.getDistance();
         int days = metricDTO.getDays();
         String misc = metricDTO.getMisc();
-        Metric metric = new Metric(customerId, date, reps, weight, time, days, misc);
+        Metric metric = new Metric(customerId, exerciseId, date, reps, weight, time, distance, days, misc);
         return profileDao.addNewMetric(id, metric);
     }
 

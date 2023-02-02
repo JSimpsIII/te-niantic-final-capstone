@@ -283,23 +283,26 @@ public class JdbcProfileDao implements ProfileDao {
         metrics_id SERIAL NOT NULL PRIMARY KEY,
         customer_id int NOT NULL,
         metrics_date date NOT NULL,
-        current_reps int,
+        current_reps numeric,
         current_weight_lbs numeric,
         current_time_min numeric,
+        current_distance_miles numeric;
         current_days int,
         current_misc varchar(50)
          */
+        int exerciseId = metric.getExerciseId();
         String mDate = LocalDate.now().format(DateTimeFormatter.ISO_LOCAL_DATE);
-        int mReps = metric.getReps();
+        double mReps = metric.getReps();
         double mWeight = metric.getWeight();
         double mTime = metric.getTime();
+        double mDistance = metric.getDistance();
         int mDays = metric.getDays();
         String mMisc = metric.getMisc();
 
         Integer metricsId;
         String sqlQuery = "INSERT INTO metrics " +
-                "(customer_id, metrics_date, current_reps, current_weight_lbs, current_time_min, current_days, current_misc) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?);\n";
+                "(customer_id, exercise_id, metrics_date, current_reps, current_weight_lbs, current_time_min, current_distance_miles, current_days, current_misc) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);\n";
         try {
             metricsId = jdbcTemplate.queryForObject(sqlQuery, Integer.class,
                     userId, mDate, mReps, mWeight, mTime, mDays, mMisc);
@@ -382,18 +385,20 @@ public class JdbcProfileDao implements ProfileDao {
     }
 
     private boolean updateMetric(Long userId, Metric metric) {
+        int exerciseId = metric.getExerciseId();
         String mDate = LocalDate.now().format(DateTimeFormatter.ISO_LOCAL_DATE);
-        int mReps = metric.getReps();
+        double mReps = metric.getReps();
         double mWeight = metric.getWeight();
         double mTime = metric.getTime();
+        double mDistance = metric.getDistance();
         int mDays = metric.getDays();
         String mMisc = metric.getMisc();
 
         String sqlQuery = "UPDATE metrics " +
-                "SET metrics_date = ?, current_reps = ?, current_weight_lbs = ?, current_time_min = ?, current_days = ?, current_misc = ? " +
+                "SET exercise_id = ?, metrics_date = ?, current_reps = ?, current_weight_lbs = ?, current_time_min = ?, current_distance_miles = ?, current_days = ?, current_misc = ? " +
                 "WHERE customer_id = ?;";
         try {
-            jdbcTemplate.update(sqlQuery, mDate, mReps, mWeight, mTime, mDays, mMisc, userId);
+            jdbcTemplate.update(sqlQuery, exerciseId, mDate, mReps, mWeight, mTime, mDistance, mDays, mMisc, userId);
         } catch (Exception e) {
             return false;
         }
