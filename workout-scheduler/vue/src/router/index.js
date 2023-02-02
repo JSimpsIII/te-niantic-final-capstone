@@ -76,7 +76,7 @@ const router = new Router({
       }
     },
     {
-      path: "/gym/exercise",
+      path: "/gym/exercises/:id",
       name: "exercise",
       component: ExerciseDetails,
       meta: {

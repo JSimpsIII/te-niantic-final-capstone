@@ -17,19 +17,7 @@
 
 <script>
 export default {
-    name: 'exercise-entry',
-    props: {
-    props: {
-      exercise: {
-        id: 0,
-        name: '',
-        target: '',
-        bodyPart: '',
-        equipment: '',
-        gifUrl: ''
-      }
-    }
-    }
+    name: 'exercise-entry'
 }
 </script>
 

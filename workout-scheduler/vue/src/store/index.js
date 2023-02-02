@@ -21,7 +21,15 @@ export default new Vuex.Store({
     token: currentToken || '',
     user: currentUser || {},
     customerId: '',
-    exerciseList: []
+    exerciseList: [],
+    exercise: {
+      id: null,
+      name: '',
+      target: '',
+      bodyPart: '',
+      equipment: '',
+      gifUrl: ''
+    }
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -45,6 +53,9 @@ export default new Vuex.Store({
     },
     LOAD_EXERCISE_LIST(state, exercises) {
       state.exerciseList = exercises;
+    },
+    SET_CURRENT_EXERCISE(state, exercise) {
+      state.exercise = exercise;
     }
   }
 })
