@@ -1,15 +1,19 @@
 <template>
   <div id="goals-page-container">
     <main>
-      <img id="goals-img" src="../assets/gym-for-everyone.png" alt="gym-for-everyone-img">
+      <img
+        id="goals-img"
+        src="../assets/gym-for-everyone.png"
+        alt="gym-for-everyone-img"
+      />
 
       <div class="goals-banner">
         <div class="goals-title-add-container">
           <div class="goals-title">Goals</div>
           <div class="add-btn-container">
-              <button class="add-btn" @click="toggleAddGoal">
-                {{ isAddingGoal ? "Cancel" : "+ Add"}}
-              </button>
+            <button class="add-btn" @click="toggleAddGoal">
+              {{ isAddingGoal ? "Cancel" : "+ Add" }}
+            </button>
           </div>
         </div>
       </div>
@@ -18,7 +22,7 @@
         <add-goal v-if="isAddingGoal" />
 
         <div class="goal" v-for="goal in goals" :key="goal.id">
-          <div class="goal-name">{{ goal.goalName }}</div>
+          <div class="goal-name">{{ goal.name }}</div>
         </div>
       </div>
     </main>
@@ -26,64 +30,40 @@
     <footer>
       <nav-bar />
     </footer>
-
   </div>
 </template>
 
 <script>
-import AddGoal from '../components/AddGoal.vue'
-import NavBar from '../components/NavBar.vue'
+import AddGoal from "../components/AddGoal.vue";
+import NavBar from "../components/NavBar.vue";
+import goalService from "../services/GoalService";
 
 export default {
-    name: "goals",
-    components: {
-      AddGoal, 
-      NavBar
+  name: "goals",
+  components: {
+    AddGoal,
+    NavBar,
+  },
+  data() {
+    return {
+      goals: [],
+      isAddingGoal: false,
+    };
+  },
+  created() {
+    goalService.getAllGoals(this.$store.state.customerId).then((res) => {
+      this.goals = res.data;
+    });
+  },
+  methods: {
+    toggleAddGoal() {
+      this.isAddingGoal = !this.isAddingGoal;
     },
-    data() {
-      return {
-        goals: [
-          {
-            goalId: "id",
-            goalName: "Go to the gym 3 days a week",
-            goalRep: null,
-            goalWeight: null,
-            goalTime: null,
-            goalDays: 3,
-            goalMisc: null 
-          },
-          {
-            goalId: "id2",
-            goalName: "Feel less tired",
-            goalRep: null,
-            goalWeight: null,
-            goalTime: null,
-            goalDays: null,
-            goalMisc: null 
-          },
-          {
-            goalId: "id3",
-            goalName: "Improve stamina",
-            goalRep: null,
-            goalWeight: null,
-            goalTime: null,
-            goalDays: null,
-            goalMisc: null 
-          }
-        ],
-        isAddingGoal: false
-      }
-    },
-    methods: {
-      toggleAddGoal() {
-        this.isAddingGoal = !this.isAddingGoal;
-      }
-    }
-}
+  },
+};
 </script>
 
 <style scoped>
-
 #goals-container {
   width: 90%;
   margin: 0 auto;
@@ -151,6 +131,5 @@ footer {
   background: var(--smoke);
   padding-top: 15px;
 }
-
 </style>
 

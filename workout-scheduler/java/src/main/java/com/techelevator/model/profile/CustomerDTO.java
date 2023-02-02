@@ -3,6 +3,7 @@ package com.techelevator.model.profile;
 public class CustomerDTO {
 
     private String name;
+    private String username;
     private String email;
     private String photo;
     private double height;
@@ -13,6 +14,14 @@ public class CustomerDTO {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getEmail() {

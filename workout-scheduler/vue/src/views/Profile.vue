@@ -2,7 +2,7 @@
   <div>
     <div class="banner">
       <div class="profile-img-container">
-        <img class="profile-img" :src="user.img" alt="profile-img">
+        <img class="profile-img" :src="user.photo" alt="profile-img">
       </div>
     </div>
     
@@ -15,7 +15,7 @@
       <form id="form-container">
 
         <label for="photo">Profile Picture</label>
-        <select name="languages" id="lang" v-model="user.img" :disabled="!isEditting">
+        <select name="languages" id="lang" v-model="user.photo" :disabled="!isEditting">
           <option value="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRo30ulQk-69OJ5GGdowFt21Lsau4GfWzfbBSmsfE4hGrVxBbnVNOr12yOYULoq2Gb7XEU&usqp=CAU">Option 1</option>
           <option value="https://raisingwhasians.com/wp-content/uploads/2021/06/Black-widow-movie-review-safe-for-kids.jpg">Option 2</option>
           <option value="https://qph.cf2.quoracdn.net/main-qimg-25c5c8a37ca5ffcdf55fe24149ce1011.webp">Option 3</option>
@@ -56,7 +56,7 @@
         <button 
           id="submit-btn" 
           class="profile-btns" 
-          @click="toggleEditProfile();saveChanges()" 
+          @click=toggleEditProfile();saveChanges()
           v-if="isEditting"
         >
           Save Changes
@@ -96,7 +96,7 @@ export default {
       return {
         user: {
           username: "",
-          img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRo30ulQk-69OJ5GGdowFt21Lsau4GfWzfbBSmsfE4hGrVxBbnVNOr12yOYULoq2Gb7XEU&usqp=CAU",
+          photo: "",
           email: "",
           height: ""
         },
@@ -107,12 +107,11 @@ export default {
     created() {
       profileService.getProfile(this.$store.state.user.username)
                     .then(res => {
-                      const { customerId, email, height, name, photo } = res.data.customer;
+                      const { email, height, name, photo } = res.data.customer;
                       this.user.username = name;
-                      this.user.img = photo;
+                      this.user.photo = photo;
                       this.user.email = email;
                       this.user.height = height;
-                      this.$store.commit("SET_CUSTOMER_ID", customerId);
                     });
 
       

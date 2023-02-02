@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS customer_goal, goal, metrics, employee, customer, users, exercise, exercise_equipment, exercise_target, exercise_bodypart CASCADE;
+DROP TABLE IF EXISTS customer_goal, goal, metrics, customer, users, exercise, exercise_equipment, exercise_target, exercise_bodypart CASCADE;
 DROP SEQUENCE IF EXISTS seq_user_id;
 DROP SEQUENCE IF EXISTS seq_customer_id;
 
@@ -17,7 +17,7 @@ CREATE SEQUENCE seq_customer_id
 
 CREATE TABLE users (
 	user_id int DEFAULT nextval('seq_user_id'::regclass) NOT NULL,
-	username varchar(50) NOT NULL,
+	username varchar(50) NOT NULL UNIQUE,
 	password_hash varchar(200) NOT NULL,
 	role varchar(50) NOT NULL,
 	CONSTRAINT PK_user PRIMARY KEY (user_id)
@@ -25,46 +25,12 @@ CREATE TABLE users (
 
 CREATE TABLE customer (
 	customer_id int DEFAULT nextval('seq_customer_id'::regclass) NOT NULL,
+	customer_username varchar(50) NOT NULL UNIQUE,
 	customer_name varchar(50) NOT NULL,
 	customer_email varchar(50),
 	photo_link varchar(400),
 	height_inches numeric,
 	CONSTRAINT PK_customer PRIMARY KEY (customer_id)
-);
-
-CREATE TABLE employee (
-	employee_id int NOT NULL,
-	employee_name varchar(50) NOT NULL,
-	is_admin boolean NOT NULL,
-	CONSTRAINT PK_employee PRIMARY KEY (employee_id)
-);
-
-CREATE TABLE metrics (
-	metrics_id SERIAL NOT NULL PRIMARY KEY,
-	customer_id int NOT NULL,
-	metrics_date date NOT NULL,
-	current_reps int,
-	current_weight_lbs numeric,
-	current_time_min numeric,
-	current_days int,
-	current_misc varchar(50)
-);
-
-CREATE TABLE goal (
-	goal_id SERIAL NOT NULL PRIMARY KEY,
-	goal_name varchar(50) NOT NULL,
-	goal_reps int,
-	goal_weight_lbs int,
-	goal_time_min numeric,
-	goal_days int,
-	goal_misc varchar(50)
-);
-
-CREATE TABLE customer_goal (
-	customer_id int NOT NULL,
-	goal_id int NOT NULL,
-	goal_date date,
-	is_completed boolean
 );
 
 CREATE TABLE exercise (
@@ -90,6 +56,40 @@ CREATE TABLE exercise_bodypart (
     bodypart_id SERIAL NOT NULL PRIMARY KEY,
     bodypart_name varchar(50) NOT NULL
 );
+
+CREATE TABLE metrics (
+	metrics_id SERIAL NOT NULL PRIMARY KEY,
+	customer_id int NOT NULL,
+	exercise_id int,
+	metrics_date date NOT NULL,
+	current_reps numeric,
+	current_weight_lbs numeric,
+	current_time_min numeric,
+	current_distance_miles numeric,
+	current_days int,
+	current_misc varchar(50)
+);
+
+CREATE TABLE goal (
+	goal_id SERIAL NOT NULL PRIMARY KEY,
+	goal_name varchar(50) NOT NULL,
+	goal_reps int,
+	goal_weight_lbs int,
+	goal_time_min numeric,
+	goal_days int,
+	goal_misc varchar(50)
+);
+
+CREATE TABLE customer_goal (
+	customer_id int NOT NULL,
+	goal_id int NOT NULL,
+	goal_date date,
+	is_completed boolean
+);
+
+
+
+
 
 
 
