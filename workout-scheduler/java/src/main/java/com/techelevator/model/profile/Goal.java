@@ -18,6 +18,14 @@ public class Goal {
     }
 
     public Goal(String name, int reps, int weight, double time, int days, String misc, Date date, boolean isCompleted) {
+        this.name = name;
+        this.reps = reps;
+        this.weight = weight;
+        this.time = time;
+        this.days = days;
+        this.misc = misc;
+        this.date = date;
+        this.isCompleted = isCompleted;
     }
 
     public int getId() {

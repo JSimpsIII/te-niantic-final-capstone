@@ -329,7 +329,7 @@ public class JdbcProfileDao implements ProfileDao {
         Integer goalId;
         String sqlQuery = "INSERT INTO goal " +
                 "(goal_name, goal_reps, goal_weight_lbs, goal_time_min, goal_days, goal_misc) " +
-                "VALUES (?, ?, ?, ?, ?, ?);\n";
+                "VALUES (?, ?, ?, ?, ?, ?) RETURNING goal_id;\n";
         try {
             goalId = jdbcTemplate.queryForObject(sqlQuery, Integer.class,
                     gName, gReps, gWeight, gTime, gDays, gMisc);

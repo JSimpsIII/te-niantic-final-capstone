@@ -64,7 +64,7 @@ public class ProfileController {
     }
 
     @RequestMapping(path = "/users/{id}/goals", method = RequestMethod.POST)
-    public boolean addNewGoal(@RequestParam Long id, @RequestBody GoalDTO goalDTO) {
+    public boolean addNewGoal(@PathVariable Long id, @RequestBody GoalDTO goalDTO) {
         String name = goalDTO.getName();
         int reps = goalDTO.getReps();
         int weight = goalDTO.getWeight();
