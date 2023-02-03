@@ -1,15 +1,17 @@
 <template>
-    <Bar 
-        :chart-data='chartData' 
-        :chart-options='chartOptions' 
-        :chart-id='chartId'
-        :dataset-id-key='datasetIdKey'
-        :plugins='plugins'
-        :css-classes='cssClasses'
-        :styles='styles'
-        :width='width'
-        :height='height'
-    />
+    <div id='bar-chart'>
+        <Bar 
+            :chart-data='chartData' 
+            :chart-options='chartOptions' 
+            :chart-id='chartId'
+            :dataset-id-key='datasetIdKey'
+            :plugins='plugins'
+            :css-classes='cssClasses'
+            :styles='styles'
+            :width='width'
+            :height='height'
+        />
+    </div>
 </template>
 
 <script>
