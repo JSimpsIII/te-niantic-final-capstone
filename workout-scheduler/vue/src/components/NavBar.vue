@@ -4,7 +4,7 @@
         <img id="home-icon" src="../assets/home.png" alt="home-icon">
       </router-link>
 
-      <router-link to="/">
+      <router-link :to="{name: 'gym'}">
         <img id="star-icon" src="../assets/star.png" alt="star-icon">
       </router-link>
 

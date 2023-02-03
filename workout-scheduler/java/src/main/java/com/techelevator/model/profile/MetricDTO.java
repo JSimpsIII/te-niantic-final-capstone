@@ -6,13 +6,24 @@ import java.util.Date;
 public class MetricDTO {
 
     @NotEmpty
+    private int id;
     private Long customerId;
+    private int exerciseId;
     private Date date;
-    private int reps;
-    private double pounds;
-    private double minutes;
+    private double reps;
+    private double weight; //lbs
+    private double time; //min
+    private double distance; //mi
     private int days;
     private String misc;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public Long getCustomerId() {
         return customerId;
@@ -20,6 +31,14 @@ public class MetricDTO {
 
     public void setCustomerId(Long customerId) {
         this.customerId = customerId;
+    }
+
+    public int getExerciseId() {
+        return exerciseId;
+    }
+
+    public void setExerciseId(int exerciseId) {
+        this.exerciseId = exerciseId;
     }
 
     public Date getDate() {
@@ -30,28 +49,36 @@ public class MetricDTO {
         this.date = date;
     }
 
-    public int getReps() {
+    public double getReps() {
         return reps;
     }
 
-    public void setReps(int reps) {
+    public void setReps(double reps) {
         this.reps = reps;
     }
 
-    public double getPounds() {
-        return pounds;
+    public double getWeight() {
+        return weight;
     }
 
-    public void setPounds(double pounds) {
-        this.pounds = pounds;
+    public void setWeight(double weight) {
+        this.weight = weight;
     }
 
-    public double getMinutes() {
-        return minutes;
+    public double getTime() {
+        return time;
     }
 
-    public void setMinutes(double minutes) {
-        this.minutes = minutes;
+    public void setTime(double time) {
+        this.time = time;
+    }
+
+    public double getDistance() {
+        return distance;
+    }
+
+    public void setDistance(double distance) {
+        this.distance = distance;
     }
 
     public int getDays() {
