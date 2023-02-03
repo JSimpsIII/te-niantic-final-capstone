@@ -1,6 +1,6 @@
 <template>
     <div id='body-part-focus-chart'>
-        <!-- <Pie 
+        <Pie 
             :chart-options="chartOptions"
             :chart-data="chartData"
             :chart-id="chartId"
@@ -10,35 +10,35 @@
             :styles="styles"
             :width="width"
             :height="height" 
-        /> -->
+        />
     </div>
 </template>
 
 <script>
-// import ChartsService from '../../../services/ChartsService.js'
-//import { Pie } from 'vue-chartjs/legacy'
-// import { 
-//     Chart as ChartJS, 
-//     Title, 
-//     Tooltip, 
-//     Legend, 
-//     BarElement, 
-//     CategoryScale, 
-//     LinearScale
-// } from 'chart.js'
+import ChartsService from '../../../services/ChartsService.js'
+import { Pie } from 'vue-chartjs/legacy'
+import { 
+    Chart as ChartJS, 
+    Title, 
+    Tooltip, 
+    Legend, 
+    BarElement, 
+    CategoryScale, 
+    LinearScale
+} from 'chart.js'
 
-// ChartJS.register(
-//     Title, 
-//     Tooltip, 
-//     Legend, 
-//     BarElement, 
-//     CategoryScale, 
-//     LinearScale
-// )
+ChartJS.register(
+    Title, 
+    Tooltip, 
+    Legend, 
+    BarElement, 
+    CategoryScale, 
+    LinearScale
+)
 
 export default {
     name: 'bodypart-focus-chart',
-    // components: { Pie },
+    components: { Pie },
     data() {
         return {
             chartId: 'bodypart-focus-chart',
@@ -79,9 +79,9 @@ export default {
         }
     },
     computed: {
-        // percentagesArray() {
-        //     return ChartsService.getPercentageArrayForBodyPart();
-        // }
+        percentagesArray() {
+            return ChartsService.getPercentageArrayForBodyPart();
+        }
     }
 
 }
