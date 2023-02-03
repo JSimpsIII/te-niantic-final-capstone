@@ -59,28 +59,29 @@ export default {
   data() {
     return {
       newGoal: {
-        name: "",
+        name: "Test",
         reps: 0,
         weight: 0,
         time: 0.0,
         days: 0,
-        misc: {},
+        misc: null,
         date: "",
         completed: false,
       }
     }
   },
   methods: {
-    saveGoal: () => {
+    saveGoal() {
 
-        // console.log(this.newGoal)
+        console.log(this.newGoal)
 
         // const goalName = e.target.nextElementSibling.innerText;
         // const goalValue = e.target.nextElementSibling.lastElementChild.value;
 
         // if (goalName == "Days in gym every week: ") {
         //     // this.newGoal.days = goalValue;
-            goalService.addNewGoal(this.$store.state.customerId, this.newGoal)
+        console.log(this.$store.state.customerId)
+        goalService.addNewGoal(this.$store.state.customerId, this.newGoal)
         // }
       
     },
