@@ -23,17 +23,7 @@ public class JdbcProfileDao implements ProfileDao {
     public JdbcProfileDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
-    private String sqlQueryGetAll = "" +
-            "SELECT c.customer_id, c.customer_name, c.customer_email, c.photo_link, c.height_inches, \n" +
-            "m.metrics_id, m.metrics_date, m.current_reps, m.current_weight_lbs, m.current_time_min, m.current_days, m.current_misc, \n" +
-            "cg.goal_id, cg.goal_date, cg.is_completed, \n" +
-            "g.goal_name, g.goal_reps, g.goal_weight_lbs, g.goal_time_min, g.goal_days, g.goal_misc FROM customer AS c\n" +
-            "JOIN metrics AS m\n" +
-            "ON c.customer_id = m.customer_id\n" +
-            "JOIN customer_goal as cg\n" +
-            "ON cg.customer_id = c.customer_id\n" +
-            "JOIN goal AS g\n" +
-            "ON g.goal_id = cg.goal_id";
+
 
     @Override
     public List<Customer> getAllCustomers() {
@@ -65,12 +55,11 @@ public class JdbcProfileDao implements ProfileDao {
             Metric metric = mapRowToMetric(results);
             metrics.add(metric);
         }
-        String goalSql = "SELECT * FROM goal AS g " +
-                "JOIN customer_goal AS cg ON g.goal_id = cg.goal_id " +
-                "WHERE cg.customer_id = ?;";
+        String goalSql = "SELECT * FROM goal WHERE customer_id = ?;";
         results = jdbcTemplate.queryForRowSet(goalSql, userId);
+        JdbcGoalDao jdbcGoalDao = new JdbcGoalDao(jdbcTemplate);
         while (results.next()) {
-            Goal goal = mapRowToGoal(results);
+            Goal goal = jdbcGoalDao.mapRowToGoal(results);
             goals.add(goal);
         }
         Profile profile = new Profile(userId, customer, goals, metrics);
@@ -101,8 +90,9 @@ public class JdbcProfileDao implements ProfileDao {
                 "JOIN customer_goal AS cg ON g.goal_id = cg.goal_id " +
                 "WHERE cg.customer_id = ?;";
         results = jdbcTemplate.queryForRowSet(goalSql, userId);
+        JdbcGoalDao jdbcGoalDao = new JdbcGoalDao(jdbcTemplate);
         while (results.next()) {
-            Goal goal = mapRowToGoal(results);
+            Goal goal = jdbcGoalDao.mapRowToGoal(results);
             goals.add(goal);
         }
         Profile profile = new Profile(userId, customer, goals, metrics);
@@ -129,8 +119,9 @@ public class JdbcProfileDao implements ProfileDao {
         List<Goal> goals = profile.getGoals();
         List<Metric> metrics = profile.getMetrics();
         boolean customerCreated = addNewCustomer(userId, customer);
+        JdbcGoalDao jdbcGoalDao = new JdbcGoalDao(jdbcTemplate);
         for (Goal goal : goals) {
-            boolean goalAdded = addNewGoal(userId, goal);
+            boolean goalAdded = jdbcGoalDao.addNewGoal(userId, goal);
             if (!goalAdded) return false;
         }
         for (Metric metric : metrics) {
@@ -138,20 +129,6 @@ public class JdbcProfileDao implements ProfileDao {
             if (!metricAdded) return false;
         }
         return customerCreated;
-    }
-
-    @Override
-    public List<Goal> getAllGoalsById(Long userId) {
-        List<Goal> goals = new ArrayList<>();
-        String goalSql = "SELECT * FROM goal AS g " +
-                "JOIN customer_goal AS cg ON g.goal_id = cg.goal_id " +
-                "WHERE cg.customer_id = ?;";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(goalSql, userId);
-        while (results.next()) {
-            Goal goal = mapRowToGoal(results);
-            goals.add(goal);
-        }
-        return goals;
     }
 
     @Override
@@ -213,14 +190,6 @@ public class JdbcProfileDao implements ProfileDao {
             return false;
         }
         return true;
-    }
-
-    @Override
-    public boolean addNewGoal(Long userId, Goal goal) {
-
-        boolean goalCreated = createNewGoal(goal);
-        boolean customerGoalCreated = createNewCustomerGoal(userId, goal);
-        return goalCreated && customerGoalCreated;
     }
 
     @Override
@@ -312,60 +281,6 @@ public class JdbcProfileDao implements ProfileDao {
         return (metricsId != null);
     }
 
-    private boolean createNewGoal(Goal goal) {
-         /* goal table
-        goal_id SERIAL NOT NULL PRIMARY KEY,
-        goal_name varchar(50) NOT NULL,
-        goal_reps int,
-        goal_weight_lbs int,
-        goal_time_min numeric,
-        goal_days int,
-        goal_misc varchar(50)
-         */
-        String gName = goal.getName();
-        int gReps = goal.getReps();
-        int gWeight = goal.getWeight();
-        double gTime = goal.getTime();
-        int gDays = goal.getDays();
-        String gMisc = goal.getMisc();
-
-        Integer goalId;
-        String sqlQuery = "INSERT INTO goal " +
-                "(goal_name, goal_reps, goal_weight_lbs, goal_time_min, goal_days, goal_misc) " +
-                "VALUES (?, ?, ?, ?, ?, ?) RETURNING goal_id;\n";
-        try {
-            goalId = jdbcTemplate.queryForObject(sqlQuery, Integer.class,
-                    gName, gReps, gWeight, gTime, gDays, gMisc);
-        } catch (Exception e) {
-            return false;
-        }
-        return (goalId != null);
-    }
-
-    private boolean createNewCustomerGoal(Long userId, Goal goal) {
-        /*	customer_goal table
-        customer_id int NOT NULL,
-        goal_id int NOT NULL,
-        goal_date date,
-        is_completed boolean
-         */
-        int gId = goal.getId();
-        Date gDate = goal.getDate();
-        boolean gCompleted = goal.isCompleted();
-        String sqlQuery = "INSERT INTO customer_goal " +
-                "(customer_id, goal_id, goal_date, is_completed) " +
-                "VALUES (?, ?, ?, ?);\n";
-
-        Integer customerGoalId;
-        try {
-            customerGoalId = jdbcTemplate.queryForObject(sqlQuery, Integer.class,
-                    userId, gId, gDate, gCompleted);
-        } catch (Exception e) {
-            return false;
-        }
-        return (customerGoalId != null);
-    }
-
     private boolean updateCustomer(Long userId, Customer customer) {
         String cName = customer.getName();
         String cEmail = customer.getEmail();
@@ -405,43 +320,6 @@ public class JdbcProfileDao implements ProfileDao {
         return true;
     }
 
-    private boolean updateGoal(Long userId, Goal goal) {
-        int gId = goal.getId();
-        String gName = goal.getName();
-        int gReps = goal.getReps();
-        int gWeight = goal.getWeight();
-        double gTime = goal.getTime();
-        int gDays = goal.getDays();
-        String gMisc = goal.getMisc();
-
-        String sqlQuery = "UPDATE goal " +
-                "SET goal_name = ?, goal_reps = ?, goal_weight_lbs = ?, goal_time_min = ?, goal_days = ?, goal_misc = ? " +
-                "WHERE goal_id = ?;";
-        try {
-            jdbcTemplate.update(sqlQuery, gName, gReps, gWeight, gTime, gDays, gMisc, gId);
-        } catch (Exception e) {
-            return false;
-        }
-        return true;
-    }
-
-    private boolean updateCustomerGoal(Long userId, Goal goal) {
-        int gId = goal.getId();
-        Date gDate = goal.getDate();
-        boolean gCompleted = goal.isCompleted();
-
-        String sqlQuery = "UPDATE customer_goal " +
-                "SET goal_date = ?, is_completed = ? " +
-                "WHERE customer_id = ? AND goal_id = ?;";
-        try {
-            jdbcTemplate.update(sqlQuery, gDate, gCompleted, userId, gId);
-        } catch (Exception e) {
-            return false;
-        }
-        return true;
-    }
-
-
 
     private Customer mapRowToCustomer(SqlRowSet row) {
         Customer customer = new Customer();
@@ -466,17 +344,4 @@ public class JdbcProfileDao implements ProfileDao {
         return metric;
     }
 
-    private Goal mapRowToGoal(SqlRowSet row) {
-        Goal goal = new Goal();
-        goal.setId(row.getInt("goal_id"));
-        goal.setDate(row.getDate("goal_date"));
-        goal.setCompleted(row.getBoolean("is_completed"));
-        goal.setName(row.getString("goal_name"));
-        goal.setReps(row.getInt("goal_reps"));
-        goal.setWeight(row.getInt("goal_weight_lbs"));
-        goal.setTime(row.getDouble("goal_time_min"));
-        goal.setDays(row.getInt("goal_days"));
-        goal.setMisc(row.getString("goal_misc"));
-        return goal;
-    }
 }

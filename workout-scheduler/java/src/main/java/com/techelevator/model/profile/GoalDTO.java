@@ -8,20 +8,23 @@ public class GoalDTO {
     @NotEmpty
     private int id;
     private String name;
-    private int reps;
-    private int weight;
-    private double time;
+    private Long customerId;
+    private int exerciseId;
+    private Date date;
+    private double reps;
+    private double weight; //lbs
+    private double time; //min
+    private double distance; //mi
     private int days;
     private String misc;
-    private Date date;
     private boolean isCompleted;
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -32,19 +35,43 @@ public class GoalDTO {
         this.name = name;
     }
 
-    public int getReps() {
+    public Long getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
+    }
+
+    public int getExerciseId() {
+        return exerciseId;
+    }
+
+    public void setExerciseId(int exerciseId) {
+        this.exerciseId = exerciseId;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public double getReps() {
         return reps;
     }
 
-    public void setReps(int reps) {
+    public void setReps(double reps) {
         this.reps = reps;
     }
 
-    public int getWeight() {
+    public double getWeight() {
         return weight;
     }
 
-    public void setWeight(int weight) {
+    public void setWeight(double weight) {
         this.weight = weight;
     }
 
@@ -54,6 +81,14 @@ public class GoalDTO {
 
     public void setTime(double time) {
         this.time = time;
+    }
+
+    public double getDistance() {
+        return distance;
+    }
+
+    public void setDistance(double distance) {
+        this.distance = distance;
     }
 
     public int getDays() {
@@ -72,19 +107,11 @@ public class GoalDTO {
         this.misc = misc;
     }
 
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
     public boolean isCompleted() {
         return isCompleted;
     }
 
-    public void setCompleted(boolean isCompleted) {
-        this.isCompleted = isCompleted;
+    public void setCompleted(boolean completed) {
+        isCompleted = completed;
     }
 }

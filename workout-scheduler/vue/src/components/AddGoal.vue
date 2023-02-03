@@ -60,34 +60,32 @@ export default {
     return {
       newGoal: {
         name: "Test",
-        reps: 0,
-        weight: 0,
+        date: "",
+        reps: 0.0,
+        weight: 0.0,
         time: 0.0,
+        distance: 0.0,
         days: 0,
         misc: null,
-        date: "",
         completed: false,
       }
     }
   },
   methods: {
     saveGoal() {
-
-        console.log(this.newGoal)
-
-        // const goalName = e.target.nextElementSibling.innerText;
-        // const goalValue = e.target.nextElementSibling.lastElementChild.value;
-
-        // if (goalName == "Days in gym every week: ") {
-        //     // this.newGoal.days = goalValue;
-        console.log(this.$store.state.customerId)
-        goalService.addNewGoal(this.$store.state.customerId, this.newGoal)
-        // }
-      
+        goalService
+          .addNewGoal(this.$store.state.customerId, this.newGoal)
+          .then(response => {
+            if (response.status == 201) {
+              console.log('goal ' + this.newGoal.name + ' added');
+            }
+          }).catch(error => {
+            console.error(error);
+          });
     },
-    saveCustomGoal: (e) => {
+    saveCustomGoal: (e => {
         console.log(e.target.nextElementSibling.value)
-    }
+    })
   },
 };
 </script>
