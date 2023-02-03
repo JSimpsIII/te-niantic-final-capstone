@@ -13,6 +13,7 @@ import java.util.List;
 public class GoalController {
 
     private GoalDao goalDao;
+
     public GoalController(GoalDao goalDao) {
         this.goalDao = goalDao;
     }
@@ -39,7 +40,7 @@ public class GoalController {
         return goalDao.addNewGoal(id, goal);
     }
 
-    @RequestMapping(path= "/users/{userId}/goals/{goalId}", method = RequestMethod.PUT)
+    @RequestMapping(path = "/users/{userId}/goals/{goalId}", method = RequestMethod.PUT)
     public boolean updateGoal(@PathVariable Long userId, @PathVariable int goalId, @RequestBody GoalDTO goalDTO) {
         String name = goalDTO.getName();
         Long customerId = goalDTO.getCustomerId();
