@@ -9,24 +9,22 @@
           </div> -->
       </div>
     </div>
-    <table id="exercise-table" v-if="selectingExercise">
+    <table id="exercise-table">
       <thead>
         <tr>
-          <th>&nbsp;</th>
           <th>Exercise</th>
           <th>Exercise Target</th>
-          <th>Bodypart Used</th>
-          <th>Equipment Used</th>
+          <th>Body Part Used</th>
+          <th>Equipment Required</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td>&nbsp;</td>
           <td>
-            <input type="text" id="exerciseNameFilter" v-model="filter.exerciseName"/>
+            <input type="text" id="exerciseNameFilter" v-model="filter.name"/>
           </td>
           <td>
-            <select id="exerciseTargetFilter" v-model="filter.exerciseTarget">
+            <select id="exerciseTargetFilter" v-model="filter.target">
               <option value>Show All</option>
               <option value="abs">Abs</option>
               <option value="quads">Quads</option>
@@ -34,7 +32,7 @@
             </select>
           </td>
           <td>
-            <select id="bodypartFilter" v-model="filter.bodypartName">
+            <select id="bodypartFilter" v-model="filter.bodyPart">
               <option value>Show All</option>
               <option value="waist">Waist</option>
               <option value="upper legs">Upper Legs</option>
@@ -44,13 +42,10 @@
           <td>&nbsp;</td>
         </tr>
         <tr
-          v-for="exercise in allExercises"
+          v-for="exercise in filteredList"
           v-bind:key="exercise.id"
         >
-          <td>
-            &nbsp;
-          </td>
-          <td>{{ exercise.name }}</td>
+          <td><router-link :to="{ name: 'exercise', params: {id:exercise.id} }"><button>{{ exercise.name }}</button></router-link></td>
           <td>{{ exercise.target }}</td>
           <td>{{ exercise.bodyPart }}</td>
           <td>{{ exercise.equipment }}</td>
@@ -76,83 +71,40 @@ export default {
     data() {
       return {
         filter: {
-          exerciseName: "",
-          bodypartName: "",
-          equipmentName: "",
-          exerciseTarget: ""
-        },
-        exercises: [
-          {
-            exerciseId: 1,
-            exerciseName: "3/4 sit-up",
-            bodypartName: "waist",
-            equipmentName: "body weight",
-            exerciseTarget: "abs",
-            gifURL: "http://d205bpvrqc9yn1.cloudfront.net/0001.gif"
-          },
-          {
-            exerciseId: 2,
-            exerciseName: "45° side bend",
-            bodypartName: "waist",
-            equipmentName: "body weight",
-            exerciseTarget: "abs",
-            gifURL: "http://d205bpvrqc9yn1.cloudfront.net/0002.gif"
-          },
-          {
-            exerciseId: 3,
-            exerciseName: "air bike",
-            bodypartName: "waist",
-            equipmentName: "body weight",
-            exerciseTarget: "abs",
-            gifURL: "http://d205bpvrqc9yn1.cloudfront.net/0003.gif"
-          },
-          {
-            exerciseId: 4,
-            exerciseName: "all fours squad stretch",
-            bodypartName: "upper legs",
-            equipmentName: "body weight",
-            exerciseTarget: "quads",
-            gifURL: "http://d205bpvrqc9yn1.cloudfront.net/1512.gif"
-          },  {
-            exerciseId: 5,
-            exerciseName: "alternate lateral pulldown",
-            bodypartName: "back",
-            equipmentName: "cable",
-            exerciseTarget: "lats",
-            gifURL: "http://d205bpvrqc9yn1.cloudfront.net/0007.gif"
-          },
-        ],
-        selectingExercise: true,
-        selectedWorkoutIDs: []
+          name: '',
+          target: '',
+          bodyPart: '',
+          equipment: ''
+        }
       }
     },
     created() {
       this.loadExercises();
     },
     computed: {
-      filteredList() {
-        let filteredexercises = this.exercises;
-        if (this.filter.exerciseName != "") {
-          filteredexercises = filteredexercises.filter((exercise) =>
-          exercise.exerciseName
-            .toLowerCase()
-            .includes(this.filter.exerciseName.toLowerCase())
-        );
-      }
-      if (this.filter.exerciseTarget != "") {
-        filteredexercises = filteredexercises.filter((exercise) =>
-          exercise.exerciseTarget === this.filter.exerciseTarget
-        );
-      }
-      if (this.filter.bodypartName != "") {
-        filteredexercises = filteredexercises.filter((exercise) =>
-          exercise.bodypartName === this.filter.bodypartName
-        );
-      }
-    return filteredexercises;
-    },
     allExercises() {
       return this.$store.state.exerciseList;
+    },
+    filteredList() {
+      let filteredExercises = this.allExercises;
+      if (this.filter.name != "") {
+        filteredExercises = filteredExercises.filter((exercise) => {
+          exercise.name
+          .toLowerCase()
+          .includes(this.filter.name.toLowerCase())
+        }); 
+      }
+      if (this.filter.target != "") {
+        filteredExercises = filteredExercises.filter((exercise) => {
+          exercise.target === this.filter.target
+        });
+      }
+      if (this.filter.bodyPart != "") {
+        filteredExercises = filteredExercises.filter((exercise) => {
+          exercise.bodyPart === this.filter.bodyPart
+        });
+      }
+      return filteredExercises;
     }
     },
     methods: {

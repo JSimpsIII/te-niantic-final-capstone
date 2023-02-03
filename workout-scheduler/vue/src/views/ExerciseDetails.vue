@@ -37,10 +37,12 @@ export default {
     },
     computed: {
       exercise() {
-        return this.$store.state.exercise;
+        let exercises = this.$store.state.exerciseList.find(exercise => 
+            exercise.id == this.$route.params.id)
+            return exercises;
+            }
       }
     }
-}
 </script>
 
 <style>
