@@ -1,22 +1,23 @@
 <template>
-  <div class="nav-container">
-      <router-link :to="{name: 'home'}">
-        <img id="home-icon" src="../assets/home.png" alt="home-icon">
-      </router-link>
+    <div class="nav-container">
 
-      <router-link :to="{name: 'gym'}">
-        <img id="star-icon" src="../assets/star.png" alt="star-icon">
-      </router-link>
+        <router-link :to="{name: 'home'}">
+            <img id="home-icon" src="../assets/home.png" alt="home-icon">
+        </router-link>
 
-      <router-link to="/">
-        <img id="chart-icon" src="../assets/chart.png" alt="chart-icon">
-      </router-link>
+        <router-link :to="{name: 'gym'}">
+            <img id="star-icon" src="../assets/star.png" alt="star-icon">
+        </router-link>
 
-      <router-link :to="{name: 'goals'}">
-        <img id="goal-icon" src="../assets/goal.png" alt="goal-icon">
-      </router-link>
+        <router-link to="/">
+            <img id="chart-icon" src="../assets/chart.png" alt="chart-icon">
+        </router-link>
 
-  </div>
+        <router-link :to="{name: 'goals'}">
+            <img id="goal-icon" src="../assets/goal.png" alt="goal-icon">
+        </router-link>
+        
+    </div>
 </template>
 
 <script>

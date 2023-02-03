@@ -1,42 +1,44 @@
 <template>
-  <div class="home">
-    <div id="profile-header">
-      <img class="profile-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRo30ulQk-69OJ5GGdowFt21Lsau4GfWzfbBSmsfE4hGrVxBbnVNOr12yOYULoq2Gb7XEU&usqp=CAU" />
-      <div id="username">{{ username }}</div>
-      <router-link id="settings" :to="{name: 'profile'}">
-        <img src="../assets/settings.png" alt="settings-icon">
-      </router-link>
-      
-      <router-link id="logout" :to="{name: 'logout'}">
-        <img src="../assets/logout.png" alt="logout-icon">
-      </router-link>
+    <div class="home">
+        <div id="profile-header">
+            <img class="profile-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRo30ulQk-69OJ5GGdowFt21Lsau4GfWzfbBSmsfE4hGrVxBbnVNOr12yOYULoq2Gb7XEU&usqp=CAU">
+
+            <div id="username">{{ username }}</div>
+
+            <router-link id="settings" :to="{name: 'profile'}">
+                <img src="../assets/settings.png" alt="settings-icon">
+            </router-link>
+        
+            <router-link id="logout" :to="{name: 'logout'}">
+                <img src="../assets/logout.png" alt="logout-icon">
+            </router-link>
+        </div>
+
+        <div id="motivation">Welcome back, {{ username }}! Just 1 more workout until you hit your weekly goal! </div>
+
+        <div class="btn-container">
+            <router-link id="gym" class="home-options-btn" to="gym">
+                <div>
+                    <img src="../assets/star.png">
+                    Gym
+                </div>
+            </router-link>
+        
+            <router-link id="metrics" class="home-options-btn" :to="{name: 'metrics'}">
+                <div>
+                    <img src="../assets/chart.png">
+                    Metrics
+                </div>
+            </router-link>
+
+            <router-link id="goals" class="home-options-btn" :to="{name: 'goals'}">
+                <div>
+                    <img src="../assets/goal.png">
+                    Goals
+                </div>
+            </router-link>
+        </div>
     </div>
-
-    <div id="motivation">Welcome back, {{ username }}! Just 1 more workout until you hit your weekly goal! </div>
-
-    <div class="btn-container">
-      <router-link id="gym" class="home-options-btn" to="gym">
-        <div>
-          <img src="../assets/star.png">
-          Gym
-        </div>
-      </router-link>
-      
-      <router-link id="metrics" class="home-options-btn" :to="{name: 'metrics'}">
-        <div>
-          <img src="../assets/chart.png">
-          Metrics
-        </div>
-      </router-link>
-
-      <router-link id="goals" class="home-options-btn" :to="{name: 'goals'}">
-        <div>
-          <img src="../assets/goal.png">
-          Goals
-        </div>
-      </router-link>
-    </div>
-  </div>
 </template>
 
 <script>

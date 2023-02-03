@@ -1,89 +1,86 @@
 <template>
-  <div>
-    <div class="banner">
-      <div class="profile-img-container">
-        <img class="profile-img" :src="user.photo" alt="profile-img">
-      </div>
-    </div>
-    
+    <div>
+        <div class="banner">
 
-    <div class="profile-container form-group">
-      <div id="username">
-        Username: {{ user.username }}
-      </div>
-
-      <form id="form-container">
-
-        <label for="photo">Profile Picture</label>
-        <select name="languages" id="lang" v-model="user.photo" :disabled="!isEditting">
-          <option value="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRo30ulQk-69OJ5GGdowFt21Lsau4GfWzfbBSmsfE4hGrVxBbnVNOr12yOYULoq2Gb7XEU&usqp=CAU">Option 1</option>
-          <option value="https://raisingwhasians.com/wp-content/uploads/2021/06/Black-widow-movie-review-safe-for-kids.jpg">Option 2</option>
-          <option value="https://qph.cf2.quoracdn.net/main-qimg-25c5c8a37ca5ffcdf55fe24149ce1011.webp">Option 3</option>
-          <option value="https://maactioncinema.com/wp-content/uploads/2021/02/blade_3.jpg">Option 4</option>
-        </select>
-
-        <label for="email">
-          Email:
-          <input 
-            type="email" 
-            v-model="user.email" 
-            id="email" 
-            name="email"
-            :disabled="!isEditting"
-          >
-        </label>
-
-        <label for="height">
-          Height:
-          <input 
-            type="text" 
-            v-model="user.height" 
-            id="height" 
-            name="height" 
-            :disabled="!isEditting">
-        </label>
-
-        <!-- <label for="weight">
-          Weight:
-          <input 
-            type="text" 
-            v-model="user.weight" 
-            id="weight" 
-            name="weight" 
-            :disabled="!isEditting">
-        </label> -->
+            <div class="profile-img-container">
+                <img class="profile-img" :src="user.photo" alt="profile-img">
+            </div>
+        </div>
         
-        <button 
-          id="submit-btn" 
-          class="profile-btns" 
-          @click=toggleEditProfile();saveChanges()
-          v-if="isEditting"
-        >
-          Save Changes
-        </button>
 
-      </form>
+        <div class="profile-container form-group">
 
-      <button 
-        id="edit-btn" 
-        class="profile-btns" 
-        @click="toggleEditProfile"
-        v-if=!isEditting
-      >
-        Edit Profile
-      </button>
+            <div id="username">
+                Username: {{ user.username }}
+            </div>
 
-      <button @click.prevent=cancelForm();toggleEditProfile()>
-        Cancel Edits
-      </button>
-      
+            <form id="form-container">
+
+                <label for="photo">Profile Picture</label>
+                <select name="languages" id="photo" v-model="user.photo" :disabled="!isEditting">
+                    <option value="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRo30ulQk-69OJ5GGdowFt21Lsau4GfWzfbBSmsfE4hGrVxBbnVNOr12yOYULoq2Gb7XEU&usqp=CAU">Option 1</option>
+                    <option value="https://raisingwhasians.com/wp-content/uploads/2021/06/Black-widow-movie-review-safe-for-kids.jpg">Option 2</option>
+                    <option value="https://qph.cf2.quoracdn.net/main-qimg-25c5c8a37ca5ffcdf55fe24149ce1011.webp">Option 3</option>
+                    <option value="https://maactioncinema.com/wp-content/uploads/2021/02/blade_3.jpg">Option 4</option>
+                </select>
+
+                <label for="email">Email:</label>
+                <input 
+                    type="email" 
+                    v-model="user.email" 
+                    id="email" 
+                    name="email"
+                    :disabled="!isEditting"
+                />
+
+                <label for="height">Height:</label>
+                <input 
+                type="text" 
+                v-model="user.height" 
+                id="height" 
+                name="height" 
+                :disabled="!isEditting"
+                />
+
+                <!-- <label for="weight">
+                Weight:
+                <input 
+                    type="text" 
+                    v-model="user.weight" 
+                    id="weight" 
+                    name="weight" 
+                    :disabled="!isEditting">
+                </label> -->
+                
+                <button 
+                    id="submit-btn" 
+                    class="profile-btns" 
+                    @click=toggleEditProfile();saveChanges()
+                    v-if="isEditting">
+                Save Changes
+                </button>
+
+            </form>
+
+            <button 
+                id="edit-btn" 
+                class="profile-btns" 
+                @click="toggleEditProfile"
+                v-if=!isEditting>
+            Edit Profile
+            </button>
+
+            <button @click.prevent=cancelForm();toggleEditProfile()>
+                Cancel Edits
+            </button>
+        
+        </div>
+
+        <footer>
+            <nav-bar />
+        </footer>
+        
     </div>
-
-    <footer>
-      <nav-bar />
-    </footer>
-    
-  </div>
 </template>
 
 <script>

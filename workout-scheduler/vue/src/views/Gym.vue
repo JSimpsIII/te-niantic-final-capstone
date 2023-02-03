@@ -1,62 +1,69 @@
 <template>
-  <div id="gym-page-container">
-    <img id="gym-img" src="../assets/gym-2.jpg" alt="gym-picture">
-    <div class="gym-banner">
-      <div class="gym-title-add-container">
-         <div class="gym-title">Gym</div>
-         <!-- <div class="exercise-search-container">
-           <input type="text" id="exerciseNameFilter" v-model="filter.exerciseName"/>
-          </div> -->
-      </div>
-    </div>
-    <table id="exercise-table">
-      <thead>
-        <tr>
-          <th>Exercise</th>
-          <th>Exercise Target</th>
-          <th>Body Part Used</th>
-          <th>Equipment Required</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>
-            <input type="text" id="exerciseNameFilter" v-model="filter.name"/>
-          </td>
-          <td>
-            <select id="exerciseTargetFilter" v-model="filter.target">
-              <option value>Show All</option>
-              <option value="abs">Abs</option>
-              <option value="quads">Quads</option>
-              <option value="lats">Lats</option>
-            </select>
-          </td>
-          <td>
-            <select id="bodypartFilter" v-model="filter.bodyPart">
-              <option value>Show All</option>
-              <option value="waist">Waist</option>
-              <option value="upper legs">Upper Legs</option>
-              <option value="back">Back</option>
-            </select>
-          </td>
-          <td>&nbsp;</td>
-        </tr>
-        <tr
-          v-for="exercise in filteredList"
-          v-bind:key="exercise.id"
-        >
-          <td><router-link :to="{ name: 'exercise', params: {id:exercise.id} }"><button>{{ exercise.name }}</button></router-link></td>
-          <td>{{ exercise.target }}</td>
-          <td>{{ exercise.bodyPart }}</td>
-          <td>{{ exercise.equipment }}</td>
-        </tr>
-      </tbody>
-    </table>
+    <div id="gym-page-container">
+        <img id="gym-img" src="../assets/gym-2.jpg" alt="gym-picture">
 
-    <footer>
-      <nav-bar />
-    </footer>
-  </div>
+        <div class="gym-banner">
+
+            <div class="gym-title-add-container">
+
+                <div class="gym-title">Gym</div>
+                <!-- <div class="exercise-search-container">
+                <input type="text" id="exerciseNameFilter" v-model="filter.exerciseName"/>
+                </div> -->
+            </div>
+        </div>
+
+        <table id="exercise-table">
+            <thead>
+                <tr>
+                    <th>Exercise</th>
+                    <th>Exercise Target</th>
+                    <th>Body Part Used</th>
+                    <th>Equipment Required</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <input type="text" id="exerciseNameFilter" v-model="filter.name"/>
+                    </td>
+                    <td>
+                        <select id="exerciseTargetFilter" v-model="filter.target">
+                            <option value>Show All</option>
+                            <option value="abs">Abs</option>
+                            <option value="quads">Quads</option>
+                            <option value="lats">Lats</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select id="bodypartFilter" v-model="filter.bodyPart">
+                            <option value>Show All</option>
+                            <option value="waist">Waist</option>
+                            <option value="upper legs">Upper Legs</option>
+                            <option value="back">Back</option>
+                        </select>
+                    </td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr
+                    v-for="exercise in filteredList"
+                    v-bind:key="exercise.id">
+                    <td>
+                        <router-link :to="{ name: 'exercise', params: {id:exercise.id} }">
+                            <button>{{ exercise.name }}</button>
+                        </router-link>
+                    </td>
+                    <td>{{ exercise.target }}</td>
+                    <td>{{ exercise.bodyPart }}</td>
+                    <td>{{ exercise.equipment }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <footer>
+            <nav-bar />
+        </footer>
+    </div>
 </template>
 
 <script>

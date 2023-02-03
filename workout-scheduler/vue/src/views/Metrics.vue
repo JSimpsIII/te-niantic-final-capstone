@@ -1,7 +1,7 @@
 <template>
-    <div>
+    <div id='metrics'>
         <div id="metrics-header">
-            <div>Metrics</div>
+            <h3>Metrics</h3>
         </div>
 
     </div>
