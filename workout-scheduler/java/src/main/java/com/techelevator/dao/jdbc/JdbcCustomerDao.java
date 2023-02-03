@@ -1,5 +1,6 @@
-package com.techelevator.dao;
+package com.techelevator.dao.jdbc;
 
+import com.techelevator.dao.CustomerDao;
 import com.techelevator.model.profile.Customer;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;

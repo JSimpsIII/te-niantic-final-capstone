@@ -8,7 +8,6 @@ public interface MetricDao {
 
     List<Metric> getAllMetricsById(Long userId);
 
-
     boolean addNewMetric(Long userId, Metric metric);
 
 }
