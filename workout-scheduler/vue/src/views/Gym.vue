@@ -4,17 +4,17 @@
     <div class="gym-banner">
       <div class="gym-title-add-container">
          <div class="gym-title">Gym</div>
-         <!-- <div class="excercise-search-container">
-           <input type="text" id="excerciseNameFilter" v-model="filter.excerciseName"/>
+         <!-- <div class="exercise-search-container">
+           <input type="text" id="exerciseNameFilter" v-model="filter.exerciseName"/>
           </div> -->
       </div>
     </div>
-    <table id="excercise-table" v-if="!selectingExercise">
+    <table id="exercise-table" v-if="selectingExercise">
       <thead>
         <tr>
           <th>&nbsp;</th>
-          <th>Excercise</th>
-          <th>Excercise Target</th>
+          <th>Exercise</th>
+          <th>Exercise Target</th>
           <th>Bodypart Used</th>
           <th>Equipment Used</th>
         </tr>
@@ -23,10 +23,10 @@
         <tr>
           <td>&nbsp;</td>
           <td>
-            <input type="text" id="excerciseNameFilter" v-model="filter.excerciseName"/>
+            <input type="text" id="exerciseNameFilter" v-model="filter.exerciseName"/>
           </td>
           <td>
-            <select id="excerciseTargetFilter" v-model="filter.excerciseTarget">
+            <select id="exerciseTargetFilter" v-model="filter.exerciseTarget">
               <option value>Show All</option>
               <option value="abs">Abs</option>
               <option value="quads">Quads</option>
@@ -44,16 +44,16 @@
           <td>&nbsp;</td>
         </tr>
         <tr
-          v-for="excercise in filteredList"
-          v-bind:key="excercise.id"
+          v-for="exercise in allExercises"
+          v-bind:key="exercise.id"
         >
           <td>
             &nbsp;
           </td>
-          <td>{{ excercise.excerciseName }}</td>
-          <td>{{ excercise.excerciseTarget }}</td>
-          <td>{{ excercise.bodypartName }}</td>
-          <td>{{ excercise.equipmentName }}</td>
+          <td>{{ exercise.name }}</td>
+          <td>{{ exercise.target }}</td>
+          <td>{{ exercise.bodyPart }}</td>
+          <td>{{ exercise.equipment }}</td>
         </tr>
       </tbody>
     </table>
@@ -66,6 +66,8 @@
 
 <script>
 import NavBar from '../components/NavBar.vue'
+import exerciseService from '../services/ExerciseService';
+
 export default {
     name: "gym",
     components: {
@@ -74,81 +76,96 @@ export default {
     data() {
       return {
         filter: {
-          excerciseName: "",
+          exerciseName: "",
           bodypartName: "",
           equipmentName: "",
-          excerciseTarget: ""
+          exerciseTarget: ""
         },
-        excercises: [
+        exercises: [
           {
-            excerciseId: 1,
-            excerciseName: "3/4 sit-up",
+            exerciseId: 1,
+            exerciseName: "3/4 sit-up",
             bodypartName: "waist",
             equipmentName: "body weight",
-            excerciseTarget: "abs",
+            exerciseTarget: "abs",
             gifURL: "http://d205bpvrqc9yn1.cloudfront.net/0001.gif"
           },
           {
-            excerciseId: 2,
-            excerciseName: "45° side bend",
+            exerciseId: 2,
+            exerciseName: "45° side bend",
             bodypartName: "waist",
             equipmentName: "body weight",
-            excerciseTarget: "abs",
+            exerciseTarget: "abs",
             gifURL: "http://d205bpvrqc9yn1.cloudfront.net/0002.gif"
           },
           {
-            excerciseId: 3,
-            excerciseName: "air bike",
+            exerciseId: 3,
+            exerciseName: "air bike",
             bodypartName: "waist",
             equipmentName: "body weight",
-            excerciseTarget: "abs",
+            exerciseTarget: "abs",
             gifURL: "http://d205bpvrqc9yn1.cloudfront.net/0003.gif"
           },
           {
-            excerciseId: 4,
-            excerciseName: "all fours squad stretch",
+            exerciseId: 4,
+            exerciseName: "all fours squad stretch",
             bodypartName: "upper legs",
             equipmentName: "body weight",
-            excerciseTarget: "quads",
+            exerciseTarget: "quads",
             gifURL: "http://d205bpvrqc9yn1.cloudfront.net/1512.gif"
           },  {
-            excerciseId: 5,
-            excerciseName: "alternate lateral pulldown",
+            exerciseId: 5,
+            exerciseName: "alternate lateral pulldown",
             bodypartName: "back",
             equipmentName: "cable",
-            excerciseTarget: "lats",
+            exerciseTarget: "lats",
             gifURL: "http://d205bpvrqc9yn1.cloudfront.net/0007.gif"
           },
         ],
-        isAddingGoal: false,
+        selectingExercise: true,
         selectedWorkoutIDs: []
       }
     },
+    created() {
+      this.loadExercises();
+    },
     computed: {
       filteredList() {
-        let filteredExcercises = this.excercises;
-        if (this.filter.excerciseName != "") {
-          filteredExcercises = filteredExcercises.filter((excercise) =>
-          excercise.excerciseName
+        let filteredexercises = this.exercises;
+        if (this.filter.exerciseName != "") {
+          filteredexercises = filteredexercises.filter((exercise) =>
+          exercise.exerciseName
             .toLowerCase()
-            .includes(this.filter.excerciseName.toLowerCase())
+            .includes(this.filter.exerciseName.toLowerCase())
         );
       }
-      if (this.filter.excerciseTarget != "") {
-        filteredExcercises = filteredExcercises.filter((excercise) =>
-          excercise.excerciseTarget === this.filter.excerciseTarget
+      if (this.filter.exerciseTarget != "") {
+        filteredexercises = filteredexercises.filter((exercise) =>
+          exercise.exerciseTarget === this.filter.exerciseTarget
         );
       }
       if (this.filter.bodypartName != "") {
-        filteredExcercises = filteredExcercises.filter((excercise) =>
-          excercise.bodypartName === this.filter.bodypartName
+        filteredexercises = filteredexercises.filter((exercise) =>
+          exercise.bodypartName === this.filter.bodypartName
         );
       }
-    return filteredExcercises;
+    return filteredexercises;
+    },
+    allExercises() {
+      return this.$store.state.exerciseList;
     }
     },
-    methods: {}
-}
+    methods: {
+      loadExercises() {
+        exerciseService
+        .getAllExercises()
+        .then(response => {
+          this.$store.commit("LOAD_EXERCISE_LIST", response.data);
+          this.isLoading = false;
+          })
+      }
+    }
+  }
 </script>
 
 <style>
