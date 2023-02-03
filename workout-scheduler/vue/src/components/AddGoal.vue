@@ -1,54 +1,55 @@
 <template>
-  <div class="add-goals">
-    <div class="add-new-goal">
-      <img
-        src="../assets/add.png"
-        alt="add-icon"
-        class="add-new-goal-btn"
-        @click="saveGoal"
-      />
-      <div>
-          Days in gym every week: 
-          <input type="number" min="1" max="7" v-model="newGoal.days"/>
+    <div class="add-goals">
+
+        <div class="add-new-goal">
+            <img
+                src="../assets/add.png"
+                alt="add-icon"
+                class="add-new-goal-btn"
+                @click="saveGoal"
+            />
+            <div>
+                Days in gym every week: 
+                <input type="number" min="1" max="7" v-model="newGoal.days" />
+            </div>
+        </div>
+
+        <div class="add-new-goal">
+            <img
+                src="../assets/add.png"
+                alt="add-icon"
+                class="add-new-goal-btn"
+                @click="saveGoal"
+            />
+            <div>
+                Minutes in gym every day: 
+                <input type="number" min="1" max="480" v-model="newGoal.time" />
+            </div>
+        </div>
+
+        <div class="add-new-goal">
+            <img
+                src="../assets/add.png"
+                alt="add-icon"
+                class="add-new-goal-btn"
+                @click="saveGoal"
+            />
+            <div>
+                Bench press (lbs): 
+                <input type="number" min="1" max="480" v-model="newGoal.weight" />
+            </div>
+        </div>
+
+        <div class="add-new-goal">
+            <img
+                src="../assets/add.png"
+                alt="add-icon"
+                class="add-new-goal-btn"
+                @click="saveCustomGoal"
+            />
+            <input type="text" placeholder="Custom goal (e.g. feel less stressed)" />
         </div>
     </div>
-
-    <div class="add-new-goal">
-      <img
-        src="../assets/add.png"
-        alt="add-icon"
-        class="add-new-goal-btn"
-        @click="saveGoal"
-      />
-      <div>
-        Minutes in gym every day: 
-        <input type="number" min="1" max="480" v-model="newGoal.time"/>
-      </div>
-    </div>
-
-    <div class="add-new-goal">
-      <img
-        src="../assets/add.png"
-        alt="add-icon"
-        class="add-new-goal-btn"
-        @click="saveGoal"
-      />
-      <div>
-          Bench press (lbs): 
-          <input type="number" min="1" max="480" v-model="newGoal.weight"/>
-      </div>
-    </div>
-
-    <div class="add-new-goal">
-      <img
-        src="../assets/add.png"
-        alt="add-icon"
-        class="add-new-goal-btn"
-        @click="saveCustomGoal"
-      />
-      <input type="text" placeholder="Custom goal (e.g. feel less stressed)" />
-    </div>
-  </div>
 </template>
 
 <script>

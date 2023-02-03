@@ -1,44 +1,49 @@
 <template>
-  <div id="goals-page-container">
-    <main>
-      <img
-        id="goals-img"
-        src="../assets/gym-for-everyone.png"
-        alt="gym-for-everyone-img"
-      />
+    <div id="goals-page-container">
+        <main>
+            <img
+                id="goals-img"
+                src="../assets/gym-for-everyone.png"
+                alt="gym-for-everyone-img"
+            />
 
-      <div class="goals-banner">
-        <div class="goals-title-add-container">
-          <div class="goals-title">Goals</div>
-          <div class="add-btn-container">
-            <button class="add-btn" @click="toggleAddGoal">
-              {{ isAddingGoal ? "Cancel" : "+ Add" }}
-            </button>
-          </div>
-        </div>
-      </div>
+            <div class="goals-banner">
 
-      <div class="goals-container">
-        <add-goal v-if="isAddingGoal" />
+                <div class="goals-title-add-container">
 
-        <div class="goal" v-for="goal in goals" :key="goal.id">
-          <div class="goal-name">
-            {{ goal.name }}: 
-            {{ goal.reps != 0 ? goal.reps : "" }}
-            {{ goal.weight != 0 ? goal.weight : "" }}
-            {{ goal.time != 0 ? goal.time : "" }}
-            {{ goal.distance != 0 ? goal.distance : ""}}
-            {{ goal.days != 0 ? goal.days : "" }}
-            {{ goal.misc != null ? goal.misc : "" }}
-          </div>
-        </div>
-      </div>
-    </main>
+                    <div class="goals-title">Goals</div>
 
-    <footer>
-      <nav-bar />
-    </footer>
-  </div>
+                    <div class="add-btn-container"> 
+                        <button class="add-btn" @click="toggleAddGoal">
+                            {{ isAddingGoal ? "Cancel" : "+ Add" }}
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="goals-container">
+                <add-goal v-if="isAddingGoal" />
+
+                <div class="goal" v-for="goal in goals" :key="goal.id">
+
+                    <div class="goal-name">
+                        {{ goal.name }}: 
+                        {{ goal.reps != 0 ? goal.reps : "" }}
+                        {{ goal.weight != 0 ? goal.weight : "" }}
+                        {{ goal.time != 0 ? goal.time : "" }}
+                        {{ goal.distance != 0 ? goal.distance : ""}}
+                        {{ goal.days != 0 ? goal.days : "" }}
+                        {{ goal.misc != null ? goal.misc : "" }}
+                    </div>
+
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <nav-bar />
+        </footer>
+    </div>
 </template>
 
 <script>

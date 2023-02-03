@@ -21,6 +21,7 @@ export default new Vuex.Store({
     token: currentToken || '',
     user: currentUser || {},
     customerId: '',
+    customerList: [],
     exerciseList: [],
     exercise: {
       id: null,
@@ -42,6 +43,21 @@ export default new Vuex.Store({
       distance: 0,
       days: 0,
       misc: ''
+    },
+    goalList: [],
+    goal: {
+      id: null,
+      name: '',
+      customerId: null,
+      exerciseId: null,
+      date: null,
+      reps: 0,
+      weight: 0,
+      time: 0,
+      distance: 0,
+      days: 0,
+      misc: '',
+      isCompleted: false
     }
   },
   mutations: {

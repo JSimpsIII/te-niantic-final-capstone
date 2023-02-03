@@ -1,45 +1,47 @@
 <template>
-    <LineChartGenerator 
-        :chart-data='chartData' 
-        :chart-options='chartOptions' 
-        :chart-id='chartId'
-        :dataset-id-key="datasetIdKey"
-        :plugins='plugins'
-        :css-classes='cssClasses'
-        :styles='styles'
-        :width='width'
-        :height='height'
-    />
+    <div id='line-chart'>
+        <!-- <LineChartGenerator 
+            :chart-data='chartData' 
+            :chart-options='chartOptions' 
+            :chart-id='chartId'
+            :dataset-id-key="datasetIdKey"
+            :plugins='plugins'
+            :css-classes='cssClasses'
+            :styles='styles'
+            :width='width'
+            :height='height'
+        /> -->
+    </div>
 </template>
 
 <script>
-import { Line as LineChartGenerator } from 'vue-chartjs/legacy'
-import { 
-    Chart as ChartJS, 
-    Title, 
-    Tooltip, 
-    Legend, 
-    LineElement, 
-    LinearScale, 
-    CategoryScale, 
-    PointElement 
-} from 'chart.js'
+// import { Line as LineChartGenerator } from 'vue-chartjs/legacy'
+// import { 
+//     Chart as ChartJS, 
+//     Title, 
+//     Tooltip, 
+//     Legend, 
+//     LineElement, 
+//     LinearScale, 
+//     CategoryScale, 
+//     PointElement 
+// } from 'chart.js'
 
-ChartJS.register(
-    Title,
-    Tooltip,
-    Legend,
-    LineElement,
-    LinearScale,
-    CategoryScale,
-    PointElement
-)
+// ChartJS.register(
+//     Title,
+//     Tooltip,
+//     Legend,
+//     LineElement,
+//     LinearScale,
+//     CategoryScale,
+//     PointElement
+// )
 
 export default {
     name: 'line-chart', 
-    components: {
-        LineChartGenerator
-    },
+    // components: {
+    //     LineChartGenerator
+    // },
     props: {
         chartId: {
         type: String,

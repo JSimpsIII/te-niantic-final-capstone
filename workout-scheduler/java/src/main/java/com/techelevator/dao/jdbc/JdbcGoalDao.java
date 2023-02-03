@@ -1,5 +1,6 @@
-package com.techelevator.dao;
+package com.techelevator.dao.jdbc;
 
+import com.techelevator.dao.GoalDao;
 import com.techelevator.model.profile.Goal;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.jdbc.core.JdbcTemplate;

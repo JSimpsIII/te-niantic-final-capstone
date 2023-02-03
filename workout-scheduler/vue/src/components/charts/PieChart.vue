@@ -1,41 +1,43 @@
 <template>
-    <Pie 
-        :chart-data='chartData' 
-        :chart-options='chartOptions'
-        :chart-id='chartId'
-        :dataset-id-key='datasetIdKey'
-        :plugins='plugins'
-        :css-classes='cssClasses'
-        :styles='styles'
-        :width='width'
-        :height='height'
-    />
+    <div id='pie-chart'>
+        <!-- <Pie 
+            :chart-data='chartData' 
+            :chart-options='chartOptions'
+            :chart-id='chartId'
+            :dataset-id-key='datasetIdKey'
+            :plugins='plugins'
+            :css-classes='cssClasses'
+            :styles='styles'
+            :width='width'
+            :height='height'
+        /> -->
+    </div>
 </template>
 
 <script>
-import { Pie } from 'vue-chartjs/legacy'
-import {
-    Chart as ChartJs, 
-    Title, 
-    Tooltip, 
-    Legend, 
-    ArcElement, 
-    CategoryScale 
-} from 'chart.js'
+// import { Pie } from 'vue-chartjs/legacy'
+// import {
+//     Chart as ChartJs, 
+//     Title, 
+//     Tooltip, 
+//     Legend, 
+//     ArcElement, 
+//     CategoryScale 
+// } from 'chart.js'
 
-ChartJs.register(
-    Title, 
-    Tooltip, 
-    Legend, 
-    ArcElement, 
-    CategoryScale
-)
+// ChartJs.register(
+//     Title, 
+//     Tooltip, 
+//     Legend, 
+//     ArcElement, 
+//     CategoryScale
+// )
 
 export default {
     name: 'pie-chart',
-    components: {
-        Pie
-    },
+    // components: {
+    //     Pie
+    // },
     props: {
         chartId: {
             type: String,

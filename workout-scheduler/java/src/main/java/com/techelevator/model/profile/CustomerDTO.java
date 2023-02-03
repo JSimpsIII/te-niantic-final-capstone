@@ -2,11 +2,20 @@ package com.techelevator.model.profile;
 
 public class CustomerDTO {
 
-    private String name;
+    private Long customerId;
     private String username;
+    private String name;
     private String email;
     private String photo;
     private double height;
+
+    public Long getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
+    }
 
     public String getName() {
         return name;

@@ -1,58 +1,71 @@
 <template>
-  <div id="login" class="text-center">
-    <div id="login-header">     
-    <img id="login-img" src="https://www.creativefabrica.com/wp-content/uploads/2020/12/07/Gym-Logo-Graphics-7049759-1-580x386.jpg" />
-    <h1 id="welcome" class="h3 mb-3 font-weight-normal">Uplift Fitness</h1>
+    <div id="login" class="text-center">
+
+        <div id="login-header">     
+            <img id="login-img" src="https://www.creativefabrica.com/wp-content/uploads/2020/12/07/Gym-Logo-Graphics-7049759-1-580x386.jpg" />
+            <h1 id="welcome" class="h3 mb-3 font-weight-normal">Uplift Fitness</h1>
+        </div>
+
+        <form class="form-signin" @submit.prevent="login">
+            <h3 class="login-request" v-if="!this.$route.query.registration">Log In to Continue</h3>
+            <h3  
+                class="alert alert-success login-request"
+                role="alert"
+                v-if="this.$route.query.registration">
+            Thank you for registering, please sign in.
+            </h3>
+
+            <div
+                class="alert alert-danger"
+                role="alert"
+                v-if="invalidCredentials">
+            Invalid username and password!
+            </div>
+
+            <!-- <div
+                class="alert alert-success login-request"
+                role="alert"
+                v-if="this.$route.query.registration"
+            >Thank you for registering, please sign in.</div> -->
+
+            <div id="username">
+                <label for="username" class="sr-only">Username </label>
+                <input
+                    type="text"
+                    id="username"
+                    class="form-control"
+                    placeholder="Your account username"
+                    v-model="user.username"
+                    required
+                    autofocus
+                />
+            </div>
+
+            <div id="password">
+                <label for="password" class="sr-only">Password </label>
+                <input
+                    type="password"
+                    id="password"
+                    class="form-control"
+                    placeholder="Enter your secure password"
+                    v-model="user.password"
+                    required
+                />
+            </div>
+
+            <div id="to-register" v-if="!this.$route.query.registration">
+                <router-link :to="{ name: 'register' }" id="create-account-link">Need an account?</router-link>
+            </div>
+            
+            <div id="log-in">
+                <button type="submit">Log In</button>
+            </div>
+
+        </form>
+
+        <p id="gym-info" v-if="!this.$route.query.registration">{{inspirationalQuote}}</p>
+        
     </div>
-    <form class="form-signin" @submit.prevent="login">
-      <h3 class="login-request" v-if="!this.$route.query.registration">Log In to Continue</h3>
-      <h3  
-        class="alert alert-success login-request"
-        role="alert"
-        v-if="this.$route.query.registration"
-        >Thank you for registering, please sign in.</h3>
-      <div
-        class="alert alert-danger"
-        role="alert"
-        v-if="invalidCredentials"
-      >Invalid username and password!</div>
-      <!-- <div
-        class="alert alert-success login-request"
-        role="alert"
-        v-if="this.$route.query.registration"
-      >Thank you for registering, please sign in.</div> -->
-      <div id="username">
-      <label for="username" class="sr-only">Username </label>
-      <input
-        type="text"
-        id="username"
-        class="form-control"
-        placeholder="Your account username"
-        v-model="user.username"
-        required
-        autofocus
-      />
-      </div>
-      <div id="password">
-      <label for="password" class="sr-only">Password </label>
-      <input
-        type="password"
-        id="password"
-        class="form-control"
-        placeholder="Enter your secure password"
-        v-model="user.password"
-        required
-      />
-      </div>
-      <div id="to-register" v-if="!this.$route.query.registration">
-      <router-link :to="{ name: 'register' }" id="create-account-link">Need an account?</router-link>
-      </div>
-      <div id="log-in">
-      <button type="submit">Log In</button>
-      </div>
-    </form>
-    <p id="gym-info" v-if="!this.$route.query.registration">{{inspirationalQuote}}</p>
-  </div>
 </template>
 
 <script>

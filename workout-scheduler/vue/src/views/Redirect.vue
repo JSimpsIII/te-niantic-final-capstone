@@ -1,15 +1,17 @@
 <template>
-  <div>
-    <div id="header">     
-    <img id="redirect-img" src="https://www.creativefabrica.com/wp-content/uploads/2020/12/07/Gym-Logo-Graphics-7049759-1-580x386.jpg" />
-    <h1 id="app-name" class="h3 mb-3 font-weight-normal">Uplift Fitness</h1>
+    <div>
+        <div id="header">     
+            <img id="redirect-img" src="https://www.creativefabrica.com/wp-content/uploads/2020/12/07/Gym-Logo-Graphics-7049759-1-580x386.jpg" />
+            <h1 id="app-name" class="h3 mb-3 font-weight-normal">Uplift Fitness</h1>
+        </div>
+
+        <h3 class="complete-profile">Would you like to complete your profile now?</h3>
+        
+        <div id="redirect-buttons">
+            <button @click="$router.push('edit/profile')">Yes</button>
+            <button @click="$router.push('/')">No</button>
+        </div>
     </div>
-      <h3 class="complete-profile">Would you like to complete your profile now?</h3>
-      <div id="redirect-buttons">
-      <button @click="$router.push('edit/profile')">Yes</button>
-      <button @click="$router.push('/')">No</button>
-      </div>
-  </div>
 </template>
 
 <script>
