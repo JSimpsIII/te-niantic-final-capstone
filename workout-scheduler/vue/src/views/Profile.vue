@@ -96,7 +96,7 @@ export default {
       return {
         user: {
           username: "",
-          photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRo30ulQk-69OJ5GGdowFt21Lsau4GfWzfbBSmsfE4hGrVxBbnVNOr12yOYULoq2Gb7XEU&usqp=CAU",
+          photo: "",
           email: "",
           height: ""
         },
