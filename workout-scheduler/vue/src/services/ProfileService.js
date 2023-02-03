@@ -11,7 +11,7 @@ export default {
     },
 
     saveProfileChanges(id, newProfile) {
-        return http.put(`/users/${id}`, newProfile)
+        return http.put(`/users/${id}`, newProfile);
     }
 
 }

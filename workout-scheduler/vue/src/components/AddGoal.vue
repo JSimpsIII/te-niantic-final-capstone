@@ -1,5 +1,5 @@
 <template>
-    <div class="add-goals">
+    <div class="add-goal">
 
         <div class="add-new-goal">
             <img
@@ -56,7 +56,7 @@
 import goalService from '../services/GoalService';
 
 export default {
-  name: "add-goals",
+  name: "add-goal",
   data() {
     return {
       newGoal: {

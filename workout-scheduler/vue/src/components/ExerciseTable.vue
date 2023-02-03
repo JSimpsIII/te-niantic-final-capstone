@@ -32,6 +32,7 @@
                     </td>
                     <td>&nbsp;</td>
                 </tr>
+
                 <tr
                     v-for="exercise in filteredList"
                     v-bind:key="exercise.id">
