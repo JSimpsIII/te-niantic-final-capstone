@@ -7,7 +7,9 @@
         </div>
 
         <form class="form-signin" @submit.prevent="login">
+
             <h3 class="login-request" v-if="!this.$route.query.registration">Log In to Continue</h3>
+          
             <h3  
                 class="alert alert-success login-request"
                 role="alert"
@@ -28,7 +30,7 @@
                 v-if="this.$route.query.registration"
             >Thank you for registering, please sign in.</div> -->
 
-            <div id="username">
+            <div id="enter-username">
                 <label for="username" class="sr-only">Username </label>
                 <input
                     type="text"
@@ -41,7 +43,7 @@
                 />
             </div>
 
-            <div id="password">
+            <div id="enter-password">
                 <label for="password" class="sr-only">Password </label>
                 <input
                     type="password"

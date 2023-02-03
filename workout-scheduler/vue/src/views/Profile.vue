@@ -1,10 +1,12 @@
 <template>
     <div>
+
         <div class="banner">
 
             <div class="profile-img-container">
                 <img class="profile-img" :src="user.photo" alt="profile-img">
             </div>
+
         </div>
         
 
@@ -30,17 +32,15 @@
                     v-model="user.email" 
                     id="email" 
                     name="email"
-                    :disabled="!isEditting"
-                />
+                    :disabled="!isEditting" />
 
                 <label for="height">Height:</label>
                 <input 
-                type="text" 
-                v-model="user.height" 
-                id="height" 
-                name="height" 
-                :disabled="!isEditting"
-                />
+                    type="text" 
+                    v-model="user.height" 
+                    id="height" 
+                    name="height" 
+                    :disabled="!isEditting" />
 
                 <!-- <label for="weight">
                 Weight:

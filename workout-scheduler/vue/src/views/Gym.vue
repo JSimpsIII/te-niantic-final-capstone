@@ -1,5 +1,6 @@
 <template>
     <div id="gym-page-container">
+        
         <img id="gym-img" src="../assets/gym-2.jpg" alt="gym-picture">
 
         <div class="gym-banner">
@@ -7,9 +8,11 @@
             <div class="gym-title-add-container">
 
                 <div class="gym-title">Gym</div>
+
                 <!-- <div class="exercise-search-container">
                 <input type="text" id="exerciseNameFilter" v-model="filter.exerciseName"/>
                 </div> -->
+                
             </div>
         </div>
 
