@@ -1,10 +1,6 @@
 -- add database constraints here - such as foreign key constraints
 -- very common to add constraints AFTER bulk loading data
 
---ALTER TABLE customer
---ADD CONSTRAINT FK_customer_user
---FOREIGN KEY (customer_id)
---REFERENCES users(user_id);
 
 ALTER TABLE customer
 ADD CONSTRAINT FK_customer_users
@@ -32,19 +28,19 @@ FOREIGN KEY (customer_id)
 REFERENCES customer(customer_id);
 
 ALTER TABLE metrics
-ADD CONSTRAINT RK_metrics_exercise
+ADD CONSTRAINT FK_metrics_exercise
 FOREIGN KEY (exercise_id)
 REFERENCES exercise(exercise_id);
 
-ALTER TABLE customer_goal
-ADD CONSTRAINT FK_customer_goal_customer
+ALTER TABLE goal
+ADD CONSTRAINT FK_goal_customer
 FOREIGN KEY (customer_id)
 REFERENCES customer(customer_id);
 
-ALTER TABLE customer_goal
-ADD CONSTRAINT FK_customer_goal_goal
-FOREIGN KEY (goal_id)
-REFERENCES goal(goal_id);
+ALTER TABLE goal
+ADD CONSTRAINT FK_goal_exercise
+FOREIGN KEY (exercise_id)
+REFERENCES exercise(exercise_id);
 
 
 

@@ -28,11 +28,8 @@ public interface ProfileDao {
 
     boolean updateProfileById(Long userId, String email, String photo, double height);
 
-    List<Goal> getAllGoalsById(Long userId);
-
     List<Metric> getAllMetricsById(Long userId);
 
-    boolean addNewGoal(Long userId, Goal goal);
 
     boolean addNewMetric(Long userId, Metric metric);
 }

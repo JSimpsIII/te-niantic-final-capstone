@@ -31,14 +31,9 @@ INSERT INTO metrics (customer_id, metrics_date, current_weight_lbs, current_days
 INSERT INTO metrics (customer_id, metrics_date, current_weight_lbs, current_days) VALUES (4, DATE '2021-12-01', 256, 5);
 
 -- insert goal table data
-INSERT INTO goal (goal_id, goal_name, goal_weight_lbs) VALUES (1, 'Bench press (lbs)', '200');
-INSERT INTO goal (goal_id, goal_name, goal_time_min) VALUES (2, 'mile run', 6.0);
-INSERT INTO goal (goal_id, goal_name, goal_days) VALUES (3, 'Days in gym every week', 5);
-
--- insert customer_goal table data
-INSERT INTO customer_goal (customer_id, goal_id, goal_date, is_completed) VALUES (1, 1, DATE '2023-12-01', false);
-INSERT INTO customer_goal (customer_id, goal_id, goal_date, is_completed) VALUES (1, 2, DATE '2023-05-20', false);
-INSERT INTO customer_goal (customer_id, goal_id, goal_date, is_completed) VALUES (1, 3, DATE '2022-01-01', true);
+INSERT INTO goal (goal_id, goal_name, customer_id, goal_date, goal_weight_lbs, is_completed) VALUES (1, 'Bench press (lbs)', 1, DATE '2023-12-01', 200, false);
+INSERT INTO goal (goal_id, goal_name, customer_id, goal_date, goal_time_min, is_completed) VALUES (2, 'mile run',  1, DATE '2023-05-20', 6.0, false);
+INSERT INTO goal (goal_id, goal_name, customer_id, goal_date, goal_days, is_completed) VALUES (3, 'Days in gym every week', 1, DATE '2022-01-01', 5, true);
 
 
 

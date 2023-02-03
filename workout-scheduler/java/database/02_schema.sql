@@ -73,17 +73,15 @@ CREATE TABLE metrics (
 CREATE TABLE goal (
 	goal_id SERIAL NOT NULL PRIMARY KEY,
 	goal_name varchar(50) NOT NULL,
-	goal_reps int,
-	goal_weight_lbs int,
-	goal_time_min numeric,
-	goal_days int,
-	goal_misc varchar(50)
-);
-
-CREATE TABLE customer_goal (
 	customer_id int NOT NULL,
-	goal_id int NOT NULL,
+	exercise_id int,
 	goal_date date,
+	goal_reps numeric,
+	goal_weight_lbs numeric,
+	goal_time_min numeric,
+	goal_distance_mi numeric,
+	goal_days int,
+	goal_misc varchar(50),
 	is_completed boolean
 );
 
