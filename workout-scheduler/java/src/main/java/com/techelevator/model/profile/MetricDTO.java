@@ -7,13 +7,14 @@ public class MetricDTO {
 
     @NotEmpty
     private int id;
+    @NotEmpty
     private Long customerId;
     private int exerciseId;
     private Date date;
     private double reps;
-    private double weight; //lbs
-    private double time; //min
-    private double distance; //mi
+    private double weight;
+    private double time;
+    private double distance;
     private int days;
     private String misc;
 

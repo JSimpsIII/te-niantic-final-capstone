@@ -2,7 +2,10 @@ package com.techelevator.controller;
 
 import javax.validation.Valid;
 
-import com.techelevator.dao.ProfileDao;
+import com.techelevator.dao.CustomerDao;
+import com.techelevator.dao.GoalDao;
+import com.techelevator.dao.MetricDao;
+import com.techelevator.model.profile.Goal;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,14 +31,14 @@ public class AuthenticationController {
 
     private final TokenProvider tokenProvider;
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
-    private final ProfileDao profileDao;
+    private CustomerDao customerDao;
     private UserDao userDao;
 
-    public AuthenticationController(TokenProvider tokenProvider, AuthenticationManagerBuilder authenticationManagerBuilder, UserDao userDao, ProfileDao profileDao) {
+    public AuthenticationController(TokenProvider tokenProvider, AuthenticationManagerBuilder authenticationManagerBuilder, UserDao userDao, CustomerDao customerDao) {
         this.tokenProvider = tokenProvider;
         this.authenticationManagerBuilder = authenticationManagerBuilder;
         this.userDao = userDao;
-        this.profileDao = profileDao;
+        this.customerDao = customerDao;
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -63,7 +66,7 @@ public class AuthenticationController {
             throw new UserAlreadyExistsException();
         } catch (UsernameNotFoundException e) {
             userDao.create(newUser.getUsername(),newUser.getPassword(), newUser.getRole());
-            profileDao.createNewProfile(newUser.getUsername());
+            customerDao.addNewCustomerByUsername(newUser.getUsername());
         }
     }
 
