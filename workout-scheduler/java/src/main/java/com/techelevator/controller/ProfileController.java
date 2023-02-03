@@ -58,25 +58,6 @@ public class ProfileController {
         return profileDao.updateProfileById(id, customerDTO.getEmail(), customerDTO.getPhoto(), customerDTO.getHeight());
     }
 
-    @RequestMapping(path = "/users/{id}/goals", method = RequestMethod.GET)
-    public List<Goal> getAllGoalsById(@PathVariable Long id) {
-        return profileDao.getAllGoalsById(id);
-    }
-
-    @RequestMapping(path = "/users/{id}/goals", method = RequestMethod.POST)
-    public boolean addNewGoal(@PathVariable Long id, @RequestBody GoalDTO goalDTO) {
-        String name = goalDTO.getName();
-        int reps = goalDTO.getReps();
-        int weight = goalDTO.getWeight();
-        double time = goalDTO.getTime();
-        int days = goalDTO.getDays();
-        String misc = goalDTO.getMisc();
-        Date date = goalDTO.getDate();
-        boolean isCompleted = goalDTO.isCompleted();
-        Goal goal = new Goal(name, reps, weight, time, days, misc, date, isCompleted);
-        return profileDao.addNewGoal(id, goal);
-    }
-
     @RequestMapping(path = "/users/{id}/metrics", method = RequestMethod.GET)
     public List<Metric> getAllMetricsById(@RequestParam Long id) {
         return profileDao.getAllMetricsById(id);

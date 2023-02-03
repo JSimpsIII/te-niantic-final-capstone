@@ -27,6 +27,7 @@
             {{ goal.reps != 0 ? goal.reps : "" }}
             {{ goal.weight != 0 ? goal.weight : "" }}
             {{ goal.time != 0 ? goal.time : "" }}
+            {{ goal.distance != 0 ? goal.distance : ""}}
             {{ goal.days != 0 ? goal.days : "" }}
             {{ goal.misc != null ? goal.misc : "" }}
           </div>
