@@ -29,6 +29,19 @@ export default new Vuex.Store({
       bodyPart: '',
       equipment: '',
       gifUrl: ''
+    },
+    metricsList: [],
+    metric: {
+      id: null,
+      customerId: null,
+      exerciseId: null,
+      date: null,
+      reps: 0,
+      weight: 0,
+      time: 0,
+      distance: 0,
+      days: 0,
+      misc: ''
     }
   },
   mutations: {
