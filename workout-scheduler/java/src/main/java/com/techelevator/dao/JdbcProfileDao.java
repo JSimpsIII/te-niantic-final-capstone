@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 
@@ -30,7 +29,7 @@ public class JdbcProfileDao implements ProfileDao {
         List<Customer> customers = new ArrayList<>();
         String sql = "SELECT * FROM customer;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
-        while(results.next()) {
+        while (results.next()) {
             Customer customer = mapRowToCustomer(results);
             customers.add(customer);
         }
@@ -40,11 +39,10 @@ public class JdbcProfileDao implements ProfileDao {
     @Override
     public Profile getProfileById(Long userId) {
         Customer customer;
-        List<Goal> goals = new ArrayList<>();
         List<Metric> metrics = new ArrayList<>();
         String customerSql = "SELECT * FROM customer WHERE c.customer_id = ?";
         SqlRowSet results = jdbcTemplate.queryForRowSet(customerSql, userId);
-        if(results.next()) {
+        if (results.next()) {
             customer = mapRowToCustomer(results);
         } else {
             throw new RuntimeException("Customer #" + userId + " not found in system.");
@@ -55,14 +53,7 @@ public class JdbcProfileDao implements ProfileDao {
             Metric metric = mapRowToMetric(results);
             metrics.add(metric);
         }
-        String goalSql = "SELECT * FROM goal WHERE customer_id = ?;";
-        results = jdbcTemplate.queryForRowSet(goalSql, userId);
-        JdbcGoalDao jdbcGoalDao = new JdbcGoalDao(jdbcTemplate);
-        while (results.next()) {
-            Goal goal = jdbcGoalDao.mapRowToGoal(results);
-            goals.add(goal);
-        }
-        Profile profile = new Profile(userId, customer, goals, metrics);
+        Profile profile = new Profile(userId, customer, metrics);
         return profile;
     }
 
@@ -73,7 +64,7 @@ public class JdbcProfileDao implements ProfileDao {
         Customer customer;
         List<Goal> goals = new ArrayList<>();
         List<Metric> metrics = new ArrayList<>();
-        if(results.next()) {
+        if (results.next()) {
             customer = mapRowToCustomer(results);
         } else {
             throw new RuntimeException(username + " not found in system.");
@@ -86,16 +77,7 @@ public class JdbcProfileDao implements ProfileDao {
             Metric metric = mapRowToMetric(results);
             metrics.add(metric);
         }
-        String goalSql = "SELECT * FROM goal AS g " +
-                "JOIN customer_goal AS cg ON g.goal_id = cg.goal_id " +
-                "WHERE cg.customer_id = ?;";
-        results = jdbcTemplate.queryForRowSet(goalSql, userId);
-        JdbcGoalDao jdbcGoalDao = new JdbcGoalDao(jdbcTemplate);
-        while (results.next()) {
-            Goal goal = jdbcGoalDao.mapRowToGoal(results);
-            goals.add(goal);
-        }
-        Profile profile = new Profile(userId, customer, goals, metrics);
+        Profile profile = new Profile(userId, customer, metrics);
         return profile;
     }
 
@@ -109,7 +91,6 @@ public class JdbcProfileDao implements ProfileDao {
     public void createNewProfile(String username) {
         addNewCustomer(username);
     }
-
 
 
     @Override

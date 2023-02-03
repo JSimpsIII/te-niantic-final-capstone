@@ -13,7 +13,7 @@ public class Profile {
     public Profile() {
     }
 
-    public Profile(Long userId, Customer customer, List<Goal> goals, List<Metric> metrics){
+    public Profile(Long userId, Customer customer, List<Goal> goals, List<Metric> metrics) {
         this.userId = userId;
         this.customer = customer;
         this.goals = goals;
@@ -23,6 +23,12 @@ public class Profile {
 
     public Profile(Long userId) {
         this.userId = userId;
+    }
+
+    public Profile(Long userId, Customer customer, List<Metric> metrics) {
+        this.userId = userId;
+        this.customer = customer;
+        this.metrics = metrics;
     }
 
     public Long getUserId() {
