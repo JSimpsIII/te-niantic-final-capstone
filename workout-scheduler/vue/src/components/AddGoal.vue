@@ -76,7 +76,10 @@ export default {
   methods: {
     saveGoal(e) {
       const newGoalInnerText = e.target.nextElementSibling.innerText;
-      const newGoalName = newGoalInnerText.substring(0, newGoalInnerText.indexOf(":"));
+      const newGoalName = newGoalInnerText.substring(
+        0,
+        newGoalInnerText.indexOf(":")
+      );
       this.newGoal.name = newGoalName;
 
       this.$store.state.goalList.push(this.newGoal);
@@ -85,15 +88,53 @@ export default {
         .addNewGoal(this.$store.state.customerId, this.newGoal)
         .then((response) => {
           if (response.status == 200) {
-            console.log("goal " + this.newGoal.name + " added");
+            this.newGoal = {
+              name: "",
+              customerId: this.$store.state.customerId,
+              exerciseId: 1,
+              date: null,
+              reps: 0.0,
+              weight: 0.0,
+              time: 0.0,
+              distance: 0.0,
+              days: 0,
+              misc: null,
+              completed: false,
+            };
           }
         })
         .catch((error) => {
           console.error(error);
         });
     },
-    saveCustomGoal: (e) => {
-      console.log(e.target.nextElementSibling.value);
+    saveCustomGoal(e) {
+      const newGoalName = e.target.nextElementSibling.value;
+      this.newGoal.name = newGoalName;
+
+      this.$store.state.goalList.push(this.newGoal);
+
+      goalService
+        .addNewGoal(this.$store.state.customerId, this.newGoal)
+        .then((response) => {
+          if (response.status == 200) {
+            this.newGoal = {
+              name: "",
+              customerId: this.$store.state.customerId,
+              exerciseId: 1,
+              date: null,
+              reps: 0.0,
+              weight: 0.0,
+              time: 0.0,
+              distance: 0.0,
+              days: 0,
+              misc: null,
+              completed: false,
+            };
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+        });
     },
   },
 };

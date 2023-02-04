@@ -28,7 +28,8 @@
           :key="i"
         >
           <div class="goal-name">
-            {{ goal.name }}:
+            {{ goal.name }}
+            {{ goal.reps != 0 || goal.weight != 0 || goal.time != 0 || goal.distance != 0 || goal.days != 0 || goal.misc != null ? ":" : "" }}
             {{ goal.reps != 0 ? goal.reps : "" }}
             {{ goal.weight != 0 ? goal.weight : "" }}
             {{ goal.time != 0 ? goal.time : "" }}
