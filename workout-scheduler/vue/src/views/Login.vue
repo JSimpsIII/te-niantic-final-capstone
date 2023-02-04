@@ -30,33 +30,35 @@
                 v-if="this.$route.query.registration"
             >Thank you for registering, please sign in.</div> -->
 
-            <div id="enter-username">
-                <label for="username" class="sr-only">Username </label>
-                <input
-                    type="text"
-                    id="username"
-                    class="form-control"
-                    placeholder="Your account username"
-                    v-model="user.username"
-                    required
-                    autofocus
-                />
-            </div>
+            <div id='user-entry'>
+                <div id="enter-username">
+                    <label for="username" class="sr-only">Username </label>
+                    <input
+                        type="text"
+                        id="username"
+                        class="form-control"
+                        placeholder="Your account username"
+                        v-model="user.username"
+                        required
+                        autofocus
+                    />
+                </div>
 
-            <div id="enter-password">
-                <label for="password" class="sr-only">Password </label>
-                <input
-                    type="password"
-                    id="password"
-                    class="form-control"
-                    placeholder="Enter your secure password"
-                    v-model="user.password"
-                    required
-                />
-            </div>
+                <div id="enter-password">
+                    <label for="password" class="sr-only">Password </label>
+                    <input
+                        type="password"
+                        id="password"
+                        class="form-control"
+                        placeholder="Enter your secure password"
+                        v-model="user.password"
+                        required
+                    />
+                </div>
 
-            <div id="to-register" v-if="!this.$route.query.registration">
-                <router-link :to="{ name: 'register' }" id="create-account-link">Need an account?</router-link>
+                <div id="to-register" v-if="!this.$route.query.registration">
+                    <router-link :to="{ name: 'register' }" id="create-account-link">Need an account?</router-link>
+                </div>
             </div>
             
             <div id="log-in">
@@ -84,12 +86,12 @@ export default {
       },
       invalidCredentials: false,
       quotes: ["\"What seems impossible today will one day become your warm-up.\"", 
-      "\"If it doesn't challenge you, it doesn't change you.\"", 
+      "\"If it doesn't challenge you,\nit doesn't change you.\"", 
       "\"The only place where success comes before work is in the dictionary.\"",
       "\"If something stands between you and your success, move it. Never be denied.\"",
-      "\"Motivation is what gets you started. Habit is what keeps you going.\"",
-      "\"The difference between try and triumph is a little ‘umph.'\"",
-      "\"Put all excuses aside and remember this: You are capable.\""]
+      "\"Motivation is what gets you started.\nHabit is what keeps you going.\"",
+      "\"The difference between try and triumph\nis a little ‘umph.\"",
+      "\"Put all excuses aside and remember this:\nYou are capable.\""]
     };
   },
   computed: {
@@ -125,6 +127,11 @@ export default {
 </script>
 
 <style scoped>
+
+#login {
+  white-space: pre-line;
+}
+
 .text-center {
   width: 600px;
   margin: 0 auto;
