@@ -4,7 +4,9 @@
             
         <div class='flexbox'>
             <p class='target'>{{exercise.target}}</p>
+            <p> | </p>
             <p class='bodypart'>{{exercise.bodyPart}}</p>
+            <p> | </p>
             <p class='eqipment'>{{exercise.equipment}}</p>
         </div>
 
@@ -47,6 +49,15 @@ export default {
     }
 </script>
 
-<style>
+<style scoped>
+
+.flexbox {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+p {
+  padding: 10px;
+}
 
 </style>

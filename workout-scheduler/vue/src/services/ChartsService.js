@@ -1,4 +1,3 @@
-
 class ChartsService {
 
     getPercentageArrayForBodyPart() {
@@ -67,4 +66,4 @@ class ChartsService {
     }
 
 }
-export default new ChartsService()
+export default ChartsService;

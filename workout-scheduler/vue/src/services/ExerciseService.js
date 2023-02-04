@@ -1,14 +1,18 @@
 import axios from 'axios'
 
-class ExerciseService
+const http = axios.create({
+    baseURL: "http://localhost:8080"
+})
+
+
+export default
 {
     getAllExercises(){
-        return axios.get('/exercises')
-    }
+        return http.get('/exercises')
+    },
 
     getExercise(id){
-        return axios.get(`/exercises/${id}`)
+        return http.get(`/exercises/${id}`)
     }
 
 }
-export default new ExerciseService()

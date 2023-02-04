@@ -1,7 +1,9 @@
 <template>
     <div class="home">
+        
         <div id="profile-header">
-            <img class="profile-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRo30ulQk-69OJ5GGdowFt21Lsau4GfWzfbBSmsfE4hGrVxBbnVNOr12yOYULoq2Gb7XEU&usqp=CAU">
+
+            <img class="profile-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRo30ulQk-69OJ5GGdowFt21Lsau4GfWzfbBSmsfE4hGrVxBbnVNOr12yOYULoq2Gb7XEU&usqp=CAU" />
 
             <div id="username">{{ username }}</div>
 
@@ -12,11 +14,13 @@
             <router-link id="logout" :to="{name: 'logout'}">
                 <img src="../assets/logout.png" alt="logout-icon">
             </router-link>
+        
         </div>
 
         <div id="motivation">Welcome back, {{ username }}! Just 1 more workout until you hit your weekly goal! </div>
 
         <div class="btn-container">
+
             <router-link id="gym" class="home-options-btn" to="gym">
                 <div>
                     <img src="../assets/star.png">
@@ -37,7 +41,9 @@
                     Goals
                 </div>
             </router-link>
+
         </div>
+
     </div>
 </template>
 

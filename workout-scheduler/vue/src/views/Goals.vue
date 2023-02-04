@@ -4,8 +4,7 @@
             <img
                 id="goals-img"
                 src="../assets/gym-for-everyone.png"
-                alt="gym-for-everyone-img"
-            />
+                alt="gym-for-everyone-img" />
 
             <div class="goals-banner">
 
@@ -18,7 +17,9 @@
                             {{ isAddingGoal ? "Cancel" : "+ Add" }}
                         </button>
                     </div>
+
                 </div>
+
             </div>
 
             <div class="goals-container">
@@ -37,12 +38,15 @@
                     </div>
 
                 </div>
+
             </div>
+
         </main>
 
         <footer>
             <nav-bar />
         </footer>
+
     </div>
 </template>
 
