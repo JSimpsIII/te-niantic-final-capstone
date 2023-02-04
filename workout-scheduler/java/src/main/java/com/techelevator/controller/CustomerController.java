@@ -45,7 +45,7 @@ public class CustomerController {
     public boolean updateCustomerById(@PathVariable Long id, @RequestBody CustomerDTO customerDTO) {
         Customer customer = new Customer();
         customer.setCustomerId(id);
-        customer.setUsername(customerDTO.getUsername());
+//        customer.setUsername(customerDTO.getUsername());
         customer.setName(customerDTO.getName());
         customer.setEmail(customerDTO.getEmail());
         customer.setPhoto(customerDTO.getPhoto());

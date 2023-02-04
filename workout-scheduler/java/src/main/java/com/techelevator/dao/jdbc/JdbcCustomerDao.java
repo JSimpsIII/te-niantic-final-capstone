@@ -112,17 +112,18 @@ public class JdbcCustomerDao implements CustomerDao {
 
 
     private boolean updateCustomer(Long userId, Customer customer) {
-        String username = customer.getUsername();
+//        String username = customer.getUsername();
         String name = customer.getName();
         String email = customer.getEmail();
         String photo = customer.getPhoto();
         double height = customer.getHeight();
 
         String sqlQuery = "UPDATE customer " +
-                "SET customer_username = ?, customer_name = ?, customer_email = ?, photo_link = ?, height_inches = ? " +
+                "SET customer_name = ?, customer_email = ?, photo_link = ?, height_inches = ? " +
                 "WHERE customer_id = ?; ";
         try {
-            jdbcTemplate.update(sqlQuery, username, name, email, photo, height, userId);
+//            jdbcTemplate.update(sqlQuery, username, name, email, photo, height, userId);
+            jdbcTemplate.update(sqlQuery, name, email, photo, height, userId);
         } catch (Exception e) {
             return false;
         }

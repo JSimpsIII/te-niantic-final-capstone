@@ -26,6 +26,14 @@
                     <option value="https://maactioncinema.com/wp-content/uploads/2021/02/blade_3.jpg">Option 4</option>
                 </select>
 
+                <label for="name">Name:</label>
+                <input 
+                    type="name" 
+                    v-model="user.name" 
+                    id="name" 
+                    name="name"
+                    :disabled="!isEditting" />
+
                 <label for="email">Email:</label>
                 <input 
                     type="email" 
@@ -70,7 +78,7 @@
             Edit Profile
             </button>
 
-            <button @click.prevent=cancelForm();toggleEditProfile()>
+            <button @click.prevent=cancelForm();toggleEditProfile() v-if=isEditting>
                 Cancel Edits
             </button>
         
@@ -92,7 +100,7 @@ export default {
     data() {
       return {
         user: {
-          username: "",
+          name: "",
           photo: "",
           email: "",
           height: ""
@@ -104,8 +112,9 @@ export default {
     created() {
       profileService.getProfile(this.$store.state.user.username)
                     .then(res => {
-                      const { email, height, name, photo } = res.data;
-                      this.user.username = name;
+                      const { username, name, photo, email, height } = res.data;
+                      this.user.username = username;
+                      this.user.name = name;
                       this.user.photo = photo;
                       this.user.email = email;
                       this.user.height = height;
