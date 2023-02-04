@@ -26,7 +26,7 @@ CREATE TABLE users (
 CREATE TABLE customer (
 	customer_id int DEFAULT nextval('seq_customer_id'::regclass) NOT NULL,
 	customer_username varchar(50) NOT NULL UNIQUE,
-	customer_name varchar(50) NOT NULL,
+	customer_name varchar(50),
 	customer_email varchar(50),
 	photo_link varchar(400),
 	height_inches numeric,
