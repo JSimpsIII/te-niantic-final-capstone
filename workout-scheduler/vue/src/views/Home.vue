@@ -1,75 +1,79 @@
 <template>
-    <div class="home">
-        
-        <div id="profile-header">
+  <div class="home">
+    <div id="profile-header">
+      <img
+        class="profile-img"
+        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRo30ulQk-69OJ5GGdowFt21Lsau4GfWzfbBSmsfE4hGrVxBbnVNOr12yOYULoq2Gb7XEU&usqp=CAU"
+      />
 
-            <img class="profile-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRo30ulQk-69OJ5GGdowFt21Lsau4GfWzfbBSmsfE4hGrVxBbnVNOr12yOYULoq2Gb7XEU&usqp=CAU" />
+      <div id="username">{{ username }}</div>
 
-            <div id="username">{{ username }}</div>
+      <router-link id="settings" :to="{ name: 'profile' }">
+        <img src="../assets/settings.png" alt="settings-icon" />
+      </router-link>
 
-            <router-link id="settings" :to="{name: 'profile'}">
-                <img src="../assets/settings.png" alt="settings-icon">
-            </router-link>
-        
-            <router-link id="logout" :to="{name: 'logout'}">
-                <img src="../assets/logout.png" alt="logout-icon">
-            </router-link>
-        
-        </div>
-
-        <div id="motivation">Welcome back, {{ username }}! Just 1 more workout until you hit your weekly goal! </div>
-
-        <div class="btn-container">
-
-            <router-link id="gym" class="home-options-btn" to="gym">
-                <div>
-                    <img src="../assets/star.png">
-                    Gym
-                </div>
-            </router-link>
-        
-            <router-link id="metrics" class="home-options-btn" :to="{name: 'metrics'}">
-                <div>
-                    <img src="../assets/chart.png">
-                    Metrics
-                </div>
-            </router-link>
-
-            <router-link id="goals" class="home-options-btn" :to="{name: 'goals'}">
-                <div>
-                    <img src="../assets/goal.png">
-                    Goals
-                </div>
-            </router-link>
-
-        </div>
-
+      <router-link id="logout" :to="{ name: 'logout' }">
+        <img src="../assets/logout.png" alt="logout-icon" />
+      </router-link>
     </div>
+
+    <div id="motivation">
+      Welcome back, {{ username }}! Just 1 more workout until you hit your
+      weekly goal!
+    </div>
+
+    <div class="btn-container">
+      <router-link id="gym" class="home-options-btn" to="gym">
+        <div>
+          <img src="../assets/star.png" />
+          Gym
+        </div>
+      </router-link>
+
+      <router-link
+        id="metrics"
+        class="home-options-btn"
+        :to="{ name: 'metrics' }"
+      >
+        <div>
+          <img src="../assets/chart.png" />
+          Metrics
+        </div>
+      </router-link>
+
+      <router-link id="goals" class="home-options-btn" :to="{ name: 'goals' }">
+        <div>
+          <img src="../assets/goal.png" />
+          Goals
+        </div>
+      </router-link>
+    </div>
+  </div>
 </template>
 
 <script>
-import profileService from '../services/ProfileService';
+import profileService from "../services/ProfileService";
 
 export default {
   name: "home",
   data() {
     return {
       // get name from login
-      username: "Steve Rogers"
-    }
+      username: "Steve Rogers",
+    };
   },
   created() {
-      profileService.getProfile(this.$store.state.user.username)
-                    .then(res => {
-                      const { customerId } = res.data;
-                      this.$store.commit("SET_CUSTOMER_ID", customerId);
-                    })
+    if (this.$store.state.customerId == "") {
+      profileService.getProfile(this.$store.state.user.username).then(res => {
+        const { customerId } = res.data;
+        this.$store.commit("SET_CUSTOMER_ID", customerId);
+      });
     }
+  },
 };
 </script>
 
 <style scoped>
-
 a {
   text-decoration: none;
 }
@@ -119,8 +123,7 @@ a {
 }
 
 #metrics div {
-  
-  background-color: var(--red); 
+  background-color: var(--red);
 }
 
 #goals div {
@@ -134,7 +137,7 @@ a {
   justify-content: center;
   align-items: center;
   gap: 5px;
-  color: #FDFFFC;
+  color: #fdfffc;
   width: 90%;
   margin: 0 auto;
   font-size: 20px;
@@ -143,5 +146,4 @@ a {
   border-radius: 10px;
   margin-bottom: 25px;
 }
-
 </style>

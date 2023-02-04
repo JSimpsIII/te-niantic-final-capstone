@@ -25,7 +25,7 @@
             <div class="goals-container">
                 <add-goal v-if="isAddingGoal" />
 
-                <div class="goal" v-for="goal in goals" :key="goal.id">
+                <div class="goal" v-for="goal in this.$store.state.goalList" :key="goal.id">
 
                     <div class="goal-name">
                         {{ goal.name }}: 
@@ -68,9 +68,12 @@ export default {
     };
   },
   created() {
-    goalService.getAllGoals(this.$store.state.customerId).then((res) => {
-      this.goals = res.data;
+    if (this.$store.state.goalList === []) {
+      goalService.getAllGoals(this.$store.state.customerId).then((res) => {
+      this.$store.state.goalList = res.data;
     });
+    }
+    
   },
   methods: {
     toggleAddGoal() {
