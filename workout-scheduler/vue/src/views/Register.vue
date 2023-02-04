@@ -15,6 +15,19 @@
         {{ registrationErrorMsg }}
       </div>
 
+      <div id="name">
+        <label for="name" class="sr-only">Name </label>
+        <input
+          type="text"
+          id="name"
+          class="form-control"
+          placeholder="Name"
+          v-model="user.name"
+          required
+          autofocus
+        />
+      </div>
+
       <div id="username">
         <label for="username" class="sr-only">Username </label>
         <input

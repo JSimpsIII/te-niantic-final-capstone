@@ -65,8 +65,8 @@ public class JdbcCustomerDao implements CustomerDao {
     }
 
     @Override
-    public boolean addNewCustomerByUsername(String username) {
-        boolean hasCustomer = createNewCustomerByUsername(username);
+    public boolean addNewCustomerByUsername(String username, String name) {
+        boolean hasCustomer = createNewCustomerByUsername(username, name);
         return hasCustomer;
     }
 
@@ -79,11 +79,11 @@ public class JdbcCustomerDao implements CustomerDao {
 
 
 
-    private boolean createNewCustomerByUsername(String username) {
+    private boolean createNewCustomerByUsername(String username, String name) {
         Long customerId;
-        String sqlQuery = "INSERT INTO customer (customer_username) VALUES (?) RETURNING customer_id;";
+        String sqlQuery = "INSERT INTO customer (customer_username, customer_name) VALUES (?,?) RETURNING customer_id;";
         try {
-            customerId = jdbcTemplate.queryForObject(sqlQuery, Long.class, username);
+            customerId = jdbcTemplate.queryForObject(sqlQuery, Long.class, username, name);
         } catch (Exception e) {
             return false;
         }

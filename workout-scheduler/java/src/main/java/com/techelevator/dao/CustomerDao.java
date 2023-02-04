@@ -14,7 +14,7 @@ public interface CustomerDao {
 
     boolean addNewCustomer(Customer customer);
 
-    boolean addNewCustomerByUsername(String username);
+    boolean addNewCustomerByUsername(String username, String name);
 
     boolean updateCustomerById(Long userId, Customer customer);
 

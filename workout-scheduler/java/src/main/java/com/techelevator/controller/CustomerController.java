@@ -25,10 +25,10 @@ public class CustomerController {
         return customerDao.getCustomerByUsername(username);
     }
 
-    @RequestMapping(path ="/users/", method = RequestMethod.POST)
-    public boolean addNewCustomerByUsername(@RequestBody String username) {
-        return customerDao.addNewCustomerByUsername(username);
-    }
+//    @RequestMapping(path ="/users/", method = RequestMethod.POST)
+//    public boolean addNewCustomerByUsername(@RequestBody String username) {
+//        return customerDao.addNewCustomerByUsername(username, newUser.getName());
+//    }
 
     @RequestMapping(path = "/users/new", method = RequestMethod.POST)
     public boolean addNewCustomer(@RequestBody CustomerDTO customerDTO) {
