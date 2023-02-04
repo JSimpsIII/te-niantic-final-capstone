@@ -58,6 +58,7 @@ public class JdbcGoalDao implements GoalDao {
             goalId = jdbcTemplate.queryForObject(sqlQuery, Integer.class,
                     name, customerId, exerciseId, date, reps, weight, time, distance, days, misc, isCompleted);
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             return false;
         }
         return (goalId != null);
