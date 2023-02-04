@@ -1,6 +1,7 @@
 DROP TABLE IF EXISTS customer_goal, goal, metrics, customer, users, exercise, exercise_equipment, exercise_target, exercise_bodypart CASCADE;
 DROP SEQUENCE IF EXISTS seq_user_id;
 DROP SEQUENCE IF EXISTS seq_customer_id;
+DROP SEQUENCE IF EXISTS seq_goal_id;
 
 CREATE SEQUENCE seq_user_id
   INCREMENT BY 1
@@ -9,6 +10,12 @@ CREATE SEQUENCE seq_user_id
   CACHE 1;
 
 CREATE SEQUENCE seq_customer_id
+  INCREMENT BY 1
+  NO MAXVALUE
+  NO MINVALUE
+  CACHE 1;
+
+CREATE SEQUENCE seq_goal_id
   INCREMENT BY 1
   NO MAXVALUE
   NO MINVALUE
@@ -71,7 +78,7 @@ CREATE TABLE metrics (
 );
 
 CREATE TABLE goal (
-	goal_id SERIAL NOT NULL PRIMARY KEY,
+	goal_id int DEFAULT nextval('seq_goal_id'::regclass) NOT NULL,
 	goal_name varchar(50) NOT NULL,
 	customer_id int NOT NULL,
 	exercise_id int,
