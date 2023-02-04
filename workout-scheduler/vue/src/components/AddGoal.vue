@@ -78,6 +78,9 @@ export default {
       const newGoalInnerText = e.target.nextElementSibling.innerText;
       const newGoalName = newGoalInnerText.substring(0, newGoalInnerText.indexOf(":"));
       this.newGoal.name = newGoalName;
+
+      this.$store.state.goalList.push(this.newGoal);
+
       goalService
         .addNewGoal(this.$store.state.customerId, this.newGoal)
         .then((response) => {
