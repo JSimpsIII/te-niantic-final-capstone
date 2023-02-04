@@ -75,12 +75,13 @@ export default {
   },
   methods: {
     saveGoal(e) {
-      this.newGoal.name = e.target.nextElementSibling.innerText;
+      const newGoalInnerText = e.target.nextElementSibling.innerText;
+      const newGoalName = newGoalInnerText.substring(0, newGoalInnerText.indexOf(":"));
+      this.newGoal.name = newGoalName;
       goalService
         .addNewGoal(this.$store.state.customerId, this.newGoal)
         .then((response) => {
-          console.log(this.newGoal);
-          if (response.status == 201) {
+          if (response.status == 200) {
             console.log("goal " + this.newGoal.name + " added");
           }
         })
