@@ -12,7 +12,7 @@
                 <!-- <div class="exercise-search-container">
                 <input type="text" id="exerciseNameFilter" v-model="filter.exerciseName"/>
                 </div> -->
-                
+
             </div>
         </div>
 
@@ -33,6 +33,9 @@ export default {
     components: {
       NavBar,
       ExerciseTable
+    },
+    data() {
+      
     }
 }
 </script>
