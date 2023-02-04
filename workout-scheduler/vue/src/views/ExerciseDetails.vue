@@ -13,13 +13,18 @@
         <div class='gif'>
             <img :src='exercise.gifUrl'>
         </div>
+
+        <exercise-entry />
+
     </section>
 </template>
 
 <script>
+import ExerciseEntry from '../components/ExerciseEntry.vue';
 import exerciseService from '../services/ExerciseService';
 
 export default {
+  components: { ExerciseEntry },
     name: 'exercise-details',
     methods: {
       getExercise() {
@@ -51,13 +56,30 @@ export default {
 
 <style scoped>
 
+h1 {
+  margin-top: 30px;
+}
+
+#exercise-details {
+  display: flex;
+  flex-direction: column;
+  width: 360px;
+}
+
 .flexbox {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  width: 360px;
+  justify-content: space-evenly;
+  color: #85C1E9;
 }
+
 p {
   padding: 10px;
+}
+
+.gif {
+  margin-bottom: 20px;
 }
 
 </style>
