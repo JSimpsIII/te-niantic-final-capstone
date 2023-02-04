@@ -104,7 +104,7 @@ export default {
     created() {
       profileService.getProfile(this.$store.state.user.username)
                     .then(res => {
-                      const { email, height, name, photo } = res.data.customer;
+                      const { email, height, name, photo } = res.data;
                       this.user.username = name;
                       this.user.photo = photo;
                       this.user.email = email;
