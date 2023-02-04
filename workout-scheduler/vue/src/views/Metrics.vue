@@ -2,7 +2,7 @@
     <div id='metrics'>
         
         <div id="metrics-header">
-            <h3>Metrics</h3>
+            <h1>Metrics</h1>
         </div>
 
     </div>
