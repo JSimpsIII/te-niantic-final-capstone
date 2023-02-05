@@ -48,14 +48,22 @@
         </div>
       </router-link>
     </div>
+
+    <footer>
+      <nav-bar />
+    </footer>
   </div>
 </template>
 
 <script>
 import profileService from "../services/ProfileService";
+import NavBar from "../components/NavBar.vue";
 
 export default {
   name: "home",
+  components: {
+    NavBar
+  },
   data() {
     return {
       // get name from login

@@ -90,7 +90,7 @@ export default {
 .goals-banner {
   background-color: var(--green);
   font-size: 25px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .goals-title-add-container {
@@ -135,6 +135,10 @@ div.goal:first-child {
 
 .add-btn:hover {
   cursor: pointer;
+}
+
+main {
+  padding-bottom: 50px;
 }
 
 footer {

@@ -1,5 +1,5 @@
 <template>
-    <div class="nav-bar">
+    <div class="nav-container">
 
         <router-link :to="{name: 'home'}">
             <img id="home-icon" src="../assets/home.png" alt="home-icon">
