@@ -6,7 +6,7 @@
         :src="this.$store.state.profile.photo"
       />
 
-      <div id="username">{{ username }}</div>
+      <div id="username">{{ this.$store.state.user.username}}</div>
 
       <router-link id="settings" :to="{ name: 'profile' }">
         <img src="../assets/settings.png" alt="settings-icon" />
@@ -18,7 +18,7 @@
     </div>
 
     <div id="motivation">
-      Welcome back, {{ username }}! Just 1 more workout until you hit your
+      Welcome back, {{ this.$store.state.profile.name }}! Just 1 more workout until you hit your
       weekly goal!
     </div>
 
@@ -113,7 +113,7 @@ a {
 }
 
 #logout {
-  margin-left: 5px;
+  margin-left: 10px;
 }
 
 .profile-img {
@@ -122,6 +122,10 @@ a {
   object-fit: cover;
   border-radius: 100%;
   object-position: top;
+  background: var(--smoke);
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 #motivation {
@@ -159,5 +163,9 @@ a {
   text-align: center;
   border-radius: 10px;
   margin-bottom: 25px;
+}
+
+.btn-container {
+  margin-bottom: 70px;
 }
 </style>
