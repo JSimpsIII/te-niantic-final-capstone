@@ -11,12 +11,12 @@
         <div id="days-metric" class="metric-headers">
           <h2>Days</h2>
           <img 
-            src="../assets/down-arrow.png" 
-            alt="down-arrow"
+            :src="require(`@/assets/${days.arrowDirection}.png`)" 
+            :alt="days.arrowDirection"
             @click="toggleDaysContainer" 
           />
         </div>
-        <div class="sub-metric-charts" v-if="isDaysShowing">
+        <div class="sub-metric-charts" v-if="days.isShowing">
             Charts Here
         </div>
       </div>
@@ -25,12 +25,12 @@
         <div id="minutes-metric" class="metric-headers">
           <h2>Minutes</h2>
           <img 
-            src="../assets/down-arrow.png" 
-            alt="down-arrow"
+            :src="require(`@/assets/${minutes.arrowDirection}.png`)" 
+            :alt="minutes.arrowDirection"
             @click="toggleMinutesContainer" 
           />
         </div>
-        <div class="sub-metric-charts" v-if="isMinutesShowing">
+        <div class="sub-metric-charts" v-if="minutes.isShowing">
             Charts Here
         </div>
       </div>
@@ -39,12 +39,12 @@
         <div id="machine-metric" class="metric-headers">
           <h2>Machine</h2>
           <img 
-            src="../assets/down-arrow.png" 
-            alt="down-arrow"
+            :src="require(`@/assets/${machine.arrowDirection}.png`)" 
+            :alt="machine.arrowDirection"
             @click="toggleMachineContainer" 
           />
         </div>
-        <div class="sub-metric-charts" v-if="isMachineShowing">
+        <div class="sub-metric-charts" v-if="machine.isShowing">
             Charts Here
         </div>
       </div>
@@ -53,12 +53,12 @@
         <div id="target-metric" class="metric-headers">
           <h2>Target</h2>
           <img 
-            src="../assets/down-arrow.png" 
-            alt="down-arrow"
+            :src="require(`@/assets/${target.arrowDirection}.png`)" 
+            :alt="target.arrowDirection"
             @click="toggleTargetContainer" 
           />
         </div>
-        <div class="sub-metric-charts" v-if="isTargetShowing">
+        <div class="sub-metric-charts" v-if="target.isShowing">
             Charts Here
         </div>
       </div>
@@ -67,12 +67,12 @@
         <div id="records-metric" class="metric-headers">
           <h2>Personal Records</h2>
           <img 
-            src="../assets/down-arrow.png" 
-            alt="down-arrow"
+            :src="require(`@/assets/${records.arrowDirection}.png`)" 
+            :alt="records.arrowDirection"
             @click="toggleRecordsContainer" 
           />
         </div>
-        <div class="sub-metric-charts" v-if="isRecordsShowing">
+        <div class="sub-metric-charts" v-if="records.isShowing">
             Charts Here
         </div>
       </div>
@@ -86,28 +86,48 @@ export default {
   name: "metrics",
   data() {
       return {
-          isDaysShowing: false,
-          isMinutesShowing: false,
-          isMachineShowing: false,
-          isTargetShowing: false,
-          isRecordsShowing: false
+          days: {
+              isShowing: false,
+              arrowDirection: "down-arrow"
+          },
+          minutes: {
+              isShowing: false,
+              arrowDirection: "down-arrow"
+          },
+          machine: {
+              isShowing: false,
+              arrowDirection: "down-arrow"
+          },
+          target: {
+              isShowing: false,
+              arrowDirection: "down-arrow"
+          },
+          records: {
+              isShowing: false,
+              arrowDirection: "down-arrow"
+          }
       }
   },
   methods: {
       toggleDaysContainer() {
-          this.isDaysShowing = !this.isDaysShowing;
+          this.days.isShowing = !this.days.isShowing;
+          this.days.arrowDirection = this.days.arrowDirection == "down-arrow" ? "up-arrow" : "down-arrow";
       },
       toggleMinutesContainer() {
-          this.isMinutesShowing = !this.isMinutesShowing;
+          this.minutes.isShowing = !this.minutes.isShowing;
+          this.minutes.arrowDirection = this.minutes.arrowDirection == "down-arrow" ? "up-arrow" : "down-arrow";
       },
       toggleMachineContainer() {
-          this.isMachineShowing = !this.isMachineShowing;
+          this.machine.isShowing = !this.machine.isShowing;
+          this.machine.arrowDirection = this.machine.arrowDirection == "down-arrow" ? "up-arrow" : "down-arrow";
       },
       toggleTargetContainer() {
-          this.isTargetShowing = !this.isTargetShowing;
+          this.target.isShowing = !this.target.isShowing;
+          this.target.arrowDirection = this.target.arrowDirection == "down-arrow" ? "up-arrow" : "down-arrow";
       },
       toggleRecordsContainer() {
-          this.isRecordsShowing = !this.isRecordsShowing;
+          this.records.isShowing = !this.records.isShowing;
+          this.records.arrowDirection = this.records.arrowDirection == "down-arrow" ? "up-arrow" : "down-arrow";
       }
   }
 };
