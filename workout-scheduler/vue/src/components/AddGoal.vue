@@ -60,7 +60,7 @@ export default {
     return {
       newGoal: {
         name: "",
-        customerId: this.$store.state.customerId,
+        customerId: this.$store.state.profile.customerId,
         exerciseId: 1,
         date: null,
         reps: 0.0,
@@ -85,12 +85,12 @@ export default {
       this.$store.state.goalList.push(this.newGoal);
 
       goalService
-        .addNewGoal(this.$store.state.customerId, this.newGoal)
+        .addNewGoal(this.$store.state.profile.customerId, this.newGoal)
         .then((response) => {
           if (response.status == 200) {
             this.newGoal = {
               name: "",
-              customerId: this.$store.state.customerId,
+              customerId: this.$store.state.profile.customerId,
               exerciseId: 1,
               date: null,
               reps: 0.0,
@@ -114,12 +114,12 @@ export default {
       this.$store.state.goalList.push(this.newGoal);
 
       goalService
-        .addNewGoal(this.$store.state.customerId, this.newGoal)
+        .addNewGoal(this.$store.state.profile.customerId, this.newGoal)
         .then((response) => {
           if (response.status == 200) {
             this.newGoal = {
               name: "",
-              customerId: this.$store.state.customerId,
+              customerId: this.$store.state.profile.customerId,
               exerciseId: 1,
               date: null,
               reps: 0.0,

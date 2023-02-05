@@ -66,7 +66,7 @@ export default {
   },
   created() {
     goalService
-      .getAllGoals(this.$store.state.customerId)
+      .getAllGoals(this.$store.state.profile.customerId)
       .then(res => this.$store.state.goalList = res.data);
   },
   methods: {

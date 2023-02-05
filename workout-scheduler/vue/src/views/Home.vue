@@ -71,7 +71,7 @@ export default {
     };
   },
   created() {
-    if (this.$store.state.customerId == "") {
+    if (this.$store.state.profile.customerId == "") {
       profileService.getProfile(this.$store.state.user.username).then(res => {
         const { customerId } = res.data;
         this.$store.commit("SET_CUSTOMER_ID", customerId);

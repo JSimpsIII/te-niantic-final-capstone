@@ -159,7 +159,7 @@ export default {
     },
     saveChanges() {
       profileService
-        .saveProfileChanges(this.$store.state.customerId, this.user)
+        .saveProfileChanges(this.$store.state.profile.customerId, this.user)
         .then((res) => {
           console.log(res.data);
         });

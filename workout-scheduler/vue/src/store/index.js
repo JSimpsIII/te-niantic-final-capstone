@@ -20,7 +20,11 @@ export default new Vuex.Store({
   state: {
     token: currentToken || '',
     user: currentUser || {},
-    customerId: '',
+    profile: {
+      customerId: '',
+      name: '',
+      photo: ''
+    },
     customerList: [],
     exerciseList: [],
     exercise: {
