@@ -3,7 +3,7 @@
     <div id="profile-header">
       <img
         class="profile-img"
-        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRo30ulQk-69OJ5GGdowFt21Lsau4GfWzfbBSmsfE4hGrVxBbnVNOr12yOYULoq2Gb7XEU&usqp=CAU"
+        :src="this.$store.state.profile.photo"
       />
 
       <div id="username">{{ username }}</div>
@@ -66,15 +66,21 @@ export default {
   },
   data() {
     return {
-      // get name from login
-      username: "Steve Rogers",
+      profile: {
+        customerId: '',
+        name: '',
+        photo: ''
+    }
     };
   },
   created() {
     if (this.$store.state.profile.customerId == "") {
       profileService.getProfile(this.$store.state.user.username).then(res => {
-        const { customerId } = res.data;
-        this.$store.commit("SET_CUSTOMER_ID", customerId);
+        const { customerId, name, photo } = res.data;
+        this.profile.customerId = customerId;
+        this.profile.name = name;
+        this.profile.photo = photo;
+        this.$store.commit("SET_PROFILE", this.profile);
       });
     }
   },
@@ -111,8 +117,8 @@ a {
 }
 
 .profile-img {
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   object-fit: cover;
   border-radius: 100%;
   object-position: top;

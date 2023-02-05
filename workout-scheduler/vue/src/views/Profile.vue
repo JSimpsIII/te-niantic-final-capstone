@@ -188,7 +188,7 @@ export default {
   object-fit: cover;
   border-radius: 100%;
   object-position: top;
-  background: var(--white);
+  background: var(--smoke);
   text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;

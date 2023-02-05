@@ -81,8 +81,12 @@ export default new Vuex.Store({
       state.user = {};
       axios.defaults.headers.common = {};
     },
-    SET_CUSTOMER_ID(state, customerId) {
-      state.customerId = customerId;
+    SET_CUSTOMER_ID_NAME(state, customerId, name) {
+      state.profile.customerId = customerId;
+      state.profile.name = name;
+    },
+    SET_PROFILE(state, profile) {
+      state.profile = profile;
     },
     LOAD_EXERCISE_LIST(state, exercises) {
       state.exerciseList = exercises;
