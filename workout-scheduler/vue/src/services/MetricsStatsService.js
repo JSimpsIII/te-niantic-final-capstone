@@ -1,4 +1,4 @@
-class StatsService {
+export default {
 
     // BY BODY PART
 
@@ -76,75 +76,95 @@ class StatsService {
             minwaist/mintotal
         ];
         return array;
-    }
+    },
+
     getPercentBack() {
         let array = this.getPercentageArrayForBodyPart();
         let back = array[0];
         return back;
-    }
+    },
+
     getPercentCardio() {
         let array = this.getPercentageArrayForBodyPart();
         let cardio = array[1];
         return cardio;
-    }
+    },
+
     getPercentChest() {
         let array = this.getPercentageArrayForBodyPart();
         let chest = array[2];
         return chest;
-    }
+    },
+
     getPercentUpperArms() {
         let array = this.getPercentageArrayForBodyPart();
         let arms = array[7];
         return arms;
-    }
+    },
+
     getPercentLowerArms() {
         let array = this.getPercentageArrayForBodyPart();
         let arms = array[3];
         return arms;
-    }
+    },
+
     getPercentUpperLegs() {
         let array = this.getPercentageArrayForBodyPart();
         let legs = array[8];
         return legs;
-    }
+    },
+
     getPercentLowerLegs() {
         let array = this.getPercentageArrayForBodyPart();
         let legs = array[4];
         return legs;
-    }
+    },
+
     getPercentNeck() {
         let array = this.getPercentageArrayForBodyPart();
         let neck = array[5];
         return neck;
-    }
+    },
+
     getPercentShoulders() {
         let array = this.getPercentageArrayForBodyPart();
         let shoulders = array[6];
         return shoulders;
-    }
+    },
+
     getPercentWaist() {
         let array = this.getPercentageArrayForBodyPart();
         let waist = array[9];
         return waist;
-    }
+    },
+
     getPercentUpperLimbs() {
         let upperArms = this.getPercentUpperArms();
         let lowerArms = this.getPercentLowerArms();
         let shoulders = this.getPercentShoulders();
         return upperArms + lowerArms + shoulders;
-    }
+    },
+
     getPercentLowerLimbs() {
         let upperLegs = this.getPercentUpperLegs();
         let lowerLegs = this.getPercentLowerLegs();
         return upperLegs + lowerLegs;
-    }
+    },
+
     getPercentCore() {
         let back = this.getPercentBack();
         let neck = this.getPercentNeck();
         let waist = this.getPercentWaist();
         let chest = this.getPercentChest();
         return back + neck + waist + chest;
-    }
+    },
+    
+    getPercentStrength() {
+        let upperLimbs = this.getPercentUpperLimbs();
+        let lowerLimbs = this.getPercentLowerLimbs();
+        let core = this.getPercentCore();
+        return upperLimbs + lowerLimbs + core;
+    },
 
     // BY TARGET
 
@@ -253,29 +273,29 @@ class StatsService {
                     }
                 }
             })
-            let array = [
-                abductors/minTotal,
-                abs/minTotal,
-                adductors/minTotal,
-                biceps/minTotal,
-                calves/minTotal,
-                cardiovascular/minTotal,
-                delts/minTotal,
-                forearms/minTotal,
-                glutes/minTotal,
-                hamstrings/minTotal,
-                lats/minTotal,
-                levatorScapulae/minTotal,
-                pectorals/minTotal,
-                quads/minTotal,
-                serratusAnterior/minTotal,
-                spine/minTotal,
-                traps/minTotal,
-                triceps/minTotal,
-                upperBack/minTotal
-            ];
-            return array;
         })
+        let array = [
+            abductors/minTotal,
+            abs/minTotal,
+            adductors/minTotal,
+            biceps/minTotal,
+            calves/minTotal,
+            cardiovascular/minTotal,
+            delts/minTotal,
+            forearms/minTotal,
+            glutes/minTotal,
+            hamstrings/minTotal,
+            lats/minTotal,
+            levatorScapulae/minTotal,
+            pectorals/minTotal,
+            quads/minTotal,
+            serratusAnterior/minTotal,
+            spine/minTotal,
+            traps/minTotal,
+            triceps/minTotal,
+            upperBack/minTotal
+        ];
+        return array;
     }
+
 }
-export default StatsService;

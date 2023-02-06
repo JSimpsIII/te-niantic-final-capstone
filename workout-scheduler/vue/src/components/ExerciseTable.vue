@@ -180,12 +180,14 @@ export default {
     },
     methods: {
         loadExercises() {
-            exerciseService
-                .getAllExercises()
-                .then(response => {
-                    this.$store.commit("LOAD_EXERCISE_LIST", response.data);
-                    this.isLoading = false;
-                })
+            if (this.$store.state.exerciseList == []) {
+                exerciseService
+                    .getAllExercises()
+                    .then(response => {
+                        this.$store.commit("LOAD_EXERCISE_LIST", response.data);
+                        this.isLoading = false;
+                    })
+            }
         },
         toggleSearch() {
             this.showSearchBar = !this.showSearchBar;
