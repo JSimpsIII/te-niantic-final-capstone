@@ -98,6 +98,9 @@ export default new Vuex.Store({
     },
     SET_CURRENT_EXERCISE(state, exercise) {
       state.exercise = exercise;
+    },
+    LOAD_METRICS_LIST(state, metrics) {
+      state.metricsList = metrics;
     }
   }
 })

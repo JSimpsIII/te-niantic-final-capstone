@@ -16,7 +16,6 @@
         <router-link :to="{name: 'goals'}">
             <img id="goal-icon" src="../assets/goal.png" alt="goal-icon">
         </router-link>
-        
     </div>
 </template>
 

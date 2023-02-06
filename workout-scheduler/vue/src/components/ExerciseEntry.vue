@@ -145,6 +145,7 @@ button {
   text-align: center;
   border-radius: 10px;
   margin-top: 25px;
+  margin-bottom: 60px;
 }
 button::placeholder,
 button:-ms-input-placeholder {

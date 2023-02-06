@@ -58,6 +58,8 @@
 <script>
 import profileService from "../services/ProfileService";
 import NavBar from "../components/NavBar.vue";
+import metricService from '../services/MetricService';
+import exerciseService from '../services/ExerciseService';
 
 export default {
   name: "home",
@@ -73,6 +75,23 @@ export default {
     }
     };
   },
+  methods: {
+      loadExerciseList() {
+        exerciseService
+          .getAllExercises()
+          .then(response => {
+            this.$store.commit('LOAD_EXERCISE_LIST', response.data);
+          })
+      },
+      loadMetricsList(){
+        let id = this.profile.customerId;
+        metricService
+          .getAllMetrics(id)
+          .then(response => {
+            this.$store.commit('LOAD_METRICS_LIST', response.data);
+          })
+      }
+  },
   created() {
     if (this.$store.state.profile.customerId == "") {
       profileService.getProfile(this.$store.state.user.username).then(res => {
@@ -82,8 +101,10 @@ export default {
         this.profile.photo = photo;
         this.$store.commit("SET_PROFILE", this.profile);
       });
+      this.loadExerciseList();
+      this.loadMetricsList();
     }
-  },
+  }
 };
 </script>
 
