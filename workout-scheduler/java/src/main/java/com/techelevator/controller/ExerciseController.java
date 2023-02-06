@@ -41,9 +41,9 @@ public class ExerciseController {
         return exerciseDao.getExerciseByName(name);
     }
 
-    @RequestMapping(path = "/exercises/{id}", method = RequestMethod.GET)
-    public Exercise getExerciseById(@RequestParam int id) {
-        return exerciseDao.getExerciseById(id);
+    @RequestMapping(path = "/exercises/{exerciseId}", method = RequestMethod.GET)
+    public Exercise getExerciseById(@RequestParam int exerciseId) {
+        return exerciseDao.getExerciseById(exerciseId);
     }
 
 }

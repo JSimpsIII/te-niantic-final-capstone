@@ -11,12 +11,7 @@ export default
         return http.get('/exercises')
     },
 
-    getExercise(id){
-        return http.get(`/exercises/${id}`)
-    },
-
-    log(id, exercise) {
-        return http.post(`/users/${id}/metrics`, exercise)
+    getExerciseById(exerciseId){
+        return http.get(`/exercises/${exerciseId}`)
     }
-
 }

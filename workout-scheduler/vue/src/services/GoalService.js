@@ -7,12 +7,12 @@ const http = axios.create({
 
 export default {
 
-    getAllGoals(id) {
-        return http.get(`/users/${id}/goals`);
+    getAllGoals(userId) {
+        return http.get(`/users/${userId}/goals`);
     },
 
-    addNewGoal(id, newGoal) {
-        return http.post(`/users/${id}/goals`, newGoal);
+    addNewGoal(userId, goal) {
+        return http.post(`/users/${userId}/goals`, goal);
     },
 
     deleteGoal(userId, goalId) {
