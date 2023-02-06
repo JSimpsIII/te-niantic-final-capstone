@@ -148,5 +148,15 @@ div.goal:first-child {
 main {
   padding-bottom: 50px;
 }
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 600px;
+  height: 50px;
+  background: var(--smoke);
+  padding-top: 15px;
+}
+
 </style>
 

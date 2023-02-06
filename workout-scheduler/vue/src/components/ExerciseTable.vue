@@ -210,7 +210,7 @@ export default {
 </script>
 
 
-<style>
+<style scoped>
 #exercise-table {
   background-color: var(--blue);
   text-align: center;
