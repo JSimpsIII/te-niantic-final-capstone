@@ -81,8 +81,7 @@ const router = new Router({
       component: ExerciseDetails,
       meta: {
         requiresAuth: true
-      },
-      props: (route) => ({id: route.query.id})
+      }
     },
     {
       path: "/metrics",
