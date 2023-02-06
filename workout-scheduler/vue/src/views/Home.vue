@@ -85,7 +85,7 @@ export default {
           })
       },
       loadMetricsList(){
-        let id = this.profile.customerId;
+        let id = this.$store.state.profile.customerId;
         metricService
           .getAllMetrics(id)
           .then(response => {
@@ -93,7 +93,7 @@ export default {
           })
       },
       loadGoalList() {
-        let id = this.profile.customerId;
+        let id = this.$store.state.profile.customerId;
         goalService
           .getAllGoals(id)
           .then(response => {
