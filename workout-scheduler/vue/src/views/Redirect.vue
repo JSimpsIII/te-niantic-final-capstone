@@ -26,6 +26,9 @@ export default {
                     .then(res => {
                       const { customerId, name } = res.data;
                       this.$store.commit("SET_CUSTOMER_ID_NAME", customerId, name);
+
+                      console.log(name)
+                      
                     })
     }
 }

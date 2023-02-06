@@ -20,7 +20,7 @@ public class ExerciseController {
     public List<Exercise> getAllExercises() {
         return exerciseDao.getAllExercises();
     }
-
+    
     @RequestMapping(path = "/exercises/{id}", method = RequestMethod.GET)
     public Exercise getExerciseById(@PathVariable int id) {
         return exerciseDao.getExerciseById(id);

@@ -23,11 +23,15 @@ public class JdbcMetricDao implements MetricDao {
     public List<Metric> getAllMetrics(Long userId) {
         List<Metric> metrics = new ArrayList<>();
         String metricsSql = "SELECT * FROM metrics WHERE customer_id = ?;";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(metricsSql, userId);
-        while (results.next()) {
-            Metric metric = mapRowToMetric(results);
-            metrics.add(metric);
-        }
+
+            SqlRowSet results = jdbcTemplate.queryForRowSet(metricsSql, userId);
+            while (results.next()) {
+                Metric metric = mapRowToMetric(results);
+                metrics.add(metric);
+            }
+
+
+
         return metrics;
     }
 

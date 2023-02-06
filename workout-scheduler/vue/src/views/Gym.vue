@@ -31,7 +31,7 @@ export default {
       ExerciseTable
     },
     data() {
-      
+      return {}
     }
 }
 </script>

@@ -25,6 +25,7 @@ public class MetricsController {
 
     @RequestMapping(path = "/users/{userId}/log", method = RequestMethod.POST)
     public boolean logNewMetric(@PathVariable Long userId, @RequestBody MetricDTO metricDTO) {
+
         Long customerId = metricDTO.getCustomerId();
         int exerciseId = metricDTO.getExerciseId();
         Date date = metricDTO.getDate();
