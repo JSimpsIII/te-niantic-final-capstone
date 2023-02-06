@@ -30,7 +30,16 @@
         >
           <div class="goal-name">
             {{ goal.name }}
-            {{ goal.reps != 0 || goal.weight != 0 || goal.time != 0 || goal.distance != 0 || goal.days != 0 || goal.misc != null ? ":" : "" }}
+            {{
+              goal.reps != 0 ||
+              goal.weight != 0 ||
+              goal.time != 0 ||
+              goal.distance != 0 ||
+              goal.days != 0 ||
+              goal.misc != null
+                ? ":"
+                : ""
+            }}
             {{ goal.reps != 0 ? goal.reps : "" }}
             {{ goal.weight != 0 ? goal.weight : "" }}
             {{ goal.time != 0 ? goal.time : "" }}
@@ -38,12 +47,12 @@
             {{ goal.days != 0 ? goal.days : "" }}
             {{ goal.misc != null ? goal.misc : "" }}
           </div>
-          <img 
-            src="../assets/trash.png" 
-            alt="delete-icon" 
+          <img
+            src="../assets/trash.png"
+            alt="delete-icon"
             class="delete-icon"
             @click="deleteGoal"
-          >
+          />
         </div>
       </div>
     </main>
@@ -74,7 +83,7 @@ export default {
   created() {
     goalService
       .getAllGoals(this.$store.state.profile.customerId)
-      .then(res => this.$store.state.goalList = res.data);
+      .then((res) => (this.$store.state.goalList = res.data));
   },
   methods: {
     toggleAddGoal() {
@@ -82,8 +91,19 @@ export default {
     },
     deleteGoal(e) {
       const goalId = e.target.parentElement.dataset.goalId;
-      console.log(goalId);
-    }
+      goalService
+        .deleteGoal(this.$store.state.profile.customerId, goalId)
+        .then((res) => {
+          if (res.status == 200) {
+            goalService
+              .getAllGoals(this.$store.state.profile.customerId)
+              .then((res) => (this.$store.state.goalList = res.data));
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    },
   },
 };
 </script>
@@ -130,7 +150,6 @@ export default {
   cursor: pointer;
 }
 
-
 div.goal:first-child {
   background: linear-gradient(90deg, var(--green) 33%, var(--smoke) 0%);
 }
@@ -157,6 +176,5 @@ div.goal:first-child {
 main {
   padding-bottom: 50px;
 }
-
 </style>
 
