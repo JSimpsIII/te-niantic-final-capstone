@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -44,7 +45,7 @@ public class JdbcMetricDao implements MetricDao {
     private boolean createNewMetric(Long userId, Metric metric) {
 
         int exerciseId = metric.getExerciseId();
-        String date = LocalDate.now().format(DateTimeFormatter.ISO_LOCAL_DATE);
+        Date date = metric.getDate();
         double reps = metric.getReps();
         double weight = metric.getWeight();
         double time = metric.getTime();
@@ -55,7 +56,7 @@ public class JdbcMetricDao implements MetricDao {
         Integer metricsId;
         String sqlQuery = "INSERT INTO metrics " +
                 "(customer_id, exercise_id, metrics_date, current_reps, current_weight_lbs, current_time_min, current_distance_miles, current_days, current_misc) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?); ";
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING metrics_id;";
         try {
             metricsId = jdbcTemplate.queryForObject(sqlQuery, Integer.class,
                     userId, exerciseId, date, reps, weight, time, distance, days, misc);
