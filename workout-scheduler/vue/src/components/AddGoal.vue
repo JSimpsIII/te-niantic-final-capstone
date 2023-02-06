@@ -82,7 +82,7 @@ export default {
       );
       this.newGoal.name = newGoalName;
 
-      this.$store.state.goalList.push(this.newGoal);
+      // this.$store.state.goalList.push(this.newGoal);
 
       goalService
         .addNewGoal(this.$store.state.profile.customerId, this.newGoal)
@@ -102,6 +102,10 @@ export default {
               completed: false,
             };
           }
+
+          goalService
+            .getAllGoals(this.$store.state.profile.customerId)
+            .then((res) => (this.$store.state.goalList = res.data));
         })
         .catch((error) => {
           console.error(error);
@@ -111,7 +115,7 @@ export default {
       const newGoalName = e.target.nextElementSibling.value;
       this.newGoal.name = newGoalName;
 
-      this.$store.state.goalList.push(this.newGoal);
+      // this.$store.state.goalList.push(this.newGoal);
 
       goalService
         .addNewGoal(this.$store.state.profile.customerId, this.newGoal)
@@ -131,6 +135,10 @@ export default {
               completed: false,
             };
           }
+
+          goalService
+            .getAllGoals(this.$store.state.profile.customerId)
+            .then((res) => (this.$store.state.goalList = res.data));
         })
         .catch((error) => {
           console.error(error);
