@@ -6,7 +6,7 @@
   <input type="text" id="exerciseNameFilter" placeholder="search exercises" v-model="filter.name" v-if="showSearchBar"/>
   <button v-if="showSearchBar" @click="toggleSearch">Cancel</button>
   </div>
-       <table id="exercise-table">
+       <table id="table-of-exercises">
             <thead>
                 <tr>
                     <th>Exercise</th>
@@ -99,7 +99,7 @@
                     v-bind:key="exercise.id">
                     <td>
                         <router-link :to="{ name: 'exercise', params: {id:exercise.id} }">
-                            <button>{{ exercise.name }}</button>
+                            <button class="exercise-name">{{ exercise.name }}</button>
                         </router-link>
                     </td>
                     <td>{{ exercise.target }}</td>
@@ -200,6 +200,12 @@ export default {
 <style>
 #exercise-table {
   background-color: var(--blue);
+  text-align: center;
+  padding-bottom: 50%;
+}
+
+#table-of-exercises {
+    margin-right: 7%;
 }
 
 #search-menu {
@@ -221,6 +227,9 @@ export default {
     margin-right: 2%
 }
 
+.exercise-name {
+    width: 50%;
+}
 
 
 </style>
