@@ -21,14 +21,17 @@
                         &nbsp;
                     </td>
                     <td>
-                        <select id="exerciseTargetFilter" v-model="filter.target" v-if="showFilters">
+                        <select id="exerciseTargetFilter" 
+                        class="exercise-filter" 
+                        v-model="filter.target"
+                        v-if="showFilters">
                             <option value>Show All</option>
                             <option value="abductors">Abductors</option>
                             <option value="abs">Abs</option>
                             <option value="adductors">Adductors</option>
                             <option value="biceps">Biceps</option>
                             <option value="calves">Calves</option>
-                            <option value="cardiovascular system">Cardiovascular System</option>
+                            <option value="cardiovascular">Cardiovascular</option>
                             <option value="delts">Delts</option>
                             <option value="forearms">Forearms</option>
                             <option value="glutes">Glutes</option>
@@ -45,7 +48,10 @@
                         </select>
                     </td>
                     <td>
-                        <select id="bodypartFilter" v-model="filter.bodyPart" v-if="showFilters">
+                        <select id="bodypartFilter" 
+                        class="exercise-filter"
+                        v-model="filter.bodyPart"
+                        v-if="showFilters">
                             <option value>Show All</option>
                             <option value="back">Back</option>
                             <option value="cardio">Cardio</option>
@@ -60,7 +66,10 @@
                         </select>
                     </td>
                     <td>
-                        <select id="equipmentFilter" v-model="filter.equipment" v-if="showFilters">
+                        <select id="equipmentFilter" 
+                        class="exercise-filter"
+                        v-model="filter.equipment"
+                        v-if="showFilters">
                             <option value>Show All</option>
                             <option value='assisted'>Assisted</option>
                             <option value='band'>Band</option>
@@ -96,15 +105,16 @@
 
                 <tr
                     v-for="exercise in filteredList"
-                    v-bind:key="exercise.id">
+                    v-bind:key="exercise.id"
+                    class='exercise-option'>
                     <td>
                         <router-link :to="{ name: 'exercise', params: {id:exercise.id} }">
                             <button class="exercise-name">{{ exercise.name }}</button>
                         </router-link>
                     </td>
-                    <td>{{ exercise.target }}</td>
-                    <td>{{ exercise.bodyPart }}</td>
-                    <td>{{ exercise.equipment }}</td>
+                    <td class='column-list'>{{ exercise.target }}</td>
+                    <td class='column-list'>{{ exercise.bodyPart }}</td>
+                    <td class='column-list'>{{ exercise.equipment }}</td>
                 </tr>
             </tbody>
         </table>
@@ -197,6 +207,7 @@ export default {
 }
 </script>
 
+
 <style>
 #exercise-table {
   background-color: var(--blue);
@@ -228,8 +239,20 @@ export default {
 }
 
 .exercise-name {
-    width: 50%;
+    width: 70%;
 }
-
+button {
+    color: white;
+    background-color: var(--blue);
+    font-size: 17px;
+    border: none;
+    outline: none;
+    margin-top: 20px;
+}
+button:hover {
+    cursor: pointer;
+    font-size: 18px;
+    color: lightblue;
+}
 
 </style>
