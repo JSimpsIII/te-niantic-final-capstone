@@ -79,6 +79,11 @@
 
     </div>
 
+    <div id='percent-body-part-temp'>
+      <percent-body-part></percent-body-part>
+    </div>
+    
+
     <footer>
       <nav-bar />
     </footer>
@@ -87,10 +92,12 @@
 
 <script>
 import NavBar from '../components/NavBar.vue';
+import PercentBodyPart from '../components/PercentBodyPart.vue';
 export default {
   name: "metrics",
   components: {
-    NavBar
+    NavBar,
+    PercentBodyPart
   },
   data() {
       return {
@@ -119,19 +126,19 @@ export default {
   methods: {
       toggleDaysContainer() {
           this.days.isShowing = !this.days.isShowing;
-          this.days.arrowDirection = this.days.arrowDirection == "down-arrow" ? "up-arrow" : "down-arrow";
+          this.days.arrowDirection = (this.days.arrowDirection == "down-arrow") ? "up-arrow" : "down-arrow";
       },
       toggleMinutesContainer() {
           this.minutes.isShowing = !this.minutes.isShowing;
-          this.minutes.arrowDirection = this.minutes.arrowDirection == "down-arrow" ? "up-arrow" : "down-arrow";
+          this.minutes.arrowDirection = (this.minutes.arrowDirection == "down-arrow") ? "up-arrow" : "down-arrow";
       },
       toggleMachineContainer() {
           this.machine.isShowing = !this.machine.isShowing;
-          this.machine.arrowDirection = this.machine.arrowDirection == "down-arrow" ? "up-arrow" : "down-arrow";
+          this.machine.arrowDirection = (this.machine.arrowDirection == "down-arrow") ? "up-arrow" : "down-arrow";
       },
       toggleTargetContainer() {
           this.target.isShowing = !this.target.isShowing;
-          this.target.arrowDirection = this.target.arrowDirection == "down-arrow" ? "up-arrow" : "down-arrow";
+          this.target.arrowDirection = (this.target.arrowDirection == "down-arrow") ? "up-arrow" : "down-arrow";
       },
       toggleRecordsContainer() {
           this.records.isShowing = !this.records.isShowing;
