@@ -1,7 +1,10 @@
 export default {
 
     // BY BODY PART
-
+    getLabelArrayForBodyPart() {
+        let array = ['back', 'cardio', 'chest', 'lower arms', 'lower legs', 'neck', 'shoulders', 'upper arms', 'upper legs', 'waist'];
+        return array;
+    },
     getPercentageArrayForBodyPart() {
         let minback = 0
         let mincardio = 0
@@ -64,16 +67,16 @@ export default {
             })
         })
         let array = [
-            minback/mintotal, 
-            mincardio/mintotal, 
-            minchest/mintotal, 
-            minlowerarms/mintotal, 
-            minlowerlegs/mintotal, 
-            minneck/mintotal, 
-            minshoulders/mintotal, 
-            minupperarms/mintotal, 
-            minupperlegs/mintotal, 
-            minwaist/mintotal
+            (minback/mintotal) * 100, 
+            (mincardio/mintotal) * 100, 
+            (minchest/mintotal) * 100, 
+            (minlowerarms/mintotal) * 100, 
+            (minlowerlegs/mintotal) * 100, 
+            (minneck/mintotal) * 100, 
+            (minshoulders/mintotal) * 100, 
+            (minupperarms/mintotal) * 100, 
+            (minupperlegs/mintotal) * 100, 
+            (minwaist/mintotal) * 100
         ];
         return array;
     },
@@ -81,61 +84,61 @@ export default {
     getPercentBack() {
         let array = this.getPercentageArrayForBodyPart();
         let back = array[0];
-        return back;
+        return back * 100;
     },
 
     getPercentCardio() {
         let array = this.getPercentageArrayForBodyPart();
         let cardio = array[1];
-        return cardio;
+        return cardio  * 100;
     },
 
     getPercentChest() {
         let array = this.getPercentageArrayForBodyPart();
         let chest = array[2];
-        return chest;
+        return chest * 100;
     },
 
     getPercentUpperArms() {
         let array = this.getPercentageArrayForBodyPart();
         let arms = array[7];
-        return arms;
+        return arms * 100;
     },
 
     getPercentLowerArms() {
         let array = this.getPercentageArrayForBodyPart();
         let arms = array[3];
-        return arms;
+        return arms * 100;
     },
 
     getPercentUpperLegs() {
         let array = this.getPercentageArrayForBodyPart();
         let legs = array[8];
-        return legs;
+        return legs * 100;
     },
 
     getPercentLowerLegs() {
         let array = this.getPercentageArrayForBodyPart();
         let legs = array[4];
-        return legs;
+        return legs * 100;
     },
 
     getPercentNeck() {
         let array = this.getPercentageArrayForBodyPart();
         let neck = array[5];
-        return neck;
+        return neck * 100;
     },
 
     getPercentShoulders() {
         let array = this.getPercentageArrayForBodyPart();
         let shoulders = array[6];
-        return shoulders;
+        return shoulders * 100;
     },
 
     getPercentWaist() {
         let array = this.getPercentageArrayForBodyPart();
         let waist = array[9];
-        return waist;
+        return waist * 100;
     },
 
     getPercentUpperLimbs() {
