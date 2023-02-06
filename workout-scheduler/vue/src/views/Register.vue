@@ -74,14 +74,19 @@
         </button>
       </div>
     </form>
+    <image-changer/>
   </div>
 </template>
 
 <script>
 import authService from "../services/AuthService";
+import imageChanger from "../components/ImageChanger"
 
 export default {
   name: "register",
+  components: {
+    imageChanger
+  },
   data() {
     return {
       user: {
@@ -138,10 +143,11 @@ export default {
 #register-header {
   display: flex;
   justify-content: center;
-  width: 90%;
-  margin: 0 auto;
+  width: 100%;
   margin-bottom: 20px;
-  margin-top: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-color: var(--blue);
 }
 
 #register-img {
