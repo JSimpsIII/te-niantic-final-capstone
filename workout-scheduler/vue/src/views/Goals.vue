@@ -26,6 +26,7 @@
           class="goal"
           v-for="(goal, i) in this.$store.state.goalList"
           :key="i"
+          :value="goal.id"
         >
           <div class="goal-name">
             {{ goal.name }}
@@ -37,6 +38,12 @@
             {{ goal.days != 0 ? goal.days : "" }}
             {{ goal.misc != null ? goal.misc : "" }}
           </div>
+          <img 
+            src="../assets/trash.png" 
+            alt="delete-icon" 
+            class="delete-icon"
+            @click="deleteGoal"
+          >
         </div>
       </div>
     </main>
@@ -73,6 +80,9 @@ export default {
     toggleAddGoal() {
       this.isAddingGoal = !this.isAddingGoal;
     },
+    deleteGoal(e) {
+      console.log(e.target.value)
+    }
   },
 };
 </script>
@@ -104,7 +114,7 @@ export default {
 .goal {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   background-color: var(--smoke);
   margin-bottom: 10px;
   width: 70%;
@@ -112,7 +122,13 @@ export default {
   height: 60px;
   margin-bottom: 10px;
   border-radius: 10px;
+  padding: 0 25px;
 }
+
+.delete-icon {
+  cursor: pointer;
+}
+
 
 div.goal:first-child {
   background: linear-gradient(90deg, var(--green) 33%, var(--smoke) 0%);
