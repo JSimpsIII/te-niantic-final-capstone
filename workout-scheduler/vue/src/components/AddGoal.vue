@@ -1,67 +1,68 @@
 <template>
-    <div class="add-goal">
-
-        <div class="add-new-goal">
-            <img
-                src="../assets/add.png"
-                alt="add-icon"
-                class="add-new-goal-btn"
-                @click="saveGoal"
-            />
-            <div>
-                Days in gym every week: 
-                <input type="number" min="1" max="7" v-model="newGoal.days" />
-            </div>
-        </div>
-
-        <div class="add-new-goal">
-            <img
-                src="../assets/add.png"
-                alt="add-icon"
-                class="add-new-goal-btn"
-                @click="saveGoal"
-            />
-            <div>
-                Minutes in gym every day: 
-                <input type="number" min="1" max="480" v-model="newGoal.time" />
-            </div>
-        </div>
-
-        <div class="add-new-goal">
-            <img
-                src="../assets/add.png"
-                alt="add-icon"
-                class="add-new-goal-btn"
-                @click="saveGoal"
-            />
-            <div>
-                Bench press (lbs): 
-                <input type="number" min="1" max="480" v-model="newGoal.weight" />
-            </div>
-        </div>
-
-        <div class="add-new-goal">
-            <img
-                src="../assets/add.png"
-                alt="add-icon"
-                class="add-new-goal-btn"
-                @click="saveCustomGoal"
-            />
-            <input type="text" placeholder="Custom goal (e.g. feel less stressed)" />
-        </div>
+  <div class="add-goal">
+    <div class="add-new-goal">
+      <img
+        src="../assets/add.png"
+        alt="add-icon"
+        class="add-new-goal-btn"
+        @click="saveGoal"
+      />
+      <div>
+        Days in gym every week:
+        <input type="number" min="1" max="7" v-model="newGoal.days" />
+      </div>
     </div>
+
+    <div class="add-new-goal">
+      <img
+        src="../assets/add.png"
+        alt="add-icon"
+        class="add-new-goal-btn"
+        @click="saveGoal"
+      />
+      <div>
+        Minutes in gym every day:
+        <input type="number" min="1" max="480" v-model="newGoal.time" />
+      </div>
+    </div>
+
+    <div class="add-new-goal">
+      <img
+        src="../assets/add.png"
+        alt="add-icon"
+        class="add-new-goal-btn"
+        @click="saveGoal"
+      />
+      <div>
+        Bench press (lbs):
+        <input type="number" min="1" max="480" v-model="newGoal.weight" />
+      </div>
+    </div>
+
+    <div class="add-new-goal">
+      <img
+        src="../assets/add.png"
+        alt="add-icon"
+        class="add-new-goal-btn"
+        @click="saveCustomGoal"
+      />
+      <input type="text" placeholder="Custom goal (e.g. feel less stressed)" />
+    </div>
+  </div>
 </template>
 
 <script>
-import goalService from '../services/GoalService';
+import goalService from "../services/GoalService";
 
 export default {
   name: "add-goal",
   data() {
     return {
       newGoal: {
-        name: "Test",
-        date: "",
+        name: "",
+        customerId: this.$store.state.profile.customerId,
+        exerciseId: 1,
+        date: null,
         reps: 0.0,
         weight: 0.0,
         time: 0.0,
@@ -69,24 +70,80 @@ export default {
         days: 0,
         misc: null,
         completed: false,
-      }
-    }
+      },
+    };
   },
   methods: {
-    saveGoal() {
-        goalService
-          .addNewGoal(this.$store.state.customerId, this.newGoal)
-          .then(response => {
-            if (response.status == 201) {
-              console.log('goal ' + this.newGoal.name + ' added');
-            }
-          }).catch(error => {
-            console.error(error);
-          });
+    saveGoal(e) {
+      const newGoalInnerText = e.target.nextElementSibling.innerText;
+      const newGoalName = newGoalInnerText.substring(
+        0,
+        newGoalInnerText.indexOf(":")
+      );
+      this.newGoal.name = newGoalName;
+
+      // this.$store.state.goalList.push(this.newGoal);
+
+      goalService
+        .addNewGoal(this.$store.state.profile.customerId, this.newGoal)
+        .then((response) => {
+          if (response.status == 200) {
+            this.newGoal = {
+              name: "",
+              customerId: this.$store.state.profile.customerId,
+              exerciseId: 1,
+              date: null,
+              reps: 0.0,
+              weight: 0.0,
+              time: 0.0,
+              distance: 0.0,
+              days: 0,
+              misc: null,
+              completed: false,
+            };
+          }
+
+          goalService
+            .getAllGoals(this.$store.state.profile.customerId)
+            .then((res) => (this.$store.state.goalList = res.data));
+        })
+        .catch((error) => {
+          console.error(error);
+        });
     },
-    saveCustomGoal: (e => {
-        console.log(e.target.nextElementSibling.value)
-    })
+    saveCustomGoal(e) {
+      const newGoalName = e.target.nextElementSibling.value;
+      this.newGoal.name = newGoalName;
+
+      // this.$store.state.goalList.push(this.newGoal);
+
+      goalService
+        .addNewGoal(this.$store.state.profile.customerId, this.newGoal)
+        .then((response) => {
+          if (response.status == 200) {
+            this.newGoal = {
+              name: "",
+              customerId: this.$store.state.profile.customerId,
+              exerciseId: 1,
+              date: null,
+              reps: 0.0,
+              weight: 0.0,
+              time: 0.0,
+              distance: 0.0,
+              days: 0,
+              misc: null,
+              completed: false,
+            };
+          }
+
+          goalService
+            .getAllGoals(this.$store.state.profile.customerId)
+            .then((res) => (this.$store.state.goalList = res.data));
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    },
   },
 };
 </script>

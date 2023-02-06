@@ -56,4 +56,9 @@ public class GoalController {
         Goal goal = new Goal(name, customerId, exerciseId, date, reps, weight, time, distance, days, misc, isCompleted);
         return goalDao.updateGoal(goal);
     }
+
+    @RequestMapping(path = "/users/{userId}/goals/{goalId}", method = RequestMethod.DELETE)
+    public boolean deleteGoal(@PathVariable Long userId, @PathVariable int goalId) {
+        return goalDao.deleteGoal(userId, goalId);
+    }
 }

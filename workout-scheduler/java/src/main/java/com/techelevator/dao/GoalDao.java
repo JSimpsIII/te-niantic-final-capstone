@@ -12,4 +12,6 @@ public interface GoalDao {
 
     boolean updateGoal(Goal goal);
 
+    boolean deleteGoal(Long userId, int goalId);
+
 }

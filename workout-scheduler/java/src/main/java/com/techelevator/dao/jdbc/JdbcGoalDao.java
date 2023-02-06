@@ -58,6 +58,7 @@ public class JdbcGoalDao implements GoalDao {
             goalId = jdbcTemplate.queryForObject(sqlQuery, Integer.class,
                     name, customerId, exerciseId, date, reps, weight, time, distance, days, misc, isCompleted);
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             return false;
         }
         return (goalId != null);
@@ -86,6 +87,20 @@ public class JdbcGoalDao implements GoalDao {
         } catch (Exception e) {
             return false;
         }
+        return true;
+    }
+
+    @Override
+    public boolean deleteGoal(Long userId, int goalId) {
+        String sqlQuery = "DELETE FROM goal " +
+                          "WHERE customer_id = ? AND goal_id = ?;";
+
+        try {
+            jdbcTemplate.update(sqlQuery, userId, goalId);
+        } catch (Exception e) {
+            return false;
+        }
+
         return true;
     }
 

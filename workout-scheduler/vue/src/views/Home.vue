@@ -1,75 +1,93 @@
 <template>
-    <div class="home">
-        
-        <div id="profile-header">
+  <div class="home">
+    <div id="profile-header">
+      <img
+        class="profile-img"
+        :src="this.$store.state.profile.photo"
+      />
 
-            <img class="profile-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRo30ulQk-69OJ5GGdowFt21Lsau4GfWzfbBSmsfE4hGrVxBbnVNOr12yOYULoq2Gb7XEU&usqp=CAU" />
+      <div id="username">{{ this.$store.state.user.username}}</div>
 
-            <div id="username">{{ username }}</div>
+      <router-link id="settings" :to="{ name: 'profile' }">
+        <img src="../assets/settings.png" alt="settings-icon" />
+      </router-link>
 
-            <router-link id="settings" :to="{name: 'profile'}">
-                <img src="../assets/settings.png" alt="settings-icon">
-            </router-link>
-        
-            <router-link id="logout" :to="{name: 'logout'}">
-                <img src="../assets/logout.png" alt="logout-icon">
-            </router-link>
-        
-        </div>
-
-        <div id="motivation">Welcome back, {{ username }}! Just 1 more workout until you hit your weekly goal! </div>
-
-        <div class="btn-container">
-
-            <router-link id="gym" class="home-options-btn" to="gym">
-                <div>
-                    <img src="../assets/star.png">
-                    Gym
-                </div>
-            </router-link>
-        
-            <router-link id="metrics" class="home-options-btn" :to="{name: 'metrics'}">
-                <div>
-                    <img src="../assets/chart.png">
-                    Metrics
-                </div>
-            </router-link>
-
-            <router-link id="goals" class="home-options-btn" :to="{name: 'goals'}">
-                <div>
-                    <img src="../assets/goal.png">
-                    Goals
-                </div>
-            </router-link>
-
-        </div>
-
+      <router-link id="logout" :to="{ name: 'logout' }">
+        <img src="../assets/logout.png" alt="logout-icon" />
+      </router-link>
     </div>
+
+    <div id="motivation">
+      Welcome back, {{ this.$store.state.profile.name }}! Just 1 more workout until you hit your
+      weekly goal!
+    </div>
+
+    <div class="btn-container">
+      <router-link id="gym" class="home-options-btn" to="gym">
+        <div>
+          <img src="../assets/star.png" />
+          Gym
+        </div>
+      </router-link>
+
+      <router-link
+        id="metrics"
+        class="home-options-btn"
+        :to="{ name: 'metrics' }"
+      >
+        <div>
+          <img src="../assets/chart.png" />
+          Metrics
+        </div>
+      </router-link>
+
+      <router-link id="goals" class="home-options-btn" :to="{ name: 'goals' }">
+        <div>
+          <img src="../assets/goal.png" />
+          Goals
+        </div>
+      </router-link>
+    </div>
+
+    <footer>
+      <nav-bar />
+    </footer>
+  </div>
 </template>
 
 <script>
-import profileService from '../services/ProfileService';
+import profileService from "../services/ProfileService";
+import NavBar from "../components/NavBar.vue";
 
 export default {
   name: "home",
+  components: {
+    NavBar
+  },
   data() {
     return {
-      // get name from login
-      username: "Steve Rogers"
+      profile: {
+        customerId: '',
+        name: '',
+        photo: ''
     }
+    };
   },
   created() {
-      profileService.getProfile(this.$store.state.user.username)
-                    .then(res => {
-                      const { customerId } = res.data;
-                      this.$store.commit("SET_CUSTOMER_ID", customerId);
-                    })
+    if (this.$store.state.profile.customerId == "") {
+      profileService.getProfile(this.$store.state.user.username).then(res => {
+        const { customerId, name, photo } = res.data;
+        this.profile.customerId = customerId;
+        this.profile.name = name;
+        this.profile.photo = photo;
+        this.$store.commit("SET_PROFILE", this.profile);
+      });
     }
+  },
 };
 </script>
 
 <style scoped>
-
 a {
   text-decoration: none;
 }
@@ -95,15 +113,19 @@ a {
 }
 
 #logout {
-  margin-left: 5px;
+  margin-left: 10px;
 }
 
 .profile-img {
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   object-fit: cover;
   border-radius: 100%;
   object-position: top;
+  background: var(--smoke);
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 #motivation {
@@ -119,8 +141,7 @@ a {
 }
 
 #metrics div {
-  
-  background-color: var(--red); 
+  background-color: var(--red);
 }
 
 #goals div {
@@ -134,7 +155,7 @@ a {
   justify-content: center;
   align-items: center;
   gap: 5px;
-  color: #FDFFFC;
+  color: #fdfffc;
   width: 90%;
   margin: 0 auto;
   font-size: 20px;
@@ -144,4 +165,7 @@ a {
   margin-bottom: 25px;
 }
 
+.btn-container {
+  margin-bottom: 70px;
+}
 </style>

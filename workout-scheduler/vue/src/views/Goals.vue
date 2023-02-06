@@ -1,53 +1,57 @@
 <template>
-    <div id="goals-page-container">
-        <main>
-            <img
-                id="goals-img"
-                src="../assets/gym-for-everyone.png"
-                alt="gym-for-everyone-img" />
+  <div id="goals-page-container">
+    <main>
+      <img
+        id="goals-img"
+        src="../assets/gym-for-everyone.png"
+        alt="gym-for-everyone-img"
+      />
 
-            <div class="goals-banner">
+      <div class="goals-banner">
+        <div class="goals-title-add-container">
+          <div class="goals-title">Goals</div>
 
-                <div class="goals-title-add-container">
+          <div class="add-btn-container">
+            <button class="add-btn" @click="toggleAddGoal">
+              {{ isAddingGoal ? "Cancel" : "+ Add" }}
+            </button>
+          </div>
+        </div>
+      </div>
 
-                    <div class="goals-title">Goals</div>
+      <div class="goals-container">
+        <add-goal v-if="isAddingGoal" />
 
-                    <div class="add-btn-container"> 
-                        <button class="add-btn" @click="toggleAddGoal">
-                            {{ isAddingGoal ? "Cancel" : "+ Add" }}
-                        </button>
-                    </div>
+        <div
+          class="goal"
+          v-for="(goal, i) in this.$store.state.goalList"
+          :key="i"
+          :data-goal-id="goal.id"
+        >
+          <div class="goal-name">
+            {{ goal.name }}
+            {{ goal.reps != 0 || goal.weight != 0 || goal.time != 0 || goal.distance != 0 || goal.days != 0 || goal.misc != null ? ":" : "" }}
+            {{ goal.reps != 0 ? goal.reps : "" }}
+            {{ goal.weight != 0 ? goal.weight : "" }}
+            {{ goal.time != 0 ? goal.time : "" }}
+            {{ goal.distance != 0 ? goal.distance : "" }}
+            {{ goal.days != 0 ? goal.days : "" }}
+            {{ goal.misc != null ? goal.misc : "" }}
+          </div>
+          <img 
+            src="../assets/trash.png" 
+            alt="delete-icon" 
+            class="delete-icon"
+            @click="deleteGoal"
+          >
+        </div>
+      </div>
+    </main>
 
-                </div>
-
-            </div>
-
-            <div class="goals-container">
-                <add-goal v-if="isAddingGoal" />
-
-                <div class="goal" v-for="goal in goals" :key="goal.id">
-
-                    <div class="goal-name">
-                        {{ goal.name }}: 
-                        {{ goal.reps != 0 ? goal.reps : "" }}
-                        {{ goal.weight != 0 ? goal.weight : "" }}
-                        {{ goal.time != 0 ? goal.time : "" }}
-                        {{ goal.distance != 0 ? goal.distance : ""}}
-                        {{ goal.days != 0 ? goal.days : "" }}
-                        {{ goal.misc != null ? goal.misc : "" }}
-                    </div>
-
-                </div>
-
-            </div>
-
-        </main>
-
-        <footer>
-            <nav-bar />
-        </footer>
-
-    </div>
+    <footer>
+      <nav-bar />
+    </footer>
+  </div>
 </template>
 
 <script>
@@ -68,14 +72,18 @@ export default {
     };
   },
   created() {
-    goalService.getAllGoals(this.$store.state.customerId).then((res) => {
-      this.goals = res.data;
-    });
+    goalService
+      .getAllGoals(this.$store.state.profile.customerId)
+      .then(res => this.$store.state.goalList = res.data);
   },
   methods: {
     toggleAddGoal() {
       this.isAddingGoal = !this.isAddingGoal;
     },
+    deleteGoal(e) {
+      const goalId = e.target.parentElement.dataset.goalId;
+      console.log(goalId);
+    }
   },
 };
 </script>
@@ -93,7 +101,7 @@ export default {
 .goals-banner {
   background-color: var(--green);
   font-size: 25px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .goals-title-add-container {
@@ -107,7 +115,7 @@ export default {
 .goal {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   background-color: var(--smoke);
   margin-bottom: 10px;
   width: 70%;
@@ -115,7 +123,13 @@ export default {
   height: 60px;
   margin-bottom: 10px;
   border-radius: 10px;
+  padding: 0 25px;
 }
+
+.delete-icon {
+  cursor: pointer;
+}
+
 
 div.goal:first-child {
   background: linear-gradient(90deg, var(--green) 33%, var(--smoke) 0%);
@@ -140,13 +154,9 @@ div.goal:first-child {
   cursor: pointer;
 }
 
-footer {
-  position: fixed;
-  bottom: 0;
-  width: 600px;
-  height: 50px;
-  background: var(--smoke);
-  padding-top: 15px;
+main {
+  padding-bottom: 50px;
 }
+
 </style>
 

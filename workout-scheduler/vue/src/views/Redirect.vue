@@ -24,8 +24,8 @@ export default {
     created() {
       profileService.getProfile(this.$store.state.user.username)
                     .then(res => {
-                      const { customerId } = res.data;
-                      this.$store.commit("SET_CUSTOMER_ID", customerId);
+                      const { customerId, name } = res.data;
+                      this.$store.commit("SET_CUSTOMER_ID_NAME", customerId, name);
                     })
     }
 }

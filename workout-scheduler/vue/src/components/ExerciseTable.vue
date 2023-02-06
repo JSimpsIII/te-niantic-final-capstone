@@ -1,6 +1,12 @@
 <template>
   <div id='exercise-table'>
-       <table id="exercise-table">
+  <div id='search-menu'>
+  <img id="search-icon" src="../assets/search.png" alt="search-icon" title="Search" @click="toggleSearch" v-if="!showSearchBar">
+  <img id="filter-icon" src="../assets/filter.png" alt="filter-icon" title="Enable Filters" @click="toggleFilters" v-if="showSearchBar">
+  <input type="text" id="exerciseNameFilter" placeholder="search exercises" v-model="filter.name" v-if="showSearchBar"/>
+  <button v-if="showSearchBar" @click="toggleSearch">Cancel</button>
+  </div>
+       <table id="table-of-exercises">
             <thead>
                 <tr>
                     <th>Exercise</th>
@@ -12,11 +18,13 @@
             <tbody>
                 <tr>
                     <td>
-                        <input type="text" id="exerciseNameFilter" v-model="filter.name"/>
+                        &nbsp;
                     </td>
                     <td>
-                        <select id="exerciseTargetFilter" class="exercise-filter" 
-                        v-model="filter.target">
+                        <select id="exerciseTargetFilter" 
+                        class="exercise-filter" 
+                        v-model="filter.target"
+                        v-if="showFilters">
                             <option value>Show All</option>
                             <option value="abductors">Abductors</option>
                             <option value="abs">Abs</option>
@@ -42,7 +50,8 @@
                     <td>
                         <select id="bodypartFilter" 
                         class="exercise-filter"
-                        v-model="filter.bodyPart">
+                        v-model="filter.bodyPart"
+                        v-if="showFilters">
                             <option value>Show All</option>
                             <option value="back">Back</option>
                             <option value="cardio">Cardio</option>
@@ -59,7 +68,8 @@
                     <td>
                         <select id="equipmentFilter" 
                         class="exercise-filter"
-                        v-model="filter.equipment">
+                        v-model="filter.equipment"
+                        v-if="showFilters">
                             <option value>Show All</option>
                             <option value='assisted'>Assisted</option>
                             <option value='band'>Band</option>
@@ -99,7 +109,7 @@
                     class='exercise-option'>
                     <td>
                         <router-link :to="{ name: 'exercise', params: {id:exercise.id} }">
-                            <button>{{ exercise.name }}</button>
+                            <button class="exercise-name">{{ exercise.name }}</button>
                         </router-link>
                     </td>
                     <td class='column-list'>{{ exercise.target }}</td>
@@ -123,7 +133,9 @@ export default {
                 target: '',
                 bodyPart: '',
                 equipment: ''
-            }
+            },
+            showSearchBar: false,
+            showFilters: false
         }
     },
     created() {
@@ -174,30 +186,73 @@ export default {
                     this.$store.commit("LOAD_EXERCISE_LIST", response.data);
                     this.isLoading = false;
                 })
+        },
+        toggleSearch() {
+            this.showSearchBar = !this.showSearchBar;
+            this.filter = {
+                name: '',
+                target: '',
+                bodyPart: '',
+                equipment: ''
+            }
+            if (this.showFilters == true) {
+                this.showFilters = false
+            }
+        },
+        toggleFilters() {
+            this.showFilters = !this.showFilters;
         }
     }
 
 }
 </script>
 
-<style scoped>
 
-.exercise-option {
-    height: 50px;
+<style>
+#exercise-table {
+  background-color: var(--blue);
+  text-align: center;
+  padding-bottom: 50%;
+}
+
+#table-of-exercises {
+    margin-right: 7%;
+}
+
+#search-menu {
+  display: flex;
+  justify-content: flex-start;
+  padding-top: 5%;
+  margin-left: 2%
+}
+
+#search-icon {
+    height: 5%;
+    width: 5%;
+    margin-right: 2%
+}
+
+#filter-icon {
+    height: 5%;
+    width: 5%;
+    margin-right: 2%
+}
+
+.exercise-name {
+    width: 70%;
 }
 button {
+    color: white;
+    background-color: var(--blue);
     font-size: 17px;
-    text-align: left;
     border: none;
     outline: none;
-    color: white;
-    background-color: black;
-    margin-right: 10px;
+    margin-top: 20px;
 }
 button:hover {
     cursor: pointer;
-    color: lightblue;
     font-size: 18px;
+    color: lightblue;
 }
 
 </style>
