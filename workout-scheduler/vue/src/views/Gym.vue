@@ -7,11 +7,7 @@
 
             <div class="gym-title-add-container">
 
-                <div class="gym-title">Gym</div>
-
-                <!-- <div class="exercise-search-container">
-                <input type="text" id="exerciseNameFilter" v-model="filter.exerciseName"/>
-                </div> -->
+                <div class="gym-title">Virtual Gym</div>
 
             </div>
         </div>
@@ -49,15 +45,11 @@ export default {
 .gym-banner {
   background-color: var(--blue);
   font-size: 25px;
-  margin-bottom: 20px;
 }
 
 .gym-title-add-container {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 70%;
-  margin: 0 auto;
+  justify-content: center;
 }
 
 footer {

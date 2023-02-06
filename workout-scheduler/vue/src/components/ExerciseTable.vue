@@ -1,5 +1,10 @@
 <template>
   <div id='exercise-table'>
+  <div id='search-menu'>
+  <img id="search-icon" src="../assets/search.png" alt="search-icon" @click="toggleSearch" v-if="!showSearchBar">
+  <img id="filter-icon" src="../assets/filter.png" alt="filter-icon" @click="toggleFilters" v-if="showSearchBar">
+  <button v-if="showSearchBar" @click="toggleSearch">Cancel</button>
+  </div>
        <table id="exercise-table">
             <thead>
                 <tr>
@@ -12,10 +17,10 @@
             <tbody>
                 <tr>
                     <td>
-                        <input type="text" id="exerciseNameFilter" v-model="filter.name"/>
+                        <input type="text" id="exerciseNameFilter" placeholder="search exercises" v-model="filter.name" v-if="showSearchBar"/>
                     </td>
                     <td>
-                        <select id="exerciseTargetFilter" v-model="filter.target">
+                        <select id="exerciseTargetFilter" v-model="filter.target" v-if="showFilters">
                             <option value>Show All</option>
                             <option value="abductors">Abductors</option>
                             <option value="abs">Abs</option>
@@ -39,7 +44,7 @@
                         </select>
                     </td>
                     <td>
-                        <select id="bodypartFilter" v-model="filter.bodyPart">
+                        <select id="bodypartFilter" v-model="filter.bodyPart" v-if="showFilters">
                             <option value>Show All</option>
                             <option value="back">Back</option>
                             <option value="cardio">Cardio</option>
@@ -54,7 +59,7 @@
                         </select>
                     </td>
                     <td>
-                        <select id="equipmentFilter" v-model="filter.equipment">
+                        <select id="equipmentFilter" v-model="filter.equipment" v-if="showFilters">
                             <option value>Show All</option>
                             <option value='assisted'>Assisted</option>
                             <option value='band'>Band</option>
@@ -117,7 +122,9 @@ export default {
                 target: '',
                 bodyPart: '',
                 equipment: ''
-            }
+            },
+            showSearchBar: false,
+            showFilters: false
         }
     },
     created() {
@@ -168,6 +175,15 @@ export default {
                     this.$store.commit("LOAD_EXERCISE_LIST", response.data);
                     this.isLoading = false;
                 })
+        },
+        toggleSearch() {
+            this.showSearchBar = !this.showSearchBar;
+            if (this.showFilters == true) {
+                this.showFilters = false
+            }
+        },
+        toggleFilters() {
+            this.showFilters = !this.showFilters;
         }
     }
 
@@ -175,5 +191,26 @@ export default {
 </script>
 
 <style>
+#exercise-table {
+  background-color: var(--blue);
+}
+
+#search-menu {
+  display: flex;
+  justify-content: flex-start;
+  margin-left: 2%
+}
+
+#search-icon {
+    height: 5%;
+    width: 5%;
+}
+
+#filter-icon {
+    height: 5%;
+    width: 5%;
+}
+
+
 
 </style>

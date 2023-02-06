@@ -16,15 +16,20 @@
 
         <exercise-entry />
 
+        <footer>
+          <nav-bar />
+        </footer>
+
     </section>
 </template>
 
 <script>
 import ExerciseEntry from '../components/ExerciseEntry.vue';
 import exerciseService from '../services/ExerciseService';
+import NavBar from '../components/NavBar.vue'
 
 export default {
-  components: { ExerciseEntry },
+  components: { NavBar, ExerciseEntry },
     name: 'exercise-details',
     methods: {
       getExercise() {
@@ -80,6 +85,15 @@ p {
 
 .gif {
   margin-bottom: 20px;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 600px;
+  height: 50px;
+  background: var(--smoke);
+  padding-top: 15px;
 }
 
 </style>
