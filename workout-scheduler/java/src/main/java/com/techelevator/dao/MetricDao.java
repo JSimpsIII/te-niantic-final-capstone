@@ -6,8 +6,8 @@ import java.util.List;
 
 public interface MetricDao {
 
-    List<Metric> getAllMetricsById(Long userId);
+    List<Metric> getAllMetrics(Long userId);
 
-    boolean addNewMetric(Long userId, Metric metric);
+    boolean logNewMetric(Long userId, Metric metric);
 
 }

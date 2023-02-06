@@ -19,13 +19,13 @@ public class GoalController {
         this.goalDao = goalDao;
     }
 
-    @RequestMapping(path = "/users/{id}/goals", method = RequestMethod.GET)
-    public List<Goal> getAllGoalsById(@PathVariable Long id) {
-        return goalDao.getAllGoalsById(id);
+    @RequestMapping(path = "/users/{userId}/goals", method = RequestMethod.GET)
+    public List<Goal> getAllGoals(@PathVariable Long userId) {
+        return goalDao.getAllGoals(userId);
     }
 
-    @RequestMapping(path = "/users/{id}/goals", method = RequestMethod.POST)
-    public boolean addNewGoal(@PathVariable Long id, @RequestBody GoalDTO goalDTO) {
+    @RequestMapping(path = "/users/{userId}/goals", method = RequestMethod.POST)
+    public boolean addNewGoal(@PathVariable Long userId, @RequestBody GoalDTO goalDTO) {
         String name = goalDTO.getName();
         Long customerId = goalDTO.getCustomerId();
         int exerciseId = goalDTO.getExerciseId();
@@ -38,7 +38,7 @@ public class GoalController {
         String misc = goalDTO.getMisc();
         boolean isCompleted = goalDTO.isCompleted();
         Goal goal = new Goal(name, customerId, exerciseId, date, reps, weight, time, distance, days, misc, isCompleted);
-        return goalDao.addNewGoal(id, goal);
+        return goalDao.addNewGoal(userId, goal);
     }
 
     @RequestMapping(path = "/users/{userId}/goals/{goalId}", method = RequestMethod.PUT)

@@ -85,17 +85,17 @@ export default {
           })
       },
       loadMetricsList(){
-        let id = this.$store.state.profile.customerId;
+        let userId = this.$store.state.profile.customerId;
         metricService
-          .getAllMetrics(id)
+          .getAllMetrics(userId)
           .then(response => {
             this.$store.commit('LOAD_METRICS_LIST', response.data);
           })
       },
       loadGoalList() {
-        let id = this.$store.state.profile.customerId;
+        let userId = this.$store.state.profile.customerId;
         goalService
-          .getAllGoals(id)
+          .getAllGoals(userId)
           .then(response => {
             this.$store.commit('LOAD_GOAL_LIST', response.data);
           })

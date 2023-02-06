@@ -6,11 +6,12 @@ const http = axios.create({
 
 export default {
     
-    getAllMetrics(id) {
-        return http.get(`/users/${id}/metrics`);
+    getAllMetrics(userId) {
+        return http.get(`/users/${userId}/metrics`);
     },
 
-    addNewMetric(id, newMetric) {
-        return http.post(`/users/${id}/metrics`, newMetric);
+    logNewMetric(userId, metric) {
+        return http.post(`/users/${userId}/log`, metric);
     }
+
 }

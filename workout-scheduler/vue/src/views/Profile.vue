@@ -63,6 +63,7 @@
           v-model="user.height"
           id="height"
           name="height"
+          placeholder="in inches"
           :disabled="!isEditting"
         />
 

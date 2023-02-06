@@ -18,13 +18,14 @@ public class MetricsController {
         this.metricDao = metricDao;
     }
 
-    @RequestMapping(path = "/users/{id}/metrics", method = RequestMethod.GET)
-    public List<Metric> getAllMetricsById(@PathVariable Long id) {
-        return metricDao.getAllMetricsById(id);
+    @RequestMapping(path = "/users/{userId}/metrics", method = RequestMethod.GET)
+    public List<Metric> getAllMetrics(@PathVariable Long userId) {
+        return metricDao.getAllMetrics(userId);
     }
 
-    @RequestMapping(path = "/users/{id}/metrics", method = RequestMethod.POST)
-    public boolean addNewMetric(@PathVariable Long id, @RequestBody MetricDTO metricDTO) {
+    @RequestMapping(path = "/users/{userId}/log", method = RequestMethod.POST)
+    public boolean logNewMetric(@PathVariable Long userId, @RequestBody MetricDTO metricDTO) {
+
         Long customerId = metricDTO.getCustomerId();
         int exerciseId = metricDTO.getExerciseId();
         Date date = metricDTO.getDate();
@@ -35,6 +36,6 @@ public class MetricsController {
         int days = metricDTO.getDays();
         String misc = metricDTO.getMisc();
         Metric metric = new Metric(customerId, exerciseId, date, reps, weight, time, distance, days, misc);
-        return metricDao.addNewMetric(id, metric);
+        return metricDao.logNewMetric(userId, metric);
     }
 }
