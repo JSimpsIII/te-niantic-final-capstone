@@ -32,6 +32,7 @@
         </div>
         <div class="sub-metric-charts" v-if="minutes.isShowing">
             Charts Here
+            <metrics-minutes />
         </div>
       </div>
 
@@ -87,10 +88,13 @@
 
 <script>
 import NavBar from '../components/NavBar.vue';
+import MetricsMinutes from '../components/MetricsMinutes.vue';
+
 export default {
   name: "metrics",
   components: {
-    NavBar
+    NavBar,
+    MetricsMinutes
   },
   data() {
       return {
