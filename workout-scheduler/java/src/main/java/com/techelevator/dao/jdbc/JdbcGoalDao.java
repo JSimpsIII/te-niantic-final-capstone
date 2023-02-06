@@ -90,6 +90,20 @@ public class JdbcGoalDao implements GoalDao {
         return true;
     }
 
+    @Override
+    public boolean deleteGoal(Long userId, int goalId) {
+        String sqlQuery = "DELETE FROM goal " +
+                          "WHERE customer_id = ? AND goal_id = ?;";
+
+        try {
+            jdbcTemplate.update(sqlQuery, userId, goalId);
+        } catch (Exception e) {
+            return false;
+        }
+
+        return true;
+    }
+
     Goal mapRowToGoal(SqlRowSet row) {
         Goal goal = new Goal();
         goal.setId(row.getInt("goal_id"));

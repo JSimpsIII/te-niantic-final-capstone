@@ -26,7 +26,7 @@
           class="goal"
           v-for="(goal, i) in this.$store.state.goalList"
           :key="i"
-          :value="goal.id"
+          :data-goal-id="goal.id"
         >
           <div class="goal-name">
             {{ goal.name }}
@@ -81,7 +81,8 @@ export default {
       this.isAddingGoal = !this.isAddingGoal;
     },
     deleteGoal(e) {
-      console.log(e.target.value)
+      const goalId = e.target.parentElement.dataset.goalId;
+      console.log(goalId);
     }
   },
 };
