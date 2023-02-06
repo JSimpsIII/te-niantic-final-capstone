@@ -1,8 +1,9 @@
 <template>
   <div id='exercise-table'>
   <div id='search-menu'>
-  <img id="search-icon" src="../assets/search.png" alt="search-icon" @click="toggleSearch" v-if="!showSearchBar">
-  <img id="filter-icon" src="../assets/filter.png" alt="filter-icon" @click="toggleFilters" v-if="showSearchBar">
+  <img id="search-icon" src="../assets/search.png" alt="search-icon" title="Search" @click="toggleSearch" v-if="!showSearchBar">
+  <img id="filter-icon" src="../assets/filter.png" alt="filter-icon" title="Enable Filters" @click="toggleFilters" v-if="showSearchBar">
+  <input type="text" id="exerciseNameFilter" placeholder="search exercises" v-model="filter.name" v-if="showSearchBar"/>
   <button v-if="showSearchBar" @click="toggleSearch">Cancel</button>
   </div>
        <table id="exercise-table">
@@ -17,7 +18,7 @@
             <tbody>
                 <tr>
                     <td>
-                        <input type="text" id="exerciseNameFilter" placeholder="search exercises" v-model="filter.name" v-if="showSearchBar"/>
+                        &nbsp;
                     </td>
                     <td>
                         <select id="exerciseTargetFilter" v-model="filter.target" v-if="showFilters">
@@ -178,6 +179,12 @@ export default {
         },
         toggleSearch() {
             this.showSearchBar = !this.showSearchBar;
+            this.filter = {
+                name: '',
+                target: '',
+                bodyPart: '',
+                equipment: ''
+            }
             if (this.showFilters == true) {
                 this.showFilters = false
             }
@@ -198,17 +205,20 @@ export default {
 #search-menu {
   display: flex;
   justify-content: flex-start;
+  padding-top: 5%;
   margin-left: 2%
 }
 
 #search-icon {
     height: 5%;
     width: 5%;
+    margin-right: 2%
 }
 
 #filter-icon {
     height: 5%;
     width: 5%;
+    margin-right: 2%
 }
 
 
