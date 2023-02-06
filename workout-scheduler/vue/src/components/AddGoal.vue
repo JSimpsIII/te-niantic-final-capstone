@@ -46,7 +46,7 @@
         class="add-new-goal-btn"
         @click="saveCustomGoal"
       />
-      <input type="text" placeholder="Custom goal (e.g. feel less stressed)" />
+      <input id="custom-goal-input" type="text" placeholder="Custom goal (e.g. feel less stressed)" v-model="newGoal.name" />
     </div>
   </div>
 </template>
@@ -111,9 +111,9 @@ export default {
           console.error(error);
         });
     },
-    saveCustomGoal(e) {
-      const newGoalName = e.target.nextElementSibling.value;
-      this.newGoal.name = newGoalName;
+    saveCustomGoal() {
+      // const newGoalName = e.target.nextElementSibling.value;
+      // this.newGoal.name = newGoalName;
 
       // this.$store.state.goalList.push(this.newGoal);
 
@@ -139,7 +139,9 @@ export default {
           goalService
             .getAllGoals(this.$store.state.profile.customerId)
             .then((res) => (this.$store.state.goalList = res.data));
+            
         })
+
         .catch((error) => {
           console.error(error);
         });
@@ -157,6 +159,8 @@ export default {
 .add-new-goal {
   display: flex;
   align-items: center;
+  width: 70%;
+  margin: 0 auto;
   height: 60px;
   background-color: var(--green);
   border-radius: 10px;
