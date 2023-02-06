@@ -4,6 +4,7 @@
           class="goal"
           v-for="goal in this.$store.state.goalList"
           :key="goal.id"
+          :data-goal-id="goal.id"
         >
           <div class="goal-details">
             {{ goal.name }}
@@ -35,12 +36,48 @@
 </template>
 
 <script>
+import goalService from "../services/GoalService";
+
 export default {
-    name: 'list-goals'
+    name: 'list-goals',
+    methods: {
+      deleteGoal(e) {
+      const goalId = e.target.parentElement.dataset.goalId;
+
+      goalService
+        .deleteGoal(this.$store.state.profile.customerId, goalId)
+        .then((res) => {
+          if (res.status == 200) {
+            goalService
+              .getAllGoals(this.$store.state.profile.customerId)
+              .then((res) => (this.$store.state.goalList = res.data));
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+    }
 
 }
 </script>
 
-<style>
+<style scoped>
+  .goal {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--smoke);
+  margin-bottom: 10px;
+  width: 70%;
+  margin: 0 auto;
+  height: 60px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  padding: 0 25px;
+}
 
+.delete-icon {
+  cursor: pointer;
+}
 </style>

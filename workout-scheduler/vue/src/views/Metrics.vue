@@ -182,4 +182,13 @@ export default {
     padding: 20px 10px;
 }
 
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 600px;
+  height: 50px;
+  background: var(--smoke);
+  padding-top: 15px;
+}
+
 </style>

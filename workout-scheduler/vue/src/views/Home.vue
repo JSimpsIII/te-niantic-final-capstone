@@ -199,4 +199,13 @@ a {
 .btn-container {
   margin-bottom: 70px;
 }
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 600px;
+  height: 50px;
+  background: var(--smoke);
+  padding-top: 15px;
+}
 </style>
