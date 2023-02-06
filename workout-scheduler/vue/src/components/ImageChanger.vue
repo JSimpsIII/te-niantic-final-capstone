@@ -58,7 +58,7 @@ export default {
   margin-bottom: 2%;
 }
 
-.fade-enter-active, {
+.fade-enter-active {
   transition: all 0.9s ease;
   overflow: hidden;
   visibility: visible;

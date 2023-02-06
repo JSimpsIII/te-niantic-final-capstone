@@ -101,6 +101,9 @@ export default new Vuex.Store({
     },
     LOAD_METRICS_LIST(state, metrics) {
       state.metricsList = metrics;
+    },
+    LOAD_GOAL_LIST(state, goals) {
+      state.goalList = goals;
     }
   }
 })

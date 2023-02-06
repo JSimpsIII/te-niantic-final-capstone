@@ -22,38 +22,8 @@
       <div class="goals-container">
         <add-goal v-if="isAddingGoal" />
 
-        <div
-          class="goal"
-          v-for="(goal, i) in this.$store.state.goalList"
-          :key="i"
-          :data-goal-id="goal.id"
-        >
-          <div class="goal-name">
-            {{ goal.name }}
-            {{
-              goal.reps != 0 ||
-              goal.weight != 0 ||
-              goal.time != 0 ||
-              goal.distance != 0 ||
-              goal.days != 0 ||
-              goal.misc != null
-                ? ":"
-                : ""
-            }}
-            {{ goal.reps != 0 ? goal.reps : "" }}
-            {{ goal.weight != 0 ? goal.weight : "" }}
-            {{ goal.time != 0 ? goal.time : "" }}
-            {{ goal.distance != 0 ? goal.distance : "" }}
-            {{ goal.days != 0 ? goal.days : "" }}
-            {{ goal.misc != null ? goal.misc : "" }}
-          </div>
-          <img
-            src="../assets/trash.png"
-            alt="delete-icon"
-            class="delete-icon"
-            @click="deleteGoal"
-          />
-        </div>
+        <list-goals />
+
       </div>
     </main>
 
@@ -65,6 +35,7 @@
 
 <script>
 import AddGoal from "../components/AddGoal.vue";
+import ListGoals from '../components/ListGoals.vue';
 import NavBar from "../components/NavBar.vue";
 import goalService from "../services/GoalService";
 
@@ -72,6 +43,7 @@ export default {
   name: "goals",
   components: {
     AddGoal,
+    ListGoals,
     NavBar,
   },
   data() {

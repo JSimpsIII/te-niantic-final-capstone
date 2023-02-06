@@ -8,8 +8,9 @@ import com.techelevator.dao.MetricDao;
 import java.util.Date;
 import java.util.List;
 
-@CrossOrigin
+
 @RestController
+@CrossOrigin
 public class MetricsController {
 
     private MetricDao metricDao;

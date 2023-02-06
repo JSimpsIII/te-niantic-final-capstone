@@ -6,8 +6,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin
+
 @RestController
+@CrossOrigin
 public class ExerciseController {
 
     private ExerciseDao exerciseDao;

@@ -60,6 +60,7 @@ import profileService from "../services/ProfileService";
 import NavBar from "../components/NavBar.vue";
 import metricService from '../services/MetricService';
 import exerciseService from '../services/ExerciseService';
+import goalService from '../services/GoalService'
 
 export default {
   name: "home",
@@ -84,11 +85,19 @@ export default {
           })
       },
       loadMetricsList(){
-        let id = this.profile.customerId;
+        let id = this.$store.state.profile.customerId;
         metricService
           .getAllMetrics(id)
           .then(response => {
             this.$store.commit('LOAD_METRICS_LIST', response.data);
+          })
+      },
+      loadGoalList() {
+        let id = this.$store.state.profile.customerId;
+        goalService
+          .getAllGoals(id)
+          .then(response => {
+            this.$store.commit('LOAD_GOAL_LIST', response.data);
           })
       }
   },
@@ -101,9 +110,10 @@ export default {
         this.profile.photo = photo;
         this.$store.commit("SET_PROFILE", this.profile);
       });
-      this.loadExerciseList();
-      this.loadMetricsList();
     }
+    this.loadExerciseList();
+    this.loadMetricsList();
+    this.loadGoalList();
   }
 };
 </script>
