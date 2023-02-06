@@ -22,7 +22,7 @@ public class ExerciseController {
     }
 
     @RequestMapping(path = "/exercises/{id}", method = RequestMethod.GET)
-    public Exercise getExerciseById(@RequestParam int id) {
+    public Exercise getExerciseById(@PathVariable int id) {
         return exerciseDao.getExerciseById(id);
     }
 

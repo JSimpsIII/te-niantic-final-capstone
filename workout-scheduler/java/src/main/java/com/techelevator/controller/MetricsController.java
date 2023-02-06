@@ -19,12 +19,12 @@ public class MetricsController {
     }
 
     @RequestMapping(path = "/users/{userId}/metrics", method = RequestMethod.GET)
-    public List<Metric> getAllMetrics(@RequestParam Long userId) {
+    public List<Metric> getAllMetrics(@PathVariable Long userId) {
         return metricDao.getAllMetrics(userId);
     }
 
     @RequestMapping(path = "/users/{userId}/log", method = RequestMethod.POST)
-    public boolean logNewMetric(@RequestParam Long userId, @RequestBody MetricDTO metricDTO) {
+    public boolean logNewMetric(@PathVariable Long userId, @RequestBody MetricDTO metricDTO) {
         Long customerId = metricDTO.getCustomerId();
         int exerciseId = metricDTO.getExerciseId();
         Date date = metricDTO.getDate();
