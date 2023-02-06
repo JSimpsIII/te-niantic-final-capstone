@@ -78,12 +78,20 @@
       </div>
 
     </div>
+
+    <footer>
+      <nav-bar />
+    </footer>
   </div>
 </template>
 
 <script>
+import NavBar from '../components/NavBar.vue';
 export default {
   name: "metrics",
+  components: {
+    NavBar
+  },
   data() {
       return {
           days: {
@@ -140,6 +148,10 @@ export default {
   align-items: center;
   height: 100px;
   background-color: var(--red);
+}
+
+#metrics-container {
+  margin-bottom: 70px;
 }
 
 .metric-headers {

@@ -9,7 +9,7 @@
             <img id="star-icon" src="../assets/star.png" alt="star-icon">
         </router-link>
 
-        <router-link to="/">
+        <router-link :to="{name: 'metrics'}">
             <img id="chart-icon" src="../assets/chart.png" alt="chart-icon">
         </router-link>
 
