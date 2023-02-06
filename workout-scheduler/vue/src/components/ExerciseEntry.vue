@@ -68,7 +68,7 @@ export default {
             metric: {
                 customerId: null,
                 exerciseId: null,
-                Date: null,
+                date: null,
                 reps: null,
                 weight: null,
                 time: null,
@@ -82,6 +82,9 @@ export default {
       createEntry() {
             this.metric.customerId = this.$store.state.profile.customerId;
             this.metric.exerciseId = this.$store.state.exercise.id;
+            if (this.metric.date == null) {
+                this.metric.date = new Date().toISOString();
+            }
             metricService
                 .logNewMetric(this.metric.customerId, this.metric)
                 .then(this.$router.push('/'))
