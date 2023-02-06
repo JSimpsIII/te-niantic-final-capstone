@@ -255,4 +255,12 @@ button:hover {
     color: lightblue;
 }
 
+#search-icon:hover {
+    filter: invert(100%) sepia(100%) saturate(100%) hue-rotate(0deg) brightness(100%) contrast(100%);
+}
+
+#filter-icon:hover {
+    filter: invert(100%) sepia(100%) saturate(100%) hue-rotate(0deg) brightness(100%) contrast(100%);
+}
+
 </style>
