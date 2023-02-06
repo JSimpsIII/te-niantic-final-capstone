@@ -23,11 +23,15 @@ public class JdbcMetricDao implements MetricDao {
     public List<Metric> getAllMetricsById(Long userId) {
         List<Metric> metrics = new ArrayList<>();
         String metricsSql = "SELECT * FROM metrics WHERE customer_id = ?;";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(metricsSql, userId);
-        while (results.next()) {
-            Metric metric = mapRowToMetric(results);
-            metrics.add(metric);
-        }
+
+            SqlRowSet results = jdbcTemplate.queryForRowSet(metricsSql, userId);
+            while (results.next()) {
+                Metric metric = mapRowToMetric(results);
+                metrics.add(metric);
+            }
+
+
+
         return metrics;
     }
 
@@ -91,7 +95,7 @@ public class JdbcMetricDao implements MetricDao {
         metric.setReps(row.getInt("current_reps"));
         metric.setWeight(row.getDouble("current_weight_lbs"));
         metric.setTime(row.getDouble("current_time_min"));
-        metric.setDistance(row.getDouble("current_distance_mi"));
+        metric.setDistance(row.getDouble("current_distance_miles"));
         metric.setDays(row.getInt("current_days"));
         metric.setMisc(row.getString("current_misc"));
         return metric;

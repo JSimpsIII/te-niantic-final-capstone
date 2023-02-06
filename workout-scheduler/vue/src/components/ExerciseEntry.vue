@@ -80,7 +80,7 @@ export default {
     },
     methods: {
       createEntry() {
-            this.metric.customerId = this.$store.state.customerId;
+            this.metric.customerId = this.$store.state.profile.customerId;
             this.metric.exerciseId = this.$store.state.exercise.id;
             exerciseService
                 .log(this.metric.customerId, this.metric)

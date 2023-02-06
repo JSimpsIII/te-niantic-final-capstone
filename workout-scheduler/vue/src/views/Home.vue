@@ -102,18 +102,19 @@ export default {
       }
   },
   created() {
-    if (this.$store.state.profile.customerId == "") {
+    // if (this.$store.state.profile.customerId == "") {
       profileService.getProfile(this.$store.state.user.username).then(res => {
         const { customerId, name, photo } = res.data;
         this.profile.customerId = customerId;
         this.profile.name = name;
         this.profile.photo = photo;
         this.$store.commit("SET_PROFILE", this.profile);
+        
+        this.loadExerciseList();
+        this.loadMetricsList();
+        this.loadGoalList();
       });
-    }
-    this.loadExerciseList();
-    this.loadMetricsList();
-    this.loadGoalList();
+    // }
   }
 };
 </script>
