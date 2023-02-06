@@ -56,7 +56,7 @@
 </template>
 
 <script>
-import exerciseService from '../services/ExerciseService.js'
+import metricService from '../services/MetricService.js'
 
 export default {
     name: 'exercise-entry',
@@ -82,8 +82,8 @@ export default {
       createEntry() {
             this.metric.customerId = this.$store.state.customerId;
             this.metric.exerciseId = this.$store.state.exercise.id;
-            exerciseService
-                .log(this.metric.customerId, this.metric)
+            metricService
+                .logNewMetric(this.metric.customerId, this.metric)
                 .then(this.$router.push('/'))
       }
     }

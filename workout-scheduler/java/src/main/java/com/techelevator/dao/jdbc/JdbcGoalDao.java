@@ -20,7 +20,7 @@ public class JdbcGoalDao implements GoalDao {
     }
 
     @Override
-    public List<Goal> getAllGoalsById(Long userId) {
+    public List<Goal> getAllGoals(Long userId) {
         List<Goal> goals = new ArrayList<>();
         String sqlQuery = "SELECT * FROM goal WHERE customer_id = ?";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sqlQuery, userId);

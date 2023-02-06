@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface GoalDao {
 
-    List<Goal> getAllGoalsById(Long userId);
+    List<Goal> getAllGoals(Long userId);
 
     boolean addNewGoal(Long userId, Goal goal);
 
