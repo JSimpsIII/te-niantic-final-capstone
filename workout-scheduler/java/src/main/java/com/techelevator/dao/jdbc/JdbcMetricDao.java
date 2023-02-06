@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -44,7 +45,7 @@ public class JdbcMetricDao implements MetricDao {
     private boolean createNewMetric(Long userId, Metric metric) {
 
         int exerciseId = metric.getExerciseId();
-        String date = LocalDate.now().format(DateTimeFormatter.ISO_LOCAL_DATE);
+        Date date = metric.getDate();
         double reps = metric.getReps();
         double weight = metric.getWeight();
         double time = metric.getTime();
