@@ -36,53 +36,6 @@ public class JdbcExerciseDao implements ExerciseDao {
     }
 
     @Override
-    public List<Exercise> getAllExercisesByEquipment(String equipment) {
-        List<Exercise> exercises = new ArrayList<>();
-        String sqlQuery = sqlQueryGetAll + " WHERE eq.equipment_name = ?;";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sqlQuery, equipment);
-        while(results.next()) {
-            Exercise exercise = mapRowToExercise(results);
-            exercises.add(exercise);
-        }
-        return exercises;
-    }
-
-    @Override
-    public List<Exercise> getAllExercisesByTarget(String target) {
-        List<Exercise> exercises = new ArrayList<>();
-        String sqlQuery = sqlQueryGetAll + " WHERE tg.target_name = ?;";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sqlQuery, target);
-        while(results.next()) {
-            Exercise exercise = mapRowToExercise(results);
-            exercises.add(exercise);
-        }
-        return exercises;
-    }
-
-    @Override
-    public List<Exercise> getAllExercisesByBodypart(String bodypart) {
-        List<Exercise> exercises = new ArrayList<>();
-        String sqlQuery = sqlQueryGetAll + " WHERE b.bodypart_name = ?;";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sqlQuery, bodypart);
-        while(results.next()) {
-            Exercise exercise = mapRowToExercise(results);
-            exercises.add(exercise);
-        }
-        return exercises;
-    }
-
-    @Override
-    public Exercise getExerciseByName(String name) {
-        Exercise exercise = new Exercise();
-        String sqlQuery = sqlQueryGetAll + " WHERE ex.exercise_name = ?;";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sqlQuery, name);
-        if(results.next()) {
-            exercise = mapRowToExercise(results);
-        }
-        return exercise;
-    }
-
-    @Override
     public Exercise getExerciseById(int id) {
         Exercise exercise = new Exercise();
         String sqlQuery = sqlQueryGetAll + " WHERE ex.exercise_id = ?;";
