@@ -24,7 +24,7 @@ import ExerciseEntry from '../components/ExerciseEntry.vue';
 import exerciseService from '../services/ExerciseService';
 
 export default {
-  components: { ExerciseEntry },
+    components: { ExerciseEntry },
     name: 'exercise-details',
     methods: {
       getExercise() {
@@ -49,9 +49,9 @@ export default {
         let exercises = this.$store.state.exerciseList.find(exercise => 
             exercise.id == this.$route.params.id)
             return exercises;
-            }
-      }
+        }
     }
+}
 </script>
 
 <style scoped>
