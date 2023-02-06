@@ -11,8 +11,8 @@ export default {
     return http.post('/login', user)
   },
 
-  register(user) {
-    return http.post('/register', user)
+  register(newUser) {
+    return http.post('/register', newUser)
   }
 
 }

@@ -11,7 +11,7 @@ export default
         return http.get('/exercises')
     },
 
-    getExerciseById(exerciseId){
-        return http.get(`/exercises/${exerciseId}`)
+    getExerciseById(id){
+        return http.get(`/exercises/${id}`)
     }
 }
