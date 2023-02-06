@@ -56,7 +56,7 @@ public class JdbcMetricDao implements MetricDao {
         Integer metricsId;
         String sqlQuery = "INSERT INTO metrics " +
                 "(customer_id, exercise_id, metrics_date, current_reps, current_weight_lbs, current_time_min, current_distance_miles, current_days, current_misc) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?); ";
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING metrics_id;";
         try {
             metricsId = jdbcTemplate.queryForObject(sqlQuery, Integer.class,
                     userId, exerciseId, date, reps, weight, time, distance, days, misc);
