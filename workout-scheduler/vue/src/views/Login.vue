@@ -67,6 +67,8 @@
 
         </form>
 
+        <image-changer/>
+
         <p id="gym-info" v-if="!this.$route.query.registration">{{inspirationalQuote}}</p>
         
     </div>
@@ -74,10 +76,13 @@
 
 <script>
 import authService from "../services/AuthService";
+import imageChanger from "../components/ImageChanger"
 
 export default {
   name: "login",
-  components: {},
+  components: {
+    imageChanger
+  },
   data() {
     return {
       user: {
@@ -141,9 +146,10 @@ export default {
   display: flex;
   justify-content: center;
   width: 100%;
-  margin: 0 auto;
   margin-bottom: 20px;
-  margin-top: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-color: var(--blue);
 }
 
 #login-img {
