@@ -46,7 +46,7 @@ public class JdbcCustomerDao implements CustomerDao {
     }
 
     @Override
-    public Customer getCustomerByUsername(String username) {
+    public Customer getProfile(String username) {
         String sql = "SELECT * FROM customer WHERE customer_username = ?";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, username);
         Customer customer;

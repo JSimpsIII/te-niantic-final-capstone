@@ -10,7 +10,7 @@ public interface CustomerDao {
 
     Customer getCustomerById(Long userId);
 
-    Customer getCustomerByUsername(String username);
+    Customer getProfile(String username);
 
     boolean addNewCustomer(Customer customer);
 

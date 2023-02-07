@@ -1,5 +1,5 @@
 <template>
-    <div class="nav-container">
+    <div id='nav-bar' class="nav-container">
 
         <router-link :to="{name: 'home'}">
             <img id="home-icon" src="../assets/home.png" alt="home-icon">
@@ -16,6 +16,7 @@
         <router-link :to="{name: 'goals'}">
             <img id="goal-icon" src="../assets/goal.png" alt="goal-icon">
         </router-link>
+        
     </div>
 </template>
 
