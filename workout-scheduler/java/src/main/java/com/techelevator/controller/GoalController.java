@@ -3,6 +3,7 @@ package com.techelevator.controller;
 import com.techelevator.dao.GoalDao;
 import com.techelevator.model.profile.Goal;
 import com.techelevator.model.profile.GoalDTO;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
@@ -24,6 +25,7 @@ public class GoalController {
         return goalDao.getAllGoals(userId);
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(path = "/users/{userId}/goals", method = RequestMethod.POST)
     public boolean addNewGoal(@PathVariable Long userId, @RequestBody GoalDTO goalDTO) {
         String name = goalDTO.getName();
