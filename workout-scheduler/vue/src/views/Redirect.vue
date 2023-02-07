@@ -21,14 +21,22 @@ import profileService from '../services/ProfileService';
 
 export default {
     name: 'redirect',
+    data() {
+      return{
+        profile: {
+          customerId: '',
+          name: '',
+          photo: ''
+        }
+      }
+    },
     created() {
       profileService.getProfile(this.$store.state.user.username)
                     .then(res => {
                       const { customerId, name } = res.data;
-                      this.$store.commit("SET_CUSTOMER_ID_NAME", customerId, name);
-
-                      console.log(name)
-                      
+                      this.profile.customerId = customerId;
+                      this.profile.name = name;
+                      this.$store.commit("SET_PROFILE", this.profile);
                     })
     }
 }

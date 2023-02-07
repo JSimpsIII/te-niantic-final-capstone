@@ -86,10 +86,6 @@ export default new Vuex.Store({
         photo: ''
       }
     },
-    SET_CUSTOMER_ID_NAME(state, customerId, name) {
-      state.profile.customerId = customerId;
-      state.profile.name = name;
-    },
     SET_PROFILE(state, profile) {
       state.profile = profile;
     },
