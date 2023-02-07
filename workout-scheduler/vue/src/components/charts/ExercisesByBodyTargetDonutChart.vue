@@ -1,8 +1,14 @@
 <script>
   import { Doughnut } from 'vue-chartjs'
+  import metricsStatsService from '../../services/MetricsStatsService'
 
   export default {
     extends: Doughnut,
+    computed: {
+      dataArray() {
+        return metricsStatsService.getPercentageArrayForBodyTarget()
+      }
+    },
     data () {
       return {
         chartData: {
@@ -49,12 +55,12 @@
               'rgba(21, 101, 192, 0.55)',
               'rgba(251, 192, 45, 0.55)', 
               'rgba(40, 53, 147, 0.55)',
-              'rgba(197, 17, 98, 0.55)'         
+              'rgba(197, 17, 98, 0.55)'                   
               ],
               data: [1, 50]
             }]
         },
-        options: {
+               options: {
           legend: {
             display: true
           },
@@ -69,15 +75,15 @@
   },
   created() {
     // labels for donut chart
-    this.chartData.labels = this.getMachineBodyPartNameForLabels();
+    this.chartData.labels = this.getMachineBodyTargetNameForLabels();
 
     // setup keys for machineObj
-    this.machineObj = this.convertArrayToObject(this.getMachineBodyPartNameForLabels());
+    this.machineObj = this.convertArrayToObject(this.getMachineBodyTargetNameForLabels());
 
     // get ids for each exercise - for machineObj
     this.$store.state.exerciseList.forEach(e => {
-        if (e.bodyPart in this.machineObj) {
-            this.machineObj[e.bodyPart].ids.push(e.id);
+        if (e.target in this.machineObj) {
+            this.machineObj[e.target].ids.push(e.id);
         }
     });
 
@@ -90,19 +96,19 @@
         }
     })
 
-    this.chartData.datasets[0].data = this.getMachineBodyPartNameForLabels()
+    this.chartData.datasets[0].data = this.getMachineBodyTargetNameForLabels()
                                           .map(m => this.machineObj[m].total)
     
 
   },
   methods: {
-    getMachineBodyPartNameForLabels() {
+    getMachineBodyTargetNameForLabels() {
       const uniqueExerciseMachines = this.getUniqueExerciseIds();
 
       const exerciseMachines = [];
       this.$store.state.exerciseList.forEach((machine) => {
         if (uniqueExerciseMachines.includes(machine.id)) {
-          exerciseMachines.push(machine.bodyPart);
+          exerciseMachines.push(machine.target);
         }
       });
       return [...new Set(exerciseMachines)];
