@@ -1,10 +1,10 @@
 <template>
   <div id='exercise-table'>
   <div id='search-menu'>
-  <img id="search-icon" src="../assets/search.png" alt="search-icon" title="Search" @click="toggleSearch" v-if="!showSearchBar">
+  <img id="search-icon" class="icon-button" src="../assets/search.png" alt="search-icon" title="Search" @click="toggleSearch" v-if="!showSearchBar">
   <button id="cancel-button" v-if="showSearchBar" @click="toggleSearch">Cancel</button>
   <input type="text" id="exerciseNameFilter" placeholder="search exercises" v-model="filter.name" v-if="showSearchBar"/>
-  <img id="filter-icon" src="../assets/filter.png" alt="filter-icon" title="Enable Filters" @click="toggleFilters" v-if="showSearchBar">
+  <img id="filter-icon" class="icon-button" src="../assets/filter.png" alt="filter-icon" title="Enable Filters" @click="toggleFilters" v-if="showSearchBar">
   </div>
        <table id="table-of-exercises">
             <thead>
@@ -225,7 +225,7 @@ export default {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  padding-top: 5%;
+  padding-top: 1%;
   margin-left: 2%;
   margin-bottom: 2%;
 }
@@ -237,18 +237,36 @@ export default {
 }
 
 #cancel-button {
-    height: 20px;
+    margin-right: 1%;
 }
 
+#cancel-button:hover{
+    color: indianred;
+}
 #filter-icon {
     height: 5%;
     width: 5%;
     margin-left: 2%
 }
 
+.icon-button {
+    filter: invert(38%) sepia(62%) saturate(444%) hue-rotate(355deg) brightness(140%) contrast(89%);
+}
+
+.icon-button:hover {
+    cursor: pointer;
+    transform: scale(1.25);
+    filter: invert(38%) sepia(62%) saturate(311%) hue-rotate(166deg) brightness(180%) contrast(89%);
+}
+
 .exercise-name {
     width: 70%;
     margin-top: 20px;
+    color: sandybrown;
+}
+
+.exercise-name:hover {
+    color: lightblue;
 }
 
 button {
@@ -260,16 +278,9 @@ button {
 }
 button:hover {
     cursor: pointer;
-    font-size: 18px;
-    color: lightblue;
+    transform: scale(1.15);
+    /* font-size: 18px; */
 }
 
-#search-icon:hover {
-    filter: invert(100%) sepia(100%) saturate(100%) hue-rotate(0deg) brightness(100%) contrast(100%);
-}
-
-#filter-icon:hover {
-    filter: invert(100%) sepia(100%) saturate(100%) hue-rotate(0deg) brightness(100%) contrast(100%);
-}
 
 </style>
