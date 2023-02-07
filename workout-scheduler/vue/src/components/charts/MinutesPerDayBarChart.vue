@@ -50,6 +50,7 @@ export default {
             {
               ticks: {
                 beginAtZero: true,
+                fontColor: "#FDFFFC"
               },
               gridLines: {
                 display: true,
@@ -61,6 +62,9 @@ export default {
               gridLines: {
                 display: false,
               },
+              ticks: {
+                fontColor: "#FDFFFC"
+              }
             },
           ],
         },
@@ -109,4 +113,5 @@ export default {
     },
   },
 };
+
 </script>
