@@ -1,6 +1,6 @@
 <template>
   <div>
-      <h3>Exercise Time by Day</h3>
+      <h3>Exercise Percentages by Machine</h3>
         <donut-chart></donut-chart>
   </div>
 </template>
