@@ -63,6 +63,7 @@ export default {
         }
     })
 
+    // set chart data to array of totals
     this.chartData.datasets[0].data = this.getMachineEquipmentNameForLabels()
                                           .map(m => this.machineObj[m].total)
     

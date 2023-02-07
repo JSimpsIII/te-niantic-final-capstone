@@ -1,6 +1,6 @@
 <template>
   <div>
-      <h3></h3>
+      <h3>PR - Weights</h3>
     <radar-chart></radar-chart>
   </div>
 </template>
