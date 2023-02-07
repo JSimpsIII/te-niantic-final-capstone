@@ -1,6 +1,6 @@
 <template>
   <div>
-      <h3>Exercise Time by Day</h3>
+      <h3>Exercise Time by Last 7 Days</h3>
     <bar-chart></bar-chart>
   </div>
 </template>
