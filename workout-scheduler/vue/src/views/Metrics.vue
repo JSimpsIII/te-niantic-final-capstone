@@ -9,7 +9,7 @@
 
       <div class="sub-metric-container">
         <div id="days-metric" class="metric-headers">
-          <h2>Days</h2>
+          <h2>Today</h2>
           <img 
             :src="require(`@/assets/${days.arrowDirection}.png`)" 
             :alt="days.arrowDirection"
@@ -23,7 +23,7 @@
 
       <div class="sub-metric-container">
         <div id="minutes-metric" class="metric-headers">
-          <h2>Minutes</h2>
+          <h2>Last 7 Days</h2>
           <img 
             :src="require(`@/assets/${minutes.arrowDirection}.png`)" 
             :alt="minutes.arrowDirection"
@@ -157,7 +157,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 #metrics-title {
   display: flex;
   justify-content: center;
@@ -175,6 +175,10 @@ export default {
   justify-content: space-between;
   background-color: var(--red);
   padding: 10px;
+}
+
+.metric-headers > img {
+  cursor: pointer;
 }
 
 #metrics-title,

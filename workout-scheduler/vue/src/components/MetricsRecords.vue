@@ -1,6 +1,6 @@
 <template>
   <div>
-      <h3>PR - Weights</h3>
+      <h3>Weights</h3>
     <radar-chart></radar-chart>
   </div>
 </template>
@@ -15,3 +15,10 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+h3 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+</style>

@@ -1,6 +1,6 @@
 <template>
   <div>
-      <h3>Exercise Time by Last 7 Days</h3>
+      <h3>Exercise Time - Last 7 Days</h3>
     <bar-chart></bar-chart>
   </div>
 </template>
@@ -15,3 +15,10 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+h3 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+</style>
