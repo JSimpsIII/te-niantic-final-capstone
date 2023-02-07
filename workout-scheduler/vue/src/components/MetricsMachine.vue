@@ -9,7 +9,7 @@
 import DonutChart from './charts/MachinesPercentageDonutChart.vue';
 
 export default {
-  name: "metrics-minutes",
+  name: "metrics-machine",
   components: {
     DonutChart
   }

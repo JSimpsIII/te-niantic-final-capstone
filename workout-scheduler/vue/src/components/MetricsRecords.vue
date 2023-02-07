@@ -1,6 +1,6 @@
 <template>
   <div>
-      <h3>Radar Chart</h3>
+      <h3></h3>
     <radar-chart></radar-chart>
   </div>
 </template>
