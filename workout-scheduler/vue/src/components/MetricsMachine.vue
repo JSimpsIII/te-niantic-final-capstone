@@ -1,6 +1,6 @@
 <template>
   <div>
-      <h3>Exercise Percentages by Machine</h3>
+      <h3>Exercise Percentages by Equipment</h3>
         <donut-chart></donut-chart>
   </div>
 </template>
@@ -9,7 +9,7 @@
 import DonutChart from './charts/MachinesPercentageDonutChart.vue';
 
 export default {
-  name: "metrics-minutes",
+  name: "metrics-machine",
   components: {
     DonutChart
   }

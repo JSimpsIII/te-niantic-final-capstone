@@ -39,7 +39,7 @@
 
       <div class="sub-metric-container">
         <div id="machine-metric" class="metric-headers">
-          <h2>Machine</h2>
+          <h2>Equipment</h2>
           <img 
             :src="require(`@/assets/${machine.arrowDirection}.png`)" 
             :alt="machine.arrowDirection"
@@ -77,6 +77,7 @@
         </div>
         <div class="sub-metric-charts" v-if="records.isShowing">
             <!-- Insert Charts for Personal Records Section -->
+            <metrics-records></metrics-records>
         </div>
       </div>
 
@@ -94,6 +95,8 @@ import MetricsMinutes from '../components/MetricsMinutes.vue';
 import MetricsMachine from '../components/MetricsMachine.vue';
 import ExercisesByBodyPart from '../components/ExercisesByBodyPart.vue';
 import PercentBodyTarget from '../components/PercentBodyTarget.vue';
+import MetricsRecords from '../components/MetricsRecords.vue';
+
 
 export default {
   name: "metrics",
@@ -102,7 +105,8 @@ export default {
     MetricsMinutes,
     MetricsMachine,
     ExercisesByBodyPart,
-    PercentBodyTarget
+    PercentBodyTarget,
+    MetricsRecords
   },
   data() {
       return {
