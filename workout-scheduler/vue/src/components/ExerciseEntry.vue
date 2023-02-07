@@ -2,7 +2,7 @@
     <section id='exercise-entry'>
 
         <h3>Log Exercise</h3>
-        
+        <div id="exercise-form">
         <form>
             <div id='enter-time' class='form-entry'>
                 <div v-if='this.isMinutes' class='time-minutes form-element'>
@@ -51,7 +51,7 @@
 
             <button @click='createEntry()'>Log</button>
         </form>
-
+</div>
     </section>
 </template>
 
@@ -94,7 +94,12 @@ export default {
 </script>
 
 <style scoped>
-
+#exercise-form{
+  display: flex;
+  width: 100%;
+  text-align: center;
+  margin-left: 20%;
+}
 .form-entry {
     margin-top: 20px;
     width: 360px;

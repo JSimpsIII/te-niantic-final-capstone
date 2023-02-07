@@ -250,7 +250,7 @@ export default {
 }
 
 .icon-button {
-    filter: invert(38%) sepia(62%) saturate(444%) hue-rotate(355deg) brightness(140%) contrast(89%);
+    filter: invert(30%) sepia(62%) saturate(444%) hue-rotate(333deg) brightness(200%) contrast(89%);
 }
 
 .icon-button:hover {
