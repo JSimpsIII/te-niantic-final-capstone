@@ -17,7 +17,7 @@
           />
         </div>
         <div class="sub-metric-charts" v-if="days.isShowing">
-            Charts Here
+            <!-- Insert Charts for Days Section -->
         </div>
       </div>
 
@@ -31,7 +31,7 @@
           />
         </div>
         <div class="sub-metric-charts" v-if="minutes.isShowing">
-            Charts Here
+            <!-- Insert Charts for Minutes Section -->
             <metrics-minutes />
             <percent-body-part />
         </div>
@@ -47,7 +47,8 @@
           />
         </div>
         <div class="sub-metric-charts" v-if="machine.isShowing">
-            Charts Here
+            <!-- Insert Charts for Machine Section -->
+            <metrics-machine />
         </div>
       </div>
 
@@ -61,7 +62,7 @@
           />
         </div>
         <div class="sub-metric-charts" v-if="target.isShowing">
-            Charts Here
+            <!-- Insert Charts for Target Section -->
         </div>
       </div>
 
@@ -75,7 +76,7 @@
           />
         </div>
         <div class="sub-metric-charts" v-if="records.isShowing">
-            Charts Here
+            <!-- Insert Charts for Personal Records Section -->
         </div>
       </div>
 
@@ -90,12 +91,15 @@
 <script>
 import NavBar from '../components/NavBar.vue';
 import MetricsMinutes from '../components/MetricsMinutes.vue';
+import MetricsMachine from '../components/MetricsMachine.vue';
 import PercentBodyPart from '../components/PercentBodyPart.vue';
+
 export default {
   name: "metrics",
   components: {
     NavBar,
     MetricsMinutes,
+    MetricsMachine,
     PercentBodyPart
   },
   data() {
