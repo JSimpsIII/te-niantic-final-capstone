@@ -34,6 +34,21 @@ public class Goal {
         this.isCompleted = isCompleted;
     }
 
+    public Goal(int id, String name, Long customerId, int exerciseId, Date date, double reps, double weight, double time, double distance, int days, String misc, boolean isCompleted) {
+        this.id = id;
+        this.name = name;
+        this.customerId = customerId;
+        this.exerciseId = exerciseId;
+        this.date = date;
+        this.reps = reps;
+        this.weight = weight;
+        this.time = time;
+        this.distance = distance;
+        this.days = days;
+        this.misc = misc;
+        this.isCompleted = isCompleted;
+    }
+
     public int getId() {
         return id;
     }

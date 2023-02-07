@@ -15,6 +15,10 @@ export default {
         return http.post(`/users/${userId}/goals`, goal);
     },
 
+    updateGoal(userId, goalId, goal) {
+        return http.put(`/users/${userId}/goals/${goalId}`, goal)
+    },
+
     deleteGoal(userId, goalId) {
         return http.delete(`/users/${userId}/goals/${goalId}`);
     }

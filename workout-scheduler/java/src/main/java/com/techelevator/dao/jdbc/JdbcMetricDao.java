@@ -43,7 +43,6 @@ public class JdbcMetricDao implements MetricDao {
     }
 
     private boolean createNewMetric(Long userId, Metric metric) {
-
         int exerciseId = metric.getExerciseId();
         Date date = metric.getDate();
         double reps = metric.getReps();
