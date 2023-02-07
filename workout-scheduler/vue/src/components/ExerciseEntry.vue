@@ -98,7 +98,6 @@ export default {
   display: flex;
   width: 100%;
   text-align: center;
-  margin-left: 20%;
 }
 .form-entry {
     margin-top: 20px;
