@@ -1,6 +1,6 @@
 <template>
     <div id='percent-body-part'>
-        <h3>Percent of Time by Exercise Body Part</h3>
+        <h3>Exercise Time by Body Part</h3>
         <percent-body-part-pie-chart></percent-body-part-pie-chart>
     </div>
 </template>

@@ -65,10 +65,8 @@ public class JdbcGoalDao implements GoalDao {
     }
 
     @Override
-    public boolean updateGoal(Goal goal) {
-        int id = goal.getId();
+    public boolean updateGoal(Long userId, int goalId, Goal goal) {
         String name = goal.getName();
-        Long customerId = goal.getCustomerId();
         int exerciseId = goal.getExerciseId();
         Date date = goal.getDate();
         double reps = goal.getReps();
@@ -80,10 +78,10 @@ public class JdbcGoalDao implements GoalDao {
         boolean isCompleted = goal.isCompleted();
 
         String sqlQuery = "UPDATE goal " +
-                "SET goal_name = ?, exercise_id = ?, goal_date = ?, goal_reps = ?, goal_weight_lbs = ?, goal_time_min = ?, goal_distance_mi, goal_days = ?, goal_misc = ?, is_completed = ? " +
+                "SET goal_name = ?, exercise_id = ?, goal_date = ?, goal_reps = ?, goal_weight_lbs = ?, goal_time_min = ?, goal_distance_mi = ?, goal_days = ?, goal_misc = ?, is_completed = ? " +
                 "WHERE goal_id = ? AND customer_id = ?;";
         try {
-            jdbcTemplate.update(sqlQuery, name, exerciseId, date, reps, weight, time, distance, days, misc, isCompleted, id, customerId);
+            jdbcTemplate.update(sqlQuery, name, exerciseId, date, reps, weight, time, distance, days, misc, isCompleted, goalId, userId);
         } catch (Exception e) {
             return false;
         }

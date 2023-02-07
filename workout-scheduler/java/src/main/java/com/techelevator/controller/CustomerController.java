@@ -2,6 +2,7 @@ package com.techelevator.controller;
 
 import com.techelevator.dao.CustomerDao;
 import com.techelevator.model.profile.*;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,15 +23,15 @@ public class CustomerController {
     }
 
     @RequestMapping(path = "/users/{username}", method = RequestMethod.GET)
-    public Customer getCustomerByUsername(@PathVariable String username){
-        return customerDao.getCustomerByUsername(username);
+    public Customer getProfile(@PathVariable String username){
+        return customerDao.getProfile(username);
     }
 
 //    @RequestMapping(path ="/users/", method = RequestMethod.POST)
 //    public boolean addNewCustomerByUsername(@RequestBody String username) {
 //        return customerDao.addNewCustomerByUsername(username, newUser.getName());
 //    }
-
+    @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(path = "/users/new", method = RequestMethod.POST)
     public boolean addNewCustomer(@RequestBody CustomerDTO customerDTO) {
         Customer customer = new Customer();
