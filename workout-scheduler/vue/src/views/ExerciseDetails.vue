@@ -63,6 +63,7 @@ export default {
 
 h1 {
   margin-top: 30px;
+  margin-bottom: 20px;
 }
 
 #exercise-details {
@@ -70,12 +71,15 @@ h1 {
   flex-direction: column;
   width: 100%;
   text-align: center;
+  justify-content: center;
+  align-items: center;
 }
 
 .flexbox {
   display: flex;
   flex-direction: row;
-  width: 100%;
+  flex-wrap: wrap;
+  width: 360px;
   justify-content: space-evenly;
   color: #85C1E9;
 }
@@ -86,7 +90,6 @@ p {
 
 .gif {
   margin-bottom: 20px;
-  margin-left: 20%;
 }
 
 footer {
