@@ -12,7 +12,7 @@ export default {
             borderWidth: 1,
             backgroundColor: "rgba(204, 174, 6, 0.6)",
 
-            data: [120, 50, 10, 200],
+            data: [],
           },
         ],
       },
@@ -36,7 +36,7 @@ export default {
   },
   created() {
     // labels for radar chart
-    this.chartData.labels = this.getEquipmentNameForLabels();
+    // this.chartData.labels = this.getEquipmentNameForLabels();
 
     // setup keys for recordsObj
     this.recordsObj = this.convertArrayToObject(
@@ -62,9 +62,18 @@ export default {
         }
     })
 
-    // set chart data to array of records
-    this.chartData.datasets[0].data = this.getEquipmentNameForLabels()
-                                          .map(m => this.recordsObj[m].record)
+    // label for radar chart (only equipment with records > 0)
+    for (const prop in this.recordsObj) {
+      if (this.recordsObj[prop].record > 0 && !this.chartData.labels.includes(prop)) {
+        this.chartData.labels.push(prop);
+      }
+    }
+
+    // set chart data to pull only records matching chartData.labels
+    this.chartData.datasets[0].data = this.chartData.labels
+                                          .map(m => this.recordsObj[m].record);
+    
+
   },
   methods: {
     getEquipmentNameForLabels() {
