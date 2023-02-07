@@ -34,7 +34,7 @@ export default {
     methods: {
       getExercise() {
         exerciseService
-          .getExercise(this.$route.params.id)
+          .getExerciseById(this.$route.params.id)
           .then(response => {
             this.$store.commit('SET_CURRENT_EXERCISE', response.data);
           })

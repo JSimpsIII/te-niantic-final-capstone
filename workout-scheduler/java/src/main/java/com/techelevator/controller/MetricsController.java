@@ -2,6 +2,7 @@ package com.techelevator.controller;
 
 import com.techelevator.model.profile.Metric;
 import com.techelevator.model.profile.MetricDTO;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import com.techelevator.dao.MetricDao;
 
@@ -23,6 +24,7 @@ public class MetricsController {
         return metricDao.getAllMetrics(userId);
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(path = "/users/{userId}/log", method = RequestMethod.POST)
     public boolean logNewMetric(@PathVariable Long userId, @RequestBody MetricDTO metricDTO) {
 
