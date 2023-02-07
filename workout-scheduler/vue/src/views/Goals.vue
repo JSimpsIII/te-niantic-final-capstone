@@ -61,21 +61,7 @@ export default {
     toggleAddGoal() {
       this.isAddingGoal = !this.isAddingGoal;
     },
-    deleteGoal(e) {
-      const goalId = e.target.parentElement.dataset.goalId;
-      goalService
-        .deleteGoal(this.$store.state.profile.customerId, goalId)
-        .then((res) => {
-          if (res.status == 200) {
-            goalService
-              .getAllGoals(this.$store.state.profile.customerId)
-              .then((res) => (this.$store.state.goalList = res.data));
-          }
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    },
+    
   },
 };
 </script>
@@ -102,24 +88,6 @@ export default {
   justify-content: space-between;
   width: 70%;
   margin: 0 auto;
-}
-
-.goal {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: var(--smoke);
-  margin-bottom: 10px;
-  width: 70%;
-  margin: 0 auto;
-  height: 60px;
-  margin-bottom: 10px;
-  border-radius: 10px;
-  padding: 0 25px;
-}
-
-.delete-icon {
-  cursor: pointer;
 }
 
 div.goal:first-child {
