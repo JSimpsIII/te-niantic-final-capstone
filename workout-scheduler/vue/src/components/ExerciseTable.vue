@@ -2,9 +2,9 @@
   <div id='exercise-table'>
   <div id='search-menu'>
   <img id="search-icon" src="../assets/search.png" alt="search-icon" title="Search" @click="toggleSearch" v-if="!showSearchBar">
-  <img id="filter-icon" src="../assets/filter.png" alt="filter-icon" title="Enable Filters" @click="toggleFilters" v-if="showSearchBar">
+  <button id="cancel-button" v-if="showSearchBar" @click="toggleSearch">Cancel</button>
   <input type="text" id="exerciseNameFilter" placeholder="search exercises" v-model="filter.name" v-if="showSearchBar"/>
-  <button v-if="showSearchBar" @click="toggleSearch">Cancel</button>
+  <img id="filter-icon" src="../assets/filter.png" alt="filter-icon" title="Enable Filters" @click="toggleFilters" v-if="showSearchBar">
   </div>
        <table id="table-of-exercises">
             <thead>
@@ -224,8 +224,10 @@ export default {
 #search-menu {
   display: flex;
   justify-content: flex-start;
+  align-items: center;
   padding-top: 5%;
-  margin-left: 2%
+  margin-left: 2%;
+  margin-bottom: 2%;
 }
 
 #search-icon {
@@ -234,22 +236,27 @@ export default {
     margin-right: 2%
 }
 
+#cancel-button {
+    height: 20px;
+}
+
 #filter-icon {
     height: 5%;
     width: 5%;
-    margin-right: 2%
+    margin-left: 2%
 }
 
 .exercise-name {
     width: 70%;
+    margin-top: 20px;
 }
+
 button {
     color: white;
     background-color: var(--blue);
     font-size: 17px;
     border: none;
     outline: none;
-    margin-top: 20px;
 }
 button:hover {
     cursor: pointer;

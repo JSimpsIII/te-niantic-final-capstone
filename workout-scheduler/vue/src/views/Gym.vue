@@ -50,6 +50,7 @@ export default {
 .gym-title-add-container {
   display: flex;
   justify-content: center;
+  padding-top: 20px;
 }
 
 footer {
