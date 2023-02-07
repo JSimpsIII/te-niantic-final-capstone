@@ -4,6 +4,11 @@
 
   export default {
     extends: Pie,
+    computed: {
+      dataArray() {
+        return metricsStatsService.getPercentageArrayForBodyPart()
+      }
+    },
     data () {
       return {
         chartData: {
@@ -34,18 +39,7 @@
               'rgba(153, 204, 153, 0.2)',
               'rgba(51, 255, 204, 0.2)'                       
               ],
-              data: [
-                metricsStatsService.getPercentBack,
-                metricsStatsService.getPercentCardio,
-                metricsStatsService.getPercentChest,
-                metricsStatsService.getPercentLowerArms,
-                metricsStatsService.getPercentLowerLegs,
-                metricsStatsService.getPercentNeck,
-                metricsStatsService.getPercentShoulders,
-                metricsStatsService.getPercentUpperArms,
-                metricsStatsService.getPercentUpperLegs,
-                metricsStatsService.getPercentWaist
-              ]
+              data: this.dataArray()
             }]
         },
         options: {

@@ -67,16 +67,16 @@ export default {
             })
         })
         let array = [
-            (minback/mintotal) * 100, 
-            (mincardio/mintotal) * 100, 
-            (minchest/mintotal) * 100, 
-            (minlowerarms/mintotal) * 100, 
-            (minlowerlegs/mintotal) * 100, 
-            (minneck/mintotal) * 100, 
-            (minshoulders/mintotal) * 100, 
-            (minupperarms/mintotal) * 100, 
-            (minupperlegs/mintotal) * 100, 
-            (minwaist/mintotal) * 100
+            ((minback/mintotal) * 100), 
+            ((mincardio/mintotal) * 100), 
+            ((minchest/mintotal) * 100), 
+            ((minlowerarms/mintotal) * 100), 
+            ((minlowerlegs/mintotal) * 100), 
+            ((minneck/mintotal) * 100), 
+            ((minshoulders/mintotal) * 100), 
+            ((minupperarms/mintotal) * 100), 
+            ((minupperlegs/mintotal) * 100), 
+            ((minwaist/mintotal) * 100)
         ];
         return array;
     },
