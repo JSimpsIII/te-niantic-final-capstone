@@ -68,13 +68,14 @@ h1 {
 #exercise-details {
   display: flex;
   flex-direction: column;
-  width: 360px;
+  width: 100%;
+  text-align: center;
 }
 
 .flexbox {
   display: flex;
   flex-direction: row;
-  width: 360px;
+  width: 100%;
   justify-content: space-evenly;
   color: #85C1E9;
 }
@@ -85,6 +86,7 @@ p {
 
 .gif {
   margin-bottom: 20px;
+  margin-left: 20%;
 }
 
 footer {
