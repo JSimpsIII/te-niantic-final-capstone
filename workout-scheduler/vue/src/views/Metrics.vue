@@ -48,6 +48,7 @@
         </div>
         <div class="sub-metric-charts" v-if="machine.isShowing">
             <!-- Insert Charts for Machine Section -->
+            <metrics-machine />
         </div>
       </div>
 
@@ -90,12 +91,15 @@
 <script>
 import NavBar from '../components/NavBar.vue';
 import MetricsMinutes from '../components/MetricsMinutes.vue';
+import MetricsMachine from '../components/MetricsMachine.vue';
 import PercentBodyPart from '../components/PercentBodyPart.vue';
+
 export default {
   name: "metrics",
   components: {
     NavBar,
     MetricsMinutes,
+    MetricsMachine,
     PercentBodyPart
   },
   data() {
