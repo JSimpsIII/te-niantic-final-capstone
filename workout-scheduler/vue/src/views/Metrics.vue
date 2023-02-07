@@ -18,6 +18,7 @@
         </div>
         <div class="sub-metric-charts" v-if="days.isShowing">
             <!-- Insert Charts for Days Section -->
+          <metrics-today></metrics-today>
         </div>
       </div>
 
@@ -91,6 +92,7 @@
 
 <script>
 import NavBar from '../components/NavBar.vue';
+import MetricsToday from '../components/MetricsToday.vue';
 import MetricsMinutes from '../components/MetricsMinutes.vue';
 import MetricsMachine from '../components/MetricsMachine.vue';
 import ExercisesByBodyPart from '../components/ExercisesByBodyPart.vue';
@@ -102,6 +104,7 @@ export default {
   name: "metrics",
   components: {
     NavBar,
+    MetricsToday,
     MetricsMinutes,
     MetricsMachine,
     ExercisesByBodyPart,

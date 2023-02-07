@@ -19,16 +19,17 @@ ALTER SEQUENCE seq_customer_id RESTART WITH 7;
 
 
 -- insert metrics table data
-INSERT INTO metrics (customer_id, metrics_date, current_weight_lbs, current_misc) VALUES (1, DATE '2020-01-01', 610, 'squat');
-INSERT INTO metrics (customer_id, metrics_date, current_weight_lbs, current_misc) VALUES (1, DATE '2020-06-22', 625, 'squat');
-INSERT INTO metrics (customer_id, metrics_date, current_weight_lbs, current_misc) VALUES (1, DATE '2020-11-01', 650, 'squat');
-INSERT INTO metrics (customer_id, metrics_date, current_weight_lbs, current_misc) VALUES (1, DATE '2021-04-23', 670, 'squat');
-INSERT INTO metrics (customer_id, metrics_date, current_weight_lbs, current_misc) VALUES (1, DATE '2022-07-15', 695, 'squat');
-INSERT INTO metrics (customer_id, metrics_date, current_weight_lbs, current_misc) VALUES (1, DATE '2023-01-03', 710, 'squat');
-INSERT INTO metrics (customer_id, metrics_date, current_time_min, current_misc) VALUES (2, DATE '2022-12-01', 7.2, 'mile run');
-INSERT INTO metrics (customer_id, metrics_date, current_weight_lbs, current_days) VALUES (4, DATE '2021-01-01', 255, 3);
-INSERT INTO metrics (customer_id, metrics_date, current_weight_lbs, current_days) VALUES (4, DATE '2021-08-01', 254, 4);
-INSERT INTO metrics (customer_id, metrics_date, current_weight_lbs, current_days) VALUES (4, DATE '2021-12-01', 256, 5);
+INSERT INTO metrics (customer_id, exercise_id, metrics_date, current_weight_lbs, current_time_min) VALUES (1, 1255, DATE '2023-02-03', 180, 20);
+INSERT INTO metrics (customer_id, exercise_id, metrics_date, current_weight_lbs, current_time_min) VALUES (1, 352, DATE '2023-02-04', 60, 30);
+INSERT INTO metrics (customer_id, exercise_id, metrics_date, current_weight_lbs, current_time_min) VALUES (1, 24, DATE '2023-02-04', 110, 20);
+INSERT INTO metrics (customer_id, exercise_id, metrics_date, current_weight_lbs, current_time_min) VALUES (1, 35, DATE '2023-02-05', 90, 10);
+INSERT INTO metrics (customer_id, exercise_id, metrics_date, current_weight_lbs, current_time_min) VALUES (1, 578, DATE '2023-02-06', 100, 20);
+INSERT INTO metrics (customer_id, exercise_id, metrics_date, current_weight_lbs, current_time_min) VALUES (1, 530, DATE '2023-02-07', 70, 20);
+INSERT INTO metrics (customer_id, exercise_id, metrics_date, current_weight_lbs, current_time_min) VALUES (1, 24, DATE '2023-02-08', 140, 15);
+INSERT INTO metrics (customer_id, exercise_id, metrics_date, current_weight_lbs, current_time_min) VALUES (1, 35, DATE '2023-02-09', 90, 10);
+INSERT INTO metrics (customer_id, exercise_id, metrics_date, current_weight_lbs, current_time_min) VALUES (1, 1255, DATE '2023-02-07', 190, 10);
+INSERT INTO metrics (customer_id, exercise_id, metrics_date, current_weight_lbs, current_time_min) VALUES (1, 1255, DATE '2023-02-08', 205, 10);
+
 
 -- insert goal table data
 INSERT INTO goal (goal_id, goal_name, customer_id, goal_date, goal_weight_lbs, is_completed) VALUES (1, 'Bench press (lbs)', 1, DATE '2023-12-01', 200, false);
