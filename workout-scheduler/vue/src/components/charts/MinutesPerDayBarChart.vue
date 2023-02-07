@@ -1,6 +1,5 @@
 <script>
 import { Bar } from "vue-chartjs";
-// import metricService from "../../services/MetricService";
 
 export default {
   extends: Bar,
@@ -66,7 +65,7 @@ export default {
           ],
         },
         legend: {
-          display: true,
+          display: false,
         },
         responsive: true,
         maintainAspectRatio: false,
@@ -84,7 +83,7 @@ export default {
     this.metricsObj = this.convertArrayToObject(this.getLastSevenDays());
 
     // iterate through metrics and total up
-    this.$store.state.metricsList.forEach(metric => {
+    this.$store.state.metricsList.forEach((metric) => {
       if (metric.date in this.metricsObj) {
         this.metricsObj[metric.date] += metric.time;
       }
@@ -106,7 +105,7 @@ export default {
       return dates.reverse();
     },
     convertArrayToObject(array) {
-      return array.reduce((obj, x) => ({...obj, [x]:0}),{});
+      return array.reduce((obj, x) => ({ ...obj, [x]: 0 }), {});
     },
   },
 };

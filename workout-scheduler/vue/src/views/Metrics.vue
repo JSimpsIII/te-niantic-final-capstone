@@ -17,7 +17,7 @@
           />
         </div>
         <div class="sub-metric-charts" v-if="days.isShowing">
-            Charts Here
+            <!-- Insert Charts for Days Section -->
         </div>
       </div>
 
@@ -31,7 +31,7 @@
           />
         </div>
         <div class="sub-metric-charts" v-if="minutes.isShowing">
-            Charts Here
+            <!-- Insert Charts for Minutes Section -->
             <metrics-minutes />
             <percent-body-part />
         </div>
@@ -47,7 +47,7 @@
           />
         </div>
         <div class="sub-metric-charts" v-if="machine.isShowing">
-            Charts Here
+            <!-- Insert Charts for Machine Section -->
         </div>
       </div>
 
@@ -61,7 +61,7 @@
           />
         </div>
         <div class="sub-metric-charts" v-if="target.isShowing">
-            Charts Here
+            <!-- Insert Charts for Target Section -->
         </div>
       </div>
 
@@ -75,7 +75,7 @@
           />
         </div>
         <div class="sub-metric-charts" v-if="records.isShowing">
-            Charts Here
+            <!-- Insert Charts for Personal Records Section -->
         </div>
       </div>
 
