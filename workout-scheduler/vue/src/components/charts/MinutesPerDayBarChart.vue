@@ -1,6 +1,6 @@
 <script>
 import { Bar } from "vue-chartjs";
-import metricService from "../../services/MetricService";
+// import metricService from "../../services/MetricService";
 
 export default {
   extends: Bar,
@@ -10,7 +10,7 @@ export default {
         labels: [],
         datasets: [
           {
-            label: "Bar Chart",
+            label: "Minutes",
             borderWidth: 1,
             backgroundColor: [
               "rgba(255, 99, 132, 0.2)",
@@ -41,7 +41,7 @@ export default {
               "rgba(255, 159, 64, 1)",
             ],
             pointBorderColor: "#2554FF",
-            data: [12, 19, 3, 5, 2, 3, 20, 3, 5, 6, 2, 1],
+            data: [],
           },
         ],
       },
@@ -71,6 +71,7 @@ export default {
         responsive: true,
         maintainAspectRatio: false,
       },
+      metricsObj: {},
     };
   },
   mounted() {
@@ -79,26 +80,33 @@ export default {
   created() {
     this.chartData.labels = this.getLastSevenDays();
 
-    metricService
-      .getAllMetrics(this.$store.state.profile.customerId)
-      .then((res) => {
-        res.data.forEach((date) =>
-          date.date == "2020-01-01" ? console.log("yes") : console.log("no")
-        );
-      });
+    // convert 7 days array to obj with dates as keys
+    this.metricsObj = this.convertArrayToObject(this.getLastSevenDays());
+
+    // iterate through metrics and total up
+    this.$store.state.metricsList.forEach(metric => {
+      if (metric.date in this.metricsObj) {
+        this.metricsObj[metric.date] += metric.time;
+      }
+    });
+
+    // set data of barchart
+    this.chartData.datasets[0].data = Object.values(this.metricsObj);
   },
   methods: {
     getLastSevenDays() {
       const dates = [...Array(7)].map((_, i) => {
         const d = new Date();
         d.setDate(d.getDate() - i);
-        return d.toLocaleString("en-US", {
-          year: "numeric",
-          month: "2-digit",
-          day: "2-digit",
-        });
+        const year = d.toLocaleString("default", { year: "numeric" });
+        const month = d.toLocaleString("default", { month: "2-digit" });
+        const day = d.toLocaleString("default", { day: "2-digit" });
+        return `${year}-${month}-${day}`;
       });
-      return dates;
+      return dates.reverse();
+    },
+    convertArrayToObject(array) {
+      return array.reduce((obj, x) => ({...obj, [x]:0}),{});
     },
   },
 };
