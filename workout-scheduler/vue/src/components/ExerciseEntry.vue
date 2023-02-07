@@ -87,7 +87,7 @@ export default {
             }
             metricService
                 .logNewMetric(this.metric.customerId, this.metric)
-                .then(this.$router.push('/'))
+                .then(this.$router.push('/gym'))
       }
     }
 }

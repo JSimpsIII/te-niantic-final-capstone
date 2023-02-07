@@ -1,7 +1,7 @@
 <script>
-  import { Doughnut } from 'vue-chartjs'
+import { Doughnut } from 'vue-chartjs'
 
-  export default {
+export default {
     extends: Doughnut,
     data () {
       return {
@@ -56,7 +56,10 @@
         },
         options: {
           legend: {
-            display: true
+            display: true,
+            labels: {
+              fontColor: "#FDFFFC"
+            }
           },
           responsive: true,
           maintainAspectRatio: false
@@ -64,8 +67,8 @@
         exerciseObj: {}
       }
     },
-      mounted() {
-    this.renderChart(this.chartData, this.options);
+  mounted() {
+      this.renderChart(this.chartData, this.options);
   },
   created() {
     // labels for donut chart

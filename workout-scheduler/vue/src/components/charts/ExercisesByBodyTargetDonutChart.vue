@@ -60,9 +60,12 @@
               data: [1, 50]
             }]
         },
-               options: {
+        options: {
           legend: {
-            display: true
+            display: true,
+            labels: {
+              fontColor: "#FDFFFC"
+            }
           },
           responsive: true,
           maintainAspectRatio: false

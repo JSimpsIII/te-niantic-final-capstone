@@ -62,6 +62,11 @@ export default new Vuex.Store({
       days: 0,
       misc: '',
       isCompleted: false
+    },
+    gym: {
+      clockIn: null,
+      clockOut: null,
+      inGym: false
     }
   },
   mutations: {
@@ -100,6 +105,15 @@ export default new Vuex.Store({
     },
     LOAD_GOAL_LIST(state, goals) {
       state.goalList = goals;
+    },
+    GYM_CLOCK_IN(state, date) {
+      state.gym.clockIn = date;
+    },
+    GYM_CLOCK_OUT(state, date) {
+      state.gym.clockOut = date;
+    },
+    SET_IN_GYM(state, inGym) {
+      state.gym.inGym = inGym;
     }
   }
 })

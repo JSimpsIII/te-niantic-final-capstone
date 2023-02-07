@@ -6,13 +6,11 @@
         <div class="gym-banner">
 
             <div class="gym-title-add-container">
-
-                <div class="gym-title">Virtual Gym</div>
-                
+                <add-gym-visit />
             </div>
 
             <div class="gym-instructions-container">
-            <div id="gym-instructions">Select an exercise to begin</div>
+              <div id="gym-instructions">Select an exercise to begin</div>
             </div>
 
         </div>
@@ -26,6 +24,7 @@
 </template>
 
 <script>
+import AddGymVisit from '../components/AddGymVisit.vue';
 import ExerciseTable from '../components/ExerciseTable.vue';
 import NavBar from '../components/NavBar.vue'
 
@@ -33,7 +32,8 @@ export default {
     name: "gym",
     components: {
       NavBar,
-      ExerciseTable
+      ExerciseTable,
+        AddGymVisit
     },
     data() {
       return {}
@@ -54,7 +54,9 @@ export default {
 
 .gym-title-add-container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   padding-top: 20px;
 }
 
