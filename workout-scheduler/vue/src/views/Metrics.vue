@@ -33,7 +33,6 @@
         <div class="sub-metric-charts" v-if="minutes.isShowing">
             <!-- Insert Charts for Minutes Section -->
             <metrics-minutes />
-            <percent-body-target />
         </div>
       </div>
 
@@ -63,6 +62,7 @@
         </div>
         <div class="sub-metric-charts" v-if="target.isShowing">
             <exercises-by-body-part />
+            <exercises-by-body-target />
         </div>
       </div>
 
@@ -94,7 +94,7 @@ import NavBar from '../components/NavBar.vue';
 import MetricsMinutes from '../components/MetricsMinutes.vue';
 import MetricsMachine from '../components/MetricsMachine.vue';
 import ExercisesByBodyPart from '../components/ExercisesByBodyPart.vue';
-import PercentBodyTarget from '../components/PercentBodyTarget.vue';
+import ExercisesByBodyTarget from '../components/ExercisesByBodyTarget.vue'
 import MetricsRecords from '../components/MetricsRecords.vue';
 
 
@@ -105,7 +105,7 @@ export default {
     MetricsMinutes,
     MetricsMachine,
     ExercisesByBodyPart,
-    PercentBodyTarget,
+    ExercisesByBodyTarget,
     MetricsRecords
   },
   data() {
