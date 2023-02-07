@@ -7,44 +7,44 @@
             <div id='enter-time' class='form-entry'>
                 <div v-if='this.isMinutes' class='time-minutes form-element'>
                     <label for='time-minutes'>Time: </label>
-                    <input type='number' min='0' id='time-minutes' name='time-minutes' class='time' placeholder='minutes' v-bind='this.metric.time' />
+                    <input type='number' min='0' id='time-minutes' name='time-minutes' class='time' placeholder='minutes' v-model='metric.time' />
                 </div>
                 <div v-else class='time-hours form-element'>
                     <label for='time-hours'>Time: </label>
                     <input type='number' min='0' id='time-hours' name='time-hours' class='time' 
-                    placeholder='hours' v-bind='this.metric.time' />
+                    placeholder='hours' v-model='metric.time' />
                 </div>
             </div>
 
             <div id='enter-weight' class='form-entry'>
                 <div v-if='this.isPounds' class='weight-pounds form-element'>
                     <label for='weight-pounds'>Weight: </label>
-                    <input type='number' min='0' id='weight-pounds' name='weight-pounds' class='weight' placeholder='pounds' v-bind='this.metric.weight' />
+                    <input type='number' min='0' id='weight-pounds' name='weight-pounds' class='weight' placeholder='pounds' v-model='metric.weight' />
                 </div>
                 <div v-else class='weight-kilograms form-element'>
                     <label for='weight-kilograms'>Weight: </label>
-                    <input type='number' min='0' id='weight-kilograms' name='weight-kilograms' class='weight' placeholder='kilograms' v-bind='this.metric.weight' />
+                    <input type='number' min='0' id='weight-kilograms' name='weight-kilograms' class='weight' placeholder='kilograms' v-model='metric.weight' />
                 </div>
             </div>
 
             <div id='enter-reps' class='form-entry form-element'>
                 <label for='reps'>Reps: </label>
-                <input type='number' min='0' id='reps' name='reps' class='reps' placeholder='number of reps' v-bind='this.metric.reps' />
+                <input type='number' min='0' id='reps' name='reps' class='reps' placeholder='number of reps' v-model='metric.reps' />
             </div>
 
             <div id='enter-distance' class='form-entry'>
                 <div v-if='this.isMiles' class='distance-miles form-element'>
                     <label for='distance-miles'>Distance: </label>
-                    <input type='number' min='0' id='distance-miles' name='distance-miles' class='distance' placeholder='miles' v-bind='this.metric.distance' />
+                    <input type='number' min='0' id='distance-miles' name='distance-miles' class='distance' placeholder='miles' v-model='metric.distance' />
                 </div>
                 <div v-else class='distance-kilometers form-element'>
                     <label for='distance-kilometers'>Distance: </label>
-                    <input type='number' min='0' id='distance-kilometers' name='distance-kilometers' class='distance' placeholder='kilometers' v-bind='this.metric.distance'/>
+                    <input type='number' min='0' id='distance-kilometers' name='distance-kilometers' class='distance' placeholder='kilometers' v-model='metric.distance'/>
                 </div>
             </div>
 
             <div id='enter-notes' class='form-entry'>
-                <textarea id='misc-notes' name='notes' rows='4' cols='35' v-bind='metric.misc'>
+                <textarea id='misc-notes' name='notes' rows='4' cols='35' v-model='metric.misc'>
                     Enter any additional notes here.
                 </textarea>
             </div>
