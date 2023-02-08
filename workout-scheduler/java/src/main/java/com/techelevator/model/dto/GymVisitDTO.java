@@ -1,17 +1,19 @@
 package com.techelevator.model.dto;
 
 import javax.validation.constraints.NotEmpty;
+import java.sql.Time;
 import java.util.Date;
 
 public class GymVisitDTO {
 
-    @NotEmpty
     private int visitId;
     @NotEmpty
     private Long customerId;
     @NotEmpty
-    private Date checkIn;
-    private Date checkOut;
+    private Date visitDate;
+    @NotEmpty
+    private Time checkIn;
+    private Time checkOut;
 
     public int getVisitId() {
         return visitId;
@@ -29,19 +31,29 @@ public class GymVisitDTO {
         this.customerId = customerId;
     }
 
-    public Date getCheckIn() {
+    public Date getVisitDate() {
+        return visitDate;
+    }
+
+    public void setVisitDate(Date visitDate) {
+        this.visitDate = visitDate;
+    }
+
+    public Time getCheckIn() {
         return checkIn;
     }
 
-    public void setCheckIn(Date checkIn) {
+    public void setCheckIn(Time checkIn) {
         this.checkIn = checkIn;
     }
 
-    public Date getCheckOut() {
+    public Time getCheckOut() {
         return checkOut;
     }
 
-    public void setCheckOut(Date checkOut) {
+    public void setCheckOut(Time checkOut) {
         this.checkOut = checkOut;
     }
 }
+
+

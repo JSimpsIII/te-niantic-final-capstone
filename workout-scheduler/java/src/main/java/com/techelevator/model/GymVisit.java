@@ -1,5 +1,6 @@
 package com.techelevator.model;
 
+import java.sql.Time;
 import java.util.Date;
 
 
@@ -7,22 +8,24 @@ public class GymVisit {
 
     private int visitId;
     private Long customerId;
-    private Date checkIn;
-    private Date checkOut;
+    private Date visitDate;
+    private Time checkIn;
+    private Time checkOut;
 
     public GymVisit() {
     }
 
-    public GymVisit(int visitId, Long customerId, Date checkIn, Date checkOut) {
-        this.visitId = visitId;
+    public GymVisit(Long customerId, Date visitDate, Time checkIn) {
         this.customerId = customerId;
         this.checkIn = checkIn;
-        this.checkOut = checkOut;
     }
 
-    public GymVisit(Long customerId, Date checkIn) {
+    public GymVisit(int visitId, Long customerId, Date visitDate, Time checkIn, Time checkOut) {
+        this.visitId = visitId;
         this.customerId = customerId;
+        this.visitDate = visitDate;
         this.checkIn = checkIn;
+        this.checkOut = checkOut;
     }
 
     public int getVisitId() {
@@ -41,20 +44,27 @@ public class GymVisit {
         this.customerId = customerId;
     }
 
-    public Date getCheckIn() {
+    public Date getVisitDate() {
+        return visitDate;
+    }
+
+    public void setVisitDate(Date visitDate) {
+        this.visitDate = visitDate;
+    }
+
+    public Time getCheckIn() {
         return checkIn;
     }
 
-    public void setCheckIn(Date checkIn) {
+    public void setCheckIn(Time checkIn) {
         this.checkIn = checkIn;
     }
 
-    public Date getCheckOut() {
+    public Time getCheckOut() {
         return checkOut;
     }
 
-    public void setCheckOut(Date checkOut) {
+    public void setCheckOut(Time checkOut) {
         this.checkOut = checkOut;
     }
-
 }

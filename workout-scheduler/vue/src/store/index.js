@@ -49,12 +49,6 @@ export default new Vuex.Store({
       misc: ''
     },
     gymLogs: [],
-    gymVisit: {
-      visitId: null,
-      customerId: null,
-      checkIn: null,
-      checkOut: null
-    },
     goalList: [],
     goal: {
       id: null,
@@ -73,7 +67,9 @@ export default new Vuex.Store({
     gym: {
       clockIn: null,
       clockOut: null,
-      inGym: false
+      inGym: false,
+      visitDate: null,
+      visitId: 0
     }
   },
   mutations: {
@@ -113,8 +109,9 @@ export default new Vuex.Store({
     LOAD_GOAL_LIST(state, goals) {
       state.goalList = goals;
     },
-    GYM_CLOCK_IN(state, date) {
-      state.gym.clockIn = date;
+    GYM_CLOCK_IN(state, date, time) {
+      state.gym.visitDate = date;
+      state.gym.clockIn = time;
     },
     GYM_CLOCK_OUT(state, date) {
       state.gym.clockOut = date;
@@ -122,11 +119,11 @@ export default new Vuex.Store({
     SET_IN_GYM(state, inGym) {
       state.gym.inGym = inGym;
     },
+    SET_GYM_VISIT_ID(state, visitId) {
+      state.gym.visitId = visitId;
+    },
     LOAD_GYM_LOGS(state, gymLogs) {
       state.gymLogs = gymLogs;
-    },
-    SET_GYM_VISIT_ID(state, visitId) {
-      state.gymVisit.visitId = visitId;
     }
   }
 })
