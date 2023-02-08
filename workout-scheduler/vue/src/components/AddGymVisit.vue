@@ -20,13 +20,14 @@
 
 <script>
 import gymVisitService from '../services/GymVisitService.js'
+
 export default {
     name: 'add-gym-visit',
     data() {
         return {
             gymVisit: {
-                visitId: null,
                 customerId: null,
+                visitDate: null,
                 checkIn: null,
                 checkOut: null
             }
@@ -36,21 +37,30 @@ export default {
         clockIn() {
             this.$store.commit('SET_IN_GYM', true);
             let clockinTime = Date.now();
-            this.$store.commit('GYM_CLOCK_IN', clockinTime);
-            let userId = this.$store.state.profile.customerId;
-            let visitId = gymVisitService.newVisit(userId, clockinTime);
-            this.$store.commit('SET_GYM_VISIT_ID', visitId);
-            
+            let visitDate = new Date().toISOString;
+            this.$store.commit('GYM_CLOCK_IN', visitDate, clockinTime);
+            this.createEntry();
         },
         clockOut() {
             this.$store.commit('SET_IN_GYM', false);
             let clockoutTime = Date.now();
             this.$store.commit('GYM_CLOCK_OUT', clockoutTime);
+            this.updateEntry();
+        },
+        createEntry() {
+            this.gymVisit.customerId = this.$store.state.profile.customerId;
+            this.gymVisit.visitDate = this.$store.state.gym.visitDate;
             this.gymVisit.checkIn = this.$store.state.gym.clockIn;
-            this.gymVisit.checkOut = clockoutTime;
-            this.visitId = this.$store.state.gymVisit.visitId;
-            this.customerId = this.$store.state.profile.customerId;
-            gymVisitService.newVisit(this.gymVisit.customerId, this.gymVisit.visitId, this.gymVisit);
+            let id = gymVisitService.newVisit(this.gymVisit.customerId, this.gymVisit);
+            this.$store.commit('SET_GYM_VISIT_ID', id);
+        },
+        updateEntry() {
+            let id = this.$store.state.gym.visitId;
+            this.gymVisit.customerId = this.$store.state.profile.customerId;
+            this.gymVisit.visitDate = this.$store.state.gym.visitDate;
+            this.gymVisit.checkIn = this.$store.state.gym.clockIn;
+            this.gymVisit.checkOut = this.$store.state.gym.clockOut;
+            gymVisitService.updateVisit(this.gymVisit.customerId, id, this.gymVisit);
         }
     }
 }

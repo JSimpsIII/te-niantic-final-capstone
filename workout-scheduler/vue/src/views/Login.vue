@@ -1,5 +1,5 @@
 <template>
-    <div id="login" class="text-center">
+    <div id="login">
 
         <div id="login-header">     
             <img id="login-img" src="https://www.creativefabrica.com/wp-content/uploads/2020/12/07/Gym-Logo-Graphics-7049759-1-580x386.jpg" />
@@ -67,10 +67,9 @@
 
         </form>
 
-        <image-changer/>
-
-        <p id="gym-info" v-if="!this.$route.query.registration">{{inspirationalQuote}}</p>
-        
+        <div id='image-changer-div'>
+          <image-changer/>
+        </div>     
     </div>
 </template>
 
@@ -90,18 +89,6 @@ export default {
         password: ""
       },
       invalidCredentials: false,
-      quotes: ["\"What seems impossible today will one day become your warm-up.\"", 
-      "\"If it doesn't challenge you,\nit doesn't change you.\"", 
-      "\"The only place where success comes before work is in the dictionary.\"",
-      "\"If something stands between you and your success, move it. Never be denied.\"",
-      "\"Motivation is what gets you started.\nHabit is what keeps you going.\"",
-      "\"The difference between try and triumph\nis a little ‘umph.\"",
-      "\"Put all excuses aside and remember this:\nYou are capable.\""]
-    };
-  },
-  computed: {
-    inspirationalQuote() {
-      return this.quotes[Math.floor(Math.random() * Math.floor(7))];
     }
   },
   methods: {
@@ -135,11 +122,10 @@ export default {
 
 #login {
   white-space: pre-line;
-}
-
-.text-center {
-  width: 600px;
-  margin: 0 auto;
+  max-width: 600px;
+  margin: 0;
+  padding: 0;
+  overflow:hidden;
 }
 
 #login-header {
@@ -188,16 +174,11 @@ export default {
   margin-bottom: 20px;
 }
 
-#gym-info {
-  font-size: 25px;
-  text-align: center;
-  width: 90%;
-  margin: 0 auto;
-  margin-bottom: 20px;
-}
-
 #create-account-link {
   color:darkgoldenrod;
 }
 
+#image-changer-div {
+  max-width: 600px;
+}
 </style>
