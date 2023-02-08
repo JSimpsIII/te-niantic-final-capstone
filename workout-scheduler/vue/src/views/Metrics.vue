@@ -24,7 +24,7 @@
 
       <div class="sub-metric-container">
         <div id="minutes-metric" class="metric-headers">
-          <h2>Last 7 Days</h2>
+          <h2>Minutes - Week</h2>
           <img 
             :src="require(`@/assets/${minutes.arrowDirection}.png`)" 
             :alt="minutes.arrowDirection"

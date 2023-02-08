@@ -1,6 +1,6 @@
 <template>
   <div>
-      <h3>Workouts Today</h3>
+      <h3>Minutes per Exercise</h3>
     <bar-chart></bar-chart>
   </div>
 </template>

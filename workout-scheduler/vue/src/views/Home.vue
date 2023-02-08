@@ -19,7 +19,7 @@
 
     <div id="motivation">
       <div id='welcome-message'>Welcome back, {{ this.$store.state.profile.name }}!</div>
-      <div id='motivation-message'>{{ this.motivationMessage }}</div>
+      <!-- <div id='motivation-message'>{{ this.motivationMessage }}</div> -->
     </div>
 
     <div class="btn-container">
