@@ -1,15 +1,15 @@
 <template>
   <div>
-      <h3>Exercise Time - Last 7 Days</h3>
+      <h3>Workouts Today</h3>
     <bar-chart></bar-chart>
   </div>
 </template>
 
 <script>
-import BarChart from './charts/MinutesPerDayBarChart.vue';
+import BarChart from './charts/WorkoutsTodayBarChart.vue'
 
 export default {
-  name: "metrics-minutes",
+  name: "metrics-today",
   components: {
     BarChart
   }

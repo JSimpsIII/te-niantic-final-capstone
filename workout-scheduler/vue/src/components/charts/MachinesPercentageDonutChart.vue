@@ -30,6 +30,9 @@ export default {
       options: {
         legend: {
           display: true,
+          labels: {
+            fontColor: "#FDFFFC"
+          }
         },
         responsive: true,
         maintainAspectRatio: false,

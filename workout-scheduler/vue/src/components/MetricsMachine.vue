@@ -1,6 +1,6 @@
 <template>
-  <div>
-      <h3>Exercise Percentages by Equipment</h3>
+  <div id="equipment-donut-chart">
+      <h3>Workouts by Equipment</h3>
         <donut-chart></donut-chart>
   </div>
 </template>
@@ -15,3 +15,12 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+
+h3 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+</style>
