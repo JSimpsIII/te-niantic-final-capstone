@@ -1,5 +1,18 @@
 <template>
-  <div id='exercise-table'>
+    <div id='exercise-table'>
+  
+        <div id='schedule' class='gym-button'>
+            Want to schedule a workout for later?
+            <button id='schedule-button' @click='openCalendar()'>
+                {{buttonText}}
+            </button>
+        </div>
+
+        <div class="gym-instructions-container">
+            <div id="gym-instructions" v-if="!calendarActive">Select an exercise to begin</div>
+            <div id="alternate-instructions" v-if="calendarActive">Select an exercise to schedule</div>
+        </div>
+
   <div id='search-menu'>
   <img id="search-icon" class="icon-button" src="../assets/search.png" alt="search-icon" title="Search" @click="toggleSearch" v-if="!showSearchBar">
   <button id="cancel-button" v-if="showSearchBar" @click="toggleSearch">Cancel</button>
@@ -108,9 +121,10 @@
                     v-bind:key="exercise.id"
                     class='exercise-option'>
                     <td>
-                        <router-link :to="{ name: 'exercise', params: {id:exercise.id} }">
+                        <router-link :to="{ name: 'exercise', params: {id:exercise.id} }" v-if="!calendarActive">
                             <button class="exercise-name">{{ exercise.name }}</button>
                         </router-link>
+                        <button class="exercise-name" v-if="calendarActive">{{ exercise.name }}</button>
                     </td>
                     <td class='column-list'>{{ exercise.target }}</td>
                     <td class='column-list'>{{ exercise.bodyPart }}</td>
@@ -135,13 +149,21 @@ export default {
                 equipment: ''
             },
             showSearchBar: false,
-            showFilters: false
+            showFilters: false,
+            calendarActive: false
         }
     },
     created() {
       this.loadExercises();
     },
     computed: {
+        buttonText() {
+            let calendarText = "Open Calendar"
+            if (this.calendarActive == true) {
+                calendarText = "Close Calendar" 
+            }
+            return calendarText
+        },
         allExercises() {
             return this.$store.state.exerciseList;
         },
@@ -203,6 +225,9 @@ export default {
         },
         toggleFilters() {
             this.showFilters = !this.showFilters;
+        },
+        openCalendar() {
+            this.calendarActive = !this.calendarActive
         }
     }
 
@@ -228,6 +253,22 @@ export default {
   padding-top: 1%;
   margin-left: 2%;
   margin-bottom: 2%;
+}
+
+.gym-instructions-container {
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+}
+
+#gym-instructions {
+  font-size: 18px;
+  color: sandybrown;
+}
+
+#alternate-instructions {
+      font-size: 18px;
+  color: sandybrown;
 }
 
 #search-icon {
@@ -284,5 +325,25 @@ button:hover {
     /* font-size: 18px; */
 }
 
+.gym-button {
+    display: flex;
+    flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  color: #FDFFFC;
+  opacity: 1;
+  margin: 0 auto;
+  font-size: 20px;
+  padding: 15px 20px;
+  /* margin-top: 10px; */
+  margin-bottom: 15px;
+  text-align: center;
+  border-radius: 10px;
+}
+
+#schedule-button {
+    background-color: sandybrown;
+}
 
 </style>
