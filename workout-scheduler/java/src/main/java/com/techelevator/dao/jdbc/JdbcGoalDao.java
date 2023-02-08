@@ -22,7 +22,7 @@ public class JdbcGoalDao implements GoalDao {
     @Override
     public List<Goal> getAllGoals(Long userId) {
         List<Goal> goals = new ArrayList<>();
-        String sqlQuery = "SELECT * FROM goal WHERE customer_id = ?";
+        String sqlQuery = "SELECT * FROM goal WHERE customer_id = ?;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sqlQuery, userId);
         while (results.next()) {
             Goal goal = mapRowToGoal(results);
