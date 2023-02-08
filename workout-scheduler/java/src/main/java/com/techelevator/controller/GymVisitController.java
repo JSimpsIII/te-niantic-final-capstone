@@ -28,7 +28,7 @@ public class GymVisitController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(path = "users/{userId}/gymlogs", method = RequestMethod.POST)
-    public boolean newVisit(@PathVariable Long userId, @RequestBody GymVisitDTO gymVisitDTO) {
+    public int newVisit(@PathVariable Long userId, @RequestBody GymVisitDTO gymVisitDTO) {
         Long customerId = gymVisitDTO.getCustomerId();
         Date checkIn = gymVisitDTO.getCheckIn();
         GymVisit gymVisit = new GymVisit(customerId, checkIn);

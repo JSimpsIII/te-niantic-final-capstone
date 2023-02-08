@@ -31,8 +31,8 @@ public class JdbcGymVisitDao implements GymVisitDao {
     }
 
     @Override
-    public boolean newVisit(Long customerId, GymVisit gymVisit) {
-        boolean visitCreated = addNewVisit(gymVisit);
+    public int newVisit(Long customerId, GymVisit gymVisit) {
+        int visitCreated = addNewVisit(gymVisit);
         return visitCreated;
     }
 
@@ -48,7 +48,7 @@ public class JdbcGymVisitDao implements GymVisitDao {
         return visitDeleted;
     }
 
-    private boolean addNewVisit(GymVisit gymVisit) {
+    private int addNewVisit(GymVisit gymVisit) {
         Long customerId = gymVisit.getCustomerId();
         Date checkIn = gymVisit.getCheckIn();
 
@@ -60,9 +60,10 @@ public class JdbcGymVisitDao implements GymVisitDao {
             visitId = jdbcTemplate.queryForObject(sqlQuery, Integer.class, customerId, checkIn);
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            return false;
+            return -1;
         }
-        return (visitId != null);
+        if (visitId == null) return -1;
+        return visitId;
     }
 
     private boolean updateGymVisit(GymVisit gymVisit) {
