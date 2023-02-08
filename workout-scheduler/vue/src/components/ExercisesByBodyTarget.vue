@@ -1,6 +1,6 @@
 <template>
     <div id='exercises-by-body-target'>
-        <h3>Exercises by Body Target</h3>
+        <h3>Exercises by Target Muscle Groups</h3>
         <exercises-by-body-target-donut-chart></exercises-by-body-target-donut-chart>
     </div>
 </template>

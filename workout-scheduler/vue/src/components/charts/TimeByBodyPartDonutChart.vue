@@ -64,44 +64,41 @@ export default {
           responsive: true,
           maintainAspectRatio: false
         },
-        bodyPartObj: {}
+        metricsDictionary: {},
+        exerciseDictionary: {}
       }
     },
   mounted() {
       this.renderChart(this.chartData, this.options);
   },
   created() {
-    // labels for donut chart
-    this.chartData.labels = this.getBodyPartNameForLabels();
+    // labels for chart
+    this.chartData.labels = this.getBPLabelArray();
 
-    // setup keys for bpObj
-    this.bodyPartObj = this.convertArrayToObject(this.getBodyPartNameForLabels());
-
-    // get ids for each exercise - for bpObj
-    this.$store.state.exerciseList.forEach(e => {
-        if (e.bodyPart in this.bodyPartObj) {
-            this.bodyPartObj[e.bodyPart].ids.push(e.id);
-        }
+    // map lables as key for metrics dictionary and set value to 0
+    this.chartData.labels.forEach(name => {
+        this.metricsDictionary[name] = 0;
+    })
+    
+    // map { exercise id : body part name } to dictionary
+    this.$store.state.exerciseList.forEach(exercise => {
+        this.exerciseDictionary[exercise.id] = exercise.bodyPart;
+    });
+    
+    // iterate through metrics and total minutes per body part
+    this.$store.state.metricsList.forEach(metric => {
+        let bodyPart = this.exerciseDictionary[metric.exerciseId];
+        let minutes = this.metricsDictionary[bodyPart];
+        let addMinutes = metric.time;
+        this.metricsDictionary[bodyPart] = (minutes + addMinutes);
     });
 
-    // get totals for each exercise - for machineObj
-    this.$store.state.metricsList.forEach(m => {
-        for (const prop in this.bodyPartObj) {
-            if (this.bodyPartObj[prop].ids.includes(m.exerciseId)) {
-                this.bodyPartObj[prop].total += 1;
-            }
-        }
-    })
-
-    this.chartData.datasets[0].data = this.getBodyPartNameForLabels()
-                                          .map(m => this.bodyPartObj[m].total)
-    
-
+    // map metrics dictionary to chart data
+    this.chartData.datasets[0].data = this.getBPLabelArray().map(name => this.metricsDictionary[name])
   },
   methods: {
-    getBodyPartNameForLabels() {
+    getBPLabelArray() {
       const uniqueExerciseBodyParts = this.getUniqueExerciseIds();
-
       const exerciseArray = [];
       this.$store.state.exerciseList.forEach((item) => {
         if (uniqueExerciseBodyParts.includes(item.id)) {
@@ -110,19 +107,11 @@ export default {
       });
       return [...new Set(exerciseArray)];
     },
-    convertArrayToObject(array) {
-      return array.reduce(
-        (obj, x) => ({ ...obj, [x]: { total: 0, ids: []} }),
-        {}
-      );
-    },
     getUniqueExerciseIds() {
-      const userExerciseBodyParts = this.$store.state.metricsList.map(
-        (m) => m.exerciseId
+      const userExerciseBodyParts = this.$store.state.metricsList.map(m => m.exerciseId
       );
-
       return [...new Set(userExerciseBodyParts)];
-    },
-  },
+    }
+  }
 };
 </script>
