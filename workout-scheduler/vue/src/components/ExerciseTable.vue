@@ -6,7 +6,7 @@
             <p class='calendar-prompt' v-if="!checkEmpty && !calendarActive">Reminder: "{{scheduledExercise.name}}" upcoming on {{scheduledExercise.date}} at {{scheduledExercise.time}}</p>
         </div>
 
-        <div id='schedule' class='gym-button' v-if="!calendarActive">
+        <div id='schedule' class='gym-button' v-if="!calendarActive && checkEmpty">
             <!-- <p class='calendar-prompt'>Want to schedule a workout for later?</p> -->
             <button id='schedule-button' @click='openCalendar()'>
                 {{buttonText}}
@@ -19,6 +19,11 @@
             </button>
         </div>
         
+        <div id='cancel-schedule' class='gym-button' v-if="!calendarActive && !checkEmpty">
+            <button id='cancel-exercise-button' @click='cancelExercise()'>
+                {{buttonText}}
+            </button>
+        </div>
 
 
         <div class="gym-instructions-container">
@@ -206,6 +211,9 @@ export default {
             if (this.calendarActive == true) {
                 calendarText = "Workout" 
             }
+            if (this.checkEmpty == false && this.calendarActive == false) {
+                calendarText = "Cancel Scheduled Exercise"
+            }
             return calendarText
         },
         allExercises() {
@@ -331,6 +339,13 @@ export default {
         },
         saveExercise() {
             this.showForm = false;
+        },
+        cancelExercise() {
+            this.scheduledExercise = {
+                name: '',
+                date: '',
+                time: ''
+            }
         }
     }
 
@@ -482,6 +497,23 @@ button:hover {
 
 #workout-button {
     background-color: sandybrown;
+      display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  color: #FDFFFC;
+  opacity: 1;
+  margin: 0 auto;
+  font-size: 20px;
+  padding: 15px 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+  border-radius: 10px;
+}
+
+#cancel-exercise-button {
+        background-color: var(--red);
       display: flex;
   justify-content: center;
   align-items: center;
