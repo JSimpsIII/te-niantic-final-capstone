@@ -9,10 +9,6 @@
                 <add-gym-visit />
             </div>
 
-            <div class="gym-instructions-container">
-              <div id="gym-instructions">Select an exercise to begin</div>
-            </div>
-
         </div>
 
        <exercise-table />

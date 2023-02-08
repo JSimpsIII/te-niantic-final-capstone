@@ -32,9 +32,9 @@ INSERT INTO metrics (customer_id, exercise_id, metrics_date, current_weight_lbs,
 
 
 -- insert goal table data
-INSERT INTO goal (goal_id, goal_name, customer_id, goal_date, goal_weight_lbs, is_completed) VALUES (1, 'Bench press (lbs)', 1, DATE '2023-12-01', 200, false);
-INSERT INTO goal (goal_id, goal_name, customer_id, goal_date, goal_time_min, is_completed) VALUES (2, 'mile run',  1, DATE '2023-05-20', 6.0, false);
-INSERT INTO goal (goal_id, goal_name, customer_id, goal_date, goal_days, is_completed) VALUES (3, 'Days in gym every week', 1, DATE '2022-01-01', 5, true);
+INSERT INTO goal (goal_id, goal_name, customer_id, exercise_id, goal_date, goal_weight_lbs, is_completed) VALUES (1, 'Bench press (lbs)', 1, 1, DATE '2023-12-01', 200, false);
+INSERT INTO goal (goal_id, goal_name, customer_id, exercise_id, goal_date, goal_time_min, is_completed) VALUES (2, 'mile run',  1, 1, DATE '2023-05-20', 6.0, false);
+INSERT INTO goal (goal_id, goal_name, customer_id, exercise_id, goal_date, goal_days, is_completed) VALUES (3, 'Days in gym every week', 1, 1, DATE '2022-01-01', 5, true);
 ALTER SEQUENCE seq_goal_id RESTART WITH 4;
 
 
