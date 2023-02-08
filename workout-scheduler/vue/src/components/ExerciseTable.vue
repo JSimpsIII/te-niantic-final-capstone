@@ -1,7 +1,10 @@
 <template>
     <div id='exercise-table'>
 
-        <div><p class='calendar-prompt'>No upcoming workouts</p></div>
+        <div>
+            <p class='calendar-prompt' v-if="checkEmpty">No upcoming workouts</p>
+            <p class='calendar-prompt' v-if="!checkEmpty && !calendarActive">Reminder: {{scheduledExercise.name}} upcoming on {{scheduledExercise.date}} at {{scheduledExercise.time}}</p>
+        </div>
 
         <div id='schedule' class='gym-button' v-if="!calendarActive">
             <!-- <p class='calendar-prompt'>Want to schedule a workout for later?</p> -->
@@ -190,10 +193,17 @@ export default {
       this.loadExercises();
     },
     computed: {
+        checkEmpty() {
+            let empty = false;
+            if (this.scheduledExercise.name == '' && this.scheduledExercise.date == '' && this.scheduledExercise.time == '') {
+                empty = true
+            }
+            return empty
+        },
         buttonText() {
-            let calendarText = "Schedule Mode"
+            let calendarText = "Schedule"
             if (this.calendarActive == true) {
-                calendarText = "Workout Mode" 
+                calendarText = "Workout" 
             }
             return calendarText
         },
