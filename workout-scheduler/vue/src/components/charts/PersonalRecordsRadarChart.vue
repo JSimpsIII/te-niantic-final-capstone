@@ -8,10 +8,14 @@ export default {
         labels: [],
         datasets: [
           {
-            label: "Personal Record",
+            label: "Record",
             borderWidth: 1,
-            backgroundColor: "rgba(204, 174, 6, 0.6)",
-
+            backgroundColor: 'rgba(255,99,132,0.5)',
+            borderColor: 'rgba(255,99,132,1)',
+            pointBackgroundColor: 'rgba(255,99,132,1)',
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: 'rgba(255,99,132,1)',
             data: [],
           },
         ],
@@ -27,6 +31,11 @@ export default {
         legend: {
           display: false,
         },
+        tooltips: {
+          callbacks: {
+            title: (tooltipItem, data) => data.labels[tooltipItem[0].index]
+          }
+        }
       },
       recordsObj: {},
     };
@@ -72,7 +81,6 @@ export default {
     // set chart data to pull only records matching chartData.labels
     this.chartData.datasets[0].data = this.chartData.labels
                                           .map(m => this.recordsObj[m].record);
-    
 
   },
   methods: {
