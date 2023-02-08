@@ -14,8 +14,8 @@ export default {
         return http.post(`/users/${userId}/gymlogs`);
     },
 
-    updateVisit(userId, visitId) {
-        return http.put(`/users/${userId}/gymlogs/${visitId}`);
+    updateVisit(userId, visitId, visit) {
+        return http.put(`/users/${userId}/gymlogs/${visitId}`, visit);
     },
     
     deleteVisit(userId, visitId) {

@@ -27,14 +27,23 @@ public class GymVisitController {
 
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(path = "users/{userId}/gymlogs", method = RequestMethod.POST)
-    public int newVisit(@PathVariable Long userId) {
-        return gymVisitDao.newVisit(userId);
+    public int newVisit(@PathVariable Long userId, @RequestBody GymVisitDTO gymVisitDTO) {
+        GymVisit gymVisit = new GymVisit();
+        gymVisit.setCustomerId(userId);
+        return gymVisitDao.newVisit(userId, gymVisit);
     }
 
     @RequestMapping(path = "users/{userId}/gymlogs/{visitId}", method = RequestMethod.PUT)
-    public boolean updateVisit(@PathVariable Long userId, @PathVariable int visitId) {
-        return gymVisitDao.updateVisit(userId, visitId);
+    public boolean updateVisit(@PathVariable Long userId, @PathVariable int visitId, @RequestBody GymVisitDTO gymVisitDTO) {
+        GymVisit gymVisit = new GymVisit();
+        gymVisit.setCustomerId(gymVisitDTO.getCustomerId());
+        gymVisit.setVisitId(gymVisitDTO.getVisitId());
+        gymVisit.setVisitDate(gymVisitDTO.getVisitDate());
+        gymVisit.setCheckIn(gymVisitDTO.getCheckIn());
+        Time checkIn = gymVisitDTO.getCheckIn();
+        return gymVisitDao.updateVisit(userId, visitId, gymVisit);
     }
 
     @RequestMapping(path = "users/{userId}/gymlogs/{visitId}", method = RequestMethod.DELETE)
