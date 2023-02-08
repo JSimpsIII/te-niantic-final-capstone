@@ -15,10 +15,24 @@
                 {{buttonText}}
             </button>
         </div>
+        
+
 
         <div class="gym-instructions-container">
             <div id="gym-instructions" v-if="!calendarActive">Select an exercise to begin</div>
-            <div id="alternate-instructions" v-if="calendarActive">Select an exercise to schedule</div>
+            <div id="alternate-instructions" v-if="calendarActive && !showForm">Select an exercise to schedule</div>
+            <form id="frmDateAndTime" v-show="showForm" v-on:submit.prevent="saveExercise">
+                <p>You've chosen {{scheduledExercise.name}}</p>
+                <div class="field" >
+                    <label for="date">Date:</label>
+                    <input type="text" name="date" placeholder="MM/DD/YYYY" v-model="scheduledExercise.date"/>
+                </div>
+                <div class="field">
+                    <label for="time">Time:</label>
+                    <input type="text" name="time" placeholder="00:00 PM" v-model="scheduledExercise.time"/>
+                </div>
+                <button type="submit" class="btn save">Save</button>
+            </form>
         </div>
 
         <div id='search-menu'>
@@ -137,7 +151,7 @@
 
                             <button class="exercise-name">{{ exercise.name }}</button>
                         </router-link>
-                        <button class="exercise-schedule-name" v-if="calendarActive">{{ exercise.name }}</button>
+                        <button class="exercise-schedule-name" v-if="calendarActive" @click='toggleShowForm(exercise)'>{{ exercise.name }}</button>
                     </td>
                     <td class='column-list table-cell'>{{ exercise.target }}</td>
                     <td class='column-list table-cell'>{{ exercise.bodyPart }}</td>
@@ -161,9 +175,15 @@ export default {
                 bodyPart: '',
                 equipment: ''
             },
+            scheduledExercise: {
+                name: '',
+                date: '',
+                time: ''
+            },
             showSearchBar: false,
             showFilters: false,
-            calendarActive: false
+            calendarActive: false,
+            showForm: false
         }
     },
     created() {
@@ -241,6 +261,15 @@ export default {
         },
         openCalendar() {
             this.calendarActive = !this.calendarActive
+        },
+        toggleShowForm(exercise) {
+            this.showForm = !this.showForm
+            if (this.scheduledExercise.name == '') {
+                this.scheduledExercise.name = exercise.name
+            }
+        },
+        saveExercise() {
+            this.showForm = false;
         }
     }
 
@@ -350,6 +379,7 @@ th {
 }
 
 .calendar-prompt {
+    padding-top: 20px;
     font-size: 1.3em;
     margin-bottom: 10px;
 }
