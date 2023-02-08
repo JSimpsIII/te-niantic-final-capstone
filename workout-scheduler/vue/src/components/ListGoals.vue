@@ -1,47 +1,56 @@
 <template>
-    <div id='list-goals'>
-        <div
-          class="goal"
-          v-for="goal in this.$store.state.goalList"
-          :key="goal.id"
-          :data-goal-id="goal.id"
-        >
-          <div class="goal-details">
-            {{ goal.name }}
-            {{
-              goal.reps != 0 ||
-              goal.weight != 0 ||
-              goal.time != 0 ||
-              goal.distance != 0 ||
-              goal.days != 0 ||
-              goal.misc != null
-                ? ":"
-                : ""
-            }}
-            {{ goal.reps != 0 ? goal.reps : "" }}
-            {{ goal.weight != 0 ? goal.weight : "" }}
-            {{ goal.time != 0 ? goal.time : "" }}
-            {{ goal.distance != 0 ? goal.distance : "" }}
-            {{ goal.days != 0 ? goal.days : "" }}
-            {{ goal.misc != null ? goal.misc : "" }}
-          </div>
-          <img
-            src="../assets/trash.png"
-            alt="delete-icon"
-            class="delete-icon"
-            @click="deleteGoal"
-          />
-        </div>
+  <div id="list-goals">
+    <div
+      class="goal"
+      v-for="goal in this.$store.state.goalList"
+      :key="goal.id"
+      :data-goal-id="goal.id"
+    >
+      <div class="goal-details">
+        {{ goal.name }}
+        {{
+          goal.reps != 0 ||
+          goal.weight != 0 ||
+          goal.time != 0 ||
+          goal.distance != 0 ||
+          goal.days != 0 ||
+          goal.misc != null
+            ? ":"
+            : ""
+        }}
+        {{ goal.reps != 0 ? goal.reps : "" }}
+        {{ goal.weight != 0 ? goal.weight : "" }}
+        {{ goal.time != 0 ? goal.time : "" }}
+        {{ goal.distance != 0 ? goal.distance : "" }}
+        {{ goal.days != 0 ? goal.days : "" }}
+        {{ goal.misc != null ? goal.misc : "" }}
+      </div>
+
+      <div class="goals-icons">
+        <img 
+          src="../assets/check.png" 
+          alt="check-icon" 
+          class="check-icon" 
+        />
+
+        <img
+          src="../assets/trash.png"
+          alt="delete-icon"
+          class="delete-icon"
+          @click="deleteGoal"
+        />
+      </div>
     </div>
+  </div>
 </template>
 
 <script>
 import goalService from "../services/GoalService";
 
 export default {
-    name: 'list-goals',
-    methods: {
-      deleteGoal(e) {
+  name: "list-goals",
+  methods: {
+    deleteGoal(e) {
       const goalId = e.target.parentElement.dataset.goalId;
 
       goalService
@@ -56,14 +65,13 @@ export default {
         .catch((error) => {
           console.error(error);
         });
-    }
-    }
-
-}
+    },
+  },
+};
 </script>
 
 <style scoped>
-  .goal {
+.goal {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -77,7 +85,13 @@ export default {
   padding: 0 25px;
 }
 
+.check-icon,
 .delete-icon {
   cursor: pointer;
+}
+
+.goals-icons {
+  display: flex;
+  gap: 10px;
 }
 </style>
