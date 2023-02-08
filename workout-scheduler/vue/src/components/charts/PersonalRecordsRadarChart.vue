@@ -27,6 +27,9 @@ export default {
           gridLines: {
             color: "lightyellow",
           },
+          pointLabels: {
+            fontColor: "#FDFFFC",
+          },
         },
         legend: {
           display: false,
