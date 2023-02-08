@@ -6,6 +6,11 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Service;
 
+import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -31,14 +36,14 @@ public class JdbcGymVisitDao implements GymVisitDao {
     }
 
     @Override
-    public int newVisit(Long customerId, GymVisit gymVisit) {
-        int visitCreated = addNewVisit(gymVisit);
+    public int newVisit(Long customerId) {
+        int visitCreated = addNewVisit(customerId);
         return visitCreated;
     }
 
     @Override
-    public boolean updateVisit(Long customerId, int visitId, GymVisit gymVisit) {
-        boolean visitUpdated = updateGymVisit(gymVisit);
+    public boolean updateVisit(Long customerId, int visitId) {
+        boolean visitUpdated = updateGymVisit(customerId, visitId);
         return visitUpdated;
     }
 
@@ -48,16 +53,16 @@ public class JdbcGymVisitDao implements GymVisitDao {
         return visitDeleted;
     }
 
-    private int addNewVisit(GymVisit gymVisit) {
-        Long customerId = gymVisit.getCustomerId();
-        Date checkIn = gymVisit.getCheckIn();
+    private int addNewVisit(Long customerId) {
+        String visitDate = LocalDate.now().format(DateTimeFormatter.ISO_LOCAL_DATE);
+        Time checkIn = Time.valueOf(LocalTime.now());
 
         Integer visitId;
         String sqlQuery = "INSERT INTO gym_visit " +
-                "(customer_id, check_in) " +
-                "VALUES (?, ?) RETURNING visit_id;";
+                "(customer_id, visit_date, check_in) " +
+                "VALUES (?, ?, ?) RETURNING visit_id;";
         try {
-            visitId = jdbcTemplate.queryForObject(sqlQuery, Integer.class, customerId, checkIn);
+            visitId = jdbcTemplate.queryForObject(sqlQuery, Integer.class, customerId, visitDate, checkIn);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return -1;
@@ -66,17 +71,13 @@ public class JdbcGymVisitDao implements GymVisitDao {
         return visitId;
     }
 
-    private boolean updateGymVisit(GymVisit gymVisit) {
-        int visitId = gymVisit.getVisitId();
-        Long customerId = gymVisit.getCustomerId();
-        Date checkIn = gymVisit.getCheckIn();
-        Date checkOut = gymVisit.getCheckOut();
-
+    private boolean updateGymVisit(Long customerId, int visitId) {
+        Time checkOut = Time.valueOf(LocalTime.now());
         String sqlQuery = "UPDATE gym_visit " +
-                "SET check_in = ?, check_out = ? " +
+                "SET check_out = ? " +
                 "WHERE visit_id = ? AND customer_id = ?;";
         try {
-            jdbcTemplate.update(sqlQuery, checkIn, checkOut, visitId, customerId);
+            jdbcTemplate.update(sqlQuery, checkOut, visitId, customerId);
         } catch (Exception e) {
             return false;
         }
@@ -98,8 +99,9 @@ public class JdbcGymVisitDao implements GymVisitDao {
         GymVisit gymVisit = new GymVisit();
         gymVisit.setVisitId(row.getInt("visit_id"));
         gymVisit.setCustomerId(row.getLong("customer_id"));
-        gymVisit.setCheckIn(row.getDate("check_in"));
-        gymVisit.setCheckOut(row.getDate("check_out"));
+        gymVisit.setVisitDate(row.getDate("visit_date"));
+        gymVisit.setCheckIn(row.getTime("check_in"));
+        gymVisit.setCheckOut(row.getTime("check_out"));
         return gymVisit;
     }
 

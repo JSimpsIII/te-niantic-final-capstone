@@ -79,10 +79,16 @@ export default {
       })
 
       this.updatedGoal.completed = true;
+      console.log(this.updatedGoal)
       
-      console.log(userId, goalId)
-      // goalService
-      //   .updateGoal(userId, goalId)
+      goalService
+        .updateGoal(userId, goalId. this.updatedGoal)
+        .then(res => {
+          if (res.status == 200) {
+            console.log("goal completed code here!")
+          }
+        })
+        .catch(error => console.error(error))
     },
     deleteGoal(e) {
       const goalId = e.target.parentElement.parentElement.dataset.goalId;
