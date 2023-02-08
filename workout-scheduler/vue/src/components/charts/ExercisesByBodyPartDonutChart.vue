@@ -120,7 +120,6 @@ export default {
       const userExerciseBodyParts = this.$store.state.metricsList.map(
         (m) => m.exerciseId
       );
-
       return [...new Set(userExerciseBodyParts)];
     },
   },
