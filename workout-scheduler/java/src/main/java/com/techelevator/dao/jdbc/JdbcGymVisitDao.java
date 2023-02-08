@@ -4,11 +4,13 @@ import com.techelevator.dao.GymVisitDao;
 import com.techelevator.model.GymVisit;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+@Service
 public class JdbcGymVisitDao implements GymVisitDao {
 
     private JdbcTemplate jdbcTemplate;
