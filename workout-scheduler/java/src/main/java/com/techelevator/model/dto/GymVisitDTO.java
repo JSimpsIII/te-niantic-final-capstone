@@ -1,17 +1,14 @@
 package com.techelevator.model.dto;
 
-import javax.validation.constraints.NotEmpty;
+
 import java.sql.Time;
-import java.util.Date;
+import java.sql.Date;
 
 public class GymVisitDTO {
 
     private int visitId;
-    @NotEmpty
     private Long customerId;
-    @NotEmpty
     private Date visitDate;
-    @NotEmpty
     private Time checkIn;
     private Time checkOut;
 

@@ -30,9 +30,6 @@ public class JdbcMetricDao implements MetricDao {
                 Metric metric = mapRowToMetric(results);
                 metrics.add(metric);
             }
-
-
-
         return metrics;
     }
 
