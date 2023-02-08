@@ -19,21 +19,16 @@
 </template>
 
 <script>
-import metricService from '../services/MetricService.js'
+import gymVisitService from '../services/GymVisitService.js'
 export default {
     name: 'add-gym-visit',
     data() {
         return {
-            metric: {
+            gymVisit: {
+                visitId: null,
                 customerId: null,
-                exerciseId: null,
-                date: null,
-                reps: null,
-                weight: null,
-                time: null,
-                distance: null,
-                days: null,
-                misc: ''
+                checkIn: null,
+                checkOut: null
             }
         }
     },
@@ -42,26 +37,20 @@ export default {
             this.$store.commit('SET_IN_GYM', true);
             let clockinTime = Date.now();
             this.$store.commit('GYM_CLOCK_IN', clockinTime);
+            let userId = this.$store.state.profile.customerId;
+            let visitId = gymVisitService.newVisit(userId, clockinTime);
+            this.$store.commit('SET_GYM_VISIT_ID', visitId);
+            
         },
         clockOut() {
             this.$store.commit('SET_IN_GYM', false);
             let clockoutTime = Date.now();
             this.$store.commit('GYM_CLOCK_OUT', clockoutTime);
-        },
-        createEntry() {
-            let millis = this.$store.state.gym.clockoutTime - this.$store.state.gym.clockinTime;
-            let minutes = parseFloat(this.milisecondsToMinutes(millis));
-            this.metric.time = minutes;
-            this.metric.customerId = this.$store.state.profile.customerId;
-            this.metric.date = new Date().toISOString();
-            this.metric.misc = 'at gym';
-            metricService
-                .logNewMetric(this.metric.customerId, this.metric)
-        },
-        milisecondsToMinutes(millis) {
-            let minutes = Math.floor(millis / 60000);
-            let seconds = ((millis % 60000) / 1000).toFixed(0);
-            return minutes + '.' + (seconds < 10 ? '0' : '') + seconds;
+            this.gymVisit.checkIn = this.$store.state.gym.clockIn;
+            this.gymVisit.checkOut = clockoutTime;
+            this.visitId = this.$store.state.gymVisit.visitId;
+            this.customerId = this.$store.state.profile.customerId;
+            gymVisitService.newVisit(this.gymVisit.customerId, this.gymVisit.visitId, this.gymVisit);
         }
     }
 }
