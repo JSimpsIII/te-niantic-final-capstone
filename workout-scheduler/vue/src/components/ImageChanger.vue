@@ -1,12 +1,13 @@
 <template>
-    <div>
-    <transition-group name="fade" tag="div">
-      <div v-for="i in [currentIndex]" :key="i">
-        <img id="image" :src="currentImg" />
-      </div>
-    </transition-group>
+    <div id='registration-image'>
+      <transition-group name="fade" tag="div">
+        <div v-for="i in [currentIndex]" :key="i">
+          <img id="image" :src="currentImg" />
+        </div>
+      </transition-group>
   </div>
 </template>
+
 <script>
 export default {
   name: "Slider",
@@ -18,14 +19,17 @@ export default {
         "https://www.creativefabrica.com/wp-content/uploads/2020/12/07/Gym-Logo-Graphics-7049759-1-580x386.jpg"
       ],
       timer: null,
-      currentIndex: 0
-    };
+      currentIndex: 0,
+    }
   },
-
+  computed: {
+    currentImg: function() {
+      return this.images[Math.abs(this.currentIndex) % this.images.length];
+    }
+  },
   mounted: function() {
     this.startSlide();
   },
-
   methods: {
     startSlide: function() {
       this.timer = setInterval(this.next, 4000);
@@ -37,17 +41,24 @@ export default {
     prev: function() {
       this.currentIndex -= 1;
     }
-  },
-
-  computed: {
-    currentImg: function() {
-      return this.images[Math.abs(this.currentIndex) % this.images.length];
-    }
   }
 };
 </script>
 
 <style scoped>
+.registration-image {
+  position: fixed;
+  top: 20px;
+  height: 600px;
+  width: 100%;
+}
+.inspirational-quote {
+  font-size: 25px;
+  text-align: center;
+  width: 100%;
+  position: fixed;
+  top: 600px;
+}
 #image {
   width: 300px;
   height: 300px;
