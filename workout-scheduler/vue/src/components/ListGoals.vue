@@ -31,6 +31,7 @@
           src="../assets/check.png" 
           alt="check-icon" 
           class="check-icon" 
+          @click="updateGoal"
         />
 
         <img
@@ -49,9 +50,42 @@ import goalService from "../services/GoalService";
 
 export default {
   name: "list-goals",
+  data() {
+    return {
+      updatedGoal: {
+              name: "",
+              customerId: this.$store.state.profile.customerId,
+              exerciseId: 1,
+              date: null,
+              reps: 0.0,
+              weight: 0.0,
+              time: 0.0,
+              distance: 0.0,
+              days: 0,
+              misc: null,
+              completed: false,
+            }
+    }
+  },
   methods: {
+    updateGoal(e) {
+      const goalId = e.target.parentElement.parentElement.dataset.goalId;
+      const userId = this.$store.state.profile.customerId;
+
+      this.$store.state.goalList.forEach(g => {
+        if (g.id == goalId) {
+          this.updatedGoal = g;
+        }
+      })
+
+      this.updatedGoal.completed = true;
+      
+      console.log(userId, goalId)
+      // goalService
+      //   .updateGoal(userId, goalId)
+    },
     deleteGoal(e) {
-      const goalId = e.target.parentElement.dataset.goalId;
+      const goalId = e.target.parentElement.parentElement.dataset.goalId;
 
       goalService
         .deleteGoal(this.$store.state.profile.customerId, goalId)
