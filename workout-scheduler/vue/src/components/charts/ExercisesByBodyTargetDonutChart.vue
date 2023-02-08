@@ -1,14 +1,8 @@
 <script>
   import { Doughnut } from 'vue-chartjs'
-  import metricsStatsService from '../../services/MetricsStatsService'
 
   export default {
     extends: Doughnut,
-    computed: {
-      dataArray() {
-        return metricsStatsService.getPercentageArrayForBodyTarget()
-      }
-    },
     data () {
       return {
         chartData: {
