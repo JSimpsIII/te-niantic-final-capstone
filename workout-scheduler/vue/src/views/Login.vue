@@ -68,7 +68,7 @@
         </form>
 
         <div id='image-changer-div'>
-          <image-changer/>
+          <image-changer />
         </div>     
     </div>
 </template>

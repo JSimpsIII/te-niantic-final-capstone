@@ -29,7 +29,8 @@ export default {
                 customerId: null,
                 visitDate: null,
                 checkIn: null,
-                checkOut: null
+                checkOut: null,
+                visitId: null
             }
         }
     },
@@ -51,16 +52,16 @@ export default {
             this.gymVisit.customerId = this.$store.state.profile.customerId;
             this.gymVisit.visitDate = this.$store.state.gym.visitDate;
             this.gymVisit.checkIn = this.$store.state.gym.clockIn;
-            let id = gymVisitService.newVisit(this.gymVisit.customerId, this.gymVisit);
-            this.$store.commit('SET_GYM_VISIT_ID', id);
+            this.gymVisit.visitId = gymVisitService.newVisit(this.gymVisit.customerId, this.gymVisit);
+            this.$store.commit('SET_GYM_VISIT_ID', this.gymVisit.visitId);
         },
         updateEntry() {
-            let id = this.$store.state.gym.visitId;
+            this.gymVisit.visitId = this.$store.state.gym.visitId;
             this.gymVisit.customerId = this.$store.state.profile.customerId;
             this.gymVisit.visitDate = this.$store.state.gym.visitDate;
             this.gymVisit.checkIn = this.$store.state.gym.clockIn;
             this.gymVisit.checkOut = this.$store.state.gym.clockOut;
-            gymVisitService.updateVisit(this.gymVisit.customerId, id, this.gymVisit);
+            gymVisitService.updateVisit(this.gymVisit.customerId, this.gymVisit.visitId, this.gymVisit);
         }
     }
 }
