@@ -24,7 +24,7 @@
 
       <div class="sub-metric-container">
         <div id="minutes-metric" class="metric-headers">
-          <h2>Last 7 Days</h2>
+          <h2>Minutes - Week</h2>
           <img 
             :src="require(`@/assets/${minutes.arrowDirection}.png`)" 
             :alt="minutes.arrowDirection"
@@ -34,10 +34,6 @@
         <div class="sub-metric-charts" v-if="minutes.isShowing">
             <!-- Insert Charts for Minutes Section -->
             <metrics-minutes />
-            <div class='spacer'><hr></div>
-            <time-by-body-part />
-            <div class='spacer'><hr></div>
-            <time-by-body-target />
         </div>
       </div>
 
@@ -67,8 +63,12 @@
         </div>
         <div class="sub-metric-charts" v-if="target.isShowing">
             <exercises-by-body-part />
+            <div class='spacer'><hr></div>         
+            <time-by-body-part />
             <div class='spacer'><hr></div>
             <exercises-by-body-target />
+            <div class='spacer'><hr></div>
+            <time-by-body-target />
         </div>
       </div>
 
@@ -212,8 +212,8 @@ export default {
 hr {
   width: 400px;
   border: 1px solid grey;
-  margin-top: 70px;
-  margin-bottom: 60px;
+  margin-top: 60px;
+  margin-bottom: 40px;
 }
 
 footer {

@@ -1,9 +1,17 @@
 <template>
     <div id='exercise-table'>
-  
-        <div id='schedule' class='gym-button'>
-            Want to schedule a workout for later?
+
+        <div><p class='calendar-prompt'>No upcoming workouts</p></div>
+
+        <div id='schedule' class='gym-button' v-if="!calendarActive">
+            <!-- <p class='calendar-prompt'>Want to schedule a workout for later?</p> -->
             <button id='schedule-button' @click='openCalendar()'>
+                {{buttonText}}
+            </button>
+        </div>
+
+        <div id='workout' class='gym-button' v-if="calendarActive">
+            <button id='workout-button' @click='openCalendar()'>
                 {{buttonText}}
             </button>
         </div>
@@ -13,19 +21,22 @@
             <div id="alternate-instructions" v-if="calendarActive">Select an exercise to schedule</div>
         </div>
 
-  <div id='search-menu'>
-  <img id="search-icon" class="icon-button" src="../assets/search.png" alt="search-icon" title="Search" @click="toggleSearch" v-if="!showSearchBar">
-  <button id="cancel-button" v-if="showSearchBar" @click="toggleSearch">Cancel</button>
-  <input type="text" id="exerciseNameFilter" placeholder="search exercises" v-model="filter.name" v-if="showSearchBar"/>
-  <img id="filter-icon" class="icon-button" src="../assets/filter.png" alt="filter-icon" title="Enable Filters" @click="toggleFilters" v-if="showSearchBar">
-  </div>
+        <div id='search-menu'>
+            <img id="search-icon" class="icon-button" src="../assets/search.png" alt="search-icon" title="Search" @click="toggleSearch" v-if="!showSearchBar && !calendarActive">
+            <img id="search-icon" class="schedule-icon-button" src="../assets/search.png" alt="search-icon" title="Search" @click="toggleSearch" v-if="!showSearchBar && calendarActive">
+            <button id="cancel-button" v-if="showSearchBar" @click="toggleSearch">Cancel</button>
+            <input type="text" id="exerciseNameFilter" placeholder="search exercises" v-model="filter.name" v-if="showSearchBar"/>
+            <img id="filter-icon" class="icon-button" src="../assets/filter.png" alt="filter-icon" title="Enable Filters" @click="toggleFilters" v-if="showSearchBar && !calendarActive">
+            <img id="filter-icon" class="schedule-icon-button" src="../assets/filter.png" alt="filter-icon" title="Enable Filters" @click="toggleFilters" v-if="showSearchBar && calendarActive">
+        </div>
+        
        <table id="table-of-exercises">
             <thead>
                 <tr>
-                    <th>Exercise</th>
+                    <th class='first-column'>Exercise</th>
                     <th>Target</th>
                     <th>Body Part</th>
-                    <th>Equipment</th>
+                    <th class='last-column'>Equipment</th>
                 </tr>
             </thead>
             <tbody>
@@ -120,15 +131,17 @@
                     v-for="exercise in filteredList"
                     v-bind:key="exercise.id"
                     class='exercise-option'>
-                    <td>
+
+                    <td class='table-cell first-column'>
                         <router-link :to="{ name: 'exercise', params: {id:exercise.id} }" v-if="!calendarActive">
+
                             <button class="exercise-name">{{ exercise.name }}</button>
                         </router-link>
-                        <button class="exercise-name" v-if="calendarActive">{{ exercise.name }}</button>
+                        <button class="exercise-schedule-name" v-if="calendarActive">{{ exercise.name }}</button>
                     </td>
-                    <td class='column-list'>{{ exercise.target }}</td>
-                    <td class='column-list'>{{ exercise.bodyPart }}</td>
-                    <td class='column-list'>{{ exercise.equipment }}</td>
+                    <td class='column-list table-cell'>{{ exercise.target }}</td>
+                    <td class='column-list table-cell'>{{ exercise.bodyPart }}</td>
+                    <td class='table-cell last-column'>{{ exercise.equipment }}</td>
                 </tr>
             </tbody>
         </table>
@@ -158,9 +171,9 @@ export default {
     },
     computed: {
         buttonText() {
-            let calendarText = "Open Calendar"
+            let calendarText = "Schedule Mode"
             if (this.calendarActive == true) {
-                calendarText = "Close Calendar" 
+                calendarText = "Workout Mode" 
             }
             return calendarText
         },
@@ -243,16 +256,14 @@ export default {
 }
 
 #table-of-exercises {
-    margin-right: 7%;
+    border-spacing: 0;
 }
 
 #search-menu {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  padding-top: 1%;
-  margin-left: 2%;
-  margin-bottom: 2%;
+  padding: 15px;
 }
 
 .gym-instructions-container {
@@ -267,8 +278,8 @@ export default {
 }
 
 #alternate-instructions {
-      font-size: 18px;
-  color: sandybrown;
+    font-size: 18px;
+    color: deepskyblue;
 }
 
 #search-icon {
@@ -279,6 +290,8 @@ export default {
 
 #cancel-button {
     margin-right: 1%;
+    border: none;
+    outline: none;
 }
 
 #cancel-button:hover{
@@ -294,31 +307,59 @@ export default {
     filter: invert(30%) sepia(62%) saturate(444%) hue-rotate(333deg) brightness(200%) contrast(89%);
 }
 
+.schedule-icon-button {
+    filter: invert(30%) sepia(62%) saturate(555%) hue-rotate(155deg) brightness(200%) contrast(89%);
+}
+
 .icon-button:hover {
     cursor: pointer;
     transform: scale(1.25);
     filter: invert(38%) sepia(62%) saturate(311%) hue-rotate(166deg) brightness(180%) contrast(89%);
 }
 
-.exercise-name {
-    width: 70%;
-    margin-top: 20px;
-    color: sandybrown;
+.schedule-icon-button:hover {
+    cursor: pointer;
+    transform: scale(1.25);
+    filter: invert(38%) sepia(62%) saturate(311%) hue-rotate(166deg) brightness(180%) contrast(89%);
 }
 th {
-    text-decoration: underline;
+    
+    height: 70px;
+    border-top: 2px solid rgb(29, 61, 89);
+    background-color: rgb(29, 61, 89);
+    border-bottom: 4px solid rgb(29, 61, 89);
 }
+.exercise-name {
+    color: sandybrown;
+    border: none;
+    outline: none;
+}
+
+.exercise-schedule-name {
+    color: deepskyblue;
+    border: none;
+    outline: none;
+}
+
 .exercise-name:hover {
     color: lightblue;
 }
 
+.exercise-schedule-name:hover {
+    color: lightblue;
+}
+
+.calendar-prompt {
+    font-size: 1.3em;
+    margin-bottom: 10px;
+}
+
 button {
     color: white;
-    background-color: var(--blue);
+    background-color: rgba(29, 61, 89, 0);
     font-size: 17px;
-    border: none;
-    outline: none;
 }
+
 button:hover {
     cursor: pointer;
     transform: scale(1.15);
@@ -326,8 +367,31 @@ button:hover {
 }
 
 .gym-button {
+    padding-top:20px;
     display: flex;
     flex-direction: column;
+}
+
+#schedule-button {
+    background-color: dodgerblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    color: #FDFFFC;
+    opacity: 1;
+    margin: 0 auto;
+    font-size: 20px;
+    padding: 15px 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+#workout-button {
+    background-color: sandybrown;
+      display: flex;
   justify-content: center;
   align-items: center;
   gap: 5px;
@@ -336,14 +400,28 @@ button:hover {
   margin: 0 auto;
   font-size: 20px;
   padding: 15px 20px;
-  /* margin-top: 10px; */
-  margin-bottom: 15px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   text-align: center;
   border-radius: 10px;
 }
 
-#schedule-button {
-    background-color: sandybrown;
+.table-cell {
+    height: 70px;
+    border-bottom: 1px solid rgba(29, 61, 89, 0.5);
+}
+.first-column {
+    padding-left: 2%;
+}
+.column-list {
+    width: 20%;
+}
+.last-column {
+    width: 22%;
+    padding-right: 2%;
+}
+tr:nth-child(odd) {
+    background-color: rgba(29, 61, 89, 0.3);
 }
 
 </style>

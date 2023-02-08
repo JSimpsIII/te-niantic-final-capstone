@@ -53,18 +53,22 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-top: 20px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  background-color: rgb(29, 61, 89);
 }
 
 .gym-instructions-container {
   display: flex;
   justify-content: center;
-  padding-top: 20px;
+  padding: 10px;
+  background-color: sandybrown;
 }
 
 #gym-instructions {
-  font-size: 18px;
-  color: sandybrown;
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--smoke);
 }
 
 footer {

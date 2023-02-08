@@ -18,8 +18,8 @@
     </div>
 
     <div id="motivation">
-      Welcome back, {{ this.$store.state.profile.name }}! Just 1 more workout until you hit your
-      weekly goal!
+      <div id='welcome-message'>Welcome back, {{ this.$store.state.profile.name }}!</div>
+      <!-- <div id='motivation-message'>{{ this.motivationMessage }}</div> -->
     </div>
 
     <div class="btn-container">
@@ -108,6 +108,9 @@ export default {
           })
       }
   },
+  computed: {
+
+  },
   created() {
     profileService.getProfile(this.$store.state.user.username).then(res => {
       const { customerId, name, photo } = res.data;
@@ -169,7 +172,7 @@ a {
   text-align: center;
   width: 90%;
   margin: 0 auto;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 #gym div {
