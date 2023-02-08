@@ -34,6 +34,10 @@
         <div class="sub-metric-charts" v-if="minutes.isShowing">
             <!-- Insert Charts for Minutes Section -->
             <metrics-minutes />
+            <div class='spacer'><hr></div>
+            <time-by-body-part />
+            <div class='spacer'><hr></div>
+            <time-by-body-target />
         </div>
       </div>
 
@@ -63,6 +67,7 @@
         </div>
         <div class="sub-metric-charts" v-if="target.isShowing">
             <exercises-by-body-part />
+            <div class='spacer'><hr></div>
             <exercises-by-body-target />
         </div>
       </div>
@@ -98,6 +103,8 @@ import MetricsMachine from '../components/MetricsMachine.vue';
 import ExercisesByBodyPart from '../components/ExercisesByBodyPart.vue';
 import ExercisesByBodyTarget from '../components/ExercisesByBodyTarget.vue'
 import MetricsRecords from '../components/MetricsRecords.vue';
+import TimeByBodyPart from '../components/TimeByBodyPart.vue';
+import TimeByBodyTarget from '../components/TimeByBodyTarget.vue';
 
 
 export default {
@@ -109,7 +116,9 @@ export default {
     MetricsMachine,
     ExercisesByBodyPart,
     ExercisesByBodyTarget,
-    MetricsRecords
+    MetricsRecords,
+    TimeByBodyPart,
+    TimeByBodyTarget
   },
   data() {
       return {
@@ -192,6 +201,19 @@ export default {
 .sub-metric-charts {
     background-color: var(--smoke);
     padding: 20px 10px;
+}
+
+.spacer {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+hr {
+  width: 400px;
+  border: 1px solid grey;
+  margin-top: 70px;
+  margin-bottom: 60px;
 }
 
 footer {

@@ -1,7 +1,7 @@
 <script>
-  import { Doughnut } from 'vue-chartjs'
+import { Doughnut } from 'vue-chartjs'
 
-  export default {
+export default {
     extends: Doughnut,
     data () {
       return {
@@ -56,56 +56,59 @@
         },
         options: {
           legend: {
-            display: true
+            display: true,
+            labels: {
+              fontColor: "#FDFFFC"
+            }
           },
           responsive: true,
           maintainAspectRatio: false
         },
-        exerciseObj: {}
+        bodyPartObj: {}
       }
     },
-      mounted() {
-    this.renderChart(this.chartData, this.options);
+  mounted() {
+      this.renderChart(this.chartData, this.options);
   },
   created() {
     // labels for donut chart
-    this.chartData.labels = this.getMachineBodyPartNameForLabels();
+    this.chartData.labels = this.getBodyPartNameForLabels();
 
-    // setup keys for machineObj
-    this.machineObj = this.convertArrayToObject(this.getMachineBodyPartNameForLabels());
+    // setup keys for bpObj
+    this.bodyPartObj = this.convertArrayToObject(this.getBodyPartNameForLabels());
 
-    // get ids for each exercise - for machineObj
+    // get ids for each exercise - for bpObj
     this.$store.state.exerciseList.forEach(e => {
-        if (e.bodyPart in this.machineObj) {
-            this.machineObj[e.bodyPart].ids.push(e.id);
+        if (e.bodyPart in this.bodyPartObj) {
+            this.bodyPartObj[e.bodyPart].ids.push(e.id);
         }
     });
 
     // get totals for each exercise - for machineObj
     this.$store.state.metricsList.forEach(m => {
-        for (const prop in this.machineObj) {
-            if (this.machineObj[prop].ids.includes(m.exerciseId)) {
-                this.machineObj[prop].total += 1;
+        for (const prop in this.bodyPartObj) {
+            if (this.bodyPartObj[prop].ids.includes(m.exerciseId)) {
+                this.bodyPartObj[prop].total += 1;
             }
         }
     })
 
-    this.chartData.datasets[0].data = this.getMachineBodyPartNameForLabels()
-                                          .map(m => this.machineObj[m].total)
+    this.chartData.datasets[0].data = this.getBodyPartNameForLabels()
+                                          .map(m => this.bodyPartObj[m].total)
     
 
   },
   methods: {
-    getMachineBodyPartNameForLabels() {
-      const uniqueExerciseMachines = this.getUniqueExerciseIds();
+    getBodyPartNameForLabels() {
+      const uniqueExerciseBodyParts = this.getUniqueExerciseIds();
 
-      const exerciseMachines = [];
-      this.$store.state.exerciseList.forEach((machine) => {
-        if (uniqueExerciseMachines.includes(machine.id)) {
-          exerciseMachines.push(machine.bodyPart);
+      const exerciseArray = [];
+      this.$store.state.exerciseList.forEach((item) => {
+        if (uniqueExerciseBodyParts.includes(item.id)) {
+          exerciseArray.push(item.bodyPart);
         }
       });
-      return [...new Set(exerciseMachines)];
+      return [...new Set(exerciseArray)];
     },
     convertArrayToObject(array) {
       return array.reduce(
@@ -114,11 +117,10 @@
       );
     },
     getUniqueExerciseIds() {
-      const userExerciseMachines = this.$store.state.metricsList.map(
+      const userExerciseBodyParts = this.$store.state.metricsList.map(
         (m) => m.exerciseId
       );
-
-      return [...new Set(userExerciseMachines)];
+      return [...new Set(userExerciseBodyParts)];
     },
   },
 };

@@ -1,14 +1,8 @@
 <script>
-  import { Doughnut } from 'vue-chartjs'
-  import metricsStatsService from '../../services/MetricsStatsService'
+import { Doughnut } from 'vue-chartjs'
 
-  export default {
+export default {
     extends: Doughnut,
-    computed: {
-      dataArray() {
-        return metricsStatsService.getPercentageArrayForBodyTarget()
-      }
-    },
     data () {
       return {
         chartData: {
@@ -55,7 +49,7 @@
               'rgba(21, 101, 192, 0.55)',
               'rgba(251, 192, 45, 0.55)', 
               'rgba(40, 53, 147, 0.55)',
-              'rgba(197, 17, 98, 0.55)'                   
+              'rgba(197, 17, 98, 0.55)'         
               ],
               data: [1, 50]
             }]
@@ -70,65 +64,54 @@
           responsive: true,
           maintainAspectRatio: false
         },
-        exerciseObj: {}
+        metricsDictionary: {},
+        exerciseDictionary: {}
       }
     },
-      mounted() {
-    this.renderChart(this.chartData, this.options);
+  mounted() {
+      this.renderChart(this.chartData, this.options);
   },
   created() {
-    // labels for donut chart
-    this.chartData.labels = this.getMachineBodyTargetNameForLabels();
+    // labels for chart
+    this.chartData.labels = this.getBPLabelArray();
 
-    // setup keys for machineObj
-    this.machineObj = this.convertArrayToObject(this.getMachineBodyTargetNameForLabels());
-
-    // get ids for each exercise - for machineObj
-    this.$store.state.exerciseList.forEach(e => {
-        if (e.target in this.machineObj) {
-            this.machineObj[e.target].ids.push(e.id);
-        }
+    // map lables as key for metrics dictionary and set value to 0
+    this.chartData.labels.forEach(name => {
+        this.metricsDictionary[name] = 0;
+    })
+    
+    // map { exercise id : body part name } to dictionary
+    this.$store.state.exerciseList.forEach(exercise => {
+        this.exerciseDictionary[exercise.id] = exercise.bodyPart;
+    });
+    
+    // iterate through metrics and total minutes per body part
+    this.$store.state.metricsList.forEach(metric => {
+        let bodyPart = this.exerciseDictionary[metric.exerciseId];
+        let minutes = this.metricsDictionary[bodyPart];
+        let addMinutes = metric.time;
+        this.metricsDictionary[bodyPart] = (minutes + addMinutes);
     });
 
-    // get totals for each exercise - for machineObj
-    this.$store.state.metricsList.forEach(m => {
-        for (const prop in this.machineObj) {
-            if (this.machineObj[prop].ids.includes(m.exerciseId)) {
-                this.machineObj[prop].total += 1;
-            }
-        }
-    })
-
-    this.chartData.datasets[0].data = this.getMachineBodyTargetNameForLabels()
-                                          .map(m => this.machineObj[m].total)
-    
-
+    // map metrics dictionary to chart data
+    this.chartData.datasets[0].data = this.getBPLabelArray().map(name => this.metricsDictionary[name])
   },
   methods: {
-    getMachineBodyTargetNameForLabels() {
-      const uniqueExerciseMachines = this.getUniqueExerciseIds();
-
-      const exerciseMachines = [];
-      this.$store.state.exerciseList.forEach((machine) => {
-        if (uniqueExerciseMachines.includes(machine.id)) {
-          exerciseMachines.push(machine.target);
+    getBPLabelArray() {
+      const uniqueExerciseBodyParts = this.getUniqueExerciseIds();
+      const exerciseArray = [];
+      this.$store.state.exerciseList.forEach((item) => {
+        if (uniqueExerciseBodyParts.includes(item.id)) {
+          exerciseArray.push(item.bodyPart);
         }
       });
-      return [...new Set(exerciseMachines)];
-    },
-    convertArrayToObject(array) {
-      return array.reduce(
-        (obj, x) => ({ ...obj, [x]: { total: 0, ids: []} }),
-        {}
-      );
+      return [...new Set(exerciseArray)];
     },
     getUniqueExerciseIds() {
-      const userExerciseMachines = this.$store.state.metricsList.map(
-        (m) => m.exerciseId
+      const userExerciseBodyParts = this.$store.state.metricsList.map(m => m.exerciseId
       );
-
-      return [...new Set(userExerciseMachines)];
-    },
-  },
+      return [...new Set(userExerciseBodyParts)];
+    }
+  }
 };
 </script>
