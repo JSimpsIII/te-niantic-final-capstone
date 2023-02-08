@@ -17,4 +17,8 @@ export default{
 </script>
 
 <style scoped>
+h3 {
+  text-align: center;
+  margin-bottom: 10px;
+}
 </style>
