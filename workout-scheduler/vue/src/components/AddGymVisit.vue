@@ -93,6 +93,7 @@ button:-ms-input-placeholder {
 }
 button:hover {
     cursor: pointer;
+    transform: scale(1.15);
 }
 
 </style>

@@ -48,6 +48,13 @@
         </div>
       </router-link>
     </div>
+    
+    <!-- <router-link id="Schedule" class="home-options-btn" :to="{ name: 'schedule' }">
+      <div>
+        <img src="../assets/goal.png" />
+         Schedule
+      </div>
+    </router-link> -->
 
     <footer>
       <nav-bar />
