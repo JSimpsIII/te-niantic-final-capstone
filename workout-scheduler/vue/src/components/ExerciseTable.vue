@@ -9,10 +9,10 @@
        <table id="table-of-exercises">
             <thead>
                 <tr>
-                    <th>Exercise</th>
+                    <th class='first-column'>Exercise</th>
                     <th>Target</th>
                     <th>Body Part</th>
-                    <th>Equipment</th>
+                    <th class='last-column'>Equipment</th>
                 </tr>
             </thead>
             <tbody>
@@ -107,14 +107,14 @@
                     v-for="exercise in filteredList"
                     v-bind:key="exercise.id"
                     class='exercise-option'>
-                    <td>
+                    <td class='table-cell first-column'>
                         <router-link :to="{ name: 'exercise', params: {id:exercise.id} }">
                             <button class="exercise-name">{{ exercise.name }}</button>
                         </router-link>
                     </td>
-                    <td class='column-list'>{{ exercise.target }}</td>
-                    <td class='column-list'>{{ exercise.bodyPart }}</td>
-                    <td class='column-list'>{{ exercise.equipment }}</td>
+                    <td class='column-list table-cell'>{{ exercise.target }}</td>
+                    <td class='column-list table-cell'>{{ exercise.bodyPart }}</td>
+                    <td class='table-cell last-column'>{{ exercise.equipment }}</td>
                 </tr>
             </tbody>
         </table>
@@ -218,7 +218,7 @@ export default {
 }
 
 #table-of-exercises {
-    margin-right: 7%;
+    border-spacing: 0;
 }
 
 #search-menu {
@@ -258,22 +258,24 @@ export default {
     transform: scale(1.25);
     filter: invert(38%) sepia(62%) saturate(311%) hue-rotate(166deg) brightness(180%) contrast(89%);
 }
-
+th {
+    
+    height: 70px;
+    border-top: 2px solid rgb(29, 61, 89);
+    background-color: rgb(29, 61, 89);
+    border-bottom: 4px solid rgb(29, 61, 89);
+}
 .exercise-name {
-    width: 70%;
-    margin-top: 20px;
     color: sandybrown;
 }
-th {
-    text-decoration: underline;
-}
+
 .exercise-name:hover {
     color: lightblue;
 }
 
 button {
     color: white;
-    background-color: var(--blue);
+    background-color: rgba(29, 61, 89, 0);
     font-size: 17px;
     border: none;
     outline: none;
@@ -284,5 +286,22 @@ button:hover {
     /* font-size: 18px; */
 }
 
+.table-cell {
+    height: 70px;
+    border-bottom: 1px solid rgba(29, 61, 89, 0.5);
+}
+.first-column {
+    padding-left: 2%;
+}
+.column-list {
+    width: 20%;
+}
+.last-column {
+    width: 22%;
+    padding-right: 2%;
+}
+tr:nth-child(odd) {
+    background-color: rgba(29, 61, 89, 0.3);
+}
 
 </style>
