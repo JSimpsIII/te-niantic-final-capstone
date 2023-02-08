@@ -9,7 +9,7 @@ export default {
         labels: [],
         datasets: [
           {
-            label: "Minutes",
+            label: "Days at Gym",
             borderWidth: 1,
             backgroundColor: [
               "rgba(255, 99, 132, 0.4)",
@@ -81,36 +81,19 @@ export default {
     this.renderChart(this.chartData, this.options);
   },
   created() {
-    this.chartData.labels = this.getLastSevenDays();
-
-    // convert 7 days array to obj with dates as keys
-    this.metricsObj = this.convertArrayToObject(this.getLastSevenDays());
-
-    // iterate through metrics and total up
-    this.$store.state.metricsList.forEach((metric) => {
-      if (metric.date in this.metricsObj) {
-        this.metricsObj[metric.date] += metric.time;
-      }
-    });
-
-    // set data of barchart
-    this.chartData.datasets[0].data = Object.values(this.metricsObj);
+  
   },
   methods: {
-    getLastSevenDays() {
-      const dates = [...Array(7)].map((_, i) => {
-        const d = new Date();
-        d.setDate(d.getDate() - i);
-        const year = d.toLocaleString("default", { year: "numeric" });
-        const month = d.toLocaleString("default", { month: "2-digit" });
-        const day = d.toLocaleString("default", { day: "2-digit" });
-        return `${year}-${month}-${day}`;
-      });
-      return dates.reverse();
-    },
+
     convertArrayToObject(array) {
       return array.reduce((obj, x) => ({ ...obj, [x]: 0 }), {});
     },
+    milisecondsToMinutes(millis) {
+      let minutes = Math.floor(millis / 60000);
+      let seconds = ((millis % 60000) / 1000).toFixed(0);
+      return minutes + '.' + (seconds < 10 ? '0' : '') + seconds;
+    }
+    
   },
 };
 

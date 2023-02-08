@@ -48,6 +48,13 @@ export default new Vuex.Store({
       days: 0,
       misc: ''
     },
+    gymLogs: [],
+    gymVisit: {
+      visitId: null,
+      customerId: null,
+      checkIn: null,
+      checkOut: null
+    },
     goalList: [],
     goal: {
       id: null,
@@ -114,6 +121,12 @@ export default new Vuex.Store({
     },
     SET_IN_GYM(state, inGym) {
       state.gym.inGym = inGym;
+    },
+    LOAD_GYM_LOGS(state, gymLogs) {
+      state.gymLogs = gymLogs;
+    },
+    SET_GYM_VISIT_ID(state, visitId) {
+      state.gymVisit.visitId = visitId;
     }
   }
 })
