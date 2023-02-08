@@ -10,9 +10,9 @@
             <thead>
                 <tr>
                     <th>Exercise</th>
-                    <th>Exercise Target</th>
-                    <th>Body Part Used</th>
-                    <th>Equipment Required</th>
+                    <th>Target</th>
+                    <th>Body Part</th>
+                    <th>Equipment</th>
                 </tr>
             </thead>
             <tbody>
@@ -264,7 +264,9 @@ export default {
     margin-top: 20px;
     color: sandybrown;
 }
-
+th {
+    text-decoration: underline;
+}
 .exercise-name:hover {
     color: lightblue;
 }
