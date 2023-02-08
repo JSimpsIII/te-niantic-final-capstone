@@ -225,9 +225,7 @@ export default {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  padding-top: 1%;
-  margin-left: 2%;
-  margin-bottom: 2%;
+  padding: 15px;
 }
 
 #search-icon {

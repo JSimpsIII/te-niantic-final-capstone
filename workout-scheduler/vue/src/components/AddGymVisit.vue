@@ -2,14 +2,14 @@
     <div id='add-gym-visit'>
 
         <div v-if='(this.$store.state.gym.inGym == true)' id='clock-out' class='gym-button'>
-            Heading out?
+            <p class='gym-greeting'>Heading out?</p>
             <button type='submit' id='clock-out-button' @click='clockOut()'>
                 Clock Out
             </button>
         </div>
         
         <div v-else id='clock-in' class='gym-button'>
-            At the gym?
+            <p class='gym-greeting'>At the gym?</p>
             <button type='submit' id='clock-in-button' @click='clockIn()'>
                 Clock In
             </button>
@@ -68,6 +68,10 @@ export default {
 </script>
 
 <style scoped>
+.gym-greeting {
+    font-size: 1.3em;
+    margin-bottom: 10px;
+}
 .gym-button {
     display: flex;
     flex-direction: column;
@@ -83,7 +87,7 @@ button {
   font-size: 20px;
   padding: 15px 20px;
   margin-top: 10px;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   text-align: center;
   border-radius: 10px;
 }
