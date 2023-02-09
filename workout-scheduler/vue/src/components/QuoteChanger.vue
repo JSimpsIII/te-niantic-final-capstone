@@ -29,10 +29,10 @@ export default {
 </script>
 
 <style scoped>
-.inspo {
-  font-size: 25px;
+#inspo {
+  font-size: 20px;
   text-align: center;
-  height: 200px;
-  width: 100%;
+  width: 370px;
+  margin: 10px auto;
 }
 </style>

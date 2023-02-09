@@ -140,6 +140,11 @@ export default {
   background-color: var(--blue);
 }
 
+.login-request {
+  height: 55px;
+  padding: 25px;
+}
+
 #login-img {
   width: 50px;
   height: 50px;
