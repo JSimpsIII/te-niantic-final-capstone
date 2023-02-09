@@ -2,43 +2,43 @@
   <div>
     <div class="banner">
       <div class="profile-img-container">
-        <img class="profile-img" :src="user.photo" alt="profile-img" />
+        <img
+          id="profile-img"
+          class="profile-img"
+          :src="user.photo"
+          alt="profile-img"
+        />
+      </div>
+      <div>
+        <img
+          src="@/assets/camera.png"
+          alt="edit-icon"
+          class="edit-icon"
+          @click="toggleProfilePic"
+        />
       </div>
     </div>
 
-    <div class="profile-container form-group">
-      <div id="username">Username: {{ user.username }}</div>
+    <div class="profile-pic-container-parent" v-if="isChoosingProfilePic">
+      <div class="profile-pic-container">
+        <div v-for="img in profileImgOptions" :key="img.id">
+          <img
+            :src="img"
+            alt="profile-pic-option"
+            class="profile-pic-options"
+            @click="selectNewProfileImg"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div id="profile-container" class="profile-container form-group">
+      <div id="username-container">
+        <div id="username">Username:</div>
+        <div id="username-name">{{ user.username }}</div>
+      </div>
 
       <form id="form-container">
-        <label for="photo">Profile Picture</label>
-        <select
-          name="languages"
-          id="photo"
-          v-model="user.photo"
-          :disabled="!isEditting"
-        >
-          <option
-            value="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRo30ulQk-69OJ5GGdowFt21Lsau4GfWzfbBSmsfE4hGrVxBbnVNOr12yOYULoq2Gb7XEU&usqp=CAU"
-          >
-            Option 1
-          </option>
-          <option
-            value="https://raisingwhasians.com/wp-content/uploads/2021/06/Black-widow-movie-review-safe-for-kids.jpg"
-          >
-            Option 2
-          </option>
-          <option
-            value="https://qph.cf2.quoracdn.net/main-qimg-25c5c8a37ca5ffcdf55fe24149ce1011.webp"
-          >
-            Option 3
-          </option>
-          <option
-            value="https://maactioncinema.com/wp-content/uploads/2021/02/blade_3.jpg"
-          >
-            Option 4
-          </option>
-        </select>
-
         <label for="name">Name:</label>
         <input
           type="name"
@@ -133,8 +133,19 @@ export default {
         email: "",
         height: "",
       },
+      profileImgOptions: [
+        "https://cdn.britannica.com/30/182830-050-96F2ED76/Chris-Evans-title-character-Joe-Johnston-Captain.jpg",
+        "https://raisingwhasians.com/wp-content/uploads/2021/06/Black-widow-movie-review-safe-for-kids.jpg",
+        "https://qph.cf2.quoracdn.net/main-qimg-25c5c8a37ca5ffcdf55fe24149ce1011.webp",
+        "https://maactioncinema.com/wp-content/uploads/2021/02/blade_3.jpg",
+        "https://i.pinimg.com/originals/d5/ec/19/d5ec19d2d312c83970b5c7d602c43d6f.jpg",
+        "https://cdn.britannica.com/36/198336-050-A9B8AA86/Chadwick-Boseman-Tchalla-Black-Panther-Black.jpg",
+        "https://i.pinimg.com/originals/66/94/41/6694412abd90da407960d0319d666889.jpg",
+        "https://fivethirtyeight.com/wp-content/uploads/2018/02/shuri-1.jpg?w=712",
+      ],
       userBeforeEdit: {},
       isEditting: false,
+      isChoosingProfilePic: false,
     };
   },
   created() {
@@ -151,6 +162,15 @@ export default {
     NavBar,
   },
   methods: {
+    toggleProfilePic() {
+      this.isChoosingProfilePic = true;
+      document.getElementById("profile-container").classList.add("blurred");
+      document.getElementById("profile-img").classList.add("blurred");
+
+      const editBtn = document.getElementById("edit-btn");
+      editBtn.disabled = true;
+      editBtn.style.cursor = "auto";
+    },
     toggleEditProfile() {
       this.isEditting = !this.isEditting;
       this.userBeforeEdit = Object.assign({}, this.user);
@@ -159,17 +179,38 @@ export default {
       Object.assign(this.user, this.userBeforeEdit);
     },
     saveChanges() {
-      profileService
-        .saveProfileChanges(this.$store.state.profile.customerId, this.user)
-        .then((res) => {
-          console.log(res.data);
-        });
+      profileService.saveProfileChanges(
+        this.$store.state.profile.customerId,
+        this.user
+      );
+    },
+    selectNewProfileImg(e) {
+      const newImg = e.target.currentSrc;
+      this.user.photo = newImg;
+      this.saveChanges();
+      this.isChoosingProfilePic = false;
+      document.getElementById("profile-container").classList.remove("blurred");
+      document.getElementById("profile-img").classList.remove("blurred");
+
+      const editBtn = document.getElementById("edit-btn");
+      editBtn.disabled = false;
+      editBtn.style.cursor = "pointer";
+    },
+    closeImgSelection() {
+      this.isChoosingProfilePic = false;
+      document.getElementById("profile-container").classList.remove("blurred");
+      document.getElementById("profile-img").classList.remove("blurred");
     },
   },
 };
 </script>
 
 <style scoped>
+.blurred {
+  filter: blur(2px);
+  -webkit-filter: blur(2px);
+}
+
 .banner {
   width: 100%;
   background-color: #295882;
@@ -195,14 +236,29 @@ export default {
   overflow: hidden;
 }
 
+.edit-icon {
+  position: absolute;
+  top: 135%;
+  margin-left: 32%;
+}
+
+.edit-icon:hover {
+  cursor: pointer;
+}
+
 .profile-container {
-  margin: 100px 50px 0 50px;
+  margin: 110px 50px 0 50px;
 }
 
-#username {
-  margin-bottom: 20px;
+#username-container {
+  margin-bottom: 40px;
 }
 
+#username-name {
+  color: lightblue;
+}
+
+#username-container,
 #form-container {
   display: flex;
   flex-direction: column;
@@ -224,6 +280,7 @@ export default {
 #form-container > select:disabled {
   all: unset;
   margin-bottom: 40px;
+  color: lightblue;
 }
 
 .profile-btns {
@@ -248,4 +305,37 @@ export default {
   background-color: var(--smoke);
 }
 
+.profile-btns:hover {
+  cursor: pointer;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 600px;
+  height: 50px;
+  background: var(--smoke);
+  padding-top: 15px;
+}
+
+.profile-pic-options {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  object-position: top;
+  cursor: pointer;
+}
+
+.profile-pic-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 480px;
+  position: absolute;
+  left: 10%;
+}
+
+.profile-pic-container-parent {
+  position: relative;
+  z-index: 1;
+}
 </style>

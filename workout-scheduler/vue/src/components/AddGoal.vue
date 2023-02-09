@@ -20,6 +20,7 @@
         class="add-new-goal-btn"
         @click="saveGoal"
       />
+      
       <div>
         Minutes in gym every day:
         <input type="number" min="1" max="480" v-model="newGoal.time" />
