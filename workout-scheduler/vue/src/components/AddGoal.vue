@@ -154,11 +154,10 @@ export default {
   display: flex;
   align-items: center;
   width: 70%;
-  margin: 0 auto;
+  margin: 0 auto 15px auto;
   height: 60px;
   background-color: var(--green);
   border-radius: 10px;
-  margin-bottom: 10px;
   padding-left: 15px;
 }
 
