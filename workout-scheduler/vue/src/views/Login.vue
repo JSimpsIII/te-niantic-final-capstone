@@ -133,6 +133,7 @@ export default {
 #login-header {
   display: flex;
   justify-content: center;
+  align-items: center;
   width: 100%;
   margin-bottom: 20px;
   padding-top: 20px;
