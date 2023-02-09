@@ -1,64 +1,66 @@
 <template>
     <div id='exercise-table'>
 
-        <div>
-            <p class='calendar-prompt' v-if="checkEmpty && !showForm">No upcoming workouts</p>
-            <p class='calendar-prompt' v-if="!checkEmpty">Upcoming Workouts</p>
-            <div v-for="item in scheduledExercises"
-                v-bind:key="item.name">
-                <p class='calendar-prompt' v-if="!cancelingExercise">{{item.name}}, on {{item.date}} at {{item.time}}</p>
-            <button class='calendar-prompt cancel-button' v-if="cancelingExercise" @click='deleteSelected(item)'>{{item.name}}, on {{item.date}} at {{item.time}}</button>
+        <div class='black-background'>
+            <div>
+                <p class='calendar-prompt' v-if="checkEmpty && !showForm">No upcoming workouts</p>
+                <p class='calendar-prompt' v-if="!checkEmpty">Upcoming Workouts</p>
+                <div v-for="item in scheduledExercises"
+                    v-bind:key="item.name">
+                    <p class='calendar-prompt' v-if="!cancelingExercise">{{item.name}}, on {{item.date}} at {{item.time}}</p>
+                <button class='calendar-prompt cancel-button' v-if="cancelingExercise" @click='deleteSelected(item)'>{{item.name}}, on {{item.date}} at {{item.time}}</button>
+                </div>
             </div>
-        </div>
-        
-        <div id='workout' class='gym-button' v-if="calendarActive && !showForm">
-            <button id='workout-button' @click='openCalendar()'>
-                {{buttonText}}
-            </button>
-        </div>
+            
+            <div id='workout' class='gym-button' v-if="calendarActive && !showForm">
+                <button id='workout-button' @click='openCalendar()'>
+                    {{buttonText}}
+                </button>
+            </div>
 
-        <div id="workout-page-buttons">
-        <div id='schedule' class='gym-button' v-if="!calendarActive && !cancelingExercise">
-            <button id='schedule-button'  @click='openCalendar()'>
-                {{buttonText}}
-            </button>
-        </div>
-        
-        <div id='cancel-schedule' class='gym-button' v-if="!calendarActive && !checkEmpty">
-            <button id='cancel-exercise-button' v-if="!cancelingExercise" @click='cancelExercise()'>
-                Cancel Scheduled Exercise
-            </button>
-            <button id='cancel-exercise-button' v-if="cancelingExercise" @click='stopCanceling()'>
-                Stop Canceling
-            </button>
-        </div>
-        </div>
+            <div id="workout-page-buttons">
+            <div id='schedule' class='gym-button' v-if="!calendarActive && !cancelingExercise">
+                <button id='schedule-button'  @click='openCalendar()'>
+                    {{buttonText}}
+                </button>
+            </div>
+            
+            <div id='cancel-schedule' class='gym-button' v-if="!calendarActive && !checkEmpty">
+                <button id='cancel-exercise-button' v-if="!cancelingExercise" @click='cancelExercise()'>
+                    Cancel Scheduled Exercise
+                </button>
+                <button id='cancel-exercise-button' v-if="cancelingExercise" @click='stopCanceling()'>
+                    Stop Canceling
+                </button>
+            </div>
+            </div>
 
-        <div class="gym-instructions-container">
-            <div id="gym-instructions" v-if="!calendarActive">Select an exercise to begin</div>
-            <div id="alternate-instructions" v-if="calendarActive && !showForm">Select an exercise to schedule</div>
-            <form id="frmDateAndTime" v-show="showForm" v-on:submit.prevent="saveExercise">
-                <p>Select a date and time to schedule the "{{scheduledExercise.name}}" exercise</p>
-                <div class="field" >
-                    <label for="date">Date: </label>
-                    <input type="text" name="date" class='input-field' placeholder="MM/DD/YYYY" v-model="scheduledExercise.date"/>
-                </div>
-                <div class="field">
-                    <label for="time">Time: </label>
-                    <input type="text" name="time" class='input-field' placeholder="00:00 PM" v-model="scheduledExercise.time"/>
-                </div>
-                <button v-bind:disabled="submitButtonDisabled" type="submit" class="btn save" @click='openCalendar()'>Save</button>
-                <button class="cancel-button" @click="cancelForm">Cancel</button>
-            </form>
-        </div>
+            <div class="gym-instructions-container">
+                <div id="gym-instructions" v-if="!calendarActive">Select an exercise to begin</div>
+                <div id="alternate-instructions" v-if="calendarActive && !showForm">Select an exercise to schedule</div>
+                <form id="frmDateAndTime" v-show="showForm" v-on:submit.prevent="saveExercise">
+                    <p>Select a date and time to schedule the "{{scheduledExercise.name}}" exercise</p>
+                    <div class="field" >
+                        <label for="date">Date: </label>
+                        <input type="text" name="date" class='input-field' placeholder="MM/DD/YYYY" v-model="scheduledExercise.date"/>
+                    </div>
+                    <div class="field">
+                        <label for="time">Time: </label>
+                        <input type="text" name="time" class='input-field' placeholder="00:00 PM" v-model="scheduledExercise.time"/>
+                    </div>
+                    <button v-bind:disabled="submitButtonDisabled" type="submit" class="btn save" @click='openCalendar()'>Save</button>
+                    <button class="cancel-button" @click="cancelForm">Cancel</button>
+                </form>
+            </div>
 
-        <div id='search-menu' v-show="!showForm">
-            <img id="search-icon" class="icon-button" src="../assets/search.png" alt="search-icon" title="Search" @click="toggleSearch" v-if="!showSearchBar && !calendarActive">
-            <img id="search-icon" class="schedule-icon-button" src="../assets/search.png" alt="search-icon" title="Search" @click="toggleSearch" v-if="!showSearchBar && calendarActive">
-            <button class="cancel-button" v-if="showSearchBar" @click="toggleSearch">Cancel</button>
-            <input type="text" id="exerciseNameFilter" placeholder="search exercises" v-model="filter.name" v-if="showSearchBar"/>
-            <img id="filter-icon" class="icon-button" src="../assets/filter.png" alt="filter-icon" title="Enable Filters" @click="toggleFilters" v-if="showSearchBar && !calendarActive">
-            <img id="filter-icon" class="schedule-icon-button" src="../assets/filter.png" alt="filter-icon" title="Enable Filters" @click="toggleFilters" v-if="showSearchBar && calendarActive">
+            <div id='search-menu' v-show="!showForm">
+                <img id="search-icon" class="icon-button" src="../assets/search.png" alt="search-icon" title="Search" @click="toggleSearch" v-if="!showSearchBar && !calendarActive">
+                <img id="search-icon" class="schedule-icon-button" src="../assets/search.png" alt="search-icon" title="Search" @click="toggleSearch" v-if="!showSearchBar && calendarActive">
+                <button class="cancel-button" v-if="showSearchBar" @click="toggleSearch">Cancel</button>
+                <input type="text" id="exerciseNameFilter" placeholder="search exercises" v-model="filter.name" v-if="showSearchBar"/>
+                <img id="filter-icon" class="icon-button" src="../assets/filter.png" alt="filter-icon" title="Enable Filters" @click="toggleFilters" v-if="showSearchBar && !calendarActive">
+                <img id="filter-icon" class="schedule-icon-button" src="../assets/filter.png" alt="filter-icon" title="Enable Filters" @click="toggleFilters" v-if="showSearchBar && calendarActive">
+            </div>
         </div>
         
        <table id="table-of-exercises" v-show="!showForm">
@@ -406,6 +408,10 @@ export default {
 
 
 <style scoped>
+
+.black-background {
+    background-color: rgb(29, 34, 39);
+}
 #workout-page-buttons {
     display:flex;
     justify-content: center;

@@ -55,20 +55,29 @@ export default {
     goalService
       .getAllGoals(this.$store.state.profile.customerId)
       .then((res) => (this.$store.state.goalList = res.data));
+    this.loadGoalList();
   },
   methods: {
     toggleAddGoal() {
       this.isAddingGoal = !this.isAddingGoal;
     },
+    loadGoalList() {
+        let userId = this.$store.state.profile.customerId;
+        goalService
+          .getAllGoals(userId)
+          .then(response => {
+            this.$store.commit('LOAD_GOAL_LIST', response.data);
+          })
+      }
     
-  },
+  }
 };
 </script>
 
 <style scoped>
 
 #goals-page-container {
-  background-color: #214734;
+  background-color: rgb(29, 34, 39);
   height: 100vh;
 }
 
