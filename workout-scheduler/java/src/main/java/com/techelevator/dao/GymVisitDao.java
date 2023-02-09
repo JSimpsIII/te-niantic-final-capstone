@@ -8,9 +8,7 @@ public interface GymVisitDao {
 
     List<GymVisit> getAllVisits(Long customerId);
 
-    int checkIn(Long userId);
-
-    int checkOut(Long userId, int visitId);
+    boolean addVisit(Long userId, GymVisit visit);
 
     boolean deleteVisit(Long userId, int visitId);
 }

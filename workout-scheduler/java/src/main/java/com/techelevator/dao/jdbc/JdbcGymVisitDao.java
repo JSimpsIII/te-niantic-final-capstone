@@ -2,6 +2,7 @@ package com.techelevator.dao.jdbc;
 
 import com.techelevator.dao.GymVisitDao;
 import com.techelevator.model.GymVisit;
+import com.techelevator.model.profile.Metric;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Service;
@@ -36,32 +37,19 @@ public class JdbcGymVisitDao implements GymVisitDao {
     }
 
     @Override
-    public int checkIn(Long userId) {
+    public boolean addVisit(Long userId, GymVisit visit) {
         String visitDate = LocalDate.now().format(DateTimeFormatter.ISO_LOCAL_DATE);
-        String checkIn = LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_TIME);
+        double minutes = visit.getMinutes();
         Integer visitId;
         String sqlQuery = "INSERT INTO gym_visit " +
-                "(customer_id, visit_date, check_in) " +
+                "(customer_id, visit_date, minutes) " +
                 "VALUES (?, ?, ?) RETURNING visit_id;";
         try {
-            visitId = jdbcTemplate.queryForObject(sqlQuery, Integer.class, userId, visitDate, checkIn);
+            visitId = jdbcTemplate.queryForObject(sqlQuery, Integer.class, userId, visitDate, minutes);
         } catch (Exception e) {
-            return -1;
+            return false;
         }
-        if (visitId == null) return -1;
-        else return visitId;
-    }
-
-    @Override
-    public int checkOut(Long userId, int visitId) {
-        String checkOut = LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_TIME);
-        String sqlQuery = "UPDATE gym_visit SET check_out = ? WHERE visit_id = ? AND customer_id = ?;";
-        try {
-            jdbcTemplate.update(sqlQuery, checkOut, visitId, userId);
-            return visitId;
-        } catch (Exception e) {
-            return -1;
-        }
+        return (visitId != null);
     }
 
     @Override
@@ -81,8 +69,7 @@ public class JdbcGymVisitDao implements GymVisitDao {
         gymVisit.setVisitId(row.getInt("visit_id"));
         gymVisit.setCustomerId(row.getLong("customer_id"));
         gymVisit.setVisitDate(row.getDate("visit_date"));
-        gymVisit.setCheckIn(row.getTimestamp("check_in"));
-        gymVisit.setCheckOut(row.getTimestamp("check_out"));
+        gymVisit.setMinutes(row.getDouble("minutes"));
         return gymVisit;
     }
 

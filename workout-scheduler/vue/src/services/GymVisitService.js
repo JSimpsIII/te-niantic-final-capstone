@@ -10,12 +10,8 @@ export default {
         return http.get(`/users/${userId}/gymlogs`);
     },
 
-    checkIn(userId) {
-        return http.get(`/users/${userId}/gymlogs/checkin`);
-    },
-
-    checkOut(userId, visitId) {
-        return http.get(`/users/${userId}/gymlogs/${visitId}/checkout`);
+    addVisit(userId, visit) {
+        return http.get(`/users/${userId}/gymlogs`, visit);
     },
     
     deleteVisit(userId, visitId) {

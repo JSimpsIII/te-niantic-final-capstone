@@ -64,8 +64,10 @@ export default new Vuex.Store({
       misc: '',
       isCompleted: false
     },
-    inGym: false,
-    visitId: -1
+    gym: {
+      inGym: false,
+      checkIn: null
+    }
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -105,13 +107,13 @@ export default new Vuex.Store({
       state.goalList = goals;
     },
     TOGGLE_IN_GYM(state, inGym) {
-      state.inGym = inGym;
+      state.gym.inGym = inGym;
     },
     LOAD_GYM_LOGS(state, gymLogs) {
       state.gymLogs = gymLogs;
     },
-    SET_VISIT_ID(state, id) {
-      state.visitId = id;
+    CHECK_IN(state, date) {
+      state.gym.checkIn = date;
     }
   }
 })

@@ -9,8 +9,7 @@ public class GymVisit {
     private int visitId;
     private Long customerId;
     private Date visitDate;
-    private Date checkIn;
-    private Date checkOut;
+    private double minutes;
 
     public GymVisit() {
     }
@@ -39,19 +38,11 @@ public class GymVisit {
         this.visitDate = visitDate;
     }
 
-    public Date getCheckIn() {
-        return checkIn;
+    public double getMinutes() {
+        return minutes;
     }
 
-    public void setCheckIn(Date checkIn) {
-        this.checkIn = checkIn;
-    }
-
-    public Date getCheckOut() {
-        return checkOut;
-    }
-
-    public void setCheckOut(Date checkOut) {
-        this.checkOut = checkOut;
+    public void setMinutes(double minutes) {
+        this.minutes = minutes;
     }
 }

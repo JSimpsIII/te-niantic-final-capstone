@@ -28,15 +28,11 @@ public class GymVisitController {
 
     }
 
-    @RequestMapping(path = "users/{userId}/gymlogs/checkin", method = RequestMethod.POST)
-    public int checkIn(@PathVariable Long userId) {
-        return gymVisitDao.checkIn(userId);
+    @RequestMapping(path = "users/{userId}/gymlogs", method = RequestMethod.POST)
+    public boolean checkIn(@PathVariable Long userId, @RequestBody GymVisit visit) {
+        return gymVisitDao.addVisit(userId, visit);
     }
 
-    @RequestMapping(path = "users/{userId}/gymlogs/{visitId}/checkout", method = RequestMethod.PATCH)
-    public int checkOut(@PathVariable Long userId, int visitId) {
-        return gymVisitDao.checkOut(userId, visitId);
-    }
 
     @RequestMapping(path = "users/{userId}/gymlogs/{visitId}", method = RequestMethod.DELETE)
     public boolean deletedVisit(@PathVariable Long userId, @PathVariable int visitId) {

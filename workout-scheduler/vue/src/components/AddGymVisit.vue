@@ -1,7 +1,7 @@
 <template>
     <div id='add-gym-visit'>
 
-        <div v-if='(this.$store.state.inGym == true)' id='clock-out' class='gym-button'>
+        <div v-if='(this.$store.state.gym.inGym == true)' id='clock-out' class='gym-button'>
             <p class='gym-greeting'>Heading out?</p>
             <button type='submit' id='clock-out-button' @click='clockOut()'>
                 Clock Out
@@ -23,14 +23,31 @@ import gymVisitService from '../services/GymVisitService.js'
 
 export default {
     name: 'add-gym-visit',
+    data(){
+        return {
+            visit: {
+                customerId: null,
+                date: null,
+                minutes: null
+            }
+        }
+    },
     methods: {
         clockIn() {
-            this.$store.commit('TOGGLE_IN_GYM', true); let id = gymVisitService.checkIn(this.$store.state.profile.userId);
-            this.$store.commit('SET_VISIT_ID', id);
+            this.$store.commit('TOGGLE_IN_GYM', true);
+            this.$store.commit('CHECK_IN', Date.now());
         },
         clockOut() {
             this.$store.commit('TOGGLE_IN_GYM', false);
-            gymVisitService.clockOut(this.$store.state.profile.userId, this.$store.state.visitId);
+            this.visit.customerId = this.$store.state.profile.customerId;
+            this.visit.date = this.$store.state.gym.checkin;
+            let millis = Date.now() - this.visit.date;
+            this.visit.minutes = this.milisecondsToMinutes(millis);
+            gymVisitService.addVisit(this.visit.customerId, this.visit);
+        },
+        milisecondsToMinutes(millis) {
+            let minutes = Math.floor(millis / 60000);
+            return minutes;
         }
     }
 }
