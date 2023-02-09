@@ -2,7 +2,7 @@
     <div id='exercise-table'>
 
         <div>
-            <p class='calendar-prompt' v-if="checkEmpty">No upcoming workouts</p>
+            <p class='calendar-prompt' v-if="checkEmpty && !showForm">No upcoming workouts</p>
             <p class='calendar-prompt' v-if="!checkEmpty">Upcoming Workouts</p>
             <div v-for="item in scheduledExercises"
                 v-bind:key="item.name">
@@ -11,15 +11,15 @@
             </div>
         </div>
         
-        <div id='workout' class='gym-button' v-if="calendarActive">
-            <button v-bind:disabled="actionButtonDisabled" id='workout-button' @click='openCalendar()'>
+        <div id='workout' class='gym-button' v-if="calendarActive && !showForm">
+            <button id='workout-button' @click='openCalendar()'>
                 {{buttonText}}
             </button>
         </div>
 
         <div id="workout-page-buttons">
-        <div id='schedule' class='gym-button' v-if="!calendarActive">
-            <button v-bind:disabled="scheduleButtonDisabled" id='schedule-button'  @click='openCalendar()'>
+        <div id='schedule' class='gym-button' v-if="!calendarActive && !cancelingExercise">
+            <button id='schedule-button'  @click='openCalendar()'>
                 {{buttonText}}
             </button>
         </div>
@@ -413,7 +413,7 @@ export default {
 #exercise-table {
   background-color: var(--blue);
   text-align: center;
-  padding-bottom: 50%;
+  padding-bottom: 60%;
 }
 
 #table-of-exercises {
@@ -549,6 +549,7 @@ button:hover {
     margin-bottom: 10px;
     text-align: center;
     border-radius: 10px;
+    border: none;
 }
 
 #workout-button {
@@ -566,6 +567,7 @@ button:hover {
   margin-bottom: 15px;
   text-align: center;
   border-radius: 10px;
+  border: none;
 }
 
 #cancel-exercise-button {
@@ -584,6 +586,7 @@ button:hover {
   margin-left: 10px;
   text-align: center;
   border-radius: 10px;
+  border: none;
 }
 
 .table-cell {

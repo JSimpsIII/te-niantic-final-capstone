@@ -160,11 +160,9 @@ export default {
   align-items: center;
   justify-content: space-between;
   background-color: var(--smoke);
-  margin-bottom: 10px;
   width: 70%;
-  margin: 0 auto;
+  margin: 0 auto 10px auto;
   height: 60px;
-  margin-bottom: 10px;
   border-radius: 10px;
   padding: 0 25px;
 }
@@ -186,7 +184,7 @@ export default {
 }
 
 .goal:hover {
-  background: linear-gradient(90deg, var(--smoke) 75%, var(--green) 0%);
+  background: linear-gradient(90deg, #143625 75%, var(--green) 0%);
   
 }
 
