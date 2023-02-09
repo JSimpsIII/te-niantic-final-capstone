@@ -118,6 +118,7 @@ export default {
     },
     doConfetti() {
       this.$confetti.start({
+
         particles: [
           {
             type: "circle",
