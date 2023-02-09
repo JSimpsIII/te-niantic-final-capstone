@@ -84,7 +84,7 @@
         <div class="sub-metric-charts" v-if="records.isShowing">
             <!-- Insert Charts for Personal Records Section -->
             <metrics-records></metrics-records>
-            <gym-visits-year />
+            <!-- <gym-visits-year /> -->
         </div>
       </div>
 
@@ -106,7 +106,7 @@ import ExercisesByBodyTarget from '../components/ExercisesByBodyTarget.vue'
 import MetricsRecords from '../components/MetricsRecords.vue';
 import TimeByBodyPart from '../components/TimeByBodyPart.vue';
 import TimeByBodyTarget from '../components/TimeByBodyTarget.vue';
-import GymVisitsYear from '../components/GymVisitsYear.vue';
+
 
 
 export default {
@@ -121,7 +121,7 @@ export default {
     MetricsRecords,
     TimeByBodyPart,
     TimeByBodyTarget,
-    GymVisitsYear
+ 
   },
   data() {
       return {
