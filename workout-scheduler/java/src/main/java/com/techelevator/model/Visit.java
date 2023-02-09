@@ -1,13 +1,18 @@
-package com.techelevator.model.dto;
+package com.techelevator.model;
+
 
 import java.util.Date;
 
-public class GymVisitDTO {
+
+public class Visit {
 
     private int visitId;
-    private Long customerId;
+    private int customerId;
     private Date visitDate;
     private double minutes;
+
+    public Visit() {
+    }
 
     public int getVisitId() {
         return visitId;
@@ -17,11 +22,11 @@ public class GymVisitDTO {
         this.visitId = visitId;
     }
 
-    public Long getCustomerId() {
+    public int getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(Long customerId) {
+    public void setCustomerId(int customerId) {
         this.customerId = customerId;
     }
 
@@ -41,5 +46,3 @@ public class GymVisitDTO {
         this.minutes = minutes;
     }
 }
-
-

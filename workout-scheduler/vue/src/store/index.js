@@ -49,6 +49,12 @@ export default new Vuex.Store({
       misc: ''
     },
     gymLogs: [],
+    visit: {
+      id: null,
+      customerId: null,
+      date: null,
+      minutes: 0
+    },
     goalList: [],
     goal: {
       id: null,
@@ -66,7 +72,7 @@ export default new Vuex.Store({
     },
     gym: {
       inGym: false,
-      checkIn: null
+      clockIn: null
     }
   },
   mutations: {
@@ -108,12 +114,10 @@ export default new Vuex.Store({
     },
     TOGGLE_IN_GYM(state, inGym) {
       state.gym.inGym = inGym;
+      state.gym.clockIn = Date.now();
     },
-    LOAD_GYM_LOGS(state, gymLogs) {
-      state.gymLogs = gymLogs;
-    },
-    CHECK_IN(state, date) {
-      state.gym.checkIn = date;
+    LOAD_GYM_LOGS(state, visits) {
+      state.gymLogs = visits;
     }
   }
 })

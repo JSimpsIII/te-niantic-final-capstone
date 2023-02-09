@@ -3,14 +3,14 @@
 
         <div v-if='(this.$store.state.gym.inGym == true)' id='clock-out' class='gym-button'>
             <p class='gym-greeting'>Heading out?</p>
-            <button type='submit' id='clock-out-button' @click='clockOut()'>
+            <button type='submit' id='clock-out-button' @click='clockOut'>
                 Clock Out
             </button>
         </div>
         
         <div v-else id='clock-in' class='gym-button'>
             <p class='gym-greeting'>At the gym?</p>
-            <button type='submit' id='clock-in-button' @click='clockIn()'>
+            <button type='submit' id='clock-in-button' @click='clockIn'>
                 Clock In
             </button>
         </div>
@@ -35,19 +35,32 @@ export default {
     methods: {
         clockIn() {
             this.$store.commit('TOGGLE_IN_GYM', true);
-            this.$store.commit('CHECK_IN', Date.now());
         },
         clockOut() {
+            let checkIn = this.$store.state.gym.clockIn;
             this.$store.commit('TOGGLE_IN_GYM', false);
+            let checkOut = this.$store.state.gym.clockIn;
+            let mins = Math.floor((checkOut - checkIn)/60000);
+
+            this.visit.date = new Date.toISOString().split('T')[0];
             this.visit.customerId = this.$store.state.profile.customerId;
-            this.visit.date = this.$store.state.gym.checkin;
-            let millis = Date.now() - this.visit.date;
-            this.visit.minutes = this.milisecondsToMinutes(millis);
-            gymVisitService.addVisit(this.visit.customerId, this.visit);
-        },
-        milisecondsToMinutes(millis) {
-            let minutes = Math.floor(millis / 60000);
-            return minutes;
+            this.visit.date = this.$store.state.gym.checkIn;
+            this.visit.minutes = mins;
+            
+            gymVisitService
+            .addVisit(this.visit.customerId, this.visit)
+            .then((response) => {
+                if (response.status == 200) {
+                    this.visit = {
+                        customerId: this.$store.state.profile.customerId,
+                        date: null,
+                        minutes: null
+                    }
+                }
+            })
+            .catch((error) => {
+                console.error(error);
+            });
         }
     }
 }

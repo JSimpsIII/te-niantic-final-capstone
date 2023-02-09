@@ -42,8 +42,8 @@ ADD CONSTRAINT FK_goal_exercise
 FOREIGN KEY (exercise_id)
 REFERENCES exercise(exercise_id);
 
-ALTER TABLE gym_visit
-ADD CONSTRAINT FK_gym_visit_customer
+ALTER TABLE gym
+ADD CONSTRAINT FK_gym_customer
 FOREIGN KEY (customer_id)
 REFERENCES customer(customer_id);
 
