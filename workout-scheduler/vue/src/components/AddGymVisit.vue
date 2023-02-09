@@ -94,9 +94,11 @@ button {
 }
 #clock-in-button {
     background-color: var(--green);
+    border: none;
 }
 #clock-out-button {
     background-color: var(--red);
+    border: none;
 }
 button::placeholder,
 button:-ms-input-placeholder {
