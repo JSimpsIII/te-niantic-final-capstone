@@ -27,7 +27,6 @@ export default {
         return {
             visit: {
                 customerId: null,
-                date: null,
                 minutes: null
             }
         }
@@ -43,9 +42,8 @@ export default {
             let checkOut = this.$store.state.gym.clockIn;
             console.log(checkOut);
             let mins = Math.floor((checkOut - checkIn)/60000);
+            console.log(mins);
 
-            this.visit.date = new Date.toISOString().split('T')[0];
-            console.log(this.visit.date);
             this.visit.customerId = this.$store.state.profile.customerId;
             this.visit.date = this.$store.state.gym.checkIn;
             this.visit.minutes = mins;
@@ -53,7 +51,8 @@ export default {
             gymService
             .addVisit(this.visit.customerId, this.visit)
             .then((response) => {
-                if (response.status == 200) {
+                console.log(response.status);
+                if (response.status == 201) {
                     this.visit = {
                         customerId: this.$store.state.profile.customerId,
                         date: null,

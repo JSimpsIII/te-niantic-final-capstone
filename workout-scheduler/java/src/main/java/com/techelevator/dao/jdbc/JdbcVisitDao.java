@@ -47,7 +47,7 @@ public class JdbcVisitDao implements VisitDao {
         Integer visitId;
         String sqlQuery = "INSERT INTO gym " +
                 "(customer_id, visit_date, visit_time_min) " +
-                "VALUES (?, ?, ?) RETURNING visit_id;";
+                "VALUES (?, DATE ?, ?) RETURNING visit_id;";
         try {
             visitId = jdbcTemplate.queryForObject(sqlQuery, Integer.class, userId, date, minutes);
         } catch (Exception e) {

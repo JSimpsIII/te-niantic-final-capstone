@@ -2,6 +2,7 @@
 import { Bar } from "vue-chartjs";
 
 export default {
+  name: 'gym-check-ins-chart',
   extends: Bar,
   data() {
     return {
@@ -9,7 +10,7 @@ export default {
         labels: [],
         datasets: [
           {
-            label: "Days at Gym",
+            label: "Gym Visits",
             borderWidth: 1,
             backgroundColor: [
               "rgba(255, 99, 132, 0.4)",
@@ -63,6 +64,7 @@ export default {
                 display: false,
               },
               ticks: {
+                beginAtZero: true,
                 fontColor: "#FDFFFC"
               }
             },
@@ -74,23 +76,58 @@ export default {
         responsive: true,
         maintainAspectRatio: false,
       },
-      metricsObj: {},
+      monthObj: {},
+      visitObj: {},
+      finalValues: {}
     };
   },
   mounted() {
     this.renderChart(this.chartData, this.options);
   },
   created() {
-  
+    this.chartData.labels = this.getLabelArray();
+    this.monthObj = {
+     'JAN':'01', 'FEB':'02', 'MAR':'03', 
+     'APR':'04', 'MAY':'05', 'JUN':'06',
+     'JUL':'07', 'AUG':'08', 'SEP':'09', 
+     'OCT':'10', 'NOV':'11', 'DEC':'12' 
+    };
+    this.visitObj = {
+      '01': 0, '02': 0, '03': 0, '04': 0, '05': 0, '06': 0,
+      '07': 0, '08': 0, '09': 0, '10': 0, '11': 0, '12': 0
+    };
+
+    this.$store.state.metricsList.forEach(metric => {
+      console.log(metric.date);
+      let date = metric.date.toString();
+      let year = date.substring(0, 4);
+      let now = new Date().toISOString();
+      let thisyear = now.substring(0, 4);
+      if (year == thisyear) {
+        let month = date.substring(5, 7);
+        let old = this.visitObj[month];
+        this.visitObj[month] = old+1;
+      }
+    });
+
+    this.finalValues = this.getFinalValues();
+
+    this.chartData.datasets[0].data = this.getLabelArray.map(name => this.visitObj[this.monthObj[name]]);
   },
   methods: {
-
-    convertArrayToObject(array) {
-      return array.reduce((obj, x) => ({ ...obj, [x]: 0 }), {});
+    getLabelArray() {
+      const array = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG','SEP', 'OCT', 'NOV', 'DEC'];
+      return [...new Set(array)];
     },
-
-    
-  },
+    getFinalValues() {
+      for (let [key, value] of Object.entries(this.visitObj)) {
+        let mo = key;
+        let name = this.monthObj[mo];
+        console.log(name);
+        this.finalValues[name, value];
+      }
+    }
+  }
 };
 
 </script>
