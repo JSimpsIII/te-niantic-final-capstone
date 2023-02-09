@@ -2,10 +2,20 @@
   <div>
     <div class="banner">
       <div class="profile-img-container">
-        <img id="profile-img" class="profile-img" :src="user.photo" alt="profile-img" />
+        <img
+          id="profile-img"
+          class="profile-img"
+          :src="user.photo"
+          alt="profile-img"
+        />
       </div>
       <div>
-        <img src="@/assets/edit.png" alt="edit-icon" class="edit-icon" @click="toggleProfilePic"/>
+        <img
+          src="@/assets/edit.png"
+          alt="edit-icon"
+          class="edit-icon"
+          @click="toggleProfilePic"
+        />
       </div>
     </div>
 
@@ -23,38 +33,12 @@
     </div>
 
     <div id="profile-container" class="profile-container form-group">
-      <div id="username">Username: {{ user.username }}</div>
+      <div id="username-container">
+        <div id="username">Username:</div>
+        <div id="username-name">{{ user.username }}</div>
+      </div>
 
       <form id="form-container">
-        <label for="photo">Profile Picture</label>
-        <select
-          name="languages"
-          id="photo"
-          v-model="user.photo"
-          :disabled="!isEditting"
-        >
-          <option
-            value="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRo30ulQk-69OJ5GGdowFt21Lsau4GfWzfbBSmsfE4hGrVxBbnVNOr12yOYULoq2Gb7XEU&usqp=CAU"
-          >
-            Option 1
-          </option>
-          <option
-            value="https://raisingwhasians.com/wp-content/uploads/2021/06/Black-widow-movie-review-safe-for-kids.jpg"
-          >
-            Option 2
-          </option>
-          <option
-            value="https://qph.cf2.quoracdn.net/main-qimg-25c5c8a37ca5ffcdf55fe24149ce1011.webp"
-          >
-            Option 3
-          </option>
-          <option
-            value="https://maactioncinema.com/wp-content/uploads/2021/02/blade_3.jpg"
-          >
-            Option 4
-          </option>
-        </select>
-
         <label for="name">Name:</label>
         <input
           type="name"
@@ -191,8 +175,10 @@ export default {
       Object.assign(this.user, this.userBeforeEdit);
     },
     saveChanges() {
-      profileService
-        .saveProfileChanges(this.$store.state.profile.customerId, this.user);
+      profileService.saveProfileChanges(
+        this.$store.state.profile.customerId,
+        this.user
+      );
     },
     selectNewProfileImg(e) {
       const newImg = e.target.currentSrc;
@@ -201,7 +187,12 @@ export default {
       this.isChoosingProfilePic = false;
       document.getElementById("profile-container").classList.remove("blurred");
       document.getElementById("profile-img").classList.remove("blurred");
-    }
+    },
+    closeImgSelection() {
+      this.isChoosingProfilePic = false;
+      document.getElementById("profile-container").classList.remove("blurred");
+      document.getElementById("profile-img").classList.remove("blurred");
+    },
   },
 };
 </script>
@@ -251,10 +242,15 @@ export default {
   margin: 100px 50px 0 50px;
 }
 
-#username {
+#username-container {
   margin-bottom: 20px;
 }
 
+#username-name {
+  color: lightblue;
+}
+
+#username-container,
 #form-container {
   display: flex;
   flex-direction: column;
@@ -276,6 +272,7 @@ export default {
 #form-container > select:disabled {
   all: unset;
   margin-bottom: 40px;
+  color: lightblue;
 }
 
 .profile-btns {
