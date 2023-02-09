@@ -173,6 +173,11 @@ export default {
 </script>
 
 <style scoped>
+#metrics {
+  height: 100vh;
+  background-color: #442435;
+}
+
 #metrics-title {
   display: flex;
   justify-content: center;

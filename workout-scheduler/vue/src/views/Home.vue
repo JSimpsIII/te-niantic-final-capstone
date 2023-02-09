@@ -144,7 +144,9 @@ a {
 }
 
 .home {
-  margin-top: 20px;
+  padding-top: 20px;
+  background-color: rgb(29, 34, 39);
+  height: 100vh;
 }
 
 #profile-header {
