@@ -18,7 +18,7 @@
     </div>
 
     <div id="motivation">
-      <div id='welcome-message'>Welcome back, {{ this.$store.state.profile.name }}!</div>
+      <div id='welcome-message'>Welcome back, <span class='users-name-welcome'>{{ this.$store.state.profile.name }}</span>!</div>
       <div class='spacer'><hr></div>
       <quote-changer />
     </div>
@@ -148,6 +148,9 @@ a {
   padding-top: 20px;
   background-color: rgb(29, 34, 39);
   height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 #profile-header {
@@ -189,6 +192,10 @@ a {
   margin: 0 auto;
   margin-bottom: 30px;
 }
+.users-name-welcome {
+  font-size: 1.15em;
+  color: sandybrown;
+}
 
 .spacer {
   display: flex;
@@ -229,11 +236,15 @@ hr {
   padding: 40px 0px;
   text-align: center;
   border-radius: 10px;
-  margin-bottom: 25px;
+  margin-bottom: 30px;
 }
 
 .btn-container {
-  margin-bottom: 70px;
+  margin-bottom: 100px;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 footer {

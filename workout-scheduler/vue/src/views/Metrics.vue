@@ -175,7 +175,7 @@ export default {
 <style scoped>
 #metrics {
   height: 100vh;
-  background-color: #442435;
+  background-color: #50263c;
 }
 
 #metrics-title {

@@ -209,8 +209,6 @@ export default {
   }
 }
 
-#confetti-canvas {
-  width: 600px;
-}
+
 
 </style>
