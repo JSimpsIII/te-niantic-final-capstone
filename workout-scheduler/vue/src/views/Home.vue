@@ -19,6 +19,7 @@
 
     <div id="motivation">
       <div id='welcome-message'>Welcome back, {{ this.$store.state.profile.name }}!</div>
+      <div class='spacer'><hr></div>
       <quote-changer />
     </div>
 
@@ -187,6 +188,19 @@ a {
   width: 90%;
   margin: 0 auto;
   margin-bottom: 30px;
+}
+
+.spacer {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+hr {
+  width: 250px;
+  border: 1px solid rgb(55, 66, 77);
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
 #gym div {
