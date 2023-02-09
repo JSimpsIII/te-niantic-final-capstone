@@ -147,7 +147,7 @@ export default {
 <style scoped>
 .add-goals {
   width: 70%;
-  margin: 0 auto;
+  margin: 15px auto;
 }
 
 .add-new-goal {
@@ -159,7 +159,7 @@ export default {
   background-color: var(--green);
   border-radius: 10px;
   margin-bottom: 10px;
-  padding-left: 10px;
+  padding-left: 15px;
 }
 
 .add-new-goal > div > input {
@@ -167,8 +167,10 @@ export default {
   background-color: transparent;
   border: 1px var(--white) solid;
   border-radius: 5px;
+  margin: 5px;
   height: 30px;
   width: 40px;
+  text-align: center;
 }
 
 .add-new-goal > div > input::placeholder {
