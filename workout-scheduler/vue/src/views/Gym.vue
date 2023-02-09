@@ -5,10 +5,6 @@
 
         <div class="gym-banner">
 
-            <div class="gym-title-add-container">
-                <add-gym-visit />
-            </div>
-
         </div>
 
        <exercise-table />
@@ -20,19 +16,30 @@
 </template>
 
 <script>
-import AddGymVisit from '../components/AddGymVisit.vue';
 import ExerciseTable from '../components/ExerciseTable.vue';
 import NavBar from '../components/NavBar.vue'
+import exerciseService from '../services/ExerciseService'
 
 export default {
     name: "gym",
     components: {
       NavBar,
-      ExerciseTable,
-        AddGymVisit
+      ExerciseTable
     },
     data() {
       return {}
+    },
+    methods: {
+      loadExerciseList() {
+        exerciseService
+          .getAllExercises()
+          .then(response => {
+            this.$store.commit('LOAD_EXERCISE_LIST', response.data);
+          })
+      }
+    },
+    created() {
+      this.loadExerciseList();
     }
 }
 </script>
@@ -41,6 +48,8 @@ export default {
 #gym-img {
   width: 100%;
   height: 270px;
+  object-fit: cover;
+  object-position: bottom;
 
 }
 .gym-banner {
@@ -55,7 +64,7 @@ export default {
   align-items: center;
   padding-top: 30px;
   padding-bottom: 30px;
-  background-color: rgb(29, 61, 89);
+  background-color: rgba(29, 61, 89, 0.2);
 }
 
 .gym-instructions-container {

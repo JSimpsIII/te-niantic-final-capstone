@@ -106,6 +106,7 @@ import ExercisesByBodyTarget from '../components/ExercisesByBodyTarget.vue'
 import MetricsRecords from '../components/MetricsRecords.vue';
 import TimeByBodyPart from '../components/TimeByBodyPart.vue';
 import TimeByBodyTarget from '../components/TimeByBodyTarget.vue';
+import metricService from '../services/MetricService'
 
 
 
@@ -167,15 +168,26 @@ export default {
       toggleRecordsContainer() {
           this.records.isShowing = !this.records.isShowing;
           this.records.arrowDirection = this.records.arrowDirection == "down-arrow" ? "up-arrow" : "down-arrow";
+      },
+      loadMetricsList(){
+        let userId = this.$store.state.profile.customerId;
+        metricService
+          .getAllMetrics(userId)
+          .then(response => {
+            this.$store.commit('LOAD_METRICS_LIST', response.data);
+          })
       }
-  }
+    },
+    created() {
+      this.loadMetricsList();
+    }
 };
 </script>
 
 <style scoped>
 #metrics {
   height: 100vh;
-  background-color: #50263c;
+  background-color: rgb(29, 34, 39);
 }
 
 #metrics-title {
