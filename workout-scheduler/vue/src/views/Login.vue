@@ -32,12 +32,12 @@
 
             <div id='user-entry'>
                 <div id="enter-username">
-                    <label for="username" class="sr-only">Username </label>
+                    <label for="username" class="sr-only">Username: </label>
                     <input
                         type="text"
                         id="username"
                         class="form-control"
-                        placeholder="Your account username"
+                        placeholder="Enter your username"
                         v-model="user.username"
                         required
                         autofocus
@@ -45,12 +45,12 @@
                 </div>
 
                 <div id="enter-password">
-                    <label for="password" class="sr-only">Password </label>
+                    <label for="password" class="sr-only">Password: </label>
                     <input
                         type="password"
                         id="password"
                         class="form-control"
-                        placeholder="Enter your secure password"
+                        placeholder="Enter your password"
                         v-model="user.password"
                         required
                     />
@@ -126,6 +126,8 @@ export default {
   margin: 0;
   padding: 0;
   overflow:hidden;
+  background-color: rgb(29, 34, 39);
+  height: 100vh;
 }
 
 #login-header {
@@ -152,13 +154,19 @@ export default {
 
 #password,
 #username {
-  margin-bottom: 2px;
+  font-size: 14px;
+  margin: 5px;
   background-color: var(--blue);
   border: none;
   padding: 10px;
   border-radius: 5px;
   color: var(--inherit);
-  margin-top: 3px;
+}
+
+.sr-only {
+  font-size: 24px;
+  padding-right: 8px;
+  text-transform: capitalize;
 }
 
 #user-entry {
@@ -172,11 +180,17 @@ export default {
 #enter-username,
 #enter-password {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  margin-bottom: 10px;
+  padding: 5px 5px 5px 10px;
+  margin-bottom: 15px;
+  background-color: rgb(29, 61, 89);
+  border-radius: 5px;
 }
 
+.form-signin {
+  margin-bottom: 40px;
+}
 
 .login-request {
   font-size: 25px;
