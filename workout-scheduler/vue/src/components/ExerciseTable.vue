@@ -5,8 +5,9 @@
             <p class='calendar-prompt' v-if="checkEmpty">No upcoming workouts</p>
             <p class='calendar-prompt' v-if="!checkEmpty">Upcoming Workouts</p>
             <div v-for="item in scheduledExercises"
-                    v-bind:key="item.name">
-            <button class='calendar-prompt cancel-button' v-bind:disabled="enableDeletion" @click='deleteSelected(item)'>{{item.name}}, on {{item.date}} at {{item.time}}</button>
+                v-bind:key="item.name">
+                <p class='calendar-prompt' v-if="!cancelingExercise">{{item.name}}, on {{item.date}} at {{item.time}}</p>
+            <button class='calendar-prompt cancel-button' v-if="cancelingExercise" @click='deleteSelected(item)'>{{item.name}}, on {{item.date}} at {{item.time}}</button>
             </div>
         </div>
         
@@ -198,7 +199,8 @@ export default {
             showFilters: false,
             calendarActive: false,
             showForm: false,
-            canDeleteExercise: false
+            // canDeleteExercise: false,
+            cancelingExercise: false
         }
     },
     created() {
@@ -264,13 +266,13 @@ export default {
             }
             return submitDisbaled
         },
-        enableDeletion() {
-            let deleteDisabled = true
-            if (this.canDeleteExercise == true) {
-                deleteDisabled = false
-            }
-            return deleteDisabled
-        }
+        // enableDeletion() {
+        //     let deleteDisabled = true
+        //     if (this.canDeleteExercise == true) {
+        //         deleteDisabled = false
+        //     }
+        //     return deleteDisabled
+        // }
     },
     methods: {
         loadExercises() {
@@ -368,7 +370,7 @@ export default {
             }
         },
         cancelExercise() {
-            this.canDeleteExercise = true
+            this.cancelingExercise = true
         },
         deleteSelected(item) {
             this.scheduledExercises.forEach(exercise => {
@@ -377,6 +379,9 @@ export default {
                     this.scheduledExercises.splice(index, 1)
                 }
             })
+            if (this.checkEmpty == true) {
+                this.cancelingExercise = false
+            }
         }
     }
 
