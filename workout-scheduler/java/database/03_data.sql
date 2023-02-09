@@ -30,12 +30,19 @@ INSERT INTO metrics (customer_id, exercise_id, metrics_date, current_weight_lbs,
 INSERT INTO metrics (customer_id, exercise_id, metrics_date, current_weight_lbs, current_time_min) VALUES (1, 1255, DATE '2023-02-07', 190, 10);
 INSERT INTO metrics (customer_id, exercise_id, metrics_date, current_weight_lbs, current_time_min) VALUES (1, 1255, DATE '2023-02-08', 205, 10);
 
-
 -- insert goal table data
 INSERT INTO goal (goal_id, goal_name, customer_id, exercise_id, goal_date, goal_weight_lbs, is_completed) VALUES (1, 'Bench press (lbs)', 1, 1, DATE '2023-12-01', 200, false);
 INSERT INTO goal (goal_id, goal_name, customer_id, exercise_id, goal_date, goal_time_min, is_completed) VALUES (2, 'mile run',  1, 1, DATE '2023-05-20', 6.0, false);
 INSERT INTO goal (goal_id, goal_name, customer_id, exercise_id, goal_date, goal_days, is_completed) VALUES (3, 'Days in gym every week', 1, 1, DATE '2022-01-01', 5, true);
 ALTER SEQUENCE seq_goal_id RESTART WITH 4;
+
+-- insert gym table data
+INSERT INTO gym (customer_id, visit_date, visit_time_min) VALUES (1, DATE '2023-01-02', 75);
+INSERT INTO gym (customer_id, visit_date, visit_time_min) VALUES (1, DATE '2023-01-12', 40);
+INSERT INTO gym (customer_id, visit_date, visit_time_min) VALUES (1, DATE '2023-01-19', 55);
+INSERT INTO gym (customer_id, visit_date, visit_time_min) VALUES (1, DATE '2023-01-25', 92);
+INSERT INTO gym (customer_id, visit_date, visit_time_min) VALUES (1, DATE '2023-02-03', 50);
+
 
 
 -- insert exercise table data (scraped from ExerciseDB API)

@@ -19,7 +19,7 @@ export default {
     },
     computed: {
         inspirationalQuote() {
-            return this.quotes[Math.floor(Math.random() * Math.floor(this.quotes.length()))];
+            return this.quotes[Math.floor(Math.random() * Math.floor(this.quotes.length))];
         }
     },
     mounted: function() {

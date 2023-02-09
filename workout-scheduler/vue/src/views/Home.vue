@@ -69,6 +69,7 @@ import metricService from '../services/MetricService';
 import exerciseService from '../services/ExerciseService';
 import goalService from '../services/GoalService'
 import QuoteChanger from '../components/QuoteChanger.vue';
+import gymService from '../services/GymService';
 
 export default {
   name: "home",
@@ -108,6 +109,14 @@ export default {
           .then(response => {
             this.$store.commit('LOAD_GOAL_LIST', response.data);
           })
+      },
+      loadGymLogs() {
+        let userId = this.$store.state.profile.customerId;
+        gymService
+          .getAllVisits(userId)
+          .then(response => {
+            this.$store.commit('LOAD_GYM_LOGS', response.data);
+        })
       }
   },
   computed: {
@@ -123,6 +132,7 @@ export default {
       this.loadExerciseList();
       this.loadMetricsList();
       this.loadGoalList();
+      this.loadGymLogs();
     });
   }
 };
@@ -134,7 +144,9 @@ a {
 }
 
 .home {
-  margin-top: 20px;
+  padding-top: 20px;
+  background-color: rgb(29, 34, 39);
+  height: 100vh;
 }
 
 #profile-header {

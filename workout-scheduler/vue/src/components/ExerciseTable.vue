@@ -526,7 +526,6 @@ button:hover {
     padding: 15px 20px;
     margin-top: 10px;
     margin-bottom: 10px;
-    margin-right: 15px;
     text-align: center;
     border-radius: 10px;
 }
