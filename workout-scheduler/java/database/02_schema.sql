@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS customer_goal, goal, metrics, customer, users, exercise, exercise_equipment, exercise_target, exercise_bodypart CASCADE;
+DROP TABLE IF EXISTS gym, customer_goal, goal, metrics, customer, users, exercise, exercise_equipment, exercise_target, exercise_bodypart CASCADE;
 DROP SEQUENCE IF EXISTS seq_user_id;
 DROP SEQUENCE IF EXISTS seq_customer_id;
 DROP SEQUENCE IF EXISTS seq_goal_id;
@@ -20,7 +20,6 @@ CREATE SEQUENCE seq_goal_id
   NO MAXVALUE
   NO MINVALUE
   CACHE 1;
-
 
 CREATE TABLE users (
 	user_id int DEFAULT nextval('seq_user_id'::regclass) NOT NULL,
@@ -92,12 +91,11 @@ CREATE TABLE goal (
 	is_completed boolean
 );
 
-CREATE TABLE gym_visit (
+CREATE TABLE gym (
     visit_id SERIAL NOT NULL PRIMARY KEY,
     customer_id int NOT NULL,
     visit_date date NOT NULL,
-    check_in time NOT NULL,
-    check_out time
+    visit_time_min numeric
 );
 
 

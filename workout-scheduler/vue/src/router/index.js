@@ -106,14 +106,6 @@ const router = new Router({
       meta: {
         requiresAuth: true
       }
-    },
-    {
-      path: "/redirect",
-      name: "redirect",
-      component: Redirect,
-      meta: {
-        requiresAuth: true
-      }
     }
   ]
 })

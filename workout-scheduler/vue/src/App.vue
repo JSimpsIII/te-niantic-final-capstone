@@ -31,7 +31,7 @@ img {
 }
 
 body {
-  width: 600px;
+  max-width: 600px;
   margin: 0 auto;
   font-family: 'Roboto', sans-serif;
   background-color: var(--black);
