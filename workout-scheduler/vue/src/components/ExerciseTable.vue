@@ -3,28 +3,30 @@
 
         <div>
             <p class='calendar-prompt' v-if="checkEmpty">No upcoming workouts</p>
-            <p class='calendar-prompt' v-if="!checkEmpty && !calendarActive">Reminder: "{{scheduledExercise.name}}" upcoming on {{scheduledExercise.date}} at {{scheduledExercise.time}}</p>
+            <p class='calendar-prompt' v-if="!checkEmpty">Upcoming Workouts</p>
+            <p class='calendar-prompt' v-for="item in scheduledExercises"
+                    v-bind:key="item.name">{{item.name}}, on {{item.date}} at {{item.time}}</p>
         </div>
-
-        <div id='schedule' class='gym-button' v-if="!calendarActive && checkEmpty">
-            <!-- <p class='calendar-prompt'>Want to schedule a workout for later?</p> -->
-            <button id='schedule-button' @click='openCalendar()'>
+        
+        <div id='workout' class='gym-button' v-if="calendarActive">
+            <button v-bind:disabled="actionButtonDisabled" id='workout-button' @click='openCalendar()'>
                 {{buttonText}}
             </button>
         </div>
 
-        <div id='workout' class='gym-button' v-if="calendarActive">
-            <button v-bind:disabled="actionButtonDisabled" id='workout-button' @click='openCalendar()'>
+        <div id="workout-page-buttons">
+        <div id='schedule' class='gym-button' v-if="!calendarActive">
+            <button id='schedule-button' @click='openCalendar()'>
                 {{buttonText}}
             </button>
         </div>
         
         <div id='cancel-schedule' class='gym-button' v-if="!calendarActive && !checkEmpty">
             <button id='cancel-exercise-button' @click='cancelExercise()'>
-                {{buttonText}}
+                Cancel Scheduled Exercise
             </button>
         </div>
-
+        </div>
 
         <div class="gym-instructions-container">
             <div id="gym-instructions" v-if="!calendarActive">Select an exercise to begin</div>
@@ -189,6 +191,7 @@ export default {
                 date: '',
                 time: ''
             },
+            scheduledExercises: [],
             showSearchBar: false,
             showFilters: false,
             calendarActive: false,
@@ -201,7 +204,7 @@ export default {
     computed: {
         checkEmpty() {
             let empty = false;
-            if (this.scheduledExercise.name == '' && this.scheduledExercise.date == '' && this.scheduledExercise.time == '') {
+            if (this.scheduledExercises.length == 0) {
                 empty = true
             }
             return empty
@@ -210,9 +213,6 @@ export default {
             let calendarText = "Schedule"
             if (this.calendarActive == true) {
                 calendarText = "Workout" 
-            }
-            if (this.checkEmpty == false && this.calendarActive == false) {
-                calendarText = "Cancel Scheduled Exercise"
             }
             return calendarText
         },
@@ -339,6 +339,23 @@ export default {
         },
         saveExercise() {
             this.showForm = false;
+            
+            const exerciseToSave = {
+                name: this.scheduledExercise.name,
+                date: this.scheduledExercise.date,
+                time: this.scheduledExercise.time
+            }
+
+            if (this.scheduledExercise.name != '' && this.scheduledExercise.date != '' && this.scheduledExercise.time != '') {
+                this.scheduledExercises.push(exerciseToSave);
+            }
+            
+            
+            this.scheduledExercise = {
+                name: '',
+                date: '',
+                time: ''
+            }
         },
         cancelExercise() {
             this.scheduledExercise = {
@@ -354,6 +371,10 @@ export default {
 
 
 <style scoped>
+#workout-page-buttons {
+    display:flex;
+    justify-content: center;
+}
 #exercise-table {
   background-color: var(--blue);
   text-align: center;
@@ -491,13 +512,14 @@ button:hover {
     padding: 15px 20px;
     margin-top: 10px;
     margin-bottom: 10px;
+    margin-right: 15px;
     text-align: center;
     border-radius: 10px;
 }
 
 #workout-button {
     background-color: sandybrown;
-      display: flex;
+    display: flex;
   justify-content: center;
   align-items: center;
   gap: 5px;
@@ -507,7 +529,7 @@ button:hover {
   font-size: 20px;
   padding: 15px 20px;
   margin-top: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   text-align: center;
   border-radius: 10px;
 }
@@ -525,6 +547,7 @@ button:hover {
   padding: 15px 20px;
   margin-top: 10px;
   margin-bottom: 10px;
+  margin-left: 10px;
   text-align: center;
   border-radius: 10px;
 }
