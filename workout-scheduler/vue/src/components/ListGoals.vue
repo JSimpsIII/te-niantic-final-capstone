@@ -2,7 +2,7 @@
   <div id="list-goals">
     <div
       class="goal"
-      v-for="goal in this.$store.state.goalList"
+      v-for="goal in filteredGoalsNotCompleted"
       :key="goal.id"
       :data-goal-id="goal.id"
     >
@@ -54,6 +54,7 @@ export default {
     return {
       updatedGoal: {
               name: "",
+              id: 0,
               customerId: this.$store.state.profile.customerId,
               exerciseId: 1,
               date: null,
@@ -65,6 +66,11 @@ export default {
               misc: null,
               completed: false,
             }
+    }
+  },
+  computed: {
+    filteredGoalsNotCompleted() {
+      return this.$store.state.goalList.filter(g => g.completed == false);
     }
   },
   methods: {
@@ -79,13 +85,13 @@ export default {
       })
 
       this.updatedGoal.completed = true;
-      console.log(this.updatedGoal)
+      delete this.updatedGoal.id;
       
       goalService
-        .updateGoal(userId, goalId. this.updatedGoal)
+        .updateGoal(userId, goalId, this.updatedGoal)
         .then(res => {
           if (res.status == 200) {
-            console.log("goal completed code here!")
+            // confetti animation for goal completion
           }
         })
         .catch(error => console.error(error))
