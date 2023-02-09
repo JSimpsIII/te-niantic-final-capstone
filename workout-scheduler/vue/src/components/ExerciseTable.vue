@@ -41,11 +41,11 @@
                 <p>Select a date and time to schedule the "{{scheduledExercise.name}}" exercise</p>
                 <div class="field" >
                     <label for="date">Date: </label>
-                    <input type="text" name="date" placeholder="MM/DD/YYYY" v-model="scheduledExercise.date"/>
+                    <input type="text" name="date" class='input-field' placeholder="MM/DD/YYYY" v-model="scheduledExercise.date"/>
                 </div>
                 <div class="field">
                     <label for="time">Time: </label>
-                    <input type="text" name="time" placeholder="00:00 PM" v-model="scheduledExercise.time"/>
+                    <input type="text" name="time" class='input-field' placeholder="00:00 PM" v-model="scheduledExercise.time"/>
                 </div>
                 <button v-bind:disabled="submitButtonDisabled" type="submit" class="btn save" @click='openCalendar()'>Save</button>
                 <button class="cancel-button" @click="cancelForm">Cancel</button>
@@ -483,6 +483,13 @@ export default {
     transform: scale(1.25);
     filter: invert(38%) sepia(62%) saturate(311%) hue-rotate(166deg) brightness(180%) contrast(89%);
 }
+.input-field {
+    height: 35px;
+    padding: 3px;
+    margin: 5px;
+    width: 170px;
+    border-radius: 5px;
+}
 th {
     
     height: 70px;
@@ -550,24 +557,28 @@ button:hover {
     text-align: center;
     border-radius: 10px;
     border: none;
+    height: 60px;
+    width: 120px;
 }
 
 #workout-button {
     background-color: sandybrown;
     display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 5px;
-  color: #FDFFFC;
-  opacity: 1;
-  margin: 0 auto;
-  font-size: 20px;
-  padding: 15px 20px;
-  margin-top: 10px;
-  margin-bottom: 15px;
-  text-align: center;
-  border-radius: 10px;
-  border: none;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    color: #FDFFFC;
+    opacity: 1;
+    margin: 0 auto;
+    font-size: 20px;
+    padding: 15px 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+    border-radius: 10px;
+    border: none;
+    height: 60px;
+    width: 120px;
 }
 
 #cancel-exercise-button {
