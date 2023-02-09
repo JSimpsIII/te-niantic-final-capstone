@@ -45,17 +45,17 @@ public class JdbcMetricDao implements MetricDao {
         double reps = metric.getReps();
         double weight = metric.getWeight();
         double time = metric.getTime();
-        double distance = metric.getDistance();
+        double sets = metric.getSets();
         int days = metric.getDays();
         String misc = metric.getMisc();
 
         Integer metricsId;
         String sqlQuery = "INSERT INTO metrics " +
-                "(customer_id, exercise_id, metrics_date, current_reps, current_weight_lbs, current_time_min, current_distance_miles, current_days, current_misc) " +
+                "(customer_id, exercise_id, metrics_date, current_reps, current_weight_lbs, current_time_min, current_sets, current_days, current_misc) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING metrics_id;";
         try {
             metricsId = jdbcTemplate.queryForObject(sqlQuery, Integer.class,
-                    userId, exerciseId, date, reps, weight, time, distance, days, misc);
+                    userId, exerciseId, date, reps, weight, time, sets, days, misc);
         } catch (Exception e) {
             return false;
         }
@@ -68,15 +68,15 @@ public class JdbcMetricDao implements MetricDao {
         double mReps = metric.getReps();
         double mWeight = metric.getWeight();
         double mTime = metric.getTime();
-        double mDistance = metric.getDistance();
+        double mSets = metric.getSets();
         int mDays = metric.getDays();
         String mMisc = metric.getMisc();
 
         String sqlQuery = "UPDATE metrics " +
-                "SET customer_id = ?, exercise_id = ?, metrics_date = ?, current_reps = ?, current_weight_lbs = ?, current_time_min = ?, current_distance_miles = ?, current_days = ?, current_misc = ? " +
+                "SET customer_id = ?, exercise_id = ?, metrics_date = ?, current_reps = ?, current_weight_lbs = ?, current_time_min = ?, current_sets = ?, current_days = ?, current_misc = ? " +
                 "WHERE customer_id = ?;";
         try {
-            jdbcTemplate.update(sqlQuery, userId, exerciseId, mDate, mReps, mWeight, mTime, mDistance, mDays, mMisc, userId);
+            jdbcTemplate.update(sqlQuery, userId, exerciseId, mDate, mReps, mWeight, mTime, mSets, mDays, mMisc, userId);
         } catch (Exception e) {
             return false;
         }
@@ -92,7 +92,7 @@ public class JdbcMetricDao implements MetricDao {
         metric.setReps(row.getInt("current_reps"));
         metric.setWeight(row.getDouble("current_weight_lbs"));
         metric.setTime(row.getDouble("current_time_min"));
-        metric.setDistance(row.getDouble("current_distance_miles"));
+        metric.setSets(row.getDouble("current_sets"));
         metric.setDays(row.getInt("current_days"));
         metric.setMisc(row.getString("current_misc"));
         return metric;

@@ -12,7 +12,7 @@ public class Goal {
     private double reps;
     private double weight; //lbs
     private double time; //min
-    private double distance; //mi
+    private double sets;
     private int days;
     private String misc;
     private boolean isCompleted;
@@ -20,7 +20,7 @@ public class Goal {
     public Goal() {
     }
 
-    public Goal(String name, Long customerId, int exerciseId, Date date, double reps, double weight, double time, double distance, int days, String misc, boolean isCompleted) {
+    public Goal(String name, Long customerId, int exerciseId, Date date, double reps, double weight, double time, double sets, int days, String misc, boolean isCompleted) {
         this.name = name;
         this.customerId = customerId;
         this.exerciseId = exerciseId;
@@ -28,13 +28,13 @@ public class Goal {
         this.reps = reps;
         this.weight = weight;
         this.time = time;
-        this.distance = distance;
+        this.sets = sets;
         this.days = days;
         this.misc = misc;
         this.isCompleted = isCompleted;
     }
 
-    public Goal(int id, String name, Long customerId, int exerciseId, Date date, double reps, double weight, double time, double distance, int days, String misc, boolean isCompleted) {
+    public Goal(int id, String name, Long customerId, int exerciseId, Date date, double reps, double weight, double time, double sets, int days, String misc, boolean isCompleted) {
         this.id = id;
         this.name = name;
         this.customerId = customerId;
@@ -43,7 +43,7 @@ public class Goal {
         this.reps = reps;
         this.weight = weight;
         this.time = time;
-        this.distance = distance;
+        this.sets = sets;
         this.days = days;
         this.misc = misc;
         this.isCompleted = isCompleted;
@@ -113,12 +113,12 @@ public class Goal {
         this.time = time;
     }
 
-    public double getDistance() {
-        return distance;
+    public double getSets() {
+        return sets;
     }
 
-    public void setDistance(double distance) {
-        this.distance = distance;
+    public void setSets(double sets) {
+        this.sets = sets;
     }
 
     public int getDays() {

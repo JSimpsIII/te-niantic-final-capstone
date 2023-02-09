@@ -34,10 +34,10 @@ public class MetricsController {
         double reps = metricDTO.getReps();
         double weight = metricDTO.getWeight();
         double time = metricDTO.getTime();
-        double distance = metricDTO.getDistance();
+        double sets = metricDTO.getSets();
         int days = metricDTO.getDays();
         String misc = metricDTO.getMisc();
-        Metric metric = new Metric(customerId, exerciseId, date, reps, weight, time, distance, days, misc);
+        Metric metric = new Metric(customerId, exerciseId, date, reps, weight, time, sets, days, misc);
         return metricDao.logNewMetric(userId, metric);
     }
 }

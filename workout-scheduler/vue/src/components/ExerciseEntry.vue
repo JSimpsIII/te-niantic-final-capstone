@@ -27,20 +27,14 @@
                 </div>
             </div>
 
+            <div id='enter-sets' class='form-entry form-element'>
+                <label for='sets'>Sets: </label>
+                <input type='number' min='0' id='sets' name='sets' class='sets' placeholder='number of sets' v-model='metric.sets' />
+            </div>
+
             <div id='enter-reps' class='form-entry form-element'>
                 <label for='reps'>Reps: </label>
                 <input type='number' min='0' id='reps' name='reps' class='reps' placeholder='number of reps' v-model='metric.reps' />
-            </div>
-
-            <div id='enter-distance' class='form-entry'>
-                <div v-if='this.isMiles' class='distance-miles form-element'>
-                    <label for='distance-miles'>Distance: </label>
-                    <input type='number' min='0' id='distance-miles' name='distance-miles' class='distance' placeholder='miles' v-model='metric.distance' />
-                </div>
-                <div v-else class='distance-kilometers form-element'>
-                    <label for='distance-kilometers'>Distance: </label>
-                    <input type='number' min='0' id='distance-kilometers' name='distance-kilometers' class='distance' placeholder='kilometers' v-model='metric.distance'/>
-                </div>
             </div>
 
             <div id='enter-notes' class='form-entry'>
@@ -72,7 +66,7 @@ export default {
                 reps: null,
                 weight: null,
                 time: null,
-                distance: null,
+                sets: null,
                 days: null,
                 misc: ''
             }
