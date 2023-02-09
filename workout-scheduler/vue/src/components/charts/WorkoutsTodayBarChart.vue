@@ -51,6 +51,7 @@ export default {
               ticks: {
                 beginAtZero: true,
                 fontColor: "#FDFFFC",
+                
               },
               gridLines: {
                 display: true,
@@ -64,6 +65,9 @@ export default {
               },
               ticks: {
                 fontColor: "#FDFFFC",
+                    callback: function(value) {
+                      return value.substr(0,10)+"..";
+                    }
               },
             },
           ],
