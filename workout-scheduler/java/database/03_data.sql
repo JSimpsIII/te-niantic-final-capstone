@@ -37,26 +37,23 @@ INSERT INTO metrics (customer_id, exercise_id, metrics_date, current_weight_lbs,
 INSERT INTO metrics (customer_id, exercise_id, metrics_date, current_weight_lbs, current_time_min) VALUES (1, 0025, DATE '2023-02-07', 210, 24);
 INSERT INTO metrics (customer_id, exercise_id, metrics_date, current_weight_lbs, current_time_min) VALUES (1, 0025, DATE '2023-02-09', 215, 19);
 
-INSERT INTO metrics (customer_id, exercise_id, metrics_date, current_weight_lbs, current_time_min) VALUES (1, 0031, DATE '2023-01-24', 80, 15);
-INSERT INTO metrics (customer_id, exercise_id, metrics_date, current_weight_lbs, current_time_min) VALUES (1, 0031, DATE '2023-01-26', 80, 16);
-INSERT INTO metrics (customer_id, exercise_id, metrics_date, current_weight_lbs, current_time_min) VALUES (1, 0031, DATE '2023-01-31', 85, 12);
-INSERT INTO metrics (customer_id, exercise_id, metrics_date, current_weight_lbs, current_time_min) VALUES (1, 0031, DATE '2023-02-02', 90, 11);
-INSERT INTO metrics (customer_id, exercise_id, metrics_date, current_weight_lbs, current_time_min) VALUES (1, 0031, DATE '2023-02-07', 95, 14);
-INSERT INTO metrics (customer_id, exercise_id, metrics_date, current_weight_lbs, current_time_min) VALUES (1, 0031, DATE '2023-02-09', 95, 13);
+INSERT INTO metrics (customer_id, exercise_id, metrics_date, current_weight_lbs, current_time_min) VALUES (1, 0031, DATE '2023-01-24', 80, 5);
+INSERT INTO metrics (customer_id, exercise_id, metrics_date, current_weight_lbs, current_time_min) VALUES (1, 0031, DATE '2023-01-26', 80, 5);
+INSERT INTO metrics (customer_id, exercise_id, metrics_date, current_weight_lbs, current_time_min) VALUES (1, 0031, DATE '2023-01-31', 85, 7);
+INSERT INTO metrics (customer_id, exercise_id, metrics_date, current_weight_lbs, current_time_min) VALUES (1, 0031, DATE '2023-02-02', 90, 8);
+INSERT INTO metrics (customer_id, exercise_id, metrics_date, current_weight_lbs, current_time_min) VALUES (1, 0031, DATE '2023-02-07', 95, 10);
+INSERT INTO metrics (customer_id, exercise_id, metrics_date, current_weight_lbs, current_time_min) VALUES (1, 0031, DATE '2023-02-09', 95, 5);
 
 INSERT INTO metrics (customer_id, exercise_id, metrics_date, current_weight_lbs, current_time_min) VALUES (1, 0043, DATE '2023-01-24', 150, 3);
 INSERT INTO metrics (customer_id, exercise_id, metrics_date, current_weight_lbs, current_time_min) VALUES (1, 0043, DATE '2023-01-26', 175, 3);
 INSERT INTO metrics (customer_id, exercise_id, metrics_date, current_weight_lbs, current_time_min) VALUES (1, 0043, DATE '2023-01-31', 200, 5);
 INSERT INTO metrics (customer_id, exercise_id, metrics_date, current_weight_lbs, current_time_min) VALUES (1, 0043, DATE '2023-02-02', 225, 5);
-INSERT INTO metrics (customer_id, exercise_id, metrics_date, current_weight_lbs, current_time_min) VALUES (1, 0043, DATE '2023-02-07', 275, 29);
-INSERT INTO metrics (customer_id, exercise_id, metrics_date, current_weight_lbs, current_time_min) VALUES (1, 0043, DATE '2023-02-09', 280, 26);
+INSERT INTO metrics (customer_id, exercise_id, metrics_date, current_weight_lbs, current_time_min) VALUES (1, 0043, DATE '2023-02-07', 275, 5);
+INSERT INTO metrics (customer_id, exercise_id, metrics_date, current_weight_lbs, current_time_min) VALUES (1, 0043, DATE '2023-02-09', 280, 5);
 
-INSERT INTO metrics (customer_id, exercise_id, metrics_date, current_weight_lbs, current_time_min) VALUES (1, 0054, DATE '2023-01-24', 120, 15);
-INSERT INTO metrics (customer_id, exercise_id, metrics_date, current_weight_lbs, current_time_min) VALUES (1, 0054, DATE '2023-01-26', 135, 10);
-INSERT INTO metrics (customer_id, exercise_id, metrics_date, current_weight_lbs, current_time_min) VALUES (1, 0054, DATE '2023-01-31', 150, 5);
-INSERT INTO metrics (customer_id, exercise_id, metrics_date, current_weight_lbs, current_time_min) VALUES (1, 0054, DATE '2023-02-02', 160, 19);
-INSERT INTO metrics (customer_id, exercise_id, metrics_date, current_weight_lbs, current_time_min) VALUES (1, 0054, DATE '2023-02-07', 175, 21);
-INSERT INTO metrics (customer_id, exercise_id, metrics_date, current_weight_lbs, current_time_min) VALUES (1, 0054, DATE '2023-02-09', 205, 13);
+INSERT INTO metrics (customer_id, exercise_id, metrics_date, current_weight_lbs, current_time_min) VALUES (1, 0054, DATE '2023-02-02', 160, 10);
+INSERT INTO metrics (customer_id, exercise_id, metrics_date, current_weight_lbs, current_time_min) VALUES (1, 0054, DATE '2023-02-07', 175, 10);
+INSERT INTO metrics (customer_id, exercise_id, metrics_date, current_weight_lbs, current_time_min) VALUES (1, 0054, DATE '2023-02-09', 205, 10);
 
 INSERT INTO metrics (customer_id, exercise_id, metrics_date, current_weight_lbs, current_time_min) VALUES (1, 0294, DATE '2023-01-24', 25, 10);
 INSERT INTO metrics (customer_id, exercise_id, metrics_date, current_weight_lbs, current_time_min) VALUES (1, 0294, DATE '2023-01-26', 30, 17);
