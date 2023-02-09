@@ -29,7 +29,11 @@ export default {
           },
           pointLabels: {
             fontColor: "#FDFFFC",
+            fontSize: 12,
           },
+          ticks: {
+            beginAtZero: true,
+          }
         },
         legend: {
           display: false,

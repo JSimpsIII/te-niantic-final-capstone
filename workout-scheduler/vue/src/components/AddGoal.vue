@@ -82,12 +82,10 @@ export default {
       );
       this.newGoal.name = newGoalName;
 
-      // this.$store.state.goalList.push(this.newGoal);
-
       goalService
         .addNewGoal(this.$store.state.profile.customerId, this.newGoal)
         .then((response) => {
-          if (response.status == 200) {
+          if (response.status == 201) {
             this.newGoal = {
               name: "",
               customerId: this.$store.state.profile.customerId,
@@ -112,15 +110,10 @@ export default {
         });
     },
     saveCustomGoal() {
-      // const newGoalName = e.target.nextElementSibling.value;
-      // this.newGoal.name = newGoalName;
-
-      // this.$store.state.goalList.push(this.newGoal);
-
       goalService
         .addNewGoal(this.$store.state.profile.customerId, this.newGoal)
         .then((response) => {
-          if (response.status == 200) {
+          if (response.status == 201) {
             this.newGoal = {
               name: "",
               customerId: this.$store.state.profile.customerId,

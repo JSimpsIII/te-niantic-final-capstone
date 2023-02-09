@@ -4,8 +4,10 @@
         <div>
             <p class='calendar-prompt' v-if="checkEmpty">No upcoming workouts</p>
             <p class='calendar-prompt' v-if="!checkEmpty">Upcoming Workouts</p>
-            <p class='calendar-prompt' v-for="item in scheduledExercises"
-                    v-bind:key="item.name">{{item.name}}, on {{item.date}} at {{item.time}}</p>
+            <div v-for="item in scheduledExercises"
+                    v-bind:key="item.name">
+            <button class='calendar-prompt cancel-button' v-bind:disabled="enableDeletion" @click='deleteSelected(item)'>{{item.name}}, on {{item.date}} at {{item.time}}</button>
+            </div>
         </div>
         
         <div id='workout' class='gym-button' v-if="calendarActive">
@@ -195,7 +197,8 @@ export default {
             showSearchBar: false,
             showFilters: false,
             calendarActive: false,
-            showForm: false
+            showForm: false,
+            canDeleteExercise: false
         }
     },
     created() {
@@ -260,6 +263,13 @@ export default {
                 submitDisbaled = true
             }
             return submitDisbaled
+        },
+        enableDeletion() {
+            let deleteDisabled = true
+            if (this.canDeleteExercise == true) {
+                deleteDisabled = false
+            }
+            return deleteDisabled
         }
     },
     methods: {
@@ -358,7 +368,15 @@ export default {
             }
         },
         cancelExercise() {
-            this.scheduledExercises.shift()
+            this.canDeleteExercise = true
+        },
+        deleteSelected(item) {
+            this.scheduledExercises.forEach(exercise => {
+                const index = this.scheduledExercises.indexOf(exercise);
+                if (exercise.name == item.name) {
+                    this.scheduledExercises.splice(index, 1)
+                }
+            })
         }
     }
 
