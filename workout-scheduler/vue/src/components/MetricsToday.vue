@@ -2,6 +2,8 @@
   <div>
       <h3>Minutes per Exercise</h3>
     <bar-chart></bar-chart>
+    <hr>
+    <h3>Minutes by Target Muslce Group</h3>
     <target-bar-chart></target-bar-chart>
   </div>
 </template>
@@ -23,5 +25,10 @@ export default {
 h3 {
   text-align: center;
   margin-bottom: 10px;
+}
+
+hr {
+  width: 70%;
+  margin: 60px auto 50px auto;
 }
 </style>
