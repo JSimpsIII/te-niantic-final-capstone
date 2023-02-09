@@ -1,9 +1,12 @@
 <template>
     <div id='exercise-table'>
 
-        <div><p class='calendar-prompt'>No upcoming workouts</p></div>
+        <div>
+            <p class='calendar-prompt' v-if="checkEmpty">No upcoming workouts</p>
+            <p class='calendar-prompt' v-if="!checkEmpty && !calendarActive">Reminder: "{{scheduledExercise.name}}" upcoming on {{scheduledExercise.date}} at {{scheduledExercise.time}}</p>
+        </div>
 
-        <div id='schedule' class='gym-button' v-if="!calendarActive">
+        <div id='schedule' class='gym-button' v-if="!calendarActive && checkEmpty">
             <!-- <p class='calendar-prompt'>Want to schedule a workout for later?</p> -->
             <button id='schedule-button' @click='openCalendar()'>
                 {{buttonText}}
@@ -11,40 +14,46 @@
         </div>
 
         <div id='workout' class='gym-button' v-if="calendarActive">
-            <button id='workout-button' @click='openCalendar()'>
+            <button v-bind:disabled="actionButtonDisabled" id='workout-button' @click='openCalendar()'>
                 {{buttonText}}
             </button>
         </div>
         
+        <div id='cancel-schedule' class='gym-button' v-if="!calendarActive && !checkEmpty">
+            <button id='cancel-exercise-button' @click='cancelExercise()'>
+                {{buttonText}}
+            </button>
+        </div>
 
 
         <div class="gym-instructions-container">
             <div id="gym-instructions" v-if="!calendarActive">Select an exercise to begin</div>
             <div id="alternate-instructions" v-if="calendarActive && !showForm">Select an exercise to schedule</div>
             <form id="frmDateAndTime" v-show="showForm" v-on:submit.prevent="saveExercise">
-                <p>You've chosen {{scheduledExercise.name}}</p>
+                <p>Select a date and time to schedule the "{{scheduledExercise.name}}" exercise</p>
                 <div class="field" >
-                    <label for="date">Date:</label>
+                    <label for="date">Date: </label>
                     <input type="text" name="date" placeholder="MM/DD/YYYY" v-model="scheduledExercise.date"/>
                 </div>
                 <div class="field">
-                    <label for="time">Time:</label>
+                    <label for="time">Time: </label>
                     <input type="text" name="time" placeholder="00:00 PM" v-model="scheduledExercise.time"/>
                 </div>
-                <button type="submit" class="btn save">Save</button>
+                <button v-bind:disabled="submitButtonDisabled" type="submit" class="btn save" @click='openCalendar()'>Save</button>
+                <button class="cancel-button" @click="cancelForm">Cancel</button>
             </form>
         </div>
 
-        <div id='search-menu'>
+        <div id='search-menu' v-show="!showForm">
             <img id="search-icon" class="icon-button" src="../assets/search.png" alt="search-icon" title="Search" @click="toggleSearch" v-if="!showSearchBar && !calendarActive">
             <img id="search-icon" class="schedule-icon-button" src="../assets/search.png" alt="search-icon" title="Search" @click="toggleSearch" v-if="!showSearchBar && calendarActive">
-            <button id="cancel-button" v-if="showSearchBar" @click="toggleSearch">Cancel</button>
+            <button class="cancel-button" v-if="showSearchBar" @click="toggleSearch">Cancel</button>
             <input type="text" id="exerciseNameFilter" placeholder="search exercises" v-model="filter.name" v-if="showSearchBar"/>
             <img id="filter-icon" class="icon-button" src="../assets/filter.png" alt="filter-icon" title="Enable Filters" @click="toggleFilters" v-if="showSearchBar && !calendarActive">
             <img id="filter-icon" class="schedule-icon-button" src="../assets/filter.png" alt="filter-icon" title="Enable Filters" @click="toggleFilters" v-if="showSearchBar && calendarActive">
         </div>
         
-       <table id="table-of-exercises">
+       <table id="table-of-exercises" v-show="!showForm">
             <thead>
                 <tr>
                     <th class='first-column'>Exercise</th>
@@ -190,10 +199,20 @@ export default {
       this.loadExercises();
     },
     computed: {
+        checkEmpty() {
+            let empty = false;
+            if (this.scheduledExercise.name == '' && this.scheduledExercise.date == '' && this.scheduledExercise.time == '') {
+                empty = true
+            }
+            return empty
+        },
         buttonText() {
-            let calendarText = "Schedule Mode"
+            let calendarText = "Schedule"
             if (this.calendarActive == true) {
-                calendarText = "Workout Mode" 
+                calendarText = "Workout" 
+            }
+            if (this.checkEmpty == false && this.calendarActive == false) {
+                calendarText = "Cancel Scheduled Exercise"
             }
             return calendarText
         },
@@ -231,6 +250,16 @@ export default {
                 );
             }
             return filteredExercises;
+        },
+        actionButtonDisabled() {
+            return this.showForm
+        },
+        submitButtonDisabled() {
+            let submitDisbaled = false
+            if (this.scheduledExercise.date == '' || this.scheduledExercise.time == '') {
+                submitDisbaled = true
+            }
+            return submitDisbaled
         }
     },
     methods: {
@@ -261,15 +290,62 @@ export default {
         },
         openCalendar() {
             this.calendarActive = !this.calendarActive
+            if (this.showSearchBar == true) {
+                this.showSearchBar = false
+                this.filter = {
+                    name: '',
+                    target: '',
+                    bodyPart: '',
+                    equipment: ''
+                    }
+                if (this.showFilters == true) {
+                    this.showFilters = false
+                }
+            }
         },
         toggleShowForm(exercise) {
             this.showForm = !this.showForm
             if (this.scheduledExercise.name == '') {
                 this.scheduledExercise.name = exercise.name
             }
+            this.filter = {
+                name: '',
+                target: '',
+                bodyPart: '',
+                equipment: ''
+            }
+        },
+        cancelForm() {
+            this.showForm = !this.showForm;
+
+            this.scheduledExercise = {
+                name: '',
+                date: '',
+                time: ''
+            }
+            
+            if (this.showSearchBar == true) {
+                this.showSearchBar = false
+                this.filter = {
+                    name: '',
+                    target: '',
+                    bodyPart: '',
+                    equipment: ''
+                    }
+                if (this.showFilters == true) {
+                    this.showFilters = false
+                }
+            }
         },
         saveExercise() {
             this.showForm = false;
+        },
+        cancelExercise() {
+            this.scheduledExercise = {
+                name: '',
+                date: '',
+                time: ''
+            }
         }
     }
 
@@ -317,13 +393,13 @@ export default {
     margin-right: 2%
 }
 
-#cancel-button {
+.cancel-button {
     margin-right: 1%;
     border: none;
     outline: none;
 }
 
-#cancel-button:hover{
+.cancel-button:hover{
     color: indianred;
 }
 #filter-icon {
@@ -421,6 +497,23 @@ button:hover {
 
 #workout-button {
     background-color: sandybrown;
+      display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  color: #FDFFFC;
+  opacity: 1;
+  margin: 0 auto;
+  font-size: 20px;
+  padding: 15px 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+  border-radius: 10px;
+}
+
+#cancel-exercise-button {
+        background-color: var(--red);
       display: flex;
   justify-content: center;
   align-items: center;

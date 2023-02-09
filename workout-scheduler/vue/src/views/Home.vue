@@ -19,7 +19,7 @@
 
     <div id="motivation">
       <div id='welcome-message'>Welcome back, {{ this.$store.state.profile.name }}!</div>
-      <!-- <div id='motivation-message'>{{ this.motivationMessage }}</div> -->
+      <quote-changer />
     </div>
 
     <div class="btn-container">
@@ -68,11 +68,13 @@ import NavBar from "../components/NavBar.vue";
 import metricService from '../services/MetricService';
 import exerciseService from '../services/ExerciseService';
 import goalService from '../services/GoalService'
+import QuoteChanger from '../components/QuoteChanger.vue';
 
 export default {
   name: "home",
   components: {
-    NavBar
+    NavBar,
+    QuoteChanger
   },
   data() {
     return {
