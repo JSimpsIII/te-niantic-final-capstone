@@ -174,8 +174,37 @@ export default {
   cursor: pointer;
 }
 
+
 .goals-icons {
+  display: none;
+}
+
+.goal:hover .goals-icons {
   display: flex;
   gap: 10px;
+  animation: fade-in 1s ease;
 }
+
+.goal:hover {
+  background: linear-gradient(90deg, var(--smoke) 75%, var(--green) 0%);
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  100% {
+    opacity: 0;
+  }
+  0% {
+    opacity: 1;
+  }
+}
+
 </style>
