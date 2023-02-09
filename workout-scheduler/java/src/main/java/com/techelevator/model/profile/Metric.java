@@ -11,21 +11,21 @@ public class Metric {
     private double reps;
     private double weight;
     private double time;
-    private double distance;
+    private double sets;
     private int days;
     private String misc;
 
     public Metric() {
     }
 
-    public Metric(Long customerId, int exerciseId, Date date, double reps, double weight, double time, double distance, int days, String misc) {
+    public Metric(Long customerId, int exerciseId, Date date, double reps, double weight, double time, double sets, int days, String misc) {
         this.customerId = customerId;
         this.exerciseId = exerciseId;
         this.date = date;
         this.reps = reps;
         this.weight = weight;
         this.time = time;
-        this.distance = distance;
+        this.sets = sets;
         this.days = days;
         this.misc = misc;
     }
@@ -86,12 +86,12 @@ public class Metric {
         this.time = time;
     }
 
-    public double getDistance() {
-        return distance;
+    public double getSets() {
+        return sets;
     }
 
-    public void setDistance(double distance) {
-        this.distance = distance;
+    public void setSets(double sets) {
+        this.sets = sets;
     }
 
     public int getDays() {

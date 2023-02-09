@@ -35,11 +35,11 @@ public class GoalController {
         double reps = goalDTO.getReps();
         double weight = goalDTO.getWeight();
         double time = goalDTO.getTime();
-        double distance = goalDTO.getDistance();
+        double sets = goalDTO.getSets();
         int days = goalDTO.getDays();
         String misc = goalDTO.getMisc();
         boolean isCompleted = goalDTO.isCompleted();
-        Goal goal = new Goal(name, customerId, exerciseId, date, reps, weight, time, distance, days, misc, isCompleted);
+        Goal goal = new Goal(name, customerId, exerciseId, date, reps, weight, time, sets, days, misc, isCompleted);
         return goalDao.addNewGoal(userId, goal);
     }
 
@@ -52,11 +52,11 @@ public class GoalController {
         double reps = goalDTO.getReps();
         double weight = goalDTO.getWeight();
         double time = goalDTO.getTime();
-        double distance = goalDTO.getDistance();
+        double sets = goalDTO.getSets();
         int days = goalDTO.getDays();
         String misc = goalDTO.getMisc();
         boolean isCompleted = goalDTO.isCompleted();
-        Goal goal = new Goal(goalId, name, customerId, exerciseId, date, reps, weight, time, distance, days, misc, isCompleted);
+        Goal goal = new Goal(goalId, name, customerId, exerciseId, date, reps, weight, time, sets, days, misc, isCompleted);
         return goalDao.updateGoal(userId, goalId, goal);
     }
 

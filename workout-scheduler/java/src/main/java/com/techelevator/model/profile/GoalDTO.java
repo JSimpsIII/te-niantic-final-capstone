@@ -14,7 +14,7 @@ public class GoalDTO {
     private double reps;
     private double weight; //lbs
     private double time; //min
-    private double distance; //mi
+    private double sets;
     private int days;
     private String misc;
     private boolean isCompleted;
@@ -83,12 +83,12 @@ public class GoalDTO {
         this.time = time;
     }
 
-    public double getDistance() {
-        return distance;
+    public double getSets() {
+        return sets;
     }
 
-    public void setDistance(double distance) {
-        this.distance = distance;
+    public void setSets(double sets) {
+        this.sets = sets;
     }
 
     public int getDays() {

@@ -12,7 +12,7 @@
           goal.reps != 0 ||
           goal.weight != 0 ||
           goal.time != 0 ||
-          goal.distance != 0 ||
+          goal.sets != 0 ||
           goal.days != 0 ||
           goal.misc != null
             ? ":"
@@ -21,7 +21,7 @@
         {{ goal.reps != 0 ? goal.reps : "" }}
         {{ goal.weight != 0 ? goal.weight : "" }}
         {{ goal.time != 0 ? goal.time : "" }}
-        {{ goal.distance != 0 ? goal.distance : "" }}
+        {{ goal.sets != 0 ? goal.sets : "" }}
         {{ goal.days != 0 ? goal.days : "" }}
         {{ goal.misc != null ? goal.misc : "" }}
       </div>
@@ -65,7 +65,7 @@ export default {
         reps: 0.0,
         weight: 0.0,
         time: 0.0,
-        distance: 0.0,
+        sets: 0.0,
         days: 0,
         misc: null,
         completed: false,

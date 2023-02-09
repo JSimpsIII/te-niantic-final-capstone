@@ -71,7 +71,7 @@ CREATE TABLE metrics (
 	current_reps numeric,
 	current_weight_lbs numeric,
 	current_time_min numeric,
-	current_distance_miles numeric,
+	current_sets numeric,
 	current_days int,
 	current_misc varchar(50)
 );
@@ -85,7 +85,7 @@ CREATE TABLE goal (
 	goal_reps numeric,
 	goal_weight_lbs numeric,
 	goal_time_min numeric,
-	goal_distance_mi numeric,
+	goal_sets numeric,
 	goal_days int,
 	goal_misc varchar(50),
 	is_completed boolean

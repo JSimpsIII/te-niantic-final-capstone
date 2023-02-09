@@ -45,18 +45,18 @@ public class JdbcGoalDao implements GoalDao {
         double reps = goal.getReps();
         double weight = goal.getWeight(); //lbs
         double time = goal.getTime(); //min
-        double distance = goal.getDistance(); //mi
+        double sets = goal.getSets();
         int days = goal.getDays();
         String misc = goal.getMisc();
         boolean isCompleted = goal.isCompleted();
 
         Integer goalId;
         String sqlQuery = "INSERT INTO goal " +
-                "(goal_name, customer_id, exercise_id, goal_date, goal_reps, goal_weight_lbs, goal_time_min, goal_distance_mi, goal_days, goal_misc, is_completed) " +
+                "(goal_name, customer_id, exercise_id, goal_date, goal_reps, goal_weight_lbs, goal_time_min, goal_sets, goal_days, goal_misc, is_completed) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING goal_id;";
         try {
             goalId = jdbcTemplate.queryForObject(sqlQuery, Integer.class,
-                    name, customerId, exerciseId, date, reps, weight, time, distance, days, misc, isCompleted);
+                    name, customerId, exerciseId, date, reps, weight, time, sets, days, misc, isCompleted);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return false;
@@ -72,16 +72,16 @@ public class JdbcGoalDao implements GoalDao {
         double reps = goal.getReps();
         double weight = goal.getWeight(); //lbs
         double time = goal.getTime(); //min
-        double distance = goal.getDistance(); //mi
+        double sets = goal.getSets();
         int days = goal.getDays();
         String misc = goal.getMisc();
         boolean isCompleted = goal.isCompleted();
 
         String sqlQuery = "UPDATE goal " +
-                "SET goal_name = ?, exercise_id = ?, goal_date = ?, goal_reps = ?, goal_weight_lbs = ?, goal_time_min = ?, goal_distance_mi = ?, goal_days = ?, goal_misc = ?, is_completed = ? " +
+                "SET goal_name = ?, exercise_id = ?, goal_date = ?, goal_reps = ?, goal_weight_lbs = ?, goal_time_min = ?, goal_sets = ?, goal_days = ?, goal_misc = ?, is_completed = ? " +
                 "WHERE goal_id = ? AND customer_id = ?;";
         try {
-            jdbcTemplate.update(sqlQuery, name, exerciseId, date, reps, weight, time, distance, days, misc, isCompleted, goalId, userId);
+            jdbcTemplate.update(sqlQuery, name, exerciseId, date, reps, weight, time, sets, days, misc, isCompleted, goalId, userId);
         } catch (Exception e) {
             return false;
         }
@@ -112,7 +112,7 @@ public class JdbcGoalDao implements GoalDao {
         goal.setReps(row.getDouble("goal_reps"));
         goal.setWeight(row.getDouble("goal_weight_lbs"));
         goal.setTime(row.getDouble("goal_time_min"));
-        goal.setDistance(row.getDouble("goal_distance_mi"));
+        goal.setSets(row.getDouble("goal_sets"));
         goal.setDays(row.getInt("goal_days"));
         goal.setMisc(row.getString("goal_misc"));
         goal.setCompleted(row.getBoolean("is_completed"));

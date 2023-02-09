@@ -14,7 +14,7 @@ public class MetricDTO {
     private double reps;
     private double weight;
     private double time;
-    private double distance;
+    private double sets;
     private int days;
     private String misc;
 
@@ -74,12 +74,12 @@ public class MetricDTO {
         this.time = time;
     }
 
-    public double getDistance() {
-        return distance;
+    public double getSets() {
+        return sets;
     }
 
-    public void setDistance(double distance) {
-        this.distance = distance;
+    public void setSets(double sets) {
+        this.sets = sets;
     }
 
     public int getDays() {
