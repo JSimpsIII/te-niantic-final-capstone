@@ -64,13 +64,8 @@ export default new Vuex.Store({
       misc: '',
       isCompleted: false
     },
-    gym: {
-      clockIn: null,
-      clockOut: null,
-      inGym: false,
-      visitDate: null,
-      visitId: 0
-    }
+    inGym: false,
+    visitId: -1
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -109,21 +104,14 @@ export default new Vuex.Store({
     LOAD_GOAL_LIST(state, goals) {
       state.goalList = goals;
     },
-    GYM_CLOCK_IN(state, date, time) {
-      state.gym.visitDate = date;
-      state.gym.clockIn = time;
-    },
-    GYM_CLOCK_OUT(state, date) {
-      state.gym.clockOut = date;
-    },
-    SET_IN_GYM(state, inGym) {
-      state.gym.inGym = inGym;
-    },
-    SET_GYM_VISIT_ID(state, visitId) {
-      state.gym.visitId = visitId;
+    TOGGLE_IN_GYM(state, inGym) {
+      state.inGym = inGym;
     },
     LOAD_GYM_LOGS(state, gymLogs) {
       state.gymLogs = gymLogs;
+    },
+    SET_VISIT_ID(state, id) {
+      state.visitId = id;
     }
   }
 })

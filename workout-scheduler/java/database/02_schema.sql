@@ -96,8 +96,8 @@ CREATE TABLE gym_visit (
     visit_id SERIAL NOT NULL PRIMARY KEY,
     customer_id int NOT NULL,
     visit_date date NOT NULL,
-    check_in time NOT NULL,
-    check_out time
+    check_in timestamp NOT NULL,
+    check_out timestamp
 );
 
 

@@ -10,12 +10,12 @@ export default {
         return http.get(`/users/${userId}/gymlogs`);
     },
 
-    newVisit(userId) {
-        return http.post(`/users/${userId}/gymlogs`);
+    checkIn(userId) {
+        return http.get(`/users/${userId}/gymlogs/checkin`);
     },
 
-    updateVisit(userId, visitId, visit) {
-        return http.put(`/users/${userId}/gymlogs/${visitId}`, visit);
+    checkOut(userId, visitId) {
+        return http.get(`/users/${userId}/gymlogs/${visitId}/checkout`);
     },
     
     deleteVisit(userId, visitId) {

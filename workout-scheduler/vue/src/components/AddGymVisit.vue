@@ -1,7 +1,7 @@
 <template>
     <div id='add-gym-visit'>
 
-        <div v-if='(this.$store.state.gym.inGym == true)' id='clock-out' class='gym-button'>
+        <div v-if='(this.$store.state.inGym == true)' id='clock-out' class='gym-button'>
             <p class='gym-greeting'>Heading out?</p>
             <button type='submit' id='clock-out-button' @click='clockOut()'>
                 Clock Out
@@ -23,45 +23,14 @@ import gymVisitService from '../services/GymVisitService.js'
 
 export default {
     name: 'add-gym-visit',
-    data() {
-        return {
-            gymVisit: {
-                customerId: null,
-                visitDate: null,
-                checkIn: null,
-                checkOut: null,
-                visitId: null
-            }
-        }
-    },
     methods: {
         clockIn() {
-            this.$store.commit('SET_IN_GYM', true);
-            let clockinTime = Date.now();
-            let visitDate = new Date().toISOString;
-            this.$store.commit('GYM_CLOCK_IN', visitDate, clockinTime);
-            this.createEntry();
+            this.$store.commit('TOGGLE_IN_GYM', true); let id = gymVisitService.checkIn(this.$store.state.profile.userId);
+            this.$store.commit('SET_VISIT_ID', id);
         },
         clockOut() {
-            this.$store.commit('SET_IN_GYM', false);
-            let clockoutTime = Date.now();
-            this.$store.commit('GYM_CLOCK_OUT', clockoutTime);
-            this.updateEntry();
-        },
-        createEntry() {
-            this.gymVisit.customerId = this.$store.state.profile.customerId;
-            this.gymVisit.visitDate = this.$store.state.gym.visitDate;
-            this.gymVisit.checkIn = this.$store.state.gym.clockIn;
-            this.gymVisit.visitId = gymVisitService.newVisit(this.gymVisit.customerId, this.gymVisit);
-            this.$store.commit('SET_GYM_VISIT_ID', this.gymVisit.visitId);
-        },
-        updateEntry() {
-            this.gymVisit.visitId = this.$store.state.gym.visitId;
-            this.gymVisit.customerId = this.$store.state.profile.customerId;
-            this.gymVisit.visitDate = this.$store.state.gym.visitDate;
-            this.gymVisit.checkIn = this.$store.state.gym.clockIn;
-            this.gymVisit.checkOut = this.$store.state.gym.clockOut;
-            gymVisitService.updateVisit(this.gymVisit.customerId, this.gymVisit.visitId, this.gymVisit);
+            this.$store.commit('TOGGLE_IN_GYM', false);
+            gymVisitService.clockOut(this.$store.state.profile.userId, this.$store.state.visitId);
         }
     }
 }

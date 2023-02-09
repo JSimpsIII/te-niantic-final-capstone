@@ -1,16 +1,14 @@
 package com.techelevator.model.dto;
 
-
-import java.sql.Time;
-import java.sql.Date;
+import java.util.Date;
 
 public class GymVisitDTO {
 
     private int visitId;
     private Long customerId;
     private Date visitDate;
-    private Time checkIn;
-    private Time checkOut;
+    private Date checkIn;
+    private Date checkOut;
 
     public int getVisitId() {
         return visitId;
@@ -36,19 +34,19 @@ public class GymVisitDTO {
         this.visitDate = visitDate;
     }
 
-    public Time getCheckIn() {
+    public Date getCheckIn() {
         return checkIn;
     }
 
-    public void setCheckIn(Time checkIn) {
+    public void setCheckIn(Date checkIn) {
         this.checkIn = checkIn;
     }
 
-    public Time getCheckOut() {
+    public Date getCheckOut() {
         return checkOut;
     }
 
-    public void setCheckOut(Time checkOut) {
+    public void setCheckOut(Date checkOut) {
         this.checkOut = checkOut;
     }
 }
