@@ -25,8 +25,11 @@
         </div>
         
         <div id='cancel-schedule' class='gym-button' v-if="!calendarActive && !checkEmpty">
-            <button id='cancel-exercise-button' @click='cancelExercise()'>
+            <button id='cancel-exercise-button' v-if="!cancelingExercise" @click='cancelExercise()'>
                 Cancel Scheduled Exercise
+            </button>
+            <button id='cancel-exercise-button' v-if="cancelingExercise" @click='stopCanceling()'>
+                Stop Canceling
             </button>
         </div>
         </div>
@@ -221,6 +224,13 @@ export default {
             }
             return calendarText
         },
+        // removeExerciseText() {
+        //     let removeButtonText = "Cancel Scheduled Exercise"
+        //     if (this.cancelingExercise == true){
+        //         removeButtonText = "Stop Canceling"
+        //     }
+        //     return removeButtonText
+        // },
         allExercises() {
             return this.$store.state.exerciseList;
         },
@@ -371,6 +381,9 @@ export default {
         },
         cancelExercise() {
             this.cancelingExercise = true
+        },
+        stopCanceling() {
+            this.cancelingExercise = false
         },
         deleteSelected(item) {
             this.scheduledExercises.forEach(exercise => {
