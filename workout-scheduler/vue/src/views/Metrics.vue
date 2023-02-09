@@ -84,7 +84,7 @@
         <div class="sub-metric-charts" v-if="records.isShowing">
             <!-- Insert Charts for Personal Records Section -->
             <metrics-records></metrics-records>
-            <gym-visits-year />
+            <!-- <gym-visits-year /> -->
         </div>
       </div>
 
