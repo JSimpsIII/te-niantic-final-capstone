@@ -3,7 +3,7 @@
       <h3>Minutes per Exercise</h3>
     <bar-chart></bar-chart>
     <hr>
-    <h3>Minutes by Target Muslce Group</h3>
+    <h3>Minutes by Target Muscle Group</h3>
     <target-bar-chart></target-bar-chart>
   </div>
 </template>

@@ -27,18 +27,6 @@
       </div>
     </div>
 
-    <div class="add-new-goal">
-      <img
-        src="../assets/add.png"
-        alt="add-icon"
-        class="add-new-goal-btn"
-        @click="saveGoal"
-      />
-      <div>
-        Bench press (lbs):
-        <input type="number" min="1" max="480" v-model="newGoal.weight" />
-      </div>
-    </div>
 
     <div class="add-new-goal">
       <img
