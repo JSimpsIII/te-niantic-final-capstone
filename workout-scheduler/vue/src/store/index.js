@@ -44,7 +44,7 @@ export default new Vuex.Store({
       reps: 0,
       weight: 0,
       time: 0,
-      distance: 0,
+      sets: 0,
       days: 0,
       misc: ''
     },
@@ -65,7 +65,7 @@ export default new Vuex.Store({
       reps: 0,
       weight: 0,
       time: 0,
-      distance: 0,
+      sets: 0,
       days: 0,
       misc: '',
       isCompleted: false
