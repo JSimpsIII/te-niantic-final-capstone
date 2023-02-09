@@ -211,6 +211,10 @@ export default {
     padding: 20px 10px;
 }
 
+.sub-metric-charts:last-child {
+  padding-bottom: 80px;
+}
+
 .spacer {
   display: flex;
   width: 100%;

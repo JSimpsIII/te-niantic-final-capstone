@@ -8,7 +8,7 @@
 
         <form class="form-signin" @submit.prevent="login">
 
-            <h3 class="login-request" v-if="!this.$route.query.registration">Log In to Continue</h3>
+            <h3 class="login-request" v-if="!this.$route.query.registration">Log In</h3>
           
             <h3  
                 class="alert alert-success login-request"
@@ -62,7 +62,7 @@
             </div>
             
             <div id="log-in">
-                <button type="submit">Log In</button>
+                <button type="submit">Log In<span id="muscle-emoji"> 💪</span></button>
             </div>
 
         </form>
@@ -150,13 +150,33 @@ export default {
   margin-left: 10px;
 }
 
+#password,
 #username {
   margin-bottom: 2px;
+  background-color: var(--blue);
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  color: var(--inherit);
+  margin-top: 3px;
 }
 
-#password {
-  margin-bottom: 2px;
+#user-entry {
+  width: 300px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
+
+#enter-username,
+#enter-password {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
 
 .login-request {
   font-size: 25px;
@@ -181,4 +201,25 @@ export default {
 #image-changer-div {
   max-width: 600px;
 }
+
+#log-in button {
+  background-color: var(--blue);
+  border: none;
+  color: inherit;
+  padding: 6px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+#muscle-emoji {
+  display: none;
+}
+
+#log-in button:hover #muscle-emoji{
+  display: inline;
+}
+
+
+
 </style>
