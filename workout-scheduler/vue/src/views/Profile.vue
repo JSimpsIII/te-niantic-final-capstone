@@ -11,7 +11,7 @@
       </div>
       <div>
         <img
-          src="@/assets/edit.png"
+          src="@/assets/camera.png"
           alt="edit-icon"
           class="edit-icon"
           @click="toggleProfilePic"
@@ -166,6 +166,10 @@ export default {
       this.isChoosingProfilePic = true;
       document.getElementById("profile-container").classList.add("blurred");
       document.getElementById("profile-img").classList.add("blurred");
+
+      const editBtn = document.getElementById("edit-btn");
+      editBtn.disabled = true;
+      editBtn.style.cursor = "auto";
     },
     toggleEditProfile() {
       this.isEditting = !this.isEditting;
@@ -187,6 +191,10 @@ export default {
       this.isChoosingProfilePic = false;
       document.getElementById("profile-container").classList.remove("blurred");
       document.getElementById("profile-img").classList.remove("blurred");
+
+      const editBtn = document.getElementById("edit-btn");
+      editBtn.disabled = false;
+      editBtn.style.cursor = "pointer";
     },
     closeImgSelection() {
       this.isChoosingProfilePic = false;
@@ -231,7 +239,7 @@ export default {
 .edit-icon {
   position: absolute;
   top: 135%;
-  margin-left: 35%;
+  margin-left: 32%;
 }
 
 .edit-icon:hover {
@@ -239,11 +247,11 @@ export default {
 }
 
 .profile-container {
-  margin: 100px 50px 0 50px;
+  margin: 110px 50px 0 50px;
 }
 
 #username-container {
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 }
 
 #username-name {
@@ -315,6 +323,7 @@ footer {
   height: 120px;
   object-fit: cover;
   object-position: top;
+  cursor: pointer;
 }
 
 .profile-pic-container {
