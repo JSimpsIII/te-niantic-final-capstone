@@ -27,10 +27,10 @@
       </div>
 
       <div class="goals-icons">
-        <img 
-          src="../assets/check.png" 
-          alt="check-icon" 
-          class="check-icon" 
+        <img
+          src="../assets/check.png"
+          alt="check-icon"
+          class="check-icon"
           @click="updateGoal"
         />
 
@@ -46,55 +46,59 @@
 </template>
 
 <script>
+import Vue from "vue";
+import VueConfetti from "vue-confetti";
 import goalService from "../services/GoalService";
+
+Vue.use(VueConfetti);
 
 export default {
   name: "list-goals",
   data() {
     return {
       updatedGoal: {
-              name: "",
-              id: 0,
-              customerId: this.$store.state.profile.customerId,
-              exerciseId: 1,
-              date: null,
-              reps: 0.0,
-              weight: 0.0,
-              time: 0.0,
-              distance: 0.0,
-              days: 0,
-              misc: null,
-              completed: false,
-            }
-    }
+        name: "",
+        id: 0,
+        customerId: this.$store.state.profile.customerId,
+        exerciseId: 1,
+        date: null,
+        reps: 0.0,
+        weight: 0.0,
+        time: 0.0,
+        distance: 0.0,
+        days: 0,
+        misc: null,
+        completed: false,
+      },
+    };
   },
   computed: {
     filteredGoalsNotCompleted() {
-      return this.$store.state.goalList.filter(g => g.completed == false);
-    }
+      return this.$store.state.goalList.filter((g) => g.completed == false);
+    },
   },
   methods: {
     updateGoal(e) {
       const goalId = e.target.parentElement.parentElement.dataset.goalId;
       const userId = this.$store.state.profile.customerId;
 
-      this.$store.state.goalList.forEach(g => {
+      this.$store.state.goalList.forEach((g) => {
         if (g.id == goalId) {
           this.updatedGoal = g;
         }
-      })
+      });
 
       this.updatedGoal.completed = true;
       delete this.updatedGoal.id;
-      
+
       goalService
         .updateGoal(userId, goalId, this.updatedGoal)
-        .then(res => {
+        .then((res) => {
           if (res.status == 200) {
-            // confetti animation for goal completion
+            this.doConfetti();
           }
         })
-        .catch(error => console.error(error))
+        .catch((error) => console.error(error));
     },
     deleteGoal(e) {
       const goalId = e.target.parentElement.parentElement.dataset.goalId;
@@ -111,6 +115,39 @@ export default {
         .catch((error) => {
           console.error(error);
         });
+    },
+    doConfetti() {
+      this.$confetti.start({
+        particles: [
+          {
+            type: "circle",
+          },
+          {
+            type: "heart",
+          },
+        ],
+        defaultColors: [
+          "DodgerBlue",
+          "OliveDrab",
+          "Gold",
+          "pink",
+          "SlateBlue",
+          "lightblue",
+          "Violet",
+          "PaleGreen",
+          "SteelBlue",
+          "SandyBrown",
+          "Chocolate",
+          "Crimson",
+        ],
+        particlesPerFrame: 4,
+        windSpeedMax: 1,
+        defaultSize: 5,
+      });
+
+      setTimeout(() => {
+        this.$confetti.stop();
+      }, 3000);
     },
   },
 };
