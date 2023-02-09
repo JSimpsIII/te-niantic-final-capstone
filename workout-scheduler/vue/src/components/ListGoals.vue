@@ -187,7 +187,9 @@ export default {
 
 .goal:hover {
   background: linear-gradient(90deg, var(--smoke) 75%, var(--green) 0%);
+  
 }
+
 
 @keyframes fade-in {
   0% {
