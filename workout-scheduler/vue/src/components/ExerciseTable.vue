@@ -19,7 +19,7 @@
 
         <div id="workout-page-buttons">
         <div id='schedule' class='gym-button' v-if="!calendarActive">
-            <button id='schedule-button' @click='openCalendar()'>
+            <button v-bind:disabled="scheduleButtonDisabled" id='schedule-button'  @click='openCalendar()'>
                 {{buttonText}}
             </button>
         </div>
@@ -268,6 +268,9 @@ export default {
         },
         actionButtonDisabled() {
             return this.showForm
+        },
+        scheduleButtonDisabled() {
+            return this.cancelingExercise
         },
         submitButtonDisabled() {
             let submitDisbaled = false
