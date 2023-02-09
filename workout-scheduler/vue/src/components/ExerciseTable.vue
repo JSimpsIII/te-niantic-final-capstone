@@ -358,11 +358,7 @@ export default {
             }
         },
         cancelExercise() {
-            this.scheduledExercise = {
-                name: '',
-                date: '',
-                time: ''
-            }
+            this.scheduledExercises.shift()
         }
     }
 
