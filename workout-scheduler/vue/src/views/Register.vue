@@ -16,7 +16,7 @@
       </div>
 
       <div id="name">
-        <label for="name" class="sr-only">Name </label>
+        <label for="name" class="sr-only">Name: </label>
         <input
           type="text"
           id="name"
@@ -29,7 +29,7 @@
       </div>
 
       <div id="username">
-        <label for="username" class="sr-only">Username </label>
+        <label for="username" class="sr-only">Username: </label>
         <input
           type="text"
           id="username"
@@ -42,7 +42,7 @@
       </div>
 
       <div id="password">
-        <label for="password" class="sr-only">Password </label>
+        <label for="password" class="sr-only">Password: </label>
         <input
           type="password"
           id="password"
@@ -51,7 +51,8 @@
           v-model="user.password"
           required
         />
-
+        <br/>
+        <label for="confirm-password">Confirm Password: </label>
         <input
           type="password"
           id="confirmPassword"
@@ -140,6 +141,13 @@ export default {
   margin: 0 auto;
 }
 
+.form-register {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
 #register-header {
   display: flex;
   justify-content: center;
@@ -162,12 +170,18 @@ export default {
   margin-left: 10px;
 }
 
-#username {
-  margin-bottom: 2px;
-}
-
+#name,
+#username,
 #password {
-  margin-bottom: 2px;
+  margin: 8px;
+}
+.sr-only {
+  width: 200px;
+}
+.form-control {
+  width: 200px;
+  height: 40px;
+  border-radius: 10px;
 }
 
 #account-request {
