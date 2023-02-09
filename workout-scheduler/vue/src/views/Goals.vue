@@ -67,6 +67,11 @@ export default {
 
 <style scoped>
 
+#goals-page-container {
+  background-color: #214734;
+  height: 100vh;
+}
+
 #goals-container {
   width: 90%;
   margin: 0 auto;
@@ -83,10 +88,13 @@ export default {
 }
 
 .goals-title-add-container {
+  background-color: #143625;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  width: 70%;
+  justify-content: space-around;
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
   margin: 0 auto;
 }
 
@@ -99,18 +107,17 @@ div.goal:first-child {
   align-items: center;
   justify-content: flex-end;
   margin: 0 auto;
-  background-color: var(--green);
-  padding: 10px;
+  background-color: #143625;
+  padding: 10px 0 5px 0;
   border-radius: 10px;
   font-size: 18px;
   border: none;
-  padding-right: 0;
-  padding-left: 0;
   color: inherit;
 }
 
 .add-btn:hover {
   cursor: pointer;
+  color: sandybrown;
 }
 
 main {
