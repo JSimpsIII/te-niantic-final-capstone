@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import gymVisitService from '../services/GymVisitService.js'
+import gymService from '../services/GymService.js'
 
 export default {
     name: 'add-gym-visit',
@@ -38,16 +38,19 @@ export default {
         },
         clockOut() {
             let checkIn = this.$store.state.gym.clockIn;
+            console.log(checkIn);
             this.$store.commit('TOGGLE_IN_GYM', false);
             let checkOut = this.$store.state.gym.clockIn;
+            console.log(checkOut);
             let mins = Math.floor((checkOut - checkIn)/60000);
 
             this.visit.date = new Date.toISOString().split('T')[0];
+            console.log(this.visit.date);
             this.visit.customerId = this.$store.state.profile.customerId;
             this.visit.date = this.$store.state.gym.checkIn;
             this.visit.minutes = mins;
             
-            gymVisitService
+            gymService
             .addVisit(this.visit.customerId, this.visit)
             .then((response) => {
                 if (response.status == 200) {

@@ -32,7 +32,7 @@ public class VisitController {
     }
 
 
-    @RequestMapping(path = "users/{userId}/gym/{visitId}", method = RequestMethod.DELETE)
+    @RequestMapping(path = "/users/{userId}/gym/{visitId}", method = RequestMethod.DELETE)
     public boolean deleteVisit(@PathVariable Long userId, @PathVariable int visitId) {
         return visitDao.deleteVisit(userId, visitId);
     }

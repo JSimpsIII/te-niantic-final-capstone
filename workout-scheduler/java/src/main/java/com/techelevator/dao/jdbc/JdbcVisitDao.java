@@ -7,6 +7,8 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Service;
 
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +42,7 @@ public class JdbcVisitDao implements VisitDao {
 
     private boolean createNewVisit(Long userId, Visit visit) {
         int customerId = visit.getCustomerId();
-        Date date = visit.getVisitDate();
+        String date = LocalDate.now().format(DateTimeFormatter.ISO_LOCAL_DATE);
         double minutes = visit.getMinutes();
         Integer visitId;
         String sqlQuery = "INSERT INTO gym " +
