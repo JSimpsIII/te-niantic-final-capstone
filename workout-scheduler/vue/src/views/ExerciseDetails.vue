@@ -64,6 +64,7 @@ export default {
 h1 {
   margin-top: 30px;
   margin-bottom: 20px;
+  color: sandybrown;
 }
 
 #exercise-details {
@@ -73,6 +74,7 @@ h1 {
   text-align: center;
   justify-content: center;
   align-items: center;
+  background-color: rgb(29, 34, 39);
 }
 
 .flexbox {
