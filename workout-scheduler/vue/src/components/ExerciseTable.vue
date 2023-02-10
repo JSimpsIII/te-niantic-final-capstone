@@ -751,7 +751,7 @@ tr:nth-child(odd) {
 #exerciseNameFilter {
   background-color: transparent;
   border: 1px sandybrown solid;
-  padding: 5px;
+  padding: 7px 5px;
   border-radius: 5px;
   color: inherit;
 }
