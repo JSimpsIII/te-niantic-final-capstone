@@ -16,7 +16,7 @@
       </div>
 
       <div id="name">
-        <label for="name" class="sr-only">Name </label>
+        <label for="name" class="sr-only">Name: </label>
         <input
           type="text"
           id="name"
@@ -29,7 +29,7 @@
       </div>
 
       <div id="username">
-        <label for="username" class="sr-only">Username </label>
+        <label for="username" class="sr-only">Username: </label>
         <input
           type="text"
           id="username"
@@ -42,7 +42,7 @@
       </div>
 
       <div id="password">
-        <label for="password" class="sr-only">Password </label>
+        <label for="password" class="sr-only">Password: </label>
         <input
           type="password"
           id="password"
@@ -196,5 +196,53 @@ export default {
 
 #login-link {
   color: darkgoldenrod;
+}
+
+#name,
+#username,
+#password,
+#confirmPassword {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+margin: 0 auto;
+padding: 5px 5px 5px 10px;
+  background-color: rgb(29, 61, 89);
+  border-radius: 5px;
+  width: 300px;
+  margin-bottom: 15px;
+}
+
+#name input,
+#username input,
+#password input {
+  width: 100%;
+  border: none;
+  background-color: var(--blue);
+  color: white;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+
+#password input {
+  margin-bottom: 5px;
+}
+
+#register {
+  background-color: rgb(29, 34, 39);
+}
+
+#to-login {
+  text-align: center;
+}
+
+#register-button button {
+  background-color: var(--blue);
+  border: none;
+  color: inherit;
+  padding: 6px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 15px;
 }
 </style>

@@ -57,7 +57,7 @@
           :disabled="!isEditting"
         />
 
-        <label for="height">Height:</label>
+        <!-- <label for="height">Height:</label>
         <input
           type="text"
           v-model="user.height"
@@ -65,7 +65,7 @@
           name="height"
           placeholder="in inches"
           :disabled="!isEditting"
-        />
+        /> -->
 
         <!-- <label for="weight">
                 Weight:
