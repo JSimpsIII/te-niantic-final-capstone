@@ -71,7 +71,7 @@
           v-show="showForm"
           v-on:submit.prevent="saveExercise"
         >
-          <p>
+          <p id="selectDateTime">
             Select a date and time to schedule the "{{
               scheduledExercise.name
             }}" exercise
@@ -99,7 +99,7 @@
           <button
             v-bind:disabled="submitButtonDisabled"
             type="submit"
-            class="btn save"
+            class="save-button"
             @click="openCalendar()"
           >
             Save
@@ -610,7 +610,13 @@ export default {
   margin: 5px;
   width: 170px;
   border-radius: 5px;
+  background-color: transparent;
+  border: 1px solid sandybrown;
+  color: inherit;
 }
+
+
+
 th {
   height: 70px;
   border-top: 2px solid rgb(29, 61, 89);
@@ -769,4 +775,21 @@ tr:nth-child(odd) {
 #cancel-exercise-button {
   height: 60px;
 }
+
+.save-button {
+    margin-right: 10px;
+}
+.save-button,
+.cancel-button {
+    padding: 5px;
+    border: 1px solid sandybrown;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#selectDateTime {
+    margin-bottom: 10px;
+}
+
 </style>
