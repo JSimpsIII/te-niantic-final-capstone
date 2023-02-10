@@ -51,7 +51,8 @@
           v-model="user.password"
           required
         />
-
+        <br/>
+        <label for="confirm-password">Confirm Password: </label>
         <input
           type="password"
           id="confirmPassword"
@@ -140,6 +141,13 @@ export default {
   margin: 0 auto;
 }
 
+.form-register {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
 #register-header {
   display: flex;
   justify-content: center;
@@ -162,12 +170,18 @@ export default {
   margin-left: 10px;
 }
 
-#username {
-  margin-bottom: 2px;
-}
-
+#name,
+#username,
 #password {
-  margin-bottom: 2px;
+  margin: 8px;
+}
+.sr-only {
+  width: 200px;
+}
+.form-control {
+  width: 200px;
+  height: 40px;
+  border-radius: 10px;
 }
 
 #account-request {
