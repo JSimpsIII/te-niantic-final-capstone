@@ -624,4 +624,28 @@ tr:nth-child(odd) {
     background-color: rgba(29, 61, 89, 0.3);
 }
 
+#exerciseNameFilter {
+    background-color: transparent;
+    border: 1px sandybrown solid;
+    padding: 5px;
+    border-radius: 5px;
+    color: inherit;
+}
+
+#exerciseTargetFilter,
+#bodypartFilter,
+#equipmentFilter {
+    background-color: transparent;
+    padding: 5px;
+    border: 1px sandybrown solid;
+    color: inherit;
+    border-radius: 5px;
+}
+
+#exerciseTargetFilter option,
+#bodypartFilter option,
+#equipmentFilter option {
+    background-color: var(--blue);
+}
+
 </style>
