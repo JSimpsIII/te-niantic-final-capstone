@@ -51,7 +51,7 @@
           v-model="user.password"
           required
         />
-        <br/>
+        <br />
         <label for="confirm-password">Confirm Password: </label>
         <input
           type="password"
@@ -75,18 +75,18 @@
         </button>
       </div>
     </form>
-    <image-changer/>
+    <image-changer />
   </div>
 </template>
 
 <script>
 import authService from "../services/AuthService";
-import imageChanger from "../components/ImageChanger"
+import imageChanger from "../components/ImageChanger";
 
 export default {
   name: "register",
   components: {
-    imageChanger
+    imageChanger,
   },
   data() {
     return {
@@ -219,8 +219,8 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-margin: 0 auto;
-padding: 5px 5px 5px 10px;
+  margin: 0 auto;
+  padding: 5px 10px;
   background-color: rgb(29, 61, 89);
   border-radius: 5px;
   width: 300px;
@@ -236,6 +236,12 @@ padding: 5px 5px 5px 10px;
   color: white;
   border-radius: 5px;
   margin-top: 5px;
+}
+
+#name label,
+#username label,
+#password label {
+  text-align: center;
 }
 
 #password input {
